@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-
 const adminsController = require('./controllers/admins');
 const positionsController = require('./controllers/positions.js');
 
@@ -24,13 +23,3 @@ app.get('/positions/byName/:name', positionsController.getByName);
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);
 });
-
-
-
-
-
-
-
-
-
-

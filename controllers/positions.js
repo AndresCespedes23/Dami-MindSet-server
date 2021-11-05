@@ -1,15 +1,12 @@
 const fs = require('fs');
 const positions = JSON.parse(fs.readFileSync('./data/positions.json'));
 
-
-// MS26-POSITIONS - List Positions
-
 const getAll = (req, res) => {
     res.json(positions);
 };
 
 const getById = (req, res) => {
-    let filteredPosition = positions.find(element => element.id === req.params.id);
+    const filteredPosition = positions.find(element => element.id === req.params.id);
     if (!filteredPosition){
         res.send(400, {"Msg": "Position with that ID does not exist"});
     }
@@ -17,7 +14,7 @@ const getById = (req, res) => {
 };
 
 const getByName = (req, res) => {
-    let filteredPosition = positions.find(element => element.name === req.params.name);
+    const filteredPosition = positions.find(element => element.name === req.params.name);
     if (!filteredPosition){
         res.send(400, {"Msg":"Position with that NAME does not exist"});
     }
