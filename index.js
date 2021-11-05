@@ -7,6 +7,10 @@ app.get('/', (req, res) => {
   res.send('Welcome to MindSet!');
 });
 
+app.get('/interviews/create', (req, res) => {
+  interviews.create();
+})
+
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);
 });
