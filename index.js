@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const adminsController = require('./controllers/admins');
 const positionsController = require('./controllers/positions.js');
+const createController = require('./controllers/sessions');
 
 app.set('json spaces', 2);
 
