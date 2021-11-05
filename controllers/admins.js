@@ -6,7 +6,16 @@ const getAll = (req, res) => {
 };
 
 const getById = (req, res) => {
-  const admin = admins.find(admin => admin.id === parseInt(req.params.id));
+  const admin = admins.find(admin => admin.id === req.params.id);
+  if (admin) {
+    res.json(admin);
+  } else {
+    res.send('User not found');
+  }
+};
+
+const getByName = (req, res) => {
+  const admin = admins.find(admin => admin.name === req.params.name);
   if (admin) {
     res.json(admin);
   } else {
@@ -16,5 +25,6 @@ const getById = (req, res) => {
 
 module.exports = {
   getAll: getAll,
-  getById: getById
+  getById: getById,
+  getByName: getByName
 };

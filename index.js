@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const admins = require('./controllers/admins');
+const adminsController = require('./controllers/admins');
 
 app.set('json spaces', 2);
 
@@ -11,8 +11,9 @@ app.get('/', (req, res) => {
 });
 
 //ADMIN
-app.get('/admins/list', admins.getAll);
-app.get('/admins/list/:id', admins.getById);
+app.get('/admins', adminsController.getAll);
+app.get('/admins/byId/:id', adminsController.getById);
+app.get('/admins/byName/:name', adminsController.getByName);
 
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);
