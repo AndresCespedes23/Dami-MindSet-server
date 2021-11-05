@@ -7,11 +7,11 @@ app.get('/', (req, res) => {
 });
 
 // MS26-POSITIONS - List Positions
-const positionsM = require('./controllers/positions.js');
+const positionsControllers = require('./controllers/positions.js');
 
-app.get('/positions', positionsM.getAll );
-app.get('/positions/byId/:id', positionsM.getById);
-app.get('/positions/byName/:name', positionsM.getByName);
+app.get('/positions', positionsControllers.getAll);
+app.get('/positions/byId/:id', positionsControllers.getById);
+app.get('/positions/byName/:name', positionsControllers.getByName);
 
 
 
