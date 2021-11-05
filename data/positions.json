@@ -1,0 +1,8 @@
+{
+    "list": [
+        {"id":"1","idClient":"69","idProfiles":["1","2","3"],"name":"VP","description":"praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede","status":true,"address":"558 Warrior Circle","city":"Rosario del Ingre","postalCode":"2000"},
+        {"id":"2","idClient":"67","idProfiles":["4","5"],"name":"Community Outreach Specialist","description":"ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor","status":false,"address":"53 Montana Lane","city":"Pasirangin Tiga","postalCode":"2001"},
+        {"id":"3","idClient":"35","idProfiles":["6","7"],"name":"Web Designer III","description":"lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque","status":false,"address":"15753 Crownhardt Avenue","city":"Besançon","postalCode":"25014 CEDEX"},
+        {"id":"4","idClient":"55","idProfiles":["9","10"],"name":"Analog Circuit Design manager","description":"odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor","status":true,"address":"86908 Warbler Circle","city":"Nanhe","postalCode":"2000"}
+    ]
+}
