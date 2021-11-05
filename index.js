@@ -2,19 +2,35 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+const adminsController = require('./controllers/admins');
+const positionsController = require('./controllers/positions.js');
+
+app.set('json spaces', 2);
+
 app.get('/', (req, res) => {
-  res.send('Welcome to MindSet!')
+  res.send('Welcome to MindSet!');
 });
 
-// MS26-POSITIONS - List Positions
-const positionsControllers = require('./controllers/positions.js');
+//ADMIN
+app.get('/admins', adminsController.getAll);
+app.get('/admins/byId/:id', adminsController.getById);
+app.get('/admins/byName/:name', adminsController.getByName);
 
-app.get('/positions', positionsControllers.getAll);
-app.get('/positions/byId/:id', positionsControllers.getById);
-app.get('/positions/byName/:name', positionsControllers.getByName);
-
-
+// POSITIONS
+app.get('/positions', positionsController.getAll);
+app.get('/positions/byId/:id', positionsController.getById);
+app.get('/positions/byName/:name', positionsController.getByName);
 
 app.listen(port, () => {
-  console.log(`MindSet server listening at http://localhost:${port}`)
+  console.log(`MindSet server listening at http://localhost:${port}`);
 });
+
+
+
+
+
+
+
+
+
+
