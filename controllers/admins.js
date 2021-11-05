@@ -12,7 +12,7 @@ const getById = (req, res) => {
   } else {
     res.send('User not found');
   }
-}
+};
 
 module.exports = {
   getAll: getAll,
