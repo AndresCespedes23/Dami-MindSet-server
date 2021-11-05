@@ -23,8 +23,13 @@ const getByName = (req, res) => {
   }
 };
 
+const update = (req, res) => {
+  // update function
+}
+
 module.exports = {
   getAll: getAll,
   getById: getById,
-  getByName: getByName
+  getByName: getByName,
+  update: update
 };

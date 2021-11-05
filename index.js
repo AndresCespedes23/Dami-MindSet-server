@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
 app.get('/admins', adminsController.getAll);
 app.get('/admins/byId/:id', adminsController.getById);
 app.get('/admins/byName/:name', adminsController.getByName);
+app.get('/admins/update/:id', adminsController.update);
 
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);
