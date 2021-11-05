@@ -2,6 +2,16 @@
 
 MindSet is a system that provides HR services to several companies.
 
+### Instructions
+
+* To run server:
+
+`npm run start`
+
+* To run server with nodemon (server is refreshed every time you save changes):
+
+`npm run dev`
+
 <br>
 
 ### Members
