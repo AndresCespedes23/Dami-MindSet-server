@@ -7,6 +7,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to MindSet!');
 });
 
+//INTERVIEWS
 app.get('/interviews/create', (req, res) => {
   let interview = interviewsController.create(req.query);
   res.send(`Interview succesfully created! ${JSON.stringify(interview)}`);
