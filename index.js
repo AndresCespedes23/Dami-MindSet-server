@@ -16,6 +16,11 @@ app.get('/interviews/create', (req, res) => {
   let interview = interviewsController.create(req.query);
   res.send(`Interview succesfully created! ${JSON.stringify(interview)}`);
 })
+app.get('/interviews/update', (req, res) => {
+  let interview = interviewsController.create(req.query);
+  res.send(`Interview succesfully created! ${JSON.stringify(interview)}`);
+})
+
 //ADMIN
 app.get('/admins', adminsController.getAll);
 app.get('/admins/byId/:id', adminsController.getById);
