@@ -16,6 +16,8 @@ const create = (req, res) => {
     profiles.push(newProfile);
     res.json(profiles);
 };
+
+// Module Exports
 module.exports = {
     getAll: getAll,
     create: create,
