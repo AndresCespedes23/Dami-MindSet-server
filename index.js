@@ -3,8 +3,8 @@ const app = express();
 const port = 3000;
 const adminsController = require('./controllers/admins');
 const positionsController = require('./controllers/positions.js');
+const sessionsController = require('./controllers/sessions.js');
 const profilesController = require('./controllers/profiles.js');
-
 
 app.set('json spaces', 2);
 
@@ -21,6 +21,10 @@ app.get('/admins/byName/:name', adminsController.getByName);
 app.get('/positions', positionsController.getAll);
 app.get('/positions/byId/:id', positionsController.getById);
 app.get('/positions/byName/:name', positionsController.getByName);
+app.get('/positions/create', positionsController.create);
+
+//SESSIONS
+app.get('/sessions/create', sessionsController.create);
 
 // PROFILES
 app.get('/profiles', profilesController.getAll);
