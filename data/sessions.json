@@ -45,7 +45,7 @@
         "idCandidate":"8",
         "dateTime":"14/09/2021",
         "status":"Pending",
-        "result":"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl."
+        "result":"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. "
     },
     {
         "id":"7",
@@ -61,7 +61,7 @@
         "idCandidate":"7",
         "dateTime":"11/03/2021",
         "status":"Done",
-        "result":"Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem."
+        "result":"Curabitur in libero ut massa volutpat convallis."
     },
     {
         "id":"9",
@@ -69,7 +69,7 @@
         "idCandidate":"4",
         "dateTime":"17/02/2021",
         "status":"Pending",
-        "result":"Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est."
+        "result":"Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu."
     },
     {
         "id":"10",
@@ -77,6 +77,6 @@
         "idCandidate":"5",
         "dateTime":"23/02/2021",
         "status":"Done",
-        "result":"Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit."
+        "result":"Proin eu mi."
         }
     ]
