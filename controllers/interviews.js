@@ -23,7 +23,7 @@ const create = (params) => {
 
 const update = (params) => {
     const data = JSON.parse(fs.readFileSync('./data/interviews.json'));
-    const index = data.findIndex(function(interview) {
+    const index = data.findIndex(interview => {
         return parseInt(params.id) == interview.id;
     })
     if(index === -1) return 'Could not find interview with specified ID'
