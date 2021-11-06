@@ -23,6 +23,7 @@ app.get('/positions/byName/:name', positionsController.getByName);
 
 //SESSIONS
 app.get('/sessions/create', sessionsController.create);
+app.get('/sessions/update/:id', sessionsController.update);
 
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);
