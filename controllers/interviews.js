@@ -1,6 +1,5 @@
 const fs = require('fs');
 
-
 const create = (params) => {
     const data = JSON.parse(fs.readFileSync('./data/interviews.json'));
     let interview = {
