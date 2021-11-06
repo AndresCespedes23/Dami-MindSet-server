@@ -13,6 +13,9 @@ app.get('/', (req, res) => {
 });
 
 //CANDIDATES
+app.get('/candidates', candidatesController.getAll);
+app.get('/candidates/byId/:id', candidatesController.getById);
+app.get('/candidates/byName/:name', candidatesController.getByName);
 app.get('/candidates/create', candidatesController.create);
 
 //ADMIN

@@ -27,6 +27,31 @@ const create = (req, res) => {
     res.json(candidates);
 };
 
+// MS-06: list candidates
+
+const getAll = (req, res) => res.json(candidates);
+
+const getById = (req, res) => {
+    const candidate = candidates.find(candidate => candidate.id === req.params.id);
+    if (candidate) {
+      res.json(candidate);
+    } else {
+      res.send('User not found');
+    }
+};
+
+const getByName = (req, res) => {
+    const candidate = candidates.find(candidate => candidate.name === req.params.name);
+    if (candidate) {
+      res.json(candidate);
+    } else {
+      res.send('User not found');
+    }
+};
+
 module.exports = {
-    create: create
+    create: create,
+    getAll: getAll,
+    getById: getById,
+    getByName: getByName
 }
