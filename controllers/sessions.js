@@ -39,5 +39,6 @@ const update = (req, res) => {
 };
 
 module.exports = {
-    create: create
+    create: create,
+    update: update
 };
