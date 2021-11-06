@@ -21,6 +21,15 @@ const create = (params) => {
     return interview;
 }
 
+const update = (params) => {
+    const data = JSON.parse(fs.readFileSync('./data/interviews.json'));
+    const index = data.findIndex(function(interview) {
+        return params.id === interview.id;
+    })
+    console.log(index);
+}
+
 module.exports = {
     create: create,
+    update: update
 }
