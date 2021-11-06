@@ -1,7 +1,7 @@
 const fs = require('fs');
 const sessions = JSON.parse(fs.readFileSync('./data/sessions.json'));
 
-const create (req, res) => {
+const create = (req, res) => {
     const newSession = {
         id: req.query.id,
         idPsychologist: req.query.idPsychologist,
@@ -13,3 +13,7 @@ const create (req, res) => {
     sessions.push(newSession);
     res.json(sessions);
 }
+
+module.exports = {
+    create: create,
+  };
