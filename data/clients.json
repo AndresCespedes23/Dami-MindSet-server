@@ -4,7 +4,7 @@
     "name": "Ivory",
     "email": "icuberley0@ebay.com",
     "phoneNumber": "481-873-7917",
-    "CUIT": "2248906633",
+    "cuit": "2248906633",
     "address": "9917 Rigney Plaza",
     "activity": "Acinynox jubatus"
   },
@@ -13,7 +13,7 @@
     "name": "Holt",
     "email": "hjenkyn1@about.me",
     "phoneNumber": "658-253-1273",
-    "CUIT": "3891702280",
+    "cuit": "3891702280",
     "address": "73126 Erie Court",
     "activity": "Numida meleagris"
   },
@@ -22,7 +22,7 @@
     "name": "Job",
     "email": "jclewlowe2@chron.com",
     "phoneNumber": "883-700-7965",
-    "CUIT": "5178006445",
+    "cuit": "5178006445",
     "address": "1 Sundown Drive",
     "activity": "Ratufa indica"
   },
@@ -31,7 +31,7 @@
     "name": "Weidar",
     "email": "wfoukx3@ask.com",
     "phoneNumber": "410-150-4136",
-    "CUIT": "0908324049",
+    "cuit": "0908324049",
     "address": "49 Mcguire Park",
     "activity": "Pelecanus occidentalis"
   },
@@ -40,7 +40,7 @@
     "name": "Ira",
     "email": "ikorejs4@tripod.com",
     "phoneNumber": "238-756-5653",
-    "CUIT": "4004496810",
+    "cuit": "4004496810",
     "address": "399 International Court",
     "activity": "Anastomus oscitans"
   },
@@ -49,7 +49,7 @@
     "name": "Hubie",
     "email": "hbugge5@google.nl",
     "phoneNumber": "721-728-1383",
-    "CUIT": "5752788773",
+    "cuit": "5752788773",
     "address": "9 Heffernan Pass",
     "activity": "Charadrius tricollaris"
   },
@@ -58,7 +58,7 @@
     "name": "Olenolin",
     "email": "oabrey6@google.cn",
     "phoneNumber": "514-412-2715",
-    "CUIT": "4064474465",
+    "cuit": "4064474465",
     "address": "022 Forster Place",
     "activity": "Paraxerus cepapi"
   },
@@ -67,7 +67,7 @@
     "name": "Jerrold",
     "email": "jmatej7@boston.com",
     "phoneNumber": "585-563-0204",
-    "CUIT": "2555251693",
+    "cuit": "2555251693",
     "address": "03667 Meadow Ridge Plaza",
     "activity": "Tapirus terrestris"
   },
@@ -76,7 +76,7 @@
     "name": "Hersh",
     "email": "hwhitcomb8@nyu.edu",
     "phoneNumber": "942-214-2723",
-    "CUIT": "9301603128",
+    "cuit": "9301603128",
     "address": "903 Erie Road",
     "activity": "Gazella granti"
   },
@@ -85,7 +85,7 @@
     "name": "Olympe",
     "email": "ocopello9@github.io",
     "phoneNumber": "703-941-6864",
-    "CUIT": "7574407657",
+    "cuit": "7574407657",
     "address": "1 Loeprich Park",
     "activity": "Fulica cristata"
   }
