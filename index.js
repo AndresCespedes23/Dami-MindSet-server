@@ -1,10 +1,10 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 const port = 3000;
 const clientsController = require('./controllers/clients');
 
-app.get("/", (req, res) => {
-  res.send("Welcome to MindSet!!!");
+app.get('/', (req, res) => {
+  res.send('Welcome to MindSet!')
 });
 
 //CLIENTS//LIST
@@ -19,5 +19,5 @@ app.get('/clients/byActivity/:activity', clientsController.getByActivity);
 
 
 app.listen(port, () => {
-  console.log(`MindSet server listening at http://localhost:${port}`);
-});
+  console.log(`MindSet server listening at http://localhost:${port}`)
+}); 
