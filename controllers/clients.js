@@ -8,7 +8,7 @@ const getAll = (req, res) => {
 };
 
 const getById = (req, res) => {
-  const client = clients.find((client) => client.id == req.params.id);
+  const client = clients.find((client) => client.id === req.params.id);
   if (client) {
     res.json(client);
   } else {
