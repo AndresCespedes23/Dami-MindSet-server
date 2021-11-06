@@ -26,12 +26,12 @@ const create = (req, res) => {
     if (!req.query.id || !req.query.idClient || !req.query.idProfiles || !req.query.name || !req.query.description || !req.query.status || !req.query.address || !req.query.city || !req.query.postalCode){
         res.send(400, {"Msg": "Some parameters are missing"});
     }
-    
-    // change the type of idProfiles string to array of strings
+
+    // change the type of idProfiles from string to array of strings
     const idProfilesArray = req.query.idProfiles.split(",");
-    // change the type of status string to boolean
+    // change the type of status from string to boolean
     let statusBoolean;
-    if (req.query.status == 'true'){
+    if (req.query.status === 'true'){
         statusBoolean = true;
     } else {
         statusBoolean = false;
