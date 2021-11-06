@@ -19,6 +19,7 @@ app.get('/admins/byName/:name', adminsController.getByName);
 app.get('/positions', positionsController.getAll);
 app.get('/positions/byId/:id', positionsController.getById);
 app.get('/positions/byName/:name', positionsController.getByName);
+app.get('/positions/create', positionsController.create);
 
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);
