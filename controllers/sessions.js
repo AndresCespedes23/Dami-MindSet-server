@@ -12,7 +12,7 @@ const create = (req, res) => {
     }
     sessions.push(newSession);
     res.json(sessions);
-}
+};
 
 module.exports = {
     create: create
