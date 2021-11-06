@@ -33,7 +33,9 @@ const update = (req, res) => {
         session.status = updateSession.status ? updateSession.status : session.status;
         session.result = updateSession.result ? updateSession.result : session.result;
         res.json({ msg: 'Session updated', session});
-    } 
+    } else {
+        res.status(400).json({ msg: `No session with the id: ${req.params.id}`});
+    }
 };
 
 module.exports = {
