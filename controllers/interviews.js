@@ -24,9 +24,19 @@ const create = (params) => {
 const update = (params) => {
     const data = JSON.parse(fs.readFileSync('./data/interviews.json'));
     const index = data.findIndex(function(interview) {
-        return params.id === interview.id;
+        return parseInt(params.id) == interview.id;
     })
-    console.log(index);
+    if(index === -1) return 'Could not find interview with specified ID'
+    for(property in params) {
+        data[index][property] = params[property];
+    }
+    fs.writeFile('./data/interviews.json', JSON.stringify(data), err => {
+        if(err) {
+            console.log(err);
+        }
+        return;
+    });
+    return `Interview succesfully updated! ${JSON.stringify(data[index])}`;
 }
 
 module.exports = {
