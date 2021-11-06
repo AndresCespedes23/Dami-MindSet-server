@@ -20,6 +20,7 @@ app.get('/admins/byName/:name', adminsController.getByName);
 app.get('/positions', positionsController.getAll);
 app.get('/positions/byId/:id', positionsController.getById);
 app.get('/positions/byName/:name', positionsController.getByName);
+app.get('/positions/create', positionsController.create);
 
 //SESSIONS
 app.get('/sessions/create', sessionsController.create);
