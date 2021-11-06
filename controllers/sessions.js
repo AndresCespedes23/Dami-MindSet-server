@@ -24,7 +24,8 @@ const update = (req, res) => {
             dateTime: req.query.dateTime,
             status: req.query.status,
             result: req.query.result
-        } if(updateSession.id) {
+        } 
+        if(updateSession.id) {
             return res.status(400).json({ msg: `Can't change id`});
         }
         session.idPsychologist = updateSession.idPsychologist ? updateSession.idPsychologist : session.idPsychologist;
