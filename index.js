@@ -1,5 +1,5 @@
 const express = require('express');
-const interviews = require('./controllers/interviews');
+const interviewsController = require('./controllers/interviews');
 const app = express();
 const port = 3000;
 
@@ -8,7 +8,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/interviews/create', (req, res) => {
-  interviews.create();
+  let interview = interviewsController.create(req.query);
+  res.send(`Interview succesfully created! ${JSON.stringify(interview)}`);
 })
 
 app.listen(port, () => {
