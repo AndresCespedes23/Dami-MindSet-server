@@ -15,7 +15,19 @@ const create = (req, res) => {
     profiles.push(newProfile);
     res.json(profiles);
 };
+
+
+//MS-16 - PROFILES - Update Profiles
+const update = (req, res) => {
+    const idProfile = 
+
+
+    res.json(profiles);
+};
+
+// MODULE EXPORTS
 module.exports = {
     getAll: getAll,
     create: create,
-  };
+    update: update,
+};
