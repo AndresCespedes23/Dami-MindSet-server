@@ -1,21 +1,25 @@
 [{
     "id": 1,
-    "name": "Angela",
-    "description": "profile-type-1"
+    "name": "Administrative",
+    "description": "profile-type-description1"
   }, {
     "id": 2,
-    "name": "Alanah",
-    "description": "profile-type-1"
+    "name": "Constructive",
+    "description": "profile-type-description2"
   }, {
     "id": 3,
-    "name": "Morse",
-    "description": "profile-type-3"
+    "name": "Logistics",
+    "description": "profile-type-description3"
   }, {
     "id": 4,
-    "name": "Agatha",
-    "description": "profile-type-2"
+    "name": "Industrial Assembly",
+    "description": "profile-type-description4"
   }, {
     "id": 5,
-    "name": "Andee",
-    "description": "profile-type-2"
+    "name": "Treasury",
+    "description": "profile-type-description5"
+  }, {
+    "id": 6,
+    "name": "Customer Service",
+    "description": "profile-type-description6"
   }]
