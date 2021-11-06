@@ -1,80 +1,80 @@
 [
     {
-        "id":1,
-        "idPsychologist":7,
-        "idCandidate":5,
+        "id":"1",
+        "idPsychologist":"7",
+        "idCandidate":"5",
         "dateTime":"15/03/2021",
         "status":"Done",
         "result":"Aenean fermentum."
     },
     {
-        "id":2,
-        "idPsychologist":1,
-        "idCandidate":2,
+        "id":"2",
+        "idPsychologist":"1",
+        "idCandidate":"2",
         "dateTime":"23/01/2021",
         "status":"Done",
         "result":"Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus."
     },
     {
-        "id":3,
-        "idPsychologist":2,
-        "idCandidate":6,
+        "id":"3",
+        "idPsychologist":"2",
+        "idCandidate":"6",
         "dateTime":"02/09/2021",
         "status":"Pending",
         "result":"Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus."
     },
     {
-        "id":4,
-        "idPsychologist":9,
-        "idCandidate":4,
+        "id":"4",
+        "idPsychologist":"9",
+        "idCandidate":"4",
         "dateTime":"16/03/2021",
         "status":"Done",
         "result":"Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum."
     },
     {
-        "id":5,
-        "idPsychologist":2,
-        "idCandidate":7,
+        "id":"5",
+        "idPsychologist":"2",
+        "idCandidate":"7",
         "dateTime":"13/02/2021",
         "status":"Pending",
         "result":"Sed ante. Vivamus tortor. Duis mattis egestas metus."
     },
     {
-        "id":6,
-        "idPsychologist":3,
-        "idCandidate":8,
+        "id":"6",
+        "idPsychologist":"3",
+        "idCandidate":"8",
         "dateTime":"14/09/2021",
         "status":"Pending",
         "result":"Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl."
     },
     {
-        "id":7,
-        "idPsychologist":4,
-        "idCandidate":3,
+        "id":"7",
+        "idPsychologist":"4",
+        "idCandidate":"3",
         "dateTime":"23/10/2021",
         "status":"Pending",
         "result":"Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum."
     },
     {
-        "id":8,
-        "idPsychologist":9,
-        "idCandidate":7,
+        "id":"8",
+        "idPsychologist":"9",
+        "idCandidate":"7",
         "dateTime":"11/03/2021",
         "status":"Done",
         "result":"Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem."
     },
     {
-        "id":9,
-        "idPsychologist":1,
-        "idCandidate":4,
+        "id":"9",
+        "idPsychologist":"1",
+        "idCandidate":"4",
         "dateTime":"17/02/2021",
         "status":"Pending",
         "result":"Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est."
     },
     {
-        "id":10,
-        "idPsychologist":8,
-        "idCandidate":5,
+        "id":"10",
+        "idPsychologist":"8",
+        "idCandidate":"5",
         "dateTime":"23/02/2021",
         "status":"Done",
         "result":"Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit."
