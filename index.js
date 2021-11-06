@@ -17,8 +17,8 @@ app.get('/interviews/create', (req, res) => {
   res.send(`Interview succesfully created! ${JSON.stringify(interview)}`);
 })
 app.get('/interviews/update', (req, res) => {
-  let interview = interviewsController.update(req.query);
-  res.send(`Interview succesfully created! ${JSON.stringify(interview)}`);
+  let response = interviewsController.update(req.query);
+  res.send(response);
 })
 
 //ADMIN
