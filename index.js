@@ -21,6 +21,7 @@ app.get('/positions', positionsController.getAll);
 app.get('/positions/byId/:id', positionsController.getById);
 app.get('/positions/byName/:name', positionsController.getByName);
 app.get('/positions/create', positionsController.create);
+app.get('/positions/update/:id', positionsController.update);
 
 //SESSIONS
 app.get('/sessions/create', sessionsController.create);
