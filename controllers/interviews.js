@@ -36,7 +36,7 @@ const cancel = (req, res) => {
 }
 
 const getAll = (req, res) => {
-
+    res.json(data);
 }
 
 const getById = (req, res) => {
