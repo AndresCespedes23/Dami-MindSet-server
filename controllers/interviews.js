@@ -17,7 +17,7 @@ const create = (req,res) => {
 
 const update = (req,res) => {
     const index = data.findIndex(interview => {
-        return parseInt(req.params.id) == interview.id;
+        return req.params.id === interview.id;
     });
     if(index === -1) res.send('Could not find interview with specified ID');
     for(property in req.query) {
@@ -26,7 +26,12 @@ const update = (req,res) => {
     res.send(`Interview succesfully updated! ${JSON.stringify(data[index])}`);
 }
 
+const cancel = (req, res) => {
+
+}
+
 module.exports = {
     create: create,
-    update: update
+    update: update,
+    cancel: cancel
 }
