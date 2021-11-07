@@ -1,0 +1,162 @@
+[
+  {
+    "id": "1",
+    "name": "Admin Master",
+    "email": "sloutheane0@marketwatch.com",
+    "username": "superadmin",
+    "password": "super123",
+    "isSuperAdmin": true
+  },
+  {
+    "id": "2",
+    "name": "Adair Hucker",
+    "email": "ahucker1@sciencedaily.com",
+    "username": "ahucker1",
+    "password": "yKR8zmJdkuwN",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "3",
+    "name": "Hervey Leward",
+    "email": "hleward2@squarespace.com",
+    "username": "hleward2",
+    "password": "73ys9DPPfXs",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "4",
+    "name": "Myra Plampin",
+    "email": "mplampin3@netlog.com",
+    "username": "mplampin3",
+    "password": "Gpfj9mV",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "5",
+    "name": "Mayne Sollars",
+    "email": "msollars4@reuters.com",
+    "username": "msollars4",
+    "password": "5dWTnXs",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "6",
+    "name": "Laird Margerrison",
+    "email": "lmargerrison5@phpbb.com",
+    "username": "lmargerrison5",
+    "password": "ax2tFWIWCF",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "7",
+    "name": "Gilli Kowalik",
+    "email": "gkowalik6@opera.com",
+    "username": "gkowalik6",
+    "password": "wIoxL5BZk37",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "8",
+    "name": "Anatol De Winton",
+    "email": "ade7@samsung.com",
+    "username": "ade7",
+    "password": "X5Qsg3aA9z",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "9",
+    "name": "Curtice McAdam",
+    "email": "cmcadam8@angelfire.com",
+    "username": "cmcadam8",
+    "password": "x1OliRNQM",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "10",
+    "name": "Yulma Goodinson",
+    "email": "ygoodinson9@google.pl",
+    "username": "ygoodinson9",
+    "password": "z2pSbBqL3",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "11",
+    "name": "Jolene Beckworth",
+    "email": "jbeckwortha@de.vu",
+    "username": "jbeckwortha",
+    "password": "P7VkzqNx5iDz",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "12",
+    "name": "Mandel Rann",
+    "email": "mrannb@privacy.gov.au",
+    "username": "mrannb",
+    "password": "QhTmMhVi",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "13",
+    "name": "Margareta MacFarlane",
+    "email": "mmacfarlanec@a8.net",
+    "username": "mmacfarlanec",
+    "password": "JgWbz1dI",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "14",
+    "name": "Glyn Molnar",
+    "email": "gmolnard@etsy.com",
+    "username": "gmolnard",
+    "password": "k06b5ZVXd5",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "15",
+    "name": "Cory Gillbee",
+    "email": "cgillbeee@state.gov",
+    "username": "cgillbeee",
+    "password": "EaEx82B8L5",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "16",
+    "name": "Gisele Boarder",
+    "email": "gboarderf@wisc.edu",
+    "username": "gboarderf",
+    "password": "aLQjDK",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "17",
+    "name": "Gilles Petrichat",
+    "email": "gpetrichatg@prlog.org",
+    "username": "gpetrichatg",
+    "password": "cg31TAnzxJ",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "18",
+    "name": "Ken Varfalameev",
+    "email": "kvarfalameevh@cnn.com",
+    "username": "kvarfalameevh",
+    "password": "gc7CvTo",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "19",
+    "name": "Carree Meatcher",
+    "email": "cmeatcheri@aboutads.info",
+    "username": "cmeatcheri",
+    "password": "bH5NZVo3V",
+    "isSuperAdmin": false
+  },
+  {
+    "id": "20",
+    "name": "Erasmus Vedyasov",
+    "email": "evedyasovj@vimeo.com",
+    "username": "evedyasovj",
+    "password": "5IqvSvj8mT",
+    "isSuperAdmin": false
+  }
+]
