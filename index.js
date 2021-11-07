@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const candidatesController = require('./controllers/candidates');
 const adminsController = require('./controllers/admins');
 const positionsController = require('./controllers/positions.js');
 const sessionsController = require('./controllers/sessions.js');
@@ -10,6 +11,12 @@ app.set('json spaces', 2);
 app.get('/', (req, res) => {
   res.send('Welcome to MindSet!');
 });
+
+//CANDIDATES
+app.get('/candidates', candidatesController.getAll);
+app.get('/candidates/byId/:id', candidatesController.getById);
+app.get('/candidates/byName/:name', candidatesController.getByName);
+app.get('/candidates/create', candidatesController.create);
 
 //ADMIN
 app.get('/admins', adminsController.getAll);
