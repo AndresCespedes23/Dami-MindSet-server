@@ -9,7 +9,7 @@ const getAll = (req, res) => {
 // Create Profile
 const create = (req, res) => {
     const newProfile = {
-        id: req.query.id,
+        id: profiles.length + 1,
         name: req.query.name,
         description: req.query.description
     };
