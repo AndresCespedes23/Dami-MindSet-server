@@ -25,9 +25,9 @@ const getByName = (req, res) => {
   }
 };
 
-const getByphoneNumber = (req, res) => {
+const getByPhoneNumber = (req, res) => {
   const client = clients.find(
-    (client) => client.phoneNumber === req.params.phoneNumber
+    (client) => client.PhoneNumber === req.params.PhoneNumber
   );
   if (client) {
     res.json(client);
@@ -94,7 +94,7 @@ module.exports = {
   getAll: getAll,
   getById: getById,
   getByName: getByName,
-  getByphoneNumber: getByphoneNumber,
+  getByPhoneNumber: getByPhoneNumber,
   getByCuit: getByCuit,
   getByAddress: getByAddress,
   getByActivity: getByActivity,
