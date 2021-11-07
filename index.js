@@ -23,6 +23,8 @@ app.get('/clients/byAddress/:address', clientsController.getByAddress);
 app.get('/clients/byActivity/:activity', clientsController.getByActivity);
 //CLIENTS//UPDATE
 
+
+
 //CANDIDATES
 app.get('/candidates', candidatesController.getAll);
 app.get('/candidates/byId/:id', candidatesController.getById);
