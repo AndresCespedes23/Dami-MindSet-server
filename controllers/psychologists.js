@@ -5,7 +5,6 @@ const psychologists = JSON.parse(fs.readFileSync('./data/psychologists.json'));
 
 const create = (req, res) =>{
     const newPsychologist = {
-        id: req.query.id,
         name: req.query.name,
         email: req.query.email,
         userName: req.query.userName,
