@@ -40,7 +40,11 @@ const getAll = (req, res) => {
 }
 
 const getById = (req, res) => {
-
+    const index = data.findIndex(interview => {
+        return req.params.id === interview.id;
+    });
+    if(index === -1) res.send('Could not find interview with specified ID');
+    res.json(data[index]);
 }
 
 module.exports = {
