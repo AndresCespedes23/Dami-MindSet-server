@@ -1,42 +1,30 @@
 const fs = require('fs');
+const data = JSON.parse(fs.readFileSync('./data/interviews.json'));
 
-const create = (params) => {
-    const data = JSON.parse(fs.readFileSync('./data/interviews.json'));
-    let interview = {
-        id: params.id,
-        idCandidate: params.idCandidate,
-        idClient: params.idClient,
-        idPosition: params.idPosition,
-        date: params.date,
-        time: params.time,
-        status: params.status
+const create = (req,res) => {
+    const interview = {
+        id: `${Math.round(Math.random()*10000)}`,
+        idCandidate: req.query.idCandidate,
+        idClient: req.query.idClient,
+        idPosition: req.query.idPosition,
+        date: req.query.date,
+        time: req.query.time,
+        status: req.query.status
     }
     data.push(interview);
-    fs.writeFile('./data/interviews.json', JSON.stringify(data), err => {
-        if(err) {
-            console.log(err);
-        }
-        return;
-    });
-    return interview;
+    res.send(`Interview succesfully created! ${JSON.stringify(interview)}`);
 }
 
-const update = (params) => {
-    const data = JSON.parse(fs.readFileSync('./data/interviews.json'));
+const update = (req,res) => {
     const index = data.findIndex(interview => {
-        return parseInt(params.id) == interview.id;
-    })
-    if(index === -1) return 'Could not find interview with specified ID'
-    for(property in params) {
-        data[index][property] = params[property];
-    }
-    fs.writeFile('./data/interviews.json', JSON.stringify(data), err => {
-        if(err) {
-            console.log(err);
-        }
-        return;
+        return parseInt(req.params.id) == interview.id;
     });
-    return `Interview succesfully updated! ${JSON.stringify(data[index])}`;
+    if(index === -1) res.send('Could not find interview with specified ID');
+    for(property in req.query) {
+        console.log(property)
+        data[index][property] = req.query[property];
+    }
+    res.send(`Interview succesfully updated! ${JSON.stringify(data[index])}`);
 }
 
 module.exports = {
