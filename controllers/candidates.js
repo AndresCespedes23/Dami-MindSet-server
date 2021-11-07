@@ -22,7 +22,7 @@ const update = (req, res) => {
       candidate.username = req.query.username ? req.query.username : candidate.username,
       candidate.password = req.query.password ? req.query.password : candidate.password
     candidates[index] = candidate;
-    res.json(candidates);
+    res.json(candidate);
   } else {
     res.send('User not updated');
   }
