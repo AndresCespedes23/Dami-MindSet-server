@@ -36,7 +36,7 @@ const remove = (req, res) => {
   } else {
     res.send('User not removed');
   }
-};
+}
 
 // MS-06: list candidates
 

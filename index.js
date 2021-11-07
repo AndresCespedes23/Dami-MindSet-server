@@ -6,6 +6,7 @@ const candidatesController = require('./controllers/candidates');
 const adminsController = require('./controllers/admins');
 const positionsController = require('./controllers/positions.js');
 const sessionsController = require('./controllers/sessions.js');
+const profilesController = require('./controllers/profiles.js');
 
 app.set('json spaces', 2);
 
@@ -42,9 +43,15 @@ app.get('/positions', positionsController.getAll);
 app.get('/positions/byId/:id', positionsController.getById);
 app.get('/positions/byName/:name', positionsController.getByName);
 app.get('/positions/create', positionsController.create);
+app.get('/positions/update/:id', positionsController.update);
 
 //SESSIONS
 app.get('/sessions/create', sessionsController.create);
+app.get('/sessions/update/:id', sessionsController.update);
+
+// PROFILES
+app.get('/profiles', profilesController.getAll);
+app.get('/profiles/create', profilesController.create);
 
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);
