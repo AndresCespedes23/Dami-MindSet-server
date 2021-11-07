@@ -30,6 +30,7 @@ app.get('/positions/byId/:id', positionsController.getById);
 app.get('/positions/byName/:name', positionsController.getByName);
 app.get('/positions/create', positionsController.create);
 app.get('/positions/update/:id', positionsController.update);
+app.get('/positions/remove/:id', positionsController.remove);
 
 //SESSIONS
 app.get('/sessions/create', sessionsController.create);

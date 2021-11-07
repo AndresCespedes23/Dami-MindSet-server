@@ -8,7 +8,7 @@ const getAll = (req, res) => {
 const getById = (req, res) => {
     const filteredPosition = positions.find(element => element.id === req.params.id);
     if (!filteredPosition){
-        res.send(400, {"Msg": "Position with that ID does not exist"});
+        return res.send(400, {"Msg": "Position with that ID does not exist"});
     }
     res.json(filteredPosition);
 };
@@ -16,7 +16,7 @@ const getById = (req, res) => {
 const getByName = (req, res) => {
     const filteredPosition = positions.find(element => element.name === req.params.name);
     if (!filteredPosition){
-        res.send(400, {"Msg":"Position with that NAME does not exist"});
+        return res.send(400, {"Msg":"Position with that NAME does not exist"});
     }
     res.json(filteredPosition);
 };
@@ -32,7 +32,7 @@ const create = (req, res) => {
         || !req.query.address 
         || !req.query.city 
         || !req.query.postalCode){
-        res.send(400, {"Msg": "Some parameters are missing"});
+        return res.send(400, {"Msg": "Some parameters are missing"});
     }
     // change the type of idProfiles from string to array of strings
     const idProfilesArray = req.query.idProfiles.split(",");
@@ -55,7 +55,7 @@ const update = (req, res) => {
     const filteredPosition = positions.find(element => element.id === req.params.id);
     const indexPosition = positions.findIndex(element => element.id === req.params.id);
     if (!filteredPosition){
-        res.send(400, {"Msg": "Position with that ID does not exist"});   
+        return res.send(400, {"Msg": "Position with that ID does not exist"});   
     }
     const updatedPosition = req.query;
     filteredPosition.idClient = updatedPosition.idClient ? updatedPosition.idClient : filteredPosition.idClient;
@@ -72,7 +72,12 @@ const update = (req, res) => {
 };
 
 const remove = (req, res) => {
-    // your code here
+    const indexPosition = positions.findIndex(element => element.id === req.params.id);
+    if (indexPosition === -1){
+        return res.send(400, {"Msg": "Position with that ID does not exist"});   
+    }
+    const removedPosition = positions.splice(indexPosition,1);
+    res.send(200, {removedPosition, positions }); 
 };
 
 module.exports = {
