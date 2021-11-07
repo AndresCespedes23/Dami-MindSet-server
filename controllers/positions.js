@@ -53,6 +53,7 @@ const create = (req, res) => {
 
 const update = (req, res) => {
     const filteredPosition = positions.find(element => element.id === req.params.id);
+    const indexPosition = positions.findIndex(element => element.id === req.params.id);
     if (!filteredPosition){
         res.send(400, {"Msg": "Position with that ID does not exist"});   
     }
@@ -65,7 +66,9 @@ const update = (req, res) => {
     filteredPosition.address = updatedPosition.address ? updatedPosition.address : filteredPosition.address;
     filteredPosition.city = updatedPosition.city ? updatedPosition.city : filteredPosition.city;
     filteredPosition.postalCode = updatedPosition.postalCode ? updatedPosition.postalCode : filteredPosition.postalCode;
-    res.send(200, {positions});
+    // update changes in position
+    positions[indexPosition] = filteredPosition;
+    res.send(200, {filteredPosition});
 };
 
 const remove = (req, res) => {
