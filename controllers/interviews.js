@@ -35,8 +35,18 @@ const cancel = (req, res) => {
     res.send(`Interview cancelled! ${JSON.stringify(cancelledInterview)}`);
 }
 
+const getAll = (req, res) => {
+
+}
+
+const getById = (req, res) => {
+
+}
+
 module.exports = {
     create: create,
     update: update,
-    cancel: cancel
+    cancel: cancel,
+    getAll: getAll,
+    getById: getById
 }
