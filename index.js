@@ -25,6 +25,7 @@ app.get('/positions/create', positionsController.create);
 
 //SESSIONS
 app.get('/sessions/create', sessionsController.create);
+app.get('/sessions/update/:id', sessionsController.update);
 
 // PROFILES
 app.get('/profiles', profilesController.getAll);
