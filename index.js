@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 //INTERVIEWS
 app.get('/interviews/create', interviewsController.create);
 app.get('/interviews/update/:id', interviewsController.update);
+app.get('/interviews/cancel/:id', interviewsController.cancel);
 
 //ADMIN
 app.get('/admins', adminsController.getAll);
