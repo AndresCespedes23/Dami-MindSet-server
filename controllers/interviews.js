@@ -27,7 +27,12 @@ const update = (req,res) => {
 }
 
 const cancel = (req, res) => {
-
+    const index = data.findIndex(interview => {
+        return req.params.id === interview.id;
+    });
+    if(index === -1) res.send('Could not find interview with specified ID');
+    const cancelledInterview = data.splice(index,1);
+    res.send(`Interview cancelled! ${JSON.stringify(cancelledInterview)}`);
 }
 
 module.exports = {
