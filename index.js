@@ -1,9 +1,9 @@
 const express = require('express');
-const interviewsController = require('./controllers/interviews');
 const app = express();
 const port = 3000;
 const adminsController = require('./controllers/admins');
 const positionsController = require('./controllers/positions.js');
+const interviewsController = require('./controllers/interviews');
 
 app.set('json spaces', 2);
 
@@ -12,14 +12,8 @@ app.get('/', (req, res) => {
 });
 
 //INTERVIEWS
-app.get('/interviews/create', (req, res) => {
-  let interview = interviewsController.create(req.query);
-  res.send(`Interview succesfully created! ${JSON.stringify(interview)}`);
-})
-app.get('/interviews/update', (req, res) => {
-  let response = interviewsController.update(req.query);
-  res.send(response);
-})
+app.get('/interviews/create', interviewsController.create);
+app.get('/interviews/update', interviewsController.update);
 
 //ADMIN
 app.get('/admins', adminsController.getAll);
