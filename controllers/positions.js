@@ -76,8 +76,8 @@ const remove = (req, res) => {
     if (indexPosition === -1){
         return res.send(400, {"Msg": "Position with that ID does not exist"});   
     }
-    const removedPosition = positions.splice(indexPosition,1);
-    res.send(200, {removedPosition, positions }); 
+    const removedPosition = positions.splice(indexPosition, 1);
+    res.send(200, {removedPosition, positions}); 
 };
 
 module.exports = {
