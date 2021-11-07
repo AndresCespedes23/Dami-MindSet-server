@@ -5,8 +5,9 @@ const candidates = JSON.parse(fs.readFileSync('./data/candidates.json'));
 
 const remove = (req, res) => {
   const candidate = candidates.find(candidate => candidate.id === req.params.id);
+  const index = candidates.indexOf(candidate);
   if (candidate) {
-    candidates.splice(candidate, 1);
+    candidates[index] = {};
     res.json(candidates);
   } else {
     res.send('User not removed');
