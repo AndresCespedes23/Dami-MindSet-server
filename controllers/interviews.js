@@ -21,7 +21,6 @@ const update = (req,res) => {
     });
     if(index === -1) res.send('Could not find interview with specified ID');
     for(property in req.query) {
-        console.log(property)
         data[index][property] = req.query[property];
     }
     res.send(`Interview succesfully updated! ${JSON.stringify(data[index])}`);
