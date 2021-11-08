@@ -59,6 +59,9 @@ app.get('/positions/remove/:id', positionsController.remove);
 //SESSIONS
 app.get('/sessions/create', sessionsController.create);
 app.get('/sessions/update/:id', sessionsController.update);
+app.get('/sessions', sessionsController.getAll);
+app.get('/sessions/byId/:id', sessionsController.getById);
+app.get('/sessions/byIdPsychologist/:idPsychologist', sessionsController.getByIdPsychologist);
 
 // PROFILES
 app.get('/profiles', profilesController.getAll);
