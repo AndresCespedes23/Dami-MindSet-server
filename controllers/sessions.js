@@ -31,7 +31,42 @@ const update = (req, res) => {
     }
 };
 
+const remove = (req, res) => {
+    const session = sessions.findIndex(session => session.id === req.params.id);
+    if(session > -1) {
+        const removedSession = sessions.splice(session, 1);
+        res.send(removedSession); 
+    }
+    res.status(400).json({ msg: `No session with the id: ${req.params.id}`});  
+}
+
+const getAll = (req, res) => {
+    res.json(sessions);
+};
+
+const getById = (req, res) => {
+    const session = sessions.find(session => session.id === req.params.id);
+    if (session) {
+        res.json(session);
+    } else {
+        res.send({ msg: `No session with id: ${req.params.id}`});
+    }
+};
+
+const getByIdPsychologist = (req, res) => {
+    const session = sessions.filter(session => session.idPsychologist === req.params.idPsychologist);
+    if (session) {
+        res.json(session);
+    } else {
+        res.send({ msg: `No psychologist with id: ${req.params.idPsychologist}`});
+    }
+};
+
 module.exports = {
     create: create,
-    update: update
+    update: update,
+    remove: remove,
+    getAll: getAll,
+    getById: getById,
+    getByIdPsychologist: getByIdPsychologist
 };
