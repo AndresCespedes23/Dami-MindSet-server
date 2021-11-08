@@ -26,6 +26,9 @@ app.get('/clients/byActivity/:activity', clientsController.getByActivity);
 app.get('/clients/remove/:id', clientsController.remove);
 //CLIENTS/UPDATE
 app.get('/clients/update/:id', clientsController.update);
+//CLIENTS/CREATE
+app.get('/clients/create', clientsController.create);
+
 
 
 
