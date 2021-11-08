@@ -40,7 +40,7 @@ const getById = (req, res) => {
     if (session) {
         res.json(session);
     } else {
-        res.send(`Session id:${req.params.id} not found`);
+        res.send({ msg: `No session with id: ${req.params.id}`});
     }
 };
 
@@ -49,7 +49,7 @@ const getByIdPsychologist = (req, res) => {
     if (session) {
         res.json(session);
     } else {
-        res.send(`Session id:${req.params.idPsychologist} not found`);
+        res.send({ msg: `No psychologist with id: ${req.params.idPsychologist}`});
     }
 };
 
