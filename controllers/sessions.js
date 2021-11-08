@@ -35,6 +35,15 @@ const getAll = (req, res) => {
     res.json(sessions);
 };
 
+const getById = (req, res) => {
+    const session = sessions.find(session => session.id === req.params.id);
+    if (session) {
+        res.json(session);
+    } else {
+        res.send(`Session id:${req.params.id} not found`);
+    }
+};
+
 module.exports = {
     create: create,
     update: update
