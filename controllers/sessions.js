@@ -31,6 +31,10 @@ const update = (req, res) => {
     }
 };
 
+const getAll = (req, res) => {
+    res.json(sessions);
+};
+
 module.exports = {
     create: create,
     update: update
