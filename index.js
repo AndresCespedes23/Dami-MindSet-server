@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const psychologistController = require('./controllers/psychologists');
 const clientsController = require('./controllers/clients');
 const candidatesController = require('./controllers/candidates');
 const adminsController = require('./controllers/admins');
@@ -9,7 +10,6 @@ const sessionsController = require('./controllers/sessions.js');
 const profilesController = require('./controllers/profiles.js');
 
 app.set('json spaces', 2);
-
 app.get('/', (req, res) => {
   res.send('Welcome to MindSet!');
 });
@@ -36,6 +36,7 @@ app.get('/candidates/create', candidatesController.create);
 app.get('/admins', adminsController.getAll);
 app.get('/admins/byId/:id', adminsController.getById);
 app.get('/admins/byName/:name', adminsController.getByName);
+app.get('/admins/update/:id', adminsController.update);
 
 // POSITIONS
 app.get('/positions', positionsController.getAll);
@@ -43,6 +44,7 @@ app.get('/positions/byId/:id', positionsController.getById);
 app.get('/positions/byName/:name', positionsController.getByName);
 app.get('/positions/create', positionsController.create);
 app.get('/positions/update/:id', positionsController.update);
+app.get('/positions/remove/:id', positionsController.remove);
 
 //SESSIONS
 app.get('/sessions/create', sessionsController.create);
@@ -53,6 +55,9 @@ app.get('/profiles', profilesController.getAll);
 app.get('/profiles/create', profilesController.create);
 app.get('/profiles/update/:id', profilesController.update);
 app.get('/profiles/remove/:id', profilesController.remove);
+
+//PSYCHOLOGISTS
+app.get('/psychologists', psychologistController.create);
 
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);
