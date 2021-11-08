@@ -65,7 +65,7 @@ const getByIdPsychologist = (req, res) => {
 module.exports = {
     create: create,
     update: update,
-    remove: remove
+    remove: remove,
     getAll: getAll,
     getById: getById,
     getByIdPsychologist: getByIdPsychologist
