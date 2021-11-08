@@ -43,5 +43,6 @@ const remove = (req, res) => {
 
 module.exports = {
     create: create,
-    update: update
+    update: update,
+    remove: remove
 };
