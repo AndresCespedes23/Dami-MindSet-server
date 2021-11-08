@@ -3,8 +3,9 @@ const psychologists = JSON.parse(fs.readFileSync('./data/psychologists.json'));
 
 //MS 07 Create Psychologists
 
-const create = (req, res) =>{
+const create = (req, res) => {
     const newPsychologist = {
+        id: (psychologists.length + 1).toString(),
         name: req.query.name,
         email: req.query.email,
         userName: req.query.userName,

@@ -13,9 +13,6 @@ app.set('json spaces', 2);
 app.get('/', (req, res) => {
   res.send('Welcome to MindSet!');
 });
-app.listen(port, () => {
-  console.log(`MindSet server listening at http://localhost:${port}`);
-});
 
 //CLIENTS//LIST
 app.get('/clients', clientsController.getAll);
@@ -61,4 +58,3 @@ app.get('/psychologists', psychologistController.create);
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);
 });
-
