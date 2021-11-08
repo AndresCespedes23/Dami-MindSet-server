@@ -1,7 +1,7 @@
 const fs = require("fs");
-const clients = JSON.parse(fs.readFileSync("./data/clients.json"));
+let clients = JSON.parse(fs.readFileSync("./data/clients.json"));
 
-//CLIENT LIST///
+//CLIENT///
 
 const getAll = (req, res) => {
   res.json(clients);
@@ -66,43 +66,16 @@ const getByActivity = (req, res) => {
     res.send("Client not found");
   }
 };
-//CLIENT REMOVE///
 
 const remove = (req, res) => {
   const client = clients.find((client) => client.id === req.params.id);
   if (client) {
-    const clientsFilter = clients.filter(
-      (client) => client.id !== req.params.id
-    );
-    const clientRemoved = clientsFilter;
-    res.json(clientRemoved);
-  } else {
-    res.send("Client not found");
-  }
+    const clientsFilter = clients.filter((client) => client.id !== req.params.id);
+    clients = clientsFilter;
+    res.json({client,clients});
+  } 
+  res.send("Client not found");
 };
-
-//CLIENT//UPDATE
-/*const editAdmin = (req, res) => {
-  const adminIndex = Admins.findIndex((item) => item.id === req.query.id)
-  if (adminIndex !== -1) {
-    Admins[adminIndex] = {
-      id: Admins[adminIndex].id,
-      first_name: req.query.first_name || Admins[adminIndex].first_name,
-      last_name: req.query.last_name || Admins[adminIndex].last_name,
-      user_name: req.query.user_name || Admins[adminIndex].user_name,
-      email: req.query.email || Admins[adminIndex].email,
-      password: req.query.password || Admins[adminIndex].password,
-    }
-    fs.writeFile('./data/admins.json', JSON.stringify(Admins), {}, (error) => {
-      if (error) {
-        res.status(400).send(error)
-      } else {
-        res.status(201).json(Admins[adminIndex])
-      }
-    })
-  } else {
-    res.status(404).send("Admin not found")
-  }}*/
 
 module.exports = {
   getAll: getAll,
