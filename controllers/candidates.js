@@ -4,10 +4,8 @@ let candidates = JSON.parse(fs.readFileSync('./data/candidates.json'));
 // MS-03: create candidates
 
 const create = (req, res) => {
-  const index = candidates[candidates.length -1].id;
-  const newIndex = parseInt(index) + 1;
   const newCandidate = {
-    id: newIndex.toString(),
+    id: (profiles.length + 1).toString(),
     name: req.query.name,
     email: req.query.email,
     gender: req.query.gender,
