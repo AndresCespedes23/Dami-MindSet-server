@@ -71,6 +71,8 @@ app.get('/profiles/remove/:id', profilesController.remove);
 
 //PSYCHOLOGISTS
 app.get('/psychologists', psychologistController.create);
+app.get('/psychologists/remove/:id', psychologistController.remove);
+
 
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);

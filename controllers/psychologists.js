@@ -20,6 +20,21 @@ const create = (req, res) => {
     psychologists.push(newPsychologist);
     res.json(psychologists);
 };
+
+// MS 09 Remove Psychologists
+
+const remove = (req, res) => {
+    const psychologist = psychologists.find(psychologist => psychologist.id === req.params.id);
+    if(psychologist) {
+        const psychFilter = psychologists.filter(psychologist => psychologist.id !== req.params.id);
+        psychologists = psychFilter;
+        res.json(psychologists);
+    } else {
+        res.send('Psychologists not removed');
+    }
+};
+
 module.exports = {
-    create: create
+    create: create,
+    remove: remove,
 }
