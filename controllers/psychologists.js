@@ -26,9 +26,18 @@ const create = (req, res) => {
 const getAll = (req, res) => {
     res.json(psychologists)
 }
+const getById = (req, res) => {
+    const psychologist = psychologists.find(psychologist => psychologist.name === req.params.name);
 
+    if(psychologist) {
+        res.json(psychologist);
+    } else {
+        res.status (400, 'Psychologist not Found')
+    }
+};
 
 module.exports = {
     create: create,
     getAll: getAll,
+    getById: getById,
 }
