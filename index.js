@@ -58,6 +58,8 @@ app.get('/profiles/update/:id', profilesController.update);
 
 //PSYCHOLOGISTS
 app.get('/psychologists', psychologistController.create);
+app.get('/psychologists/remove/:id', psychologistController.remove);
+
 
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);
