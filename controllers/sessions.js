@@ -46,5 +46,7 @@ const getById = (req, res) => {
 
 module.exports = {
     create: create,
-    update: update
+    update: update,
+    getAll: getAll,
+    getById: getById,
 };
