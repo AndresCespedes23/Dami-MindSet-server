@@ -27,12 +27,21 @@ const getAll = (req, res) => {
     res.json(psychologists)
 }
 const getById = (req, res) => {
-    const psychologist = psychologists.find(psychologist => psychologist.name === req.params.name);
+    const psychologist = psychologists.find(psychologist => psychologist.id === req.params.id);
 
     if(psychologist) {
         res.json(psychologist);
     } else {
-        res.status (400, 'Psychologist not Found')
+        res.status(400).send('Psychologist not Found');
+    }
+};
+const getByName = (req, res) => {
+    const psychologist = psychologists.find(psychologist => psychologist.name === req.param.name);
+
+    if(psychologist) {
+        res.json(psychologist);
+    } else {
+        res.status(400).send('Psychologist not found');
     }
 };
 
@@ -40,4 +49,5 @@ module.exports = {
     create: create,
     getAll: getAll,
     getById: getById,
+    getByName: getByName,
 }
