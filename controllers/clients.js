@@ -105,6 +105,21 @@ const update = (req, res) => {
   }
 };
 
+//CLIENT CREATE///
+const create = (req, res) => {
+  const newClient = {
+    id: (clients.length + 1).toString(),
+    name: req.query.name,
+    email: req.query.email,
+    phoneNumber: req.query.phoneNumber,
+    cuit: req.query.cuit,
+    address: req.query.address,
+    activity: req.query.activity
+  };
+  clients.push(newClient);
+  res.json(clients);
+};
+
 module.exports = {
   getAll: getAll,
   getById: getById,
@@ -115,4 +130,5 @@ module.exports = {
   getByActivity: getByActivity,
   remove: remove,
   update: update,
+  create: create,
 };
