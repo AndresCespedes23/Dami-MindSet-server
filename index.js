@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to MindSet!');
 });
 
-//CLIENTS//LIST
+//CLIENTS
 app.get('/clients', clientsController.getAll);
 app.get('/clients/byId/:id', clientsController.getById);
 app.get('/clients/byName/:name', clientsController.getByName);
@@ -22,10 +22,7 @@ app.get('/clients/byPhoneNumber/:phoneNumber', clientsController.getByPhoneNumbe
 app.get('/clients/byCuit/:cuit', clientsController.getByCuit);
 app.get('/clients/byAddress/:address', clientsController.getByAddress);
 app.get('/clients/byActivity/:activity', clientsController.getByActivity);
-//CLIENTS//REMOVE
 app.get('/clients/remove/:id', clientsController.remove);
-
-
 
 //CANDIDATES
 app.get('/candidates', candidatesController.getAll);
