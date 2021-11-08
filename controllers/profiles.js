@@ -37,7 +37,7 @@ const remove = (req, res) => {
     const profile = profiles.find(profile => profile.id === req.params.id);
     const selectedProfile = profiles.findIndex(profile => profile.id === req.params.id);
     if (profile) {
-      profiles.splice(selectedProfile, 1)
+      profiles.splice(selectedProfile, 1);
       res.json(profiles);
     } else {
       res.send('Error: user not removed or not found');
