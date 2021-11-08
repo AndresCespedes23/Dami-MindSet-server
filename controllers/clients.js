@@ -70,9 +70,8 @@ const getByActivity = (req, res) => {
 const remove = (req, res) => {
   const client = clients.find((client) => client.id === req.params.id);
   if (client) {
-    const clientsFilter = clients.filter((client) => client.id !== req.params.id);
-    clients = clientsFilter;
-    res.json({client,clients});
+    const filteredClients = clients.filter((client) => client.id !== req.params.id);
+    res.json(client);
   } 
   res.send("Client not found");
 };
