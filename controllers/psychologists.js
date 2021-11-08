@@ -20,6 +20,15 @@ const create = (req, res) => {
     psychologists.push(newPsychologist);
     res.json(psychologists);
 };
+
+// MS 10 Lists Psychologists
+
+const getAll = (req, res) => {
+    res.json(psychologists)
+}
+
+
 module.exports = {
-    create: create
+    create: create,
+    getAll: getAll,
 }
