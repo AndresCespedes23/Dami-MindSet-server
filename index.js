@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const psychologistController = require('./controllers/psychologists');
 const clientsController = require('./controllers/clients');
 const candidatesController = require('./controllers/candidates');
 const adminsController = require('./controllers/admins');
@@ -9,7 +10,6 @@ const sessionsController = require('./controllers/sessions.js');
 const profilesController = require('./controllers/profiles.js');
 
 app.set('json spaces', 2);
-
 app.get('/', (req, res) => {
   res.send('Welcome to MindSet!');
 });
@@ -52,6 +52,9 @@ app.get('/sessions/update/:id', sessionsController.update);
 app.get('/profiles', profilesController.getAll);
 app.get('/profiles/create', profilesController.create);
 app.get('/profiles/update/:id', profilesController.update);
+
+//PSYCHOLOGISTS
+app.get('/psychologists', psychologistController.create);
 
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);
