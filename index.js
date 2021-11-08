@@ -52,7 +52,7 @@ app.get('/sessions/update/:id', sessionsController.update);
 app.get('/profiles', profilesController.getAll);
 app.get('/profiles/create', profilesController.create);
 app.get('/profiles/update/:id', profilesController.update);
-app.get('/profiles/remove', profilesController.remove);
+app.get('/profiles/remove/:id', profilesController.remove);
 
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);

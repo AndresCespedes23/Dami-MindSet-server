@@ -9,7 +9,7 @@ const getAll = (req, res) => {
 // Create Profile
 const create = (req, res) => {
     const newProfile = {
-        id: profiles.length + 1,
+        id: (profiles.length + 1).toString(),
         name: req.query.name,
         description: req.query.description
     };
@@ -21,7 +21,7 @@ const create = (req, res) => {
 const update = (req, res) => {
     const profile = profiles.find(profile => profile.id === req.params.id);
     const selectedProfile = profiles.findIndex(profile => profile.id === req.params.id);
-    if(profile) {
+    if (profile) {
         const updateProfile = req.query;
         profile.name = updateProfile.name ? updateProfile.name : profile.name;
         profile.description = updateProfile.description ? updateProfile.description : profile.description;
@@ -35,16 +35,16 @@ const update = (req, res) => {
 // Remove Profile
 const remove = (req, res) => {
     const profile = profiles.find(profile => profile.id === req.params.id);
+    const selectedProfile = profiles.findIndex(profile => profile.id === req.params.id);
     if (profile) {
-      const profilesFilter = profiles.filter(profile => profile.id !== req.params.id);
-      profiles = profilesFilter;
+      profiles.splice(selectedProfile, 1)
       res.json(profiles);
     } else {
-      res.send('User not removed');
+      res.send('Error: user not removed or not found');
     }
 };
 
-// Module Exports
+// Module Exports 
 module.exports = {
     getAll: getAll,
     create: create,
