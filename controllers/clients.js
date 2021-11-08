@@ -66,6 +66,20 @@ const getByActivity = (req, res) => {
     res.send("Client not found");
   }
 };
+//CLIENT REMOVE///
+
+const remove = (req, res) => {
+  const client = clients.find((client) => client.id === req.params.id);
+  if (client) {
+    const clientsFilter = clients.filter(
+      (client) => client.id !== req.params.id
+    );
+    const clientRemoved = clientsFilter;
+    res.json(clientRemoved);
+  } else {
+    res.send("Client not found");
+  }
+};
 
 //CLIENT//UPDATE
 /*const editAdmin = (req, res) => {
@@ -98,4 +112,5 @@ module.exports = {
   getByCuit: getByCuit,
   getByAddress: getByAddress,
   getByActivity: getByActivity,
+  remove: remove,
 };
