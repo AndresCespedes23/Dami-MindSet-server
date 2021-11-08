@@ -30,11 +30,24 @@ const update = (req, res) => {
     } else {
         res.status(400).json({msg: `No profile with the id: ${req.params.id}`});
     }
-}
+};
+
+// Remove Profile
+const remove = (req, res) => {
+    const profile = profiles.find(profile => profile.id === req.params.id);
+    if (profile) {
+      const profilesFilter = profiles.filter(profile => profile.id !== req.params.id);
+      profiles = profilesFilter;
+      res.json(profiles);
+    } else {
+      res.send('User not removed');
+    }
+};
 
 // Module Exports
 module.exports = {
     getAll: getAll,
     create: create,
     update: update,
+    remove: remove
 };
