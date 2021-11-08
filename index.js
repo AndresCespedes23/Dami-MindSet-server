@@ -57,7 +57,11 @@ app.get('/profiles/create', profilesController.create);
 app.get('/profiles/update/:id', profilesController.update);
 
 //PSYCHOLOGISTS
-app.get('/psychologists', psychologistController.create);
+app.get('/psychologists/create', psychologistController.create);
+app.get('/psychologists', psychologistController.getAll);
+app.get('/psychologists/byId/:id', psychologistController.getById);
+app.get('/psychologists/byName/:name', psychologistController.getByName);
+
 
 app.listen(port, () => {
   console.log(`MindSet server listening at http://localhost:${port}`);
