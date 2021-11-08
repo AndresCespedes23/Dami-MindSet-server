@@ -35,10 +35,9 @@ const remove = (req, res) => {
     const session = sessions.findIndex(session => session.id === req.params.id);
     if(session > -1) {
         const removedSession = sessions.splice(session, 1);
-        res.send({removedSession, sessions}); 
-    } else {
-        res.status(400).json({ msg: `No session with the id: ${req.params.id}`});
+        res.send(removedSession); 
     }
+    res.status(400).json({ msg: `No session with the id: ${req.params.id}`});  
 }
 
 module.exports = {
