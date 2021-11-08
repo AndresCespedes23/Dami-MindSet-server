@@ -31,6 +31,15 @@ const update = (req, res) => {
     }
 };
 
+const remove = (req, res) => {
+    const session = sessions.findIndex(session => session.id === req.params.id);
+    if(session > -1) {
+        const removedSession = sessions.splice(session, 1);
+        res.send(removedSession); 
+    }
+    res.status(400).json({ msg: `No session with the id: ${req.params.id}`});  
+}
+
 const getAll = (req, res) => {
     res.json(sessions);
 };
@@ -56,6 +65,7 @@ const getByIdPsychologist = (req, res) => {
 module.exports = {
     create: create,
     update: update,
+    remove: remove,
     getAll: getAll,
     getById: getById,
     getByIdPsychologist: getByIdPsychologist
