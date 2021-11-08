@@ -44,6 +44,15 @@ const getById = (req, res) => {
     }
 };
 
+const getByIdPsychologist = (req, res) => {
+    const session = sessions.filter(session => session.idPsychologist === req.params.idPsychologist);
+    if (session) {
+        res.json(session);
+    } else {
+        res.send(`Session id:${req.params.idPsychologist} not found`);
+    }
+};
+
 module.exports = {
     create: create,
     update: update,
