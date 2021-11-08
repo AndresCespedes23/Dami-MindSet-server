@@ -73,6 +73,10 @@ app.get('/profiles/update/:id', profilesController.update);
 app.get('/profiles/remove/:id', profilesController.remove);
 
 //PSYCHOLOGISTS
+app.get('/psychologists/create', psychologistController.create);
+app.get('/psychologists', psychologistController.getAll);
+app.get('/psychologists/byId/:id', psychologistController.getById);
+app.get('/psychologists/byName/:name', psychologistController.getByName);
 app.get('/psychologists', psychologistController.create);
 app.get('/psychologists/remove/:id', psychologistController.remove);
 
