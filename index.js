@@ -6,6 +6,7 @@ const clientsController = require('./controllers/clients');
 const candidatesController = require('./controllers/candidates');
 const adminsController = require('./controllers/admins');
 const positionsController = require('./controllers/positions.js');
+const interviewsController = require('./controllers/interviews');
 const sessionsController = require('./controllers/sessions.js');
 const profilesController = require('./controllers/profiles.js');
 
@@ -13,6 +14,14 @@ app.set('json spaces', 2);
 app.get('/', (req, res) => {
   res.send('Welcome to MindSet!');
 });
+
+//INTERVIEWS
+app.get('/interviews/create', interviewsController.create);
+app.get('/interviews/update/:id', interviewsController.update);
+app.get('/interviews/cancel/:id', interviewsController.remove);
+app.get('/interviews', interviewsController.getAll);
+app.get('/interviews/byId/:id', interviewsController.getById);
+
 
 //CLIENTS//LIST
 app.get('/clients', clientsController.getAll);
