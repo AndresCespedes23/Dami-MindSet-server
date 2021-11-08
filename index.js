@@ -67,6 +67,7 @@ app.get('/sessions/byIdPsychologist/:idPsychologist', sessionsController.getById
 app.get('/profiles', profilesController.getAll);
 app.get('/profiles/create', profilesController.create);
 app.get('/profiles/update/:id', profilesController.update);
+app.get('/profiles/remove/:id', profilesController.remove);
 
 //PSYCHOLOGISTS
 app.get('/psychologists', psychologistController.create);
