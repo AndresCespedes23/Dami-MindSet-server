@@ -1,7 +1,7 @@
 const fs = require("fs");
 const clients = JSON.parse(fs.readFileSync("./data/clients.json"));
 
-//CLIENTS////
+//CLIENT LIST///
 
 const getAll = (req, res) => {
   res.json(clients);
@@ -67,36 +67,38 @@ const getByActivity = (req, res) => {
   }
 };
 
+//CLIENT REMOVE///
+
 const remove = (req, res) => {
   const client = clients.find((client) => client.id === req.params.id);
   if (client) {
-      clients.filter(
-      (client) => client.id !== req.params.id
-    );
-    //const clientRemoved = clientsFilter;
-    res.json(client);
-  } else {
-    res.send("Client not found");
-  }
+    const clientsFilter = clients.filter((client) => client.id !== req.params.id);
+    clients = clientsFilter;
+    res.json({client,clients});
+  } 
+  res.send("Client not found");
 };
+
+//CLIENT//UPDATE
 
 const update = (req, res) => {
   const client = clients.find((client) => client.id === req.params.id);
   const index = clients.findIndex((client) => client.id === req.params.id);
   if (client) {
-      client.id = req.query.id ? req.query.id : client.id,
-      client.name = req.query.name ? req.query.name : client.name,
-      client.email = req.query.email ? req.query.email : client.email,
-      client.address = req.query.address ? req.query.address : client.address,
-      client.phoneNumber = req.query.phoneNumber ? req.query.phoneNumber  : client.phoneNumber,
-      client.activity = req.query.activity ? req.query.activity : client.activity,
-      client.cuit = req.query.cuit ? req.query.cuit : client.cuit,
-    (clients[index] = client);
+    client.id = req.query.id ? req.query.id : client.id,
+    client.name = req.query.name ? req.query.name : client.name,
+    client.email = req.query.email ? req.query.email : client.email,
+    client.address = req.query.address ? req.query.address : client.address,
+    client.phoneNumber = req.query.phoneNumber ? req.query.phoneNumber : client.phoneNumber,
+    client.activity = req.query.activity ? req.query.activity : client.activity,
+    client.cuit = req.query.cuit ? req.query.cuit : client.cuit,
+    clients[index] = client;
     res.json(client);
-  } else {
-    res.send("Client not updated");
-  }
+  } 
+  res.send("Client not updated");
 };
+
+//CLIENT CREATE//
 
 const create = (req, res) => {
   const newClient = {
@@ -111,7 +113,7 @@ const create = (req, res) => {
   clients.push(newClient);
   res.json(clients);
 };
-
+s
 module.exports = {
   getAll: getAll,
   getById: getById,
@@ -122,5 +124,5 @@ module.exports = {
   getByActivity: getByActivity,
   remove: remove,
   update: update,
-  create: create,
+  create:create,
 };
