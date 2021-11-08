@@ -36,6 +36,7 @@ app.get('/candidates/create', candidatesController.create);
 app.get('/admins', adminsController.getAll);
 app.get('/admins/byId/:id', adminsController.getById);
 app.get('/admins/byName/:name', adminsController.getByName);
+app.get('/admins/update/:id', adminsController.update);
 
 // POSITIONS
 app.get('/positions', positionsController.getAll);
