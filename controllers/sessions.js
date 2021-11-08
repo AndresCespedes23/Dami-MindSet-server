@@ -32,10 +32,10 @@ const update = (req, res) => {
 };
 
 const remove = (req, res) => {
-    const session = sessions.find(session => session.id === req.params.id);
-    if(session) {
-        sessions.splice(session, 1);
-        res.json({ msg: `Session id: ${req.params.id} removed`, session});
+    const session = sessions.findIndex(session => session.id === req.params.id);
+    if(session > -1) {
+        const removedSession = sessions.splice(session, 1);
+        res.send({removedSession, sessions}); 
     } else {
         res.status(400).json({ msg: `No session with the id: ${req.params.id}`});
     }
