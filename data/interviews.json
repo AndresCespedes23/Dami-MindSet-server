@@ -1,0 +1,92 @@
+[
+    {
+      "id": "475",
+      "idCandidate": "211",
+      "idClient": "1928",
+      "idPosition": "2",
+      "date": "11/29/2021",
+      "time": "21:57",
+      "status": "In Course"
+    },
+    {
+      "id": "49",
+      "idCandidate": "4773",
+      "idClient": "087",
+      "idPosition": "66",
+      "date": "12/18/2021",
+      "time": "16:16",
+      "status": "Finished"
+    },
+    {
+      "id": "86",
+      "idCandidate": "6",
+      "idClient": "8934",
+      "idPosition": "200",
+      "date": "12/23/2021",
+      "time": "14:56",
+      "status": "In Course"
+    },
+    {
+      "id": "7894",
+      "idCandidate": "2",
+      "idClient": "4",
+      "idPosition": "4",
+      "date": "11/22/2021",
+      "time": "17:18",
+      "status": "In Course"
+    },
+    {
+      "id": "11653",
+      "idCandidate": "89330",
+      "idClient": "86",
+      "idPosition": "7",
+      "date": "11/23/2021",
+      "time": "16:02",
+      "status": "In Course"
+    },
+    {
+      "id": "0560",
+      "idCandidate": "87628",
+      "idClient": "7051",
+      "idPosition": "31779",
+      "date": "12/11/2021",
+      "time": "3:51",
+      "status": "In Course"
+    },
+    {
+      "id": "8459",
+      "idCandidate": "1",
+      "idClient": "834",
+      "idPosition": "8",
+      "date": "12/14/2021",
+      "time": "11:13",
+      "status": "Finished"
+    },
+    {
+      "id": "7458",
+      "idCandidate": "30",
+      "idClient": "221",
+      "idPosition": "5",
+      "date": "12/25/2021",
+      "time": "23:34",
+      "status": "In Course"
+    },
+    {
+      "id": "56",
+      "idCandidate": "4627",
+      "idClient": "846",
+      "idPosition": "4",
+      "date": "12/20/2021",
+      "time": "2:06",
+      "status": "Finished"
+    },
+    {
+      "id": "10",
+      "idCandidate": "124",
+      "idClient": "6578",
+      "idPosition": "4",
+      "date": "12/09/2021",
+      "time": "4:08",
+      "status": "In Course"
+    }
+  ]

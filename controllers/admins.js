@@ -7,24 +7,47 @@ const getAll = (req, res) => {
 
 const getById = (req, res) => {
   const admin = admins.find(admin => admin.id === req.params.id);
+  
   if (admin) {
     res.json(admin);
   } else {
-    res.send('User not found');
+    res.status(400).send('Admin not found');
   }
 };
 
 const getByName = (req, res) => {
   const admin = admins.find(admin => admin.name === req.params.name);
+
   if (admin) {
     res.json(admin);
   } else {
-    res.send('User not found');
+    res.status(400).send('Admin not found');
+  }
+};
+
+const update = (req, res) => {
+  const found = admins.some(admin => admin.id === req.params.id);
+
+  if (found) {
+    const updateAdmin = req.query;
+    admins.forEach(admin => {
+      if (admin.id === req.params.id) {
+        admin.name = updateAdmin.name ? updateAdmin.name : admin.name;
+        admin.email = updateAdmin.email ? updateAdmin.email : admin.email;
+        admin.username = updateAdmin.username ? updateAdmin.username : admin.username;
+        admin.password = updateAdmin.password ? updateAdmin.password : admin.password;
+
+        res.json(admin);
+      }
+    });
+  } else {
+    res.status(400).send('Admin not found');
   }
 };
 
 module.exports = {
   getAll: getAll,
   getById: getById,
-  getByName: getByName
+  getByName: getByName,
+  update: update
 };
