@@ -66,30 +66,40 @@ const getByActivity = (req, res) => {
     res.send("Client not found");
   }
 };
+//CLIENT REMOVE///
+
+const remove = (req, res) => {
+  const client = clients.find((client) => client.id === req.params.id);
+  if (client) {
+    const clientsFilter = clients.filter(
+      (client) => client.id !== req.params.id
+    );
+   
+    res.json(client);
+  } else {
+    res.send("Client not found");
+  }
+};
 
 //CLIENT//UPDATE
-/*const editAdmin = (req, res) => {
-  const adminIndex = Admins.findIndex((item) => item.id === req.query.id)
-  if (adminIndex !== -1) {
-    Admins[adminIndex] = {
-      id: Admins[adminIndex].id,
-      first_name: req.query.first_name || Admins[adminIndex].first_name,
-      last_name: req.query.last_name || Admins[adminIndex].last_name,
-      user_name: req.query.user_name || Admins[adminIndex].user_name,
-      email: req.query.email || Admins[adminIndex].email,
-      password: req.query.password || Admins[adminIndex].password,
-    }
-    fs.writeFile('./data/admins.json', JSON.stringify(Admins), {}, (error) => {
-      if (error) {
-        res.status(400).send(error)
-      } else {
-        res.status(201).json(Admins[adminIndex])
-      }
-    })
-  } else {
-    res.status(404).send("Admin not found")
-  }}*/
 
+const update = (req, res) => {
+  const client = clients.find((client) => client.id === req.params.id);
+  const index = clients.findIndex((client) => client.id === req.params.id);
+  if (client) {
+    client.id = req.query.id ? req.query.id : client.id,
+    client.name = req.query.name ? req.query.name : client.name,
+    client.email = req.query.email ? req.query.email : client.email,
+    client.address = req.query.address ? req.query.address : client.address,
+    client.phoneNumber = req.query.phoneNumber ? req.query.phoneNumber : client.phoneNumber,
+    client.activity = req.query.activity ? req.query.activity : client.activity,
+    client.cuit = req.query.cuit ? req.query.cuit : client.cuit,
+    clients[index] = client;
+    res.json(client);
+  } 
+  res.send("Client not updated");
+}; 
+     
 module.exports = {
   getAll: getAll,
   getById: getById,
@@ -98,4 +108,6 @@ module.exports = {
   getByCuit: getByCuit,
   getByAddress: getByAddress,
   getByActivity: getByActivity,
+  remove: remove,
+  update: update,
 };
