@@ -6,6 +6,7 @@ const clientsController = require('./controllers/clients');
 const candidatesController = require('./controllers/candidates');
 const adminsController = require('./controllers/admins');
 const positionsController = require('./controllers/positions.js');
+const interviewsController = require('./controllers/interviews');
 const sessionsController = require('./controllers/sessions.js');
 const profilesController = require('./controllers/profiles.js');
 
@@ -13,6 +14,14 @@ app.set('json spaces', 2);
 app.get('/', (req, res) => {
   res.send('Welcome to MindSet!');
 });
+
+//INTERVIEWS
+app.get('/interviews/create', interviewsController.create);
+app.get('/interviews/update/:id', interviewsController.update);
+app.get('/interviews/cancel/:id', interviewsController.remove);
+app.get('/interviews', interviewsController.getAll);
+app.get('/interviews/byId/:id', interviewsController.getById);
+
 
 //CLIENTS//LIST
 app.get('/clients', clientsController.getAll);
@@ -22,16 +31,18 @@ app.get('/clients/byPhoneNumber/:phoneNumber', clientsController.getByPhoneNumbe
 app.get('/clients/byCuit/:cuit', clientsController.getByCuit);
 app.get('/clients/byAddress/:address', clientsController.getByAddress);
 app.get('/clients/byActivity/:activity', clientsController.getByActivity);
-//CLIENTS//UPDATE
+app.get('/clients/remove/:id', clientsController.remove);
+app.get('/clients/update/:id', clientsController.update);
 
 
 
 //CANDIDATES
+app.get('/candidates/create', candidatesController.create);
+app.get('/candidates/update/:id', candidatesController.update);
+app.get('/candidates/remove/:id', candidatesController.remove);
 app.get('/candidates', candidatesController.getAll);
 app.get('/candidates/byId/:id', candidatesController.getById);
 app.get('/candidates/byName/:name', candidatesController.getByName);
-app.get('/candidates/create', candidatesController.create);
-app.get('/candidates/update/:id', candidatesController.update);
 
 //ADMIN
 app.get('/admins', adminsController.getAll);
@@ -50,17 +61,24 @@ app.get('/positions/remove/:id', positionsController.remove);
 //SESSIONS
 app.get('/sessions/create', sessionsController.create);
 app.get('/sessions/update/:id', sessionsController.update);
+app.get('/sessions/remove/:id', sessionsController.remove);
+app.get('/sessions', sessionsController.getAll);
+app.get('/sessions/byId/:id', sessionsController.getById);
+app.get('/sessions/byIdPsychologist/:idPsychologist', sessionsController.getByIdPsychologist);
 
 // PROFILES
 app.get('/profiles', profilesController.getAll);
 app.get('/profiles/create', profilesController.create);
 app.get('/profiles/update/:id', profilesController.update);
+app.get('/profiles/remove/:id', profilesController.remove);
 
 //PSYCHOLOGISTS
 app.get('/psychologists/create', psychologistController.create);
 app.get('/psychologists', psychologistController.getAll);
 app.get('/psychologists/byId/:id', psychologistController.getById);
 app.get('/psychologists/byName/:name', psychologistController.getByName);
+app.get('/psychologists', psychologistController.create);
+app.get('/psychologists/remove/:id', psychologistController.remove);
 
 
 app.listen(port, () => {

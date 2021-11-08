@@ -21,6 +21,21 @@ const create = (req, res) => {
     res.json(psychologists);
 };
 
+
+// MS 09 Remove Psychologists
+
+const remove = (req, res) => {
+    const psychologist = psychologists.find(psychologist => psychologist.id === req.params.id);
+    if(psychologist) {
+        const psychFilter = psychologists.filter(psychologist => psychologist.id !== req.params.id);
+        psychologists = psychFilter;
+        res.json(psychologists);
+    } else {
+        res.send('Psychologists not removed');
+    }
+};
+
+
 // MS 10 Lists Psychologists
 
 const getAll = (req, res) => {
@@ -45,9 +60,11 @@ const getByName = (req, res) => {
     }
 };
 
+
 module.exports = {
     create: create,
     getAll: getAll,
     getById: getById,
     getByName: getByName,
-}
+    remove: remove,
+};
