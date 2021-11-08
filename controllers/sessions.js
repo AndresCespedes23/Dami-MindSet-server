@@ -58,4 +58,5 @@ module.exports = {
     update: update,
     getAll: getAll,
     getById: getById,
+    getByIdPsychologist: getByIdPsychologist
 };
