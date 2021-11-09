@@ -71,9 +71,9 @@ const remove = (req, res) => {
   const client = clients.find((client) => client.id === req.params.id);
   if (client) {
     const filteredClients = clients.filter((client) => client.id !== req.params.id);
-    res.json(client);
-  } 
-  res.send("Client not found");
+    clients = filteredClients
+  } res.json(clients)
+    res.send("Client not found");
 };
 
 module.exports = {
