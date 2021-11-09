@@ -22,22 +22,22 @@ const create = (req, res) => {
         status: req.query.status,
         username: req.query.username,
         password: req.query.password,
-        education: {
-                institution: req.query.institution,
-                startDate: req.query.startDate,
-                finishDate: req.query.finishDate,
-                level: req.query.level,
-                inProgress: req.query.inProgress,
-                title: req.query.title,
+        education: { // TODO: We need to switch to an array of objects in the near future, given that the complexity of doing this with queryparams is very high
+            institution: req.query.institution,
+            startDate: req.query.startDate,
+            finishDate: req.query.finishDate,
+            level: req.query.level,
+            inProgress: req.query.inProgress,
+            title: req.query.title,
         },
-        workExperience: {
-                company: req.query.company,
-                role: req.query.role,
-                workStartDate: req.query.workStartDate,
-                workFinishDate: req.query.workFinishDate,
-                currently: req.query.currently,
-                workDescription: req.query.workDescription,
-                accomplishments: req.query.accomplishments,
+        workExperience: { // TODO: We need to switch to an array of objects in the near future, given that the complexity of doing this with queryparams is very high
+            company: req.query.company,
+            role: req.query.role,
+            workStartDate: req.query.workStartDate,
+            workFinishDate: req.query.workFinishDate,
+            currently: req.query.currently,
+            workDescription: req.query.workDescription,
+            accomplishments: req.query.accomplishments,
         },
         description: req.query.description,
         nationality: req.query.nationality,
@@ -49,6 +49,7 @@ const create = (req, res) => {
 };
 
 // MS-04: update candidates
+// TODO: create an endpoint in order to update education & workExperience
 const update = (req, res) => {
     const candidate = candidates.find(candidate => candidate.id === req.params.id);
     const index = candidates.findIndex(candidate => candidate.id === req.params.id);
