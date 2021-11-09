@@ -66,19 +66,17 @@ const getByActivity = (req, res) => {
     res.send("Client not found");
   }
 };
+
 //CLIENT REMOVE///
 
 const remove = (req, res) => {
   const client = clients.find((client) => client.id === req.params.id);
   if (client) {
-    const clientsFilter = clients.filter(
-      (client) => client.id !== req.params.id
-    );
-   
-    res.json(client);
-  } else {
-    res.send("Client not found");
-  }
+    const clientsFilter = clients.filter((client) => client.id !== req.params.id);
+    clients = clientsFilter;
+    res.json({client,clients});
+  } 
+  res.send("Client not found");
 };
 
 //CLIENT//UPDATE
@@ -98,8 +96,24 @@ const update = (req, res) => {
     res.json(client);
   } 
   res.send("Client not updated");
-}; 
-     
+};
+
+//CLIENT CREATE//
+
+const create = (req, res) => {
+  const newClient = {
+    id: (clients.length + 1).toString(),
+    name: req.query.name,
+    email: req.query.email,
+    phoneNumber: req.query.phoneNumber,
+    cuit: req.query.cuit,
+    address: req.query.address,
+    activity: req.query.activity
+  };
+  clients.push(newClient);
+  res.json(clients);
+};
+s
 module.exports = {
   getAll: getAll,
   getById: getById,
@@ -110,4 +124,5 @@ module.exports = {
   getByActivity: getByActivity,
   remove: remove,
   update: update,
+  create:create,
 };

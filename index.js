@@ -33,6 +33,9 @@ app.get('/clients/byAddress/:address', clientsController.getByAddress);
 app.get('/clients/byActivity/:activity', clientsController.getByActivity);
 app.get('/clients/remove/:id', clientsController.remove);
 app.get('/clients/update/:id', clientsController.update);
+//CLIENTS/CREATE
+app.get('/clients/create', clientsController.create);
+
 
 //CANDIDATES
 app.get('/candidates/create', candidatesController.create);
