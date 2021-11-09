@@ -17,25 +17,29 @@
         "profiles": ["1", "2", "3", "4", "5"],
         "username": "gdumini0",
         "password": "n9h9yeFk",
-        "education": 
-        {
-            "institution": "University of Essex",
-            "startDate": "8/5/2021",
-            "finishDate": "10/3/2021",
-            "level": ["primary", "secondary", "tertiary", "university", "course"],
-            "inProgress": false,
-            "title": "Accountant IV"
-        },
-        "workExperience": 
-        {
-            "company": "Dabtype",
-            "role": "Media Manager I",
-            "workStartDate": "7/20/2021",
-            "workFinishDate": "1/8/2021",
-            "currently": true,
-            "workDescription": "Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
-            "accomplishments": null
-        },
+        "education": [
+            {
+                "id": "1",
+                "institution": "University of Essex",
+                "startDate": "8/5/2021",
+                "finishDate": "10/3/2021",
+                "level": "primary",
+                "inProgress": false,
+                "title": "Accountant IV"
+            }
+        ],
+        "workExperience": [
+            {
+                "id": "1",
+                "company": "Dabtype",
+                "role": "Media Manager I",
+                "workStartDate": "7/20/2021",
+                "workFinishDate": "1/8/2021",
+                "currently": true,
+                "workDescription": "Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
+                "accomplishments": null
+            }
+        ],
         "description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
         "nationality": "PT",
         "maritalStatus": "Mrs",
@@ -59,25 +63,29 @@
         "profiles": ["1", "2"],
         "username": "mtreble1",
         "password": "tR0RkUD",
-        "education": 
-        {
-            "institution": "Jissen Women's University",
-            "startDate": "5/15/2021",
-            "finishDate": "3/15/2021",
-            "level": ["primary", "secondary"],
-            "inProgress": true,
-            "title": "Safety Technician III"
-        },
-        "workExperience": 
-        {
-            "company": "Twitterwire",
-            "role": "Geologist I",
-            "workStartDate": "6/8/2021",
-            "workFinishDate": "2/19/2021",
-            "currently": false,
-            "workDescription": "Etiam justo.",
-            "accomplishments": null
-        },
+        "education": [
+            {
+                "id": "2",
+                "institution": "Jissen Women's University",
+                "startDate": "5/15/2021",
+                "finishDate": "3/15/2021",
+                "level": "primary",
+                "inProgress": true,
+                "title": "Safety Technician III"
+            }
+        ],
+        "workExperience": [
+            {
+                "id": "2",
+                "company": "Twitterwire",
+                "role": "Geologist I",
+                "workStartDate": "6/8/2021",
+                "workFinishDate": "2/19/2021",
+                "currently": false,
+                "workDescription": "Etiam justo.",
+                "accomplishments": null
+            }
+        ],
         "description": "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
         "nationality": "AL",
         "maritalStatus": "Mr",
@@ -101,25 +109,29 @@
         "profiles": ["1", "2"],
         "username": "hblanch2",
         "password": "I9gAGiUMi",
-        "education": 
-        {
-            "institution": "Leading University",
-            "startDate": "12/21/2020",
-            "finishDate": "10/17/2021",
-            "level": ["primary", "secondary", "tertiary", "university"],
-            "inProgress": true,
-            "title": "Clinical Specialist"
-        },
-        "workExperience": 
-        {
-            "company": "Zoomlounge",
-            "role": "Web Designer I",
-            "workStartDate": "7/18/2021",
-            "workFinishDate": "5/11/2021",
-            "currently": true,
-            "workDescription": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
-            "accomplishments": null
-        },
+        "education": [
+            {
+                "id": "3",
+                "institution": "Leading University",
+                "startDate": "12/21/2020",
+                "finishDate": "10/17/2021",
+                "level": "primary",
+                "inProgress": true,
+                "title": "Clinical Specialist"
+            }
+        ],
+        "workExperience": [
+            {
+                "id": "3",
+                "company": "Zoomlounge",
+                "role": "Web Designer I",
+                "workStartDate": "7/18/2021",
+                "workFinishDate": "5/11/2021",
+                "currently": true,
+                "workDescription": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
+                "accomplishments": null
+            }
+        ],
         "description": "Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.",
         "nationality": "SE",
         "maritalStatus": "Mrs",
@@ -143,25 +155,29 @@
         "profiles": ["1", "2", "3"],
         "username": "amc3",
         "password": "LGuCO9",
-        "education": 
-        {
-            "institution": "Hitotsubashi University",
-            "startDate": "4/5/2021",
-            "finishDate": "1/28/2021",
-            "level": ["primary", "secondary", "course"],
-            "inProgress": false,
-            "title": "Research Associate"
-        },
-        "workExperience": 
-        {
-            "company": "Ntag",
-            "role": "Structural Analysis Engineer",
-            "workStartDate": "12/30/2020",
-            "workFinishDate": "9/7/2021",
-            "currently": true,
-            "workDescription": "Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.",
-            "accomplishments": null
-        },
+        "education": [
+            {
+                "id": "4",
+                "institution": "Hitotsubashi University",
+                "startDate": "4/5/2021",
+                "finishDate": "1/28/2021",
+                "level": "primary",
+                "inProgress": false,
+                "title": "Research Associate"
+            }
+        ],
+        "workExperience": [
+            {
+                "id": "4",
+                "company": "Ntag",
+                "role": "Structural Analysis Engineer",
+                "workStartDate": "12/30/2020",
+                "workFinishDate": "9/7/2021",
+                "currently": true,
+                "workDescription": "Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.",
+                "accomplishments": null
+            }
+        ],
         "description": "In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl.",
         "nationality": "CN",
         "maritalStatus": "Mr",
@@ -185,25 +201,29 @@
         "profiles": ["1", "2", "3"],
         "username": "ftiler4",
         "password": "1ofCBaxwy7r",
-        "education": 
-        {
-            "institution": "University of the Faroe Islands",
-            "startDate": "6/19/2021",
-            "finishDate": "6/30/2021",
-            "level": ["primary", "secondary", "tertiary", "university"],
-            "inProgress": true,
-            "title": "Analyst Programmer"
-        },
-        "workExperience": 
-        {
-            "company": "Youspan",
-            "role": "VP Marketing",
-            "workStartDate": "12/12/2020",
-            "workFinishDate": "3/23/2021",
-            "currently": true,
-            "workDescription": "Morbi quis tortor id nulla ultrices aliquet.",
-            "accomplishments": null
-        },
+        "education": [
+            {
+                "id": "5",
+                "institution": "University of the Faroe Islands",
+                "startDate": "6/19/2021",
+                "finishDate": "6/30/2021",
+                "level": "primary",
+                "inProgress": true,
+                "title": "Analyst Programmer"
+            }
+        ],
+        "workExperience": [
+            {
+                "id": "5",
+                "company": "Youspan",
+                "role": "VP Marketing",
+                "workStartDate": "12/12/2020",
+                "workFinishDate": "3/23/2021",
+                "currently": true,
+                "workDescription": "Morbi quis tortor id nulla ultrices aliquet.",
+                "accomplishments": null
+            }
+        ],
         "description": "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.",
         "nationality": "AM",
         "maritalStatus": "Mr",
@@ -227,25 +247,29 @@
         "profiles": ["1", "2", "3", "4", "5"],
         "username": "fmeekin5",
         "password": "FIGRqPk5",
-        "education": 
-        {
-            "institution": "Knightsbridge University",
-            "startDate": "8/20/2021",
-            "finishDate": "9/29/2021",
-            "level": ["primary", "secondary"],
-            "inProgress": true,
-            "title": "Mechanical Systems Engineer"
-        },
-        "workExperience": 
-        {
-            "company": "Katz",
-            "role": "VP Quality Control",
-            "workStartDate": "9/14/2021",
-            "workFinishDate": "9/27/2021",
-            "currently": true,
-            "workDescription": "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
-            "accomplishments": null
-        },
+        "education": [
+            {
+                "id": "6",
+                "institution": "Knightsbridge University",
+                "startDate": "8/20/2021",
+                "finishDate": "9/29/2021",
+                "level": "primary",
+                "inProgress": true,
+                "title": "Mechanical Systems Engineer"
+            }
+        ],
+        "workExperience": [
+            {
+                "id": "6",
+                "company": "Katz",
+                "role": "VP Quality Control",
+                "workStartDate": "9/14/2021",
+                "workFinishDate": "9/27/2021",
+                "currently": true,
+                "workDescription": "Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
+                "accomplishments": null
+            }
+        ],
         "description": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
         "nationality": "CN",
         "maritalStatus": "Honorable",
@@ -269,25 +293,29 @@
         "profiles": ["1", "2", "3", "4"],
         "username": "jconelly6",
         "password": "eTBhFZG",
-        "education": 
-        {
-            "institution": "Universidad Dr. Jose Matias Delgado",
-            "startDate": "6/14/2021",
-            "finishDate": "8/6/2021",
-            "level": ["primary", "secondary", "tertiary", "university", "course"],
-            "inProgress": true,
-            "title": "Automation Specialist II"
-        },
-        "workExperience": 
-        {
-            "company": "Tanoodle",
-            "role": "Professor",
-            "workStartDate": "2/20/2021",
-            "workFinishDate": "1/30/2021",
-            "currently": false,
-            "workDescription": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue.",
-            "accomplishments": null
-        },
+        "education": [
+            {
+                "id": "7",
+                "institution": "Universidad Dr. Jose Matias Delgado",
+                "startDate": "6/14/2021",
+                "finishDate": "8/6/2021",
+                "level": "primary",
+                "inProgress": true,
+                "title": "Automation Specialist II"
+            }
+        ],
+        "workExperience": [
+            {
+                "id": "7",
+                "company": "Tanoodle",
+                "role": "Professor",
+                "workStartDate": "2/20/2021",
+                "workFinishDate": "1/30/2021",
+                "currently": false,
+                "workDescription": "Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue.",
+                "accomplishments": null
+            }
+        ],
         "description": "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
         "nationality": "CZ",
         "maritalStatus": "Honorable",
@@ -311,25 +339,29 @@
         "profiles": ["1", "2", "3"],
         "username": "nholleworth7",
         "password": "XodwNicACw",
-        "education": 
-        {
-            "institution": "Hankuk University of Foreign Studies",
-            "startDate": "9/18/2021",
-            "finishDate": "1/13/2021",
-            "level": ["primary", "secondary"],
-            "inProgress": false,
-            "title": "Data Coordiator"
-        },
-        "workExperience": 
-        {
-            "company": "Dynava",
-            "role": "Sales Associate",
-            "workStartDate": "8/20/2021",
-            "workFinishDate": "5/1/2021",
-            "currently": false,
-            "workDescription": "In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
-            "accomplishments": null
-        },
+        "education": [
+            {
+                "id": "8",
+                "institution": "Hankuk University of Foreign Studies",
+                "startDate": "9/18/2021",
+                "finishDate": "1/13/2021",
+                "level": "primary",
+                "inProgress": false,
+                "title": "Data Coordiator"
+            }
+        ],
+        "workExperience": [
+            {
+                "id": "8",
+                "company": "Dynava",
+                "role": "Sales Associate",
+                "workStartDate": "8/20/2021",
+                "workFinishDate": "5/1/2021",
+                "currently": false,
+                "workDescription": "In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
+                "accomplishments": null
+            }
+        ],
         "description": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
         "nationality": "TH",
         "maritalStatus": "Honorable",
@@ -353,25 +385,29 @@
         "profiles": ["1", "2", "3", "4", "5"],
         "username": "pfranciottoi8",
         "password": "EWHwLhlFt",
-        "education": 
-        {
-            "institution": "St. Thomas University",
-            "startDate": "7/15/2021",
-            "finishDate": "1/24/2021",
-            "level": ["primary", "secondary", "tertiary", "university"],
-            "inProgress": false,
-            "title": "Senior Cost Accountant"
-        },
-        "workExperience": 
-        {
-            "company": "Jabbersphere",
-            "role": "Sales Representative",
-            "workStartDate": "6/6/2021",
-            "workFinishDate": "8/11/2021",
-            "currently": true,
-            "workDescription": "Cras in purus eu magna vulputate luctus.",
-            "accomplishments": null
-        },
+        "education": [
+            {
+                "id": "9",
+                "institution": "St. Thomas University",
+                "startDate": "7/15/2021",
+                "finishDate": "1/24/2021",
+                "level": "primary",
+                "inProgress": false,
+                "title": "Senior Cost Accountant"
+            }
+        ],
+        "workExperience": [
+            {
+                "id": "9",
+                "company": "Jabbersphere",
+                "role": "Sales Representative",
+                "workStartDate": "6/6/2021",
+                "workFinishDate": "8/11/2021",
+                "currently": true,
+                "workDescription": "Cras in purus eu magna vulputate luctus.",
+                "accomplishments": null
+            }
+        ],
         "description": "Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.",
         "nationality": "PG",
         "maritalStatus": "Mrs",
@@ -395,25 +431,29 @@
         "profiles": [],
         "username": "gwestpfel9",
         "password": "0UHSiCm",
-        "education": 
-        {
-            "institution": "National School of Political and Administrative Studies Bucharest",
-            "startDate": "7/13/2021",
-            "finishDate": "9/26/2021",
-            "level": ["primary", "secondary"],
-            "inProgress": true,
-            "title": "Clinical Specialist"
-        },
-        "workExperience": 
-        {
-            "company": "Twiyo",
-            "role": "Accountant IV",
-            "workStartDate": "7/24/2021",
-            "workFinishDate": "5/13/2021",
-            "currently": false,
-            "workDescription": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
-            "accomplishments": null
-        },
+        "education": [
+            {
+                "id": "10",
+                "institution": "National School of Political and Administrative Studies Bucharest",
+                "startDate": "7/13/2021",
+                "finishDate": "9/26/2021",
+                "level": "primary",
+                "inProgress": true,
+                "title": "Clinical Specialist"
+            }
+        ],
+        "workExperience": [
+            {
+                "id": 10,
+                "company": "Twiyo",
+                "role": "Accountant IV",
+                "workStartDate": "7/24/2021",
+                "workFinishDate": "5/13/2021",
+                "currently": false,
+                "workDescription": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
+                "accomplishments": null
+            }
+        ],
         "description": "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.",
         "nationality": "VN",
         "maritalStatus": "Mrs",
