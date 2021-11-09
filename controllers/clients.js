@@ -112,7 +112,7 @@ const create = (req, res) => {
   clients.push(newClient);
   res.json(clients);
 };
-s
+
 module.exports = {
   getAll: getAll,
   getById: getById,
