@@ -1,7 +1,7 @@
 const fs = require("fs");
-const clients = JSON.parse(fs.readFileSync("./data/clients.json"));
+let clients = JSON.parse(fs.readFileSync("./data/clients.json"));
 
-//CLIENT LIST///
+//CLIENT///
 
 const getAll = (req, res) => {
   res.json(clients);
@@ -72,11 +72,10 @@ const getByActivity = (req, res) => {
 const remove = (req, res) => {
   const client = clients.find((client) => client.id === req.params.id);
   if (client) {
-    const clientsFilter = clients.filter((client) => client.id !== req.params.id);
-    clients = clientsFilter;
-    res.json({client,clients});
-  } 
-  res.send("Client not found");
+    const filteredClients = clients.filter((client) => client.id !== req.params.id);
+    clients = filteredClients
+  } res.json(clients)
+    res.send("Client not found");
 };
 
 //CLIENT//UPDATE
@@ -113,7 +112,7 @@ const create = (req, res) => {
   clients.push(newClient);
   res.json(clients);
 };
-s
+
 module.exports = {
   getAll: getAll,
   getById: getById,
