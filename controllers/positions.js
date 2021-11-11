@@ -61,15 +61,15 @@ const remove = (req, res) => {
 };
 
 const getAll = (req, res) => {
-  res.json(positions);
+  res.status(200).json(positions);
 };
 
 const getById = (req, res) => {
   const filteredPosition = positions.find(element => element.id === req.params.id);
   if (!filteredPosition){
-    return res.send(404, {"Msg": "Position with that ID does not exist"});
+    return res.status(404).json({"Msg": "Position with that ID does not exist"});
   }
-  res.status(200).res.json(filteredPosition);
+  res.status(200).json(filteredPosition);
 };
 
 const getByName = (req, res) => {
@@ -77,7 +77,7 @@ const getByName = (req, res) => {
   if (!filteredPosition){
     return res.send(404, {"Msg":"Position with that NAME does not exist"});
   }
-  res.status(200).res.json(filteredPosition);
+  res.status(200).json(filteredPosition);
 };
 
 module.exports = {
