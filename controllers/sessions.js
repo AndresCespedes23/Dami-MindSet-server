@@ -26,9 +26,8 @@ const update = (req, res) => {
         session.result = updateSession.result ? updateSession.result : session.result;
         sessions[selectedSession] = session;
         res.json({ msg: 'Session updated', session});
-    } else {
-        res.status(400).json({ msg: `No session with the id: ${req.params.id}`});
     }
+    return res.status(400).json({ msg: `No session with the id: ${req.params.id}`});
 };
 
 const getAll = (req, res) => {
@@ -37,20 +36,14 @@ const getAll = (req, res) => {
 
 const getById = (req, res) => {
     const session = sessions.find(session => session.id === req.params.id);
-    if (session) {
-        res.json(session);
-    } else {
-        res.send({ msg: `No session with id: ${req.params.id}`});
-    }
+    if (session) return res.json(session);
+    return res.send({ msg: `No session with id: ${req.params.id}`});
 };
 
 const getByIdPsychologist = (req, res) => {
     const session = sessions.filter(session => session.idPsychologist === req.params.idPsychologist);
-    if (session) {
-        res.json(session);
-    } else {
-        res.send({ msg: `No psychologist with id: ${req.params.idPsychologist}`});
-    }
+    if (session) return res.json(session);
+    return res.send({ msg: `No psychologist with id: ${req.params.idPsychologist}`});
 };
 
 module.exports = {
