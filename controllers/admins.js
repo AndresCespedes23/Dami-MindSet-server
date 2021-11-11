@@ -2,18 +2,14 @@ const fs = require('fs');
 const admins = JSON.parse(fs.readFileSync('./data/admins.json'));
 
 const getAll = (req, res) => {
-  res.json(admins);
-};
+  return res.status(200).json(admins)
+  };
 
-const getById = (req, res) => {
-  const admin = admins.find(admin => admin.id === req.params.id);
-  
-  if (admin) {
-    res.json(admin);
-  } else {
-    res.status(400).send('Admin not found');
-  }
-};
+  const getById = (req, res) => {
+    const admin = admins.find(admin => admin.id === req.params.id);
+    if (admin) return res.status(200).json(admin);
+    return res.status(404).send("Admin not found");
+    }
 
 const getByName = (req, res) => {
   const admin = admins.find(admin => admin.name === req.params.name);
