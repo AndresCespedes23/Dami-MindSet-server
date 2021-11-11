@@ -35,7 +35,7 @@ const update = (req, res) => {
   const filteredPosition = positions.find(element => element.id === req.params.id);
   const indexPosition = positions.findIndex(element => element.id === req.params.id);
   if (!filteredPosition){
-    return res.send(404, {"Msg": "Position with that ID does not exist"});
+    return res.status(404).json({"Msg": "Position with that ID does not exist"});
   }
   const updatedPosition = req.query;
   filteredPosition.idClient = updatedPosition.idClient ? updatedPosition.idClient : filteredPosition.idClient;
@@ -48,7 +48,7 @@ const update = (req, res) => {
   filteredPosition.postalCode = updatedPosition.postalCode ? updatedPosition.postalCode : filteredPosition.postalCode;
   // update changes in position
   positions[indexPosition] = filteredPosition;
-  res.send(200, {filteredPosition});
+  res.status(200).json(filteredPosition);
 };
 
 const remove = (req, res) => {
