@@ -41,7 +41,7 @@ const remove = (req, res) => {
     profiles.splice(selectedProfile, 1);
     return res.status(200).send("Profile removed");
   }
-  return res.status(404).send("Error: profile does not exist, nothing removed");
+  return res.status(404).send("Error: profile does not exist");
 }
 
 // Module Exports
