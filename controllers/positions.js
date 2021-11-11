@@ -67,17 +67,17 @@ const getAll = (req, res) => {
 const getById = (req, res) => {
   const filteredPosition = positions.find(element => element.id === req.params.id);
   if (!filteredPosition){
-    return res.send(400, {"Msg": "Position with that ID does not exist"});
+    return res.send(404, {"Msg": "Position with that ID does not exist"});
   }
-  res.json(filteredPosition);
+  res.status(200).res.json(filteredPosition);
 };
 
 const getByName = (req, res) => {
   const filteredPosition = positions.find(element => element.name === req.params.name);
   if (!filteredPosition){
-    return res.send(400, {"Msg":"Position with that NAME does not exist"});
+    return res.send(404, {"Msg":"Position with that NAME does not exist"});
   }
-  res.json(filteredPosition);
+  res.status(200).res.json(filteredPosition);
 };
 
 module.exports = {
