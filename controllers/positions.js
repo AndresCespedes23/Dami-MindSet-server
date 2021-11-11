@@ -8,7 +8,7 @@ const create = (req, res) => {
     || !req.query.idProfiles
     || !req.query.name
     || !req.query.description
-    || !req.query.status
+    || !req.query.status === true
     || !req.query.address
     || !req.query.city
     || !req.query.postalCode){
@@ -38,14 +38,14 @@ const update = (req, res) => {
     return res.status(404).json({"Msg": "Position with that ID does not exist"});
   }
   const updatedPosition = req.query;
-  filteredPosition.idClient = updatedPosition.idClient ? updatedPosition.idClient : filteredPosition.idClient;
-  filteredPosition.idProfiles = updatedPosition.idProfiles? updatedPosition.idProfiles.split(","): filteredPosition.idProfiles;
-  filteredPosition.name = updatedPosition.name ? updatedPosition.name : filteredPosition.name;
-  filteredPosition.description = updatedPosition.description ? updatedPosition.description : filteredPosition.description;
+  filteredPosition.idClient = updatedPosition.idClient || filteredPosition.idClient;
+  filteredPosition.idProfiles = updatedPosition.idProfiles.split(",") || filteredPosition.idProfiles;
+  filteredPosition.name = updatedPosition.name || filteredPosition.name;
+  filteredPosition.description = updatedPosition.description || filteredPosition.description;
   filteredPosition.status = updatedPosition.status ? updatedPosition.status === 'true' : filteredPosition.status;
-  filteredPosition.address = updatedPosition.address ? updatedPosition.address : filteredPosition.address;
-  filteredPosition.city = updatedPosition.city ? updatedPosition.city : filteredPosition.city;
-  filteredPosition.postalCode = updatedPosition.postalCode ? updatedPosition.postalCode : filteredPosition.postalCode;
+  filteredPosition.address = updatedPosition.address || filteredPosition.address;
+  filteredPosition.city = updatedPosition.city || filteredPosition.city;
+  filteredPosition.postalCode = updatedPosition.postalCode || filteredPosition.postalCode;
   // update changes in position
   positions[indexPosition] = filteredPosition;
   res.status(200).json(filteredPosition);
