@@ -35,7 +35,7 @@ const update = (req, res) => {
   const filteredPosition = positions.find(element => element.id === req.params.id);
   const indexPosition = positions.findIndex(element => element.id === req.params.id);
   if (!filteredPosition){
-    return res.send(400, {"Msg": "Position with that ID does not exist"});
+    return res.send(404, {"Msg": "Position with that ID does not exist"});
   }
   const updatedPosition = req.query;
   filteredPosition.idClient = updatedPosition.idClient ? updatedPosition.idClient : filteredPosition.idClient;
