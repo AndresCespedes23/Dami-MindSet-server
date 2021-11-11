@@ -48,7 +48,7 @@ const remove = (req, res) => {
   if (client) {
     const filteredClients = clients.filter(client => client.id !== req.params.id);
     clients = filteredClients;
-    return res.status(202).json(clients);
+    return res.status(200).json(clients);
   }
   return res.status(404).send("Client not found");
 }
