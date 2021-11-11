@@ -8,7 +8,7 @@ const getAll = (req, res) => {
 
 // Create Profile
 const create = (req, res) => {
-	if (!req.query.id	|| !req.query.name || !req.query.description) {
+	if (!req.query.id || !req.query.name || !req.query.description) {
 		return res.status(400).send("Some parameters are missing")
 	}
 	const newProfile = {
