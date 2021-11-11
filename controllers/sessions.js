@@ -37,7 +37,7 @@ const remove = (req, res) => {
   const session = sessions.findIndex(session => session.id === req.params.id);
   if(session > -1) {
     const removedSession = sessions.splice(session, 1);
-    res.send(removedSession);
+    res.status(200).json(removedSession);
   }
   res.status(400).json({ msg: `No session with the id: ${req.params.id}`});
 };
@@ -48,13 +48,13 @@ const getAll = (req, res) => {
 
 const getById = (req, res) => {
   const session = sessions.find(session => session.id === req.params.id);
-  if (session) return res.json(session);
+  if (session) return res.status(200).json(session);
   return res.status(404).json({ msg: `No session with id: ${req.params.id}`});
 };
 
 const getByIdPsychologist = (req, res) => {
   const session = sessions.filter(session => session.idPsychologist === req.params.idPsychologist);
-  if (session) return res.json(session);
+  if (session) return res.status(200).json(session);
   return res.status(404).json({ msg: `No psychologist with id: ${req.params.idPsychologist}`});
 };
 
