@@ -25,8 +25,8 @@ const update = (req, res) => {
 	const selectedProfile = profiles.findIndex(profile => profile.id === req.params.id);
 	if (profile) {
 		const updateProfile = req.query;
-		profile.name = !updateProfile.name || profile.name;
-		profile.description = !updateProfile.description || profile.description;
+		profile.name = updateProfile.name || profile.name;
+		profile.description = updateProfile.description || profile.description;
 		profiles[selectedProfile] = profile;
 		return res.status(200).json(selectedProfile);
 	}
