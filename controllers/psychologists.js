@@ -40,7 +40,8 @@ const update = (req, res) => {
     psychologist.email = req.query.email ? req.query.email : psychologist.email,
     psychologist.userName = req.query.userName ? req.query.userName : psychologist.userName,
     psychologist.password = req.query.password ? req.query.password : psychologist.password,
-    psychologist.phoneNumber = req.query.phoneNumber ? req.query.phoneNumber : psychologist.phoneNumber,      psychologist.enrollmentNumber = req.query.enrollmentNumber ? req.query.enrollmentNumber : psychologist.enrollmentNumber,
+    psychologist.phoneNumber = req.query.phoneNumber ? req.query.phoneNumber : psychologist.phoneNumber,
+    psychologist.enrollmentNumber = req.query.enrollmentNumber ? req.query.enrollmentNumber : psychologist.enrollmentNumber,
     psychologists[index] = psychologist;
     return res.status(201).json(psychologists[index]);
   }
