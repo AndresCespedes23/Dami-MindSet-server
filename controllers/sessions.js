@@ -40,7 +40,7 @@ const remove = (req, res) => {
     res.send(removedSession);
   }
   res.status(400).json({ msg: `No session with the id: ${req.params.id}`});
-}
+};
 
 const getAll = (req, res) => {
   return res.status(200).json(sessions);
