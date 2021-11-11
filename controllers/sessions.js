@@ -11,7 +11,10 @@ const create = (req, res) => {
     result: req.query.result
   }
   sessions.push(newSession);
-  res.json(sessions);
+  if (!req.query.id || !req.query.idPsychologist || !req.query.idCandidate || req.query.dateTime || !req.query.status || !req.query.result) {
+    return res.status(400).send("Some parameters are missing");
+  }
+  return res.status(201).json(sessions);
 };
 
 const update = (req, res) => {
@@ -25,25 +28,25 @@ const update = (req, res) => {
     session.status = updateSession.status ? updateSession.status : session.status;
     session.result = updateSession.result ? updateSession.result : session.result;
     sessions[selectedSession] = session;
-    res.json({ msg: 'Session updated', session});
+    return res.status(200).json({ msg: 'Session updated', session});
   }
-  return res.status(400).json({ msg: `No session with the id: ${req.params.id}`});
+  return res.status(404).json({ msg: `No session with the id: ${req.params.id}`});
 };
 
 const getAll = (req, res) => {
-  res.json(sessions);
+  return res.status(200).json(sessions);
 };
 
 const getById = (req, res) => {
   const session = sessions.find(session => session.id === req.params.id);
   if (session) return res.json(session);
-  return res.send({ msg: `No session with id: ${req.params.id}`});
+  return res.status(404).json({ msg: `No session with id: ${req.params.id}`});
 };
 
 const getByIdPsychologist = (req, res) => {
   const session = sessions.filter(session => session.idPsychologist === req.params.idPsychologist);
   if (session) return res.json(session);
-  return res.send({ msg: `No psychologist with id: ${req.params.idPsychologist}`});
+  return res.status(404).json({ msg: `No psychologist with id: ${req.params.idPsychologist}`});
 };
 
 module.exports = {
