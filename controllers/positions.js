@@ -54,7 +54,7 @@ const update = (req, res) => {
 const remove = (req, res) => {
   const indexPosition = positions.findIndex(element => element.id === req.params.id);
   if (indexPosition === -1){
-    return res.send(400, {"Msg": "Position with that ID does not exist"});
+    return res.send(404, {"Msg": "Position with that ID does not exist"});
   }
   const removedPosition = positions.splice(indexPosition, 1);
   res.send(200, {removedPosition, positions});
