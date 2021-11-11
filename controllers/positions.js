@@ -12,7 +12,7 @@ const create = (req, res) => {
     || !req.query.address
     || !req.query.city
     || !req.query.postalCode){
-    return res.send(400, {"Msg": "Some parameters are missing"});
+      return res.status(400).json({"Msg": "Some parameters are missing"});
   }
   // change the type of idProfiles from string to array of strings
   const idProfilesArray = req.query.idProfiles.split(",");
@@ -28,7 +28,7 @@ const create = (req, res) => {
     postalCode: req.query.postalCode
   }
   positions.push(newPosition);
-  res.send(200, {positions});
+  res.status(201).json(newPosition);;
 };
 
 const update = (req, res) => {
