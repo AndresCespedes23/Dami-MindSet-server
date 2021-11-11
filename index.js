@@ -25,7 +25,7 @@ app.get('/interviews', interviewsController.getAll);
 app.get('/interviews/byId/:id', interviewsController.getById);
 
 //CLIENTS
-app.get('/clients/update/:id', clientsController.create);
+app.get('/clients/create', clientsController.create);
 app.get('/clients/update/:id', clientsController.update);
 app.get('/clients/remove/:id', clientsController.remove);
 app.get('/clients', clientsController.getAll);
