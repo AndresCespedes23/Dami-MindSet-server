@@ -59,10 +59,10 @@ const getByIdPsychologist = (req, res) => {
 };
 
 module.exports = {
-    create: create,
-    update: update,
-    remove: remove,
-    getAll: getAll,
-    getById: getById,
-    getByIdPsychologist: getByIdPsychologist
+  create,
+  update,
+  remove,
+  getAll,
+  getById,
+  getByIdPsychologist
 };
