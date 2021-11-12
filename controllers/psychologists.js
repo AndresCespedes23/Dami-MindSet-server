@@ -5,7 +5,7 @@ const create = (req, res) => {
   if (!req.query.id
     || !req.query.name
     || !req.query.email
-    || !req.query.userName // **********************************************************
+    || !req.query.userName
     || !req.query.password
     || !req.query.phoneNumber
     || !req.query.enrollmentNumber
