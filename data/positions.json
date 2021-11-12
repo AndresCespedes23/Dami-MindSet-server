@@ -2,11 +2,7 @@
   {
     "id": "1",
     "idClient": "2",
-    "idProfiles": [
-      "1",
-      "2",
-      "3"
-    ],
+    "idProfiles": ["1", "2", "3"],
     "name": "VP",
     "description": "praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede",
     "status": true,
@@ -17,10 +13,7 @@
   {
     "id": "2",
     "idClient": "3",
-    "idProfiles": [
-      "4",
-      "5"
-    ],
+    "idProfiles": ["4", "5"],
     "name": "Community Outreach Specialist",
     "description": "ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor",
     "status": false,
@@ -31,10 +24,7 @@
   {
     "id": "3",
     "idClient": "4",
-    "idProfiles": [
-      "6",
-      "7"
-    ],
+    "idProfiles": ["6", "7"],
     "name": "Web Designer III",
     "description": "lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque",
     "status": false,
@@ -45,10 +35,7 @@
   {
     "id": "4",
     "idClient": "5",
-    "idProfiles": [
-      "9",
-      "10"
-    ],
+    "idProfiles": ["9", "10"],
     "name": "Analog Circuit Design manager",
     "description": "odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor",
     "status": true,
