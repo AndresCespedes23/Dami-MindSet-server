@@ -23,7 +23,6 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "husky": "^5.0.6",
     "mongoose": "^6.0.12"
   },
   "devDependencies": {
