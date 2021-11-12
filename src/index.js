@@ -21,7 +21,7 @@ app.use(cors());
 
 mongoose
   .connect(
-    "mongodb+srv://mindsetdbadmin:qBDUlUWNZVozPRKp@cluster0.fwaam.mongodb.net/test?retryWrites=true&w=majority",
+    "mongodb+srv://BaSD:BaSD2021@cluster0.fwaam.mongodb.net/BaSD_database?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
@@ -109,8 +109,8 @@ app.get("/psychologists/byId/:id", psychologistController.getById);
 app.get("/psychologists/byName/:name", psychologistController.getByName);
 
 // APPLICATIONS
-app.get("/applications/create", applicationsController.create);
-app.get("/applications/update/:id", applicationsController.update);
-app.get("/applications/remove/:id", applicationsController.remove);
+// app.get("/applications/create", applicationsController.create);
+// app.get("/applications/update/:id", applicationsController.update);
+// app.get("/applications/remove/:id", applicationsController.remove);
 app.get("/applications", applicationsController.getAll);
-app.get("/applications/byId/:id", applicationsController.getById);
+// app.get("/applications/byId/:id", applicationsController.getById);
