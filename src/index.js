@@ -1,7 +1,11 @@
 /* eslint-disable no-console */
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
+const cors = require("cors");
 const port = 3000;
+
+// Routes
 const psychologistController = require("./controllers/psychologists");
 const clientsController = require("./controllers/clients");
 const candidatesController = require("./controllers/candidates");
@@ -13,6 +17,23 @@ const profilesController = require("./controllers/profiles.js");
 const applicationsController = require("./controllers/applications.js");
 
 app.set("json spaces", 2);
+app.use(cors());
+
+mongoose
+  .connect(
+    "mongodb+srv://mindsetdbadmin:qBDUlUWNZVozPRKp@cluster0.fwaam.mongodb.net/test?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .then(() => {
+    console.log("🟢 DB Connected");
+    app.listen({ port }, () => {
+      console.log(`🚗 Server running on port ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.log("🔴 There was an error on the DB connection method.");
+    console.log(err);
+  });
 
 app.get("/", (req, res) => {
   res.send("Welcome to MindSet!");
@@ -93,7 +114,3 @@ app.get("/applications/update/:id", applicationsController.update);
 app.get("/applications/remove/:id", applicationsController.remove);
 app.get("/applications", applicationsController.getAll);
 app.get("/applications/byId/:id", applicationsController.getById);
-
-app.listen(port, () => {
-  console.log(`MindSet server listening at http://localhost:${port}`);
-});
