@@ -113,4 +113,4 @@ app.get("/psychologists/byName/:name", psychologistController.getByName);
 // app.get("/applications/update/:id", applicationsController.update);
 // app.get("/applications/remove/:id", applicationsController.remove);
 app.get("/applications", applicationsController.getAll);
-// app.get("/applications/byId/:id", applicationsController.getById);
+app.get("/applications/:id", applicationsController.getById);

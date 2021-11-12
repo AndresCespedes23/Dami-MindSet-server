@@ -1,4 +1,5 @@
 const Applications = require("../models/applications");
+const ObjectId = require("mongoose").Types.ObjectId;
 
 const getAll = (req, res) => {
   Applications.find()
@@ -10,17 +11,15 @@ const getAll = (req, res) => {
     });
 };
 
-// const getById = (req, res) => {
-//   const filteredApplication = applications.find(
-//     (element) => element.id === req.params.id
-//   );
-//   if (!filteredApplication) {
-//     return res
-//       .status(404)
-//       .json({ Msg: "Application with that ID does not exist" });
-//   }
-//   res.status(200).json(filteredApplication);
-// };
+const getById = (req, res) => {
+  Applications.findById({ _id: new ObjectId(req.params.id) })
+    .then((application) => {
+      return res.status(200).json(application);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
+};
 
 // const create = (req, res) => {
 //   if (
@@ -78,8 +77,8 @@ const getAll = (req, res) => {
 
 module.exports = {
   getAll,
+  getById,
   // create,
   // update,
   // remove,
-  // getById,
 };
