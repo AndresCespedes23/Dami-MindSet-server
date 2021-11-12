@@ -52,9 +52,9 @@ const getById = (req, res) => {
 }
 
 module.exports = {
-  create: create,
-  update: update,
-  remove: remove,
-  getAll: getAll,
-  getById: getById
+  create,
+  update,
+  remove,
+  getAll,
+  getById,
 }
