@@ -3,7 +3,8 @@
   "rules": {
     "eqeqeq": "error",
     "no-console": "warn",
-    "quotes": ["error", "double"]
+    "quotes": ["error", "double"],
+    "semi": [2, "always"]
   },
   "parserOptions": {
     "ecmaVersion": 12
