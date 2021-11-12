@@ -79,10 +79,10 @@ const getByName = (req, res) => {
 };
 
 module.exports = {
-  create: create,
-  update: update,
-  getAll: getAll,
-  getById: getById,
-  getByName: getByName,
-  remove: remove,
+  create,
+  update,
+  getAll,
+  getById,
+  getByName,
+  remove,
 };
