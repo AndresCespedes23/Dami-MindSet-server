@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "dev": "nodemon index"
+    "dev": "nodemon index",
+    "lint": "eslint .",
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -20,10 +23,13 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "husky": "^5.0.6",
     "mongoose": "^6.0.12"
   },
   "devDependencies": {
+    "eslint": "^7.15.0",
     "nodemon": "^2.0.14",
-    "eslint": "^7.15.0"
+    "prettier": "^2.4.1",
+    "husky": "^7.0.0"
   }
 }
