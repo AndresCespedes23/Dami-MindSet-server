@@ -84,5 +84,5 @@ module.exports = {
   getAll,
   getById,
   getByName,
-  remove,
+  remove
 };
