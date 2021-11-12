@@ -35,8 +35,8 @@ const update = (req, res) => {
   };
 
 module.exports = {
-  getAll: getAll,
-  getById: getById,
-  getByName: getByName,
-  update: update
+  getAll,
+  getById,
+  getByName,
+  update
 };
