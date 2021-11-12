@@ -16,33 +16,39 @@ const create = (req,res) => {
       status: req.query.status
   }
   data.push(interview);
-  res.send(`Interview succesfully created! ${JSON.stringify(interview)}`);
+  return res.status(201).send(`Interview succesfully created! ${JSON.stringify(interview)}`);
 }
 
 const update = (req,res) => {
   const index = data.findIndex(interview => req.params.id === interview.id);
-  if(index === -1) res.send('Could not find interview with specified ID');
-  for(property in req.query) {
+  if(index === -1){
+      return res.status(400).json({"Msg": "Could not find interview with specified ID"});
+  }
+  for(property in req.query){
       data[index][property] = req.query[property];
   }
-  res.send(`Interview succesfully updated! ${JSON.stringify(data[index])}`);
+  return res.status(201).send(`Interview succesfully updated! ${JSON.stringify(data[index])}`);
 }
 
 const remove = (req, res) => {
   const index = data.findIndex(interview => req.params.id === interview.id);
-  if(index === -1) res.send('Could not find interview with specified ID');
+  if(index === -1){
+      return res.status(400).json({"Msg" :"Could not find interview with specified ID"});
+  }
   const cancelledInterview = data.splice(index,1);
-  res.send(`Interview cancelled! ${JSON.stringify(cancelledInterview)}`);
+  return res.status(200).send(`Interview cancelled! ${JSON.stringify(cancelledInterview)}`);
 }
 
 const getAll = (req, res) => {
-  res.json(data);
+  return res.status(200).json(data);
 }
 
 const getById = (req, res) => {
   const index = data.findIndex(interview => req.params.id === interview.id);
-  if(index === -1) res.send('Could not find interview with specified ID');
-  res.json(data[index]);
+  if(index === -1) {
+      return res.status(400).json({"Msg" : "Could not find interview with specified ID"});
+  }
+  return res.status(200).json(data[index]);
 }
 
 module.exports = {
