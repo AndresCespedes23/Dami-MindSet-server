@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ApplicationsSchema = new Schema({
-  id: Schema.Types.ObjectId,
   idPosition: {
     type: Schema.Types.ObjectId,
     ref: "Positions",
@@ -28,7 +27,6 @@ const ApplicationsSchema = new Schema({
   result: {
     type: String,
     max: 500,
-    required: true,
   },
 });
 
