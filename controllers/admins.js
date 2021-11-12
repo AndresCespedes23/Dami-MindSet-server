@@ -2,7 +2,7 @@ const fs = require('fs');
 const admins = JSON.parse(fs.readFileSync('./data/admins.json'));
 
 const getAll = (req, res) => {
-  return res.status(200).json(admins)
+  return res.status(200).json(admins);
   };
 
 const getById = (req, res) => {
