@@ -24,7 +24,6 @@ const ApplicationsSchema = new Schema({
   },
   status: {
     enum: ["PENDING", "SCHEDULED", "HIRED", "REJECTED"],
-    required: true,
   },
   result: {
     type: String,
