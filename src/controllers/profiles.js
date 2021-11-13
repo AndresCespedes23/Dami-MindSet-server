@@ -33,9 +33,32 @@ const create = (req, res) => {
   return res.status(201).json(newProfile);
 };
 
+const update = (req, res) => {
+  if (!req.params.id || !req.body.name || !req.body.description) {
+    return res.status(400).json({ msg: "Some parameters are missing" });
+  }
+  const updatedProfile = {
+    name: req.body.name,
+    description: req.body.description,
+  };
+  Profiles.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    updatedProfile,
+    { new: true },
+    (err, updatedProfile) => {
+      if (!updatedProfile) {
+        return res.status(404).json({ msg: `Profile with id: ${req.params.id} was not found.`});
+      }
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(updatedProfile);
+    }
+  );  
+};
+
 // Module Exports
 module.exports = {
   getAll,
   getById,
   create,
+  update,
 };
