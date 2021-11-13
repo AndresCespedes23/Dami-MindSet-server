@@ -1,195 +1,193 @@
 const fs = require("fs");
 let candidates = JSON.parse(fs.readFileSync("./data/candidates.json"));
 
-// MS-03: create candidates
+const getAll = (req, res) => {
+  res.status(200).json(candidates);
+};
+
+const getById = (req, res) => {
+  const candidate = candidates.find(
+    candidate => candidate.id === req.params.id
+  );
+  if (!candidate) {
+    return res.status(404).send("User not found");
+  }
+  res.status(200).json(candidate);
+};
+
+const getByName = (req, res) => {
+  const candidate = candidates.find(
+    candidate => candidate.name === req.params.name
+  );
+  if (!candidate) {
+    return res.status(404).send("User not found");
+  }
+  res.status(200).json(candidate);
+};
+
 const create = (req, res) => {
   const index = candidates[candidates.length - 1].id;
   const newIndex = parseInt(index) + 1;
+  const newInformation = req.query;
+  if (
+    !newInformation.name ||
+    !newInformation.email ||
+    !newInformation.gender ||
+    !newInformation.address ||
+    !newInformation.phoneNumber ||
+    !newInformation.dateOfBirth ||
+    !newInformation.zipCode ||
+    !newInformation.city ||
+    !newInformation.state ||
+    !newInformation.country ||
+    !newInformation.timeRange ||
+    !newInformation.username ||
+    !newInformation.password
+  ) {
+    return res.status(400).json({ Msg: "Some parameters are missing" });
+  }
   const newCandidate = {
     id: newIndex.toString(),
-    name: req.query.name,
-    email: req.query.email,
-    gender: req.query.gender,
-    address: req.query.address,
-    phoneNumber: req.query.phoneNumber,
-    dni: req.query.dni,
-    dateOfBirth: req.query.dateOfBirth,
-    zipCode: req.query.zipCode,
-    city: req.query.city,
-    state: req.query.state,
-    country: req.query.country,
-    timeRange: req.query.timeRange,
-    status: req.query.status,
-    username: req.query.username,
-    password: req.query.password,
-    education: {
-      // TODO: We need to switch to an array of objects in the near future, given that the complexity of doing this with queryparams is very high
-      institution: req.query.institution,
-      startDate: req.query.startDate,
-      finishDate: req.query.finishDate,
-      level: req.query.level,
-      inProgress: req.query.inProgress,
-      title: req.query.title,
-    },
-    workExperience: {
-      // TODO: We need to switch to an array of objects in the near future, given that the complexity of doing this with queryparams is very high
-      company: req.query.company,
-      role: req.query.role,
-      workStartDate: req.query.workStartDate,
-      workFinishDate: req.query.workFinishDate,
-      currently: req.query.currently,
-      workDescription: req.query.workDescription,
-      accomplishments: req.query.accomplishments,
-    },
-    description: req.query.description,
-    nationality: req.query.nationality,
-    maritalStatus: req.query.maritalStatus,
-    driversLicense: req.query.driversLicense,
+    name: newInformation.name,
+    email: newInformation.email,
+    gender: newInformation.gender,
+    address: newInformation.address,
+    phoneNumber: newInformation.phoneNumber,
+    dni: newInformation.dni,
+    dateOfBirth: newInformation.dateOfBirth,
+    zipCode: newInformation.zipCode,
+    city: newInformation.city,
+    state: newInformation.state,
+    country: newInformation.country,
+    timeRange: newInformation.timeRange,
+    status: newInformation.status,
+    username: newInformation.username,
+    password: newInformation.password,
+    education: [
+      {
+        // TODO: We need to switch to an array of objects in the near future, given that the complexity of doing this with queryparams is very high
+        institution: newInformation.institution,
+        startDate: newInformation.startDate,
+        finishDate: newInformation.finishDate,
+        level: newInformation.level,
+        inProgress: newInformation.inProgress,
+        title: newInformation.title,
+      },
+    ],
+    workExperience: [
+      {
+        // TODO: We need to switch to an array of objects in the near future, given that the complexity of doing this with queryparams is very high
+        company: newInformation.company,
+        role: newInformation.role,
+        workStartDate: newInformation.workStartDate,
+        workFinishDate: newInformation.workFinishDate,
+        currently: newInformation.currently,
+        workDescription: newInformation.workDescription,
+        accomplishments: newInformation.accomplishments,
+      },
+    ],
+    description: newInformation.description,
+    nationality: newInformation.nationality,
+    maritalStatus: newInformation.maritalStatus,
+    driversLicense: newInformation.driversLicense,
   };
   candidates.push(newCandidate);
-  res.json(candidates);
+  res.status(201).json(newCandidate);
 };
 
-// MS-04: update candidates
 // TODO: create an endpoint in order to update education & workExperience
 const update = (req, res) => {
   const candidate = candidates.find(
-    (candidate) => candidate.id === req.params.id
+    candidate => candidate.id === req.params.id
   );
   const index = candidates.findIndex(
-    (candidate) => candidate.id === req.params.id
+    candidate => candidate.id === req.params.id
   );
+  const newInformation = req.query;
   if (candidate) {
-    (candidate.name = req.query.name ? req.query.name : candidate.name),
-      (candidate.email = req.query.email ? req.query.email : candidate.email),
-      (candidate.gender = req.query.gender
-        ? req.query.gender
-        : candidate.gender),
-      (candidate.address = req.query.address
-        ? req.query.address
-        : candidate.address),
-      (candidate.phoneNumber = req.query.phoneNumber
-        ? req.query.phoneNumber
-        : candidate.phoneNumber),
-      (candidate.dni = req.query.dni ? req.query.dni : candidate.dni),
-      (candidate.dateOfBirth = req.query.dateOfBirth
-        ? req.query.dateOfBirth
-        : candidate.dateOfBirth),
-      (candidate.city = req.query.city ? req.query.city : candidate.city),
-      (candidate.state = req.query.state ? req.query.state : candidate.state),
-      (candidate.country = req.query.country
-        ? req.query.country
-        : candidate.country),
-      (candidate.timeRange = req.query.timeRange
-        ? req.query.timeRange
-        : candidate.timeRange),
-      (candidate.status = req.query.status
-        ? req.query.status
-        : candidate.status),
-      (candidate.username = req.query.username
-        ? req.query.username
-        : candidate.username),
-      (candidate.password = req.query.password
-        ? req.query.password
-        : candidate.password),
-      (candidate.education["institution"] = req.query.institution
-        ? req.query.institution
-        : candidate.education["institution"]),
-      (candidate.education["startDate"] = req.query.startDate
-        ? req.query.startDate
-        : candidate.education["startDate"]),
-      (candidate.education["finishDate"] = req.query.finishDate
-        ? req.query.finishDate
-        : candidate.education["finishDate"]),
-      (candidate.education["level"] = req.query.level
-        ? req.query.level
-        : candidate.education["level"]),
-      (candidate.education["inProgress"] = req.query.inProgress
-        ? req.query.inProgress
-        : candidate.education["inProgress"]),
-      (candidate.education["title"] = req.query.title
-        ? req.query.title
-        : candidate.education["title"]),
-      (candidate.workExperience["company"] = req.query.company
-        ? req.query.company
-        : candidate.company),
-      (candidate.workExperience["role"] = req.query.role
-        ? req.query.role
-        : candidate.role),
-      (candidate.workExperience["workStartDate"] = req.query.workStartDate
-        ? req.query.workStartDate
-        : candidate.workExperience["workStartDate"]),
-      (candidate.workExperience["workFinishDate"] = req.query.workFinishDate
-        ? req.query.workFinishDate
-        : candidate.workExperience["workFinishDate"]),
-      (candidate.workExperience["currently"] = req.query.currently
-        ? req.query.currently
-        : candidate.workExperience["currently"]),
-      (candidate.workExperience["workDescription"] = req.query.workDescription
-        ? req.query.workDescription
-        : candidate.workExperience["workDescription"]),
-      (candidate.workExperience["accomplishments"] = req.query.accomplishments
-        ? req.query.accomplishments
-        : candidate.workExperience["accomplishments"]),
-      (candidate.description = req.query.description
-        ? req.query.description
-        : candidate.description),
-      (candidate.nationality = req.query.nationality
-        ? req.query.nationality
-        : candidate.nationality),
-      (candidate.maritalStatus = req.query.maritalStatus
-        ? req.query.maritalStatus
-        : candidate.maritalStatus),
-      (candidate.driversLicense = req.query.driversLicense
-        ? req.query.driversLicense
-        : candidate.driversLicense);
+    candidate.name = newInformation.name || candidate.name;
+    candidate.email = newInformation.email || candidate.email;
+    candidate.gender = newInformation.gender || candidate.gender;
+    candidate.address = newInformation.address || candidate.address;
+    candidate.phoneNumber = newInformation.phoneNumber || candidate.phoneNumber;
+    candidate.dni = newInformation.dni || candidate.dni;
+    candidate.dateOfBirth = newInformation.dateOfBirth || candidate.dateOfBirth;
+    candidate.city = newInformation.city || candidate.city;
+    candidate.state = newInformation.state || candidate.state;
+    candidate.country = newInformation.country || candidate.country;
+    candidate.timeRange = newInformation.timeRange || candidate.timeRange;
+    candidate.status = newInformation.status || candidate.status;
+    candidate.username = newInformation.username || candidate.username;
+    candidate.password = newInformation.password || candidate.password;
+    // For simplicity we're momentarily using the position in the array to select which education or work experience info to modify.
+    // This will be refactored in the API Rest update
+    if (newInformation.idEducation) {
+      const id = newInformation.idEducation;
+      candidate.education[id] = {
+        institution:
+          newInformation.institution || candidate.education[id].institution,
+        startDate:
+          newInformation.startDate || candidate.education[id].startDate,
+        finishDate:
+          newInformation.finishDate || candidate.education[id].finishDate,
+        level: newInformation.level || candidate.education[id].level,
+        inProgress:
+          newInformation.inProgress || candidate.education[id].inProgress,
+        title: newInformation.title || candidate.education[id].title,
+      };
+    }
+    if (newInformation.idWorkExp) {
+      const id = newInformation.idWorkExp;
+      candidate.workExperience[id] = {
+        company: newInformation.company || candidate.workExperience[id].company,
+        role: newInformation.role || candidate.workExperience[id].role,
+        workStartDate:
+          newInformation.workStartDate ||
+          candidate.workExperience[id].workStartDate,
+        workFinishDate:
+          newInformation.workFinishDate ||
+          candidate.workExperience[id].workFinishDate,
+        currently:
+          newInformation.currently || candidate.workExperience[id].currently,
+        workDescription:
+          newInformation.workDescription ||
+          candidate.workExperience[id].workDescription,
+        accomplishments:
+          newInformation.accomplishments ||
+          candidate.workExperience[id].accomplishments,
+      };
+    }
+    candidate.description = newInformation.description || candidate.description;
+    candidate.nationality = newInformation.nationality || candidate.nationality;
+    candidate.maritalStatus =
+      newInformation.maritalStatus || candidate.maritalStatus;
+    candidate.driversLicense =
+      newInformation.driversLicense || candidate.driversLicense;
     candidates[index] = candidate;
-    res.json(candidate);
+    return res.status(200).json(candidate);
   }
-  res.send("User not updated");
+  res.status(404).json({ Msg: "User doesn't exist" });
 };
 
-// MS-05: remove candidates
 const remove = (req, res) => {
   const candidate = candidates.find(
-    (candidate) => candidate.id === req.params.id
+    candidate => candidate.id === req.params.id
   );
   if (candidate) {
     const candidatesFilter = candidates.filter(
-      (candidate) => candidate.id !== req.params.id
+      candidate => candidate.id !== req.params.id
     );
     candidates = candidatesFilter;
-    res.json(candidates);
+    return res.status(200).json(candidate);
   }
-  res.send("User not removed");
-};
-
-// MS-06: list candidates
-const getAll = (req, res) => res.json(candidates);
-const getById = (req, res) => {
-  const candidate = candidates.find(
-    (candidate) => candidate.id === req.params.id
-  );
-  if (candidate) {
-    res.json(candidate);
-  }
-  res.send("User not found");
-};
-const getByName = (req, res) => {
-  const candidate = candidates.find(
-    (candidate) => candidate.name === req.params.name
-  );
-  if (candidate) {
-    res.json(candidate);
-  }
-  res.send("User not found");
+  res.status(404).json({ Msg: "User not removed" });
 };
 
 module.exports = {
-  create: create,
-  update: update,
-  remove: remove,
-  getAll: getAll,
-  getById: getById,
-  getByName: getByName,
+  create,
+  update,
+  remove,
+  getAll,
+  getById,
+  getByName,
 };
