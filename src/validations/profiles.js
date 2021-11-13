@@ -18,6 +18,7 @@ const validate = (req, res, next) => {
       return res.status(400).send("Name must be string");
     }
   }
+  next();
   if (description) {
     if (description.length > 500) {
       return res
