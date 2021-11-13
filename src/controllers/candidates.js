@@ -7,7 +7,7 @@ const getAll = (req, res) => {
 
 const getById = (req, res) => {
   const candidate = candidates.find(
-    candidate => candidate.id === req.params.id
+    (candidate) => candidate.id === req.params.id
   );
   if (!candidate) {
     return res.status(404).send("User not found");
@@ -17,7 +17,7 @@ const getById = (req, res) => {
 
 const getByName = (req, res) => {
   const candidate = candidates.find(
-    candidate => candidate.name === req.params.name
+    (candidate) => candidate.name === req.params.name
   );
   if (!candidate) {
     return res.status(404).send("User not found");
@@ -98,10 +98,10 @@ const create = (req, res) => {
 // TODO: create an endpoint in order to update education & workExperience
 const update = (req, res) => {
   const candidate = candidates.find(
-    candidate => candidate.id === req.params.id
+    (candidate) => candidate.id === req.params.id
   );
   const index = candidates.findIndex(
-    candidate => candidate.id === req.params.id
+    (candidate) => candidate.id === req.params.id
   );
   const newInformation = req.query;
   if (candidate) {
@@ -171,11 +171,11 @@ const update = (req, res) => {
 
 const remove = (req, res) => {
   const candidate = candidates.find(
-    candidate => candidate.id === req.params.id
+    (candidate) => candidate.id === req.params.id
   );
   if (candidate) {
     const candidatesFilter = candidates.filter(
-      candidate => candidate.id !== req.params.id
+      (candidate) => candidate.id !== req.params.id
     );
     candidates = candidatesFilter;
     return res.status(200).json(candidate);
