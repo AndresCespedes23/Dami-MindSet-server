@@ -37,18 +37,6 @@ const create = (req, res) => {
 };
 
 const update = (req, res) => {
-  if (
-    !req.body.idClient ||
-    !req.body.idProfile ||
-    !req.body.name ||
-    !req.body.description ||
-    !req.body.status ||
-    !req.body.address ||
-    !req.body.city ||
-    !req.body.postalCode
-  ) {
-    return res.status(400).json({ Msg: "Some parameters are missing" });
-  }
   const updatedPosition = {
     idClient: new ObjectId(req.body.idClient),
     idProfile: new ObjectId(req.body.idProfile),
@@ -59,19 +47,19 @@ const update = (req, res) => {
     city: req.body.city,
     postalCode: req.body.postalCode,
   };
-  Positions.findByIdAndUpdate(
-    new ObjectId(req.params.id),
-    updatedPosition,
-    { new: true },
-    (err, updatedPosition) => {
-      if (!updatedPosition)
-        return res.status(404).json({
-          msg: `Position with id: ${req.params.id} was not found`,
-        });
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(updatedPosition);
+Positions.findByIdAndUpdate(
+  new ObjectId(req.params.id),
+  updatedPosition,
+  { new: true },
+  (err, updatedPosition) => {
+    if (!updatedPosition) {
+      return res
+      .status(404)
+      .json({msg: `Position with id: ${req.params.id} was not found.`});
     }
-  );
+    if (err) return res.status(400).json(err);
+    return res.status(200).json(updatedPosition);
+  });
 };
 
 const remove = (req, res) => {
