@@ -7,7 +7,7 @@ const getAll = (req, res) => {
 };
 
 // Get Profile by Id
-const getById = (req,res) => {
+const getById = (req, res) => {
   const profile = profile.find((profile) => profile.id === req.params.id);
   if (profile) return res.status(200).json(profile);
   return res.status(404).send("Profile not found");
@@ -61,5 +61,5 @@ module.exports = {
   getById,
   create,
   update,
-  remove
+  remove,
 };
