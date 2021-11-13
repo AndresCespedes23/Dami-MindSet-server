@@ -27,7 +27,7 @@ const ApplicationsSchema = new Schema({
   },
   result: {
     type: String,
-    max: 500,
+    maxLength: 500,
   },
 });
 
