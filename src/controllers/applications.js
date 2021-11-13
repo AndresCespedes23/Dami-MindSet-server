@@ -72,11 +72,9 @@ const update = (req, res) => {
     { new: true },
     (err, updatedApplication) => {
       if (!updatedApplication)
-        return res
-          .status(404)
-          .json({
-            msg: `Application with id: ${req.params.id} was not found.`,
-          });
+        return res.status(404).json({
+          msg: `Application with id: ${req.params.id} was not found.`,
+        });
       if (err) return res.status(400).json(err);
       return res.status(200).json(updatedApplication);
     }
