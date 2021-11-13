@@ -22,9 +22,6 @@ const getById = (req, res) => {
 };
 
 const create = (req, res) => {
-  if (!req.body.name || !req.body.description) {
-    return res.status(400).json({ msg: "Some parameters are missing" });
-  }
   const newProfile = {
     name: req.body.name,
     description: req.body.description,
