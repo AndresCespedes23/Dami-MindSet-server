@@ -22,7 +22,7 @@ const getById = (req, res) => {
 };
 
 const create = (req, res) => {
-  if (!req.body.id || !req.body.name || !req.body.description) {
+  if (!req.body.name || !req.body.description) {
     return res.status(400).json({ msg: "Some parameters are missing" });
   }
   const newProfile = {
@@ -34,7 +34,7 @@ const create = (req, res) => {
 };
 
 const update = (req, res) => {
-  if (!req.params.id || !req.body.name || !req.body.description) {
+  if (!req.body.name || !req.body.description) {
     return res.status(400).json({ msg: "Some parameters are missing" });
   }
   const updatedProfile = {
