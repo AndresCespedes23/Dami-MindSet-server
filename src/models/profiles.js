@@ -4,18 +4,18 @@ const Schema = mongoose.Schema;
 const ProfilesSchema = new Schema({
   id: {
     type: Schema.Types.ObjectId,
-    required: true
+    required: true,
   },
   name: {
     type: String,
     maxLength: 50,
-    required: true
+    required: true,
   },
   description: {
     type: String,
     maxLength: 500,
-    required: true
-  }
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Profiles", ProfilesSchema);
