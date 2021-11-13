@@ -12,7 +12,7 @@ const getAll = (req, res) => {
 };
 
 const getById = (req, res) => {
-  Profiles.findById({_id: new ObjectId(req.params.id)})
+  Profiles.findById({ _id: new ObjectId(req.params.id) })
     .then((profile) => {
       return res.status(200).json(profile);
     })
@@ -21,8 +21,21 @@ const getById = (req, res) => {
     });
 };
 
+const create = (req, res) => {
+  if (!req.body.id || !req.body.name || !req.body.description) {
+    return res.status(400).json({ msg: "Some parameters are missing" });
+  }
+  const newProfile = {
+    name: req.body.name,
+    description: req.body.description,
+  };
+  Profiles.create(newProfile);
+  return res.status(201).json(newProfile);
+};
+
 // Module Exports
 module.exports = {
   getAll,
   getById,
+  create,
 };
