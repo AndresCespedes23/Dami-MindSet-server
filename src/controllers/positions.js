@@ -89,9 +89,9 @@ const remove = (req, res) => {
 };
 
 module.exports = {
-  getAll: getAll,
-  getById: getById,
-  create: create,
-  update: update,
-  remove: remove,
+  getAll,
+  getById,
+  create,
+  update,
+  remove,
 };
