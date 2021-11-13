@@ -6,6 +6,13 @@ const getAll = (req, res) => {
   return res.status(200).json(profiles);
 };
 
+// Get Profile by Id
+const getById = (req,res) => {
+  const profile = profile.find((profile) => profile.id === req.params.id);
+  if (profile) return res.status(200).json(profile);
+  return res.status(404).send("Profile not found");
+};
+
 // Create Profile
 const create = (req, res) => {
   if (!req.query.id || !req.query.name || !req.query.description) {
@@ -50,8 +57,9 @@ const remove = (req, res) => {
 
 // Module Exports
 module.exports = {
-  getAll: getAll,
-  create: create,
-  update: update,
-  remove: remove,
+  getAll,
+  getById,
+  create,
+  update,
+  remove
 };
