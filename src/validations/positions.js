@@ -23,14 +23,16 @@ const validateFieldsType = (req, res, next) => {
   const address = req.body.address;
   const city = req.body.city;
   const postalCode = req.body.postalCode;
-  if(!idClient.length === 24) return res.status(400).json("Error");
-  if(!idProfile.length === 24) return res.status(400).json("Error");
-  if(name.length > 50) return res.status(400).json("Error");
-  if(description.length > 50) return res.status(400).json("Error");
-  if(!status === "DONE" || !status === "PENDING") return res.status(400).json("Error");
-  if(address.length > 50) return res.status(400).json("Error");
-  if(city.length > 50) return res.status(400).json("Error");
-  if(postalCode.length < 4 || postalCode.length >8) return res.status(400).json("Error");
+  if (!idClient.length === 24) return res.status(400).json("Error");
+  if (!idProfile.length === 24) return res.status(400).json("Error");
+  if (name.length > 50) return res.status(400).json("Error");
+  if (description.length > 50) return res.status(400).json("Error");
+  if (!status === "DONE" || !status === "PENDING")
+    return res.status(400).json("Error");
+  if (address.length > 50) return res.status(400).json("Error");
+  if (city.length > 50) return res.status(400).json("Error");
+  if (postalCode.length < 4 || postalCode.length > 8)
+    return res.status(400).json("Error");
   next();
 };
 
