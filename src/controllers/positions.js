@@ -21,37 +21,36 @@ const getById = (req, res) => {
     });
 };
 
-// const create = (req, res) => {
-//   //check if all the parameters were sent
-//   if (
-//     !req.query.id ||
-//     !req.query.idClient ||
-//     !req.query.idProfiles ||
-//     !req.query.name ||
-//     !req.query.description ||
-//     !req.query.status === true ||
-//     !req.query.address ||
-//     !req.query.city ||
-//     !req.query.postalCode
-//   ) {
-//     return res.status(400).json({ Msg: "Some parameters are missing" });
-//   }
-//   // change the type of idProfiles from string to array of strings
-//   const idProfilesArray = req.query.idProfiles.split(",");
-//   const newPosition = {
-//     id: req.query.id,
-//     idClient: req.query.idClient,
-//     idProfiles: idProfilesArray,
-//     name: req.query.name,
-//     description: req.query.description,
-//     status: req.query.status === "true",
-//     address: req.query.address,
-//     city: req.query.city,
-//     postalCode: req.query.postalCode,
-//   };
-//   positions.push(newPosition);
-//   res.status(201).json(newPosition);
-// };
+const create = (req, res) => {
+  if (
+    !req.body.idClient ||
+    !req.body.idProfiles ||
+    !req.body.name ||
+    !req.body.description ||
+    !req.body.status ||
+    !req.body.address ||
+    !req.body.city ||
+    !req.body.postalCode
+  ) {
+    return res.status(400).json({ Msg: "Some parameters are missing" });
+  }
+  const newPosition = new Positions({
+    idClient: new ObjectId(req.body.idClient),
+    idProfiles: new ObjectId(req.body.idProfiles),
+    name: req.body.name,
+    description: req.body.description,
+    status: req.body.status,
+    address: req.body.address,
+    city: req.body.city,
+    postalCode: req.body.postalCode,
+  });
+  newPosition.save((error) => {
+    if (error) {
+      return res.status(400).json(error);
+    }
+    return res.status(201).json(newPosition);
+  });
+};
 
 // const update = (req, res) => {
 //   const filteredPosition = positions.find(
@@ -102,8 +101,7 @@ const getById = (req, res) => {
 module.exports = {
   getAll: getAll,
   getById: getById,
-  // getByName: getByName,
-  // create: create,
+  create: create,
   // update: update,
   // remove: remove,
 };
