@@ -47,12 +47,24 @@ const update = (req, res) => {
     { new: true },
     (err, updatedProfile) => {
       if (!updatedProfile) {
-        return res.status(404).json({ msg: `Profile with id: ${req.params.id} was not found.`});
+        return res
+          .status(404)
+          .json({ msg: `Profile with id: ${req.params.id} was not found.` });
       }
       if (err) return res.status(400).json(err);
       return res.status(200).json(updatedProfile);
     }
-  );  
+  );
+};
+
+const remove = (req, res) => {
+  Profiles.findByIdAndRemove(
+    new ObjectId(req.params.id),
+    (err, removedProfile) => {
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(removedProfile._id);
+    }
+  );
 };
 
 // Module Exports
@@ -61,4 +73,5 @@ module.exports = {
   getById,
   create,
   update,
+  remove,
 };
