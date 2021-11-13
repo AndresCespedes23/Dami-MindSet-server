@@ -18,6 +18,7 @@ const applicationsController = require("./controllers/applications.js");
 
 app.set("json spaces", 2);
 app.use(cors());
+app.use(express.json());
 
 mongoose
   .connect(
@@ -109,8 +110,8 @@ app.get("/psychologists/byId/:id", psychologistController.getById);
 app.get("/psychologists/byName/:name", psychologistController.getByName);
 
 // APPLICATIONS
-// app.get("/applications/create", applicationsController.create);
-// app.get("/applications/update/:id", applicationsController.update);
-// app.get("/applications/remove/:id", applicationsController.remove);
 app.get("/applications", applicationsController.getAll);
 app.get("/applications/:id", applicationsController.getById);
+app.post("/applications", applicationsController.create);
+app.put("/applications/:id", applicationsController.update);
+app.delete("/applications/:id", applicationsController.remove);
