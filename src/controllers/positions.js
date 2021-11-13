@@ -24,7 +24,7 @@ const getById = (req, res) => {
 const create = (req, res) => {
   if (
     !req.body.idClient ||
-    !req.body.idProfiles ||
+    !req.body.idProfile ||
     !req.body.name ||
     !req.body.description ||
     !req.body.status ||
@@ -34,22 +34,18 @@ const create = (req, res) => {
   ) {
     return res.status(400).json({ Msg: "Some parameters are missing" });
   }
-  const newPosition = new Positions({
+  const newPosition = {
     idClient: new ObjectId(req.body.idClient),
-    idProfiles: new ObjectId(req.body.idProfiles),
+    idProfile: new ObjectId(req.body.idProfile),
     name: req.body.name,
     description: req.body.description,
     status: req.body.status,
     address: req.body.address,
     city: req.body.city,
     postalCode: req.body.postalCode,
-  });
-  newPosition.save((error) => {
-    if (error) {
-      return res.status(400).json(error);
-    }
-    return res.status(201).json(newPosition);
-  });
+  };
+  Positions.create(newPosition);
+  res.status(201).json(newPosition);
 };
 
 const update = (req, res) => {
@@ -57,7 +53,7 @@ const update = (req, res) => {
     req.params.id,
     {
       idClient: req.body.idClient,
-      idProfiles: req.body.idProfiles,
+      idProfiles: req.body.idProfile,
       name: req.body.name,
       description: req.body.description,
       status: req.body.status,
