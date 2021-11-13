@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ProfilesSchema = new Schema({
-  id: {
-    type: Schema.Types.ObjectId,
-    required: true,
-  },
   name: {
     type: String,
     maxLength: 50,
