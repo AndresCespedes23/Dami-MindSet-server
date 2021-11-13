@@ -21,64 +21,82 @@ const getById = (req, res) => {
     });
 };
 
-// const create = (req, res) => {
-//   if (
-//     !req.query.idPosition ||
-//     !req.query.idCandidate ||
-//     !req.query.idInterview ||
-//     !req.query.result ||
-//     !req.query.dateTime ||
-//     !req.query.status
-//   ) {
-//     return res.status(400).json({ Msg: "Some parameters are missing" });
-//   }
-//   let index = parseInt(applications[applications.length - 1].id) + 1;
-//   index = index.toString();
-//   const newApplication = {
-//     id: index,
-//     idPosition: req.query.idPosition,
-//     idCandidate: req.query.idCandidate,
-//     idInterview: req.query.idInterview,
-//     result: req.query.result,
-//     dateTime: req.query.dateTime,
-//     status: req.query.status,
-//   };
-//   applications.push(newApplication);
-//   res.status(201).json(newApplication);
-// };
+const create = (req, res) => {
+  if (
+    !req.body.idPosition ||
+    !req.body.idCandidate ||
+    !req.body.idInterview ||
+    !req.body.status
+  ) {
+    return res.status(400).json({ msg: "Some parameters are missing" });
+  }
+  const newApplication = {
+    idPosition: new ObjectId(req.body.idPosition),
+    idCandidate: new ObjectId(req.body.idCandidate),
+    idInterview: new ObjectId(req.body.idInterview),
+    result: req.body.result,
+    status: req.body.status,
+  };
 
-// const update = (req, res) => {
-//   const index = applications.findIndex(
-//     (element) => req.params.id === element.id
-//   );
-//   if (index === -1) {
-//     return res
-//       .status(404)
-//       .json({ Msg: "Application with that ID does not exist" });
-//   }
-//   for (let property in req.query) {
-//     applications[index][property] = req.query[property];
-//   }
-//   res.status(201).json(applications[index]);
-// };
+  if (req.body.dateTime) newApplication.dateTime = new Date(req.body.dateTime);
 
-// const remove = (req, res) => {
-//   const indexApplication = applications.findIndex(
-//     (element) => element.id === req.params.id
-//   );
-//   if (indexApplication === -1) {
-//     return res
-//       .status(404)
-//       .json({ Msg: "Application with that ID does not exist" });
-//   }
-//   const removedApplication = applications.splice(indexApplication, 1);
-//   res.status(201).json(removedApplication);
-// };
+  Applications.create(newApplication);
+  res.status(201).json(newApplication);
+};
+
+const update = (req, res) => {
+  if (
+    !req.params.id ||
+    !req.body.idPosition ||
+    !req.body.idCandidate ||
+    !req.body.idInterview ||
+    !req.body.status
+  ) {
+    return res.status(400).json({ msg: "Some parameters are missing" });
+  }
+
+  const updatedApplication = {
+    idPosition: new ObjectId(req.body.idPosition),
+    idCandidate: new ObjectId(req.body.idCandidate),
+    idInterview: new ObjectId(req.body.idInterview),
+    result: req.body.result,
+    status: req.body.status,
+  };
+
+  if (req.body.dateTime)
+    updatedApplication.dateTime = new Date(req.body.dateTime);
+
+  Applications.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    updatedApplication,
+    { new: true },
+    (err, updatedApplication) => {
+      if (!updatedApplication)
+        return res
+          .status(404)
+          .json({
+            msg: `Application with id: ${req.params.id} was not found.`,
+          });
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(updatedApplication);
+    }
+  );
+};
+
+const remove = (req, res) => {
+  Applications.findByIdAndRemove(
+    new ObjectId(req.params.id),
+    (err, removedApplication) => {
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(removedApplication._id);
+    }
+  );
+};
 
 module.exports = {
   getAll,
   getById,
-  // create,
-  // update,
-  // remove,
+  update,
+  create,
+  remove,
 };
