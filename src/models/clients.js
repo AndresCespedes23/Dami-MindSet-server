@@ -4,28 +4,28 @@ const Schema = mongoose.Schema;
 const ClientSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
-    required: true
+    required: true,
   },
   phoneNumber: {
     type: String,
-    required: true
+    required: true,
   },
   cuit: {
     type: String,
-    required: true
+    required: true,
   },
   address: {
     type: String,
-    required: true
+    required: true,
   },
   activity: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Client", ClientSchema);
