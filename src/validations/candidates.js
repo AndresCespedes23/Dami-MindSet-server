@@ -19,6 +19,22 @@ const requiredPersonalInfo = (req, res, next) => {
   next();
 };
 
+const requiredEducation = (req, res, next) => {
+  const data = req.body;
+  if (
+    !data.institution ||
+    !data.startDate ||
+    !data.level ||
+    !data.title ||
+    data.inProgress === undefined ||
+    (!data.inProgress && !data.finishDate)
+  ) {
+    return res.status(400).json({ Msg: "Some parameters are missing" });
+  }
+  next();
+};
+
 module.exports = {
   requiredPersonalInfo,
+  requiredEducation,
 };
