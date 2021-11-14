@@ -30,6 +30,16 @@ const educationInfo = [
   "title",
 ];
 
+const workExperienceInfo = [
+  "company",
+  "role",
+  "startDate",
+  "finishDate",
+  "currently",
+  "description",
+  "accomplishments",
+];
+
 const getAll = (req, res) => {
   Candidates.find()
     .then((candidates) => {
@@ -79,10 +89,31 @@ const addEducation = (req, res) => {
   }
   Candidates.findById({ _id: new ObjectId(req.params.id) })
     .then((candidate) => {
-      console.log(candidate);
       candidate.education.push(newEducation);
       candidate.save();
       res.status(201).json(newEducation);
+    })
+    .catch((err, candidate) => {
+      if (!candidate)
+        return res
+          .status(404)
+          .json({ Msg: `User with id: ${req.params.id} was not found.` });
+      return res.status(400).json(err);
+    });
+};
+
+const addWorkExperience = (req, res) => {
+  const data = req.body;
+  const newWorkExperience = {};
+  for (let field = 0; field < workExperienceInfo.length; field++) {
+    newWorkExperience[workExperienceInfo[field]] =
+      data[workExperienceInfo[field]];
+  }
+  Candidates.findById({ _id: new ObjectId(req.params.id) })
+    .then((candidate) => {
+      candidate.workExperience.push(newWorkExperience);
+      candidate.save();
+      res.status(201).json(newWorkExperience);
     })
     .catch((err, candidate) => {
       if (!candidate)
@@ -184,6 +215,7 @@ const remove = (req, res) => {
 module.exports = {
   create,
   addEducation,
+  addWorkExperience,
   update,
   remove,
   getAll,
