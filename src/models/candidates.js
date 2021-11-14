@@ -61,11 +61,20 @@ const WorkExperienceSchema = new Schema({
 });
 
 const CandidatesSchema = new Schema({
+  //Personal Information
   name: {
     type: String,
     required: true,
   },
   email: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  password: {
     type: String,
     required: true,
   },
@@ -102,27 +111,19 @@ const CandidatesSchema = new Schema({
     type: String,
     required: true,
   },
-  timeRange: {
-    type: String, //Ver type
-    required: true,
-  },
   status: {
     type: String,
     enum: ["ACTIVE", "INACTIVE", "PENDING INTERVIEW", "DISABLED"],
     required: true,
   },
+  timeRange: {
+    type: String, //Ver type
+    required: false,
+  },
   profiles: {
     type: [Schema.Types.ObjectId],
     ref: "Profiles",
     required: false,
-  },
-  username: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
   },
   education: {
     type: [EducationSchema],

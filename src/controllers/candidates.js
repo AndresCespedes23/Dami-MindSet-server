@@ -4,6 +4,23 @@ let candidates = JSON.parse(fs.readFileSync("./data/candidates.json"));
 const Candidates = require("../models/candidates");
 // const ObjectId = require("mongoose").Types.ObjectId;
 
+const personalInformation = [
+  "name",
+  "email",
+  "gender",
+  "address",
+  "phoneNumber",
+  "dateOfBirth",
+  "zipCode",
+  "city",
+  "state",
+  "country",
+  "timeRange",
+  "status",
+  "username",
+  "password",
+];
+
 const getAll = (req, res) => {
   Candidates.find()
     .then((candidates) => {
@@ -36,67 +53,12 @@ const getByName = (req, res) => {
 
 const create = (req, res) => {
   const newInformation = req.body;
-  if (
-    !newInformation.name ||
-    !newInformation.email ||
-    !newInformation.gender ||
-    !newInformation.address ||
-    !newInformation.phoneNumber ||
-    !newInformation.dateOfBirth ||
-    !newInformation.zipCode ||
-    !newInformation.city ||
-    !newInformation.state ||
-    !newInformation.country ||
-    !newInformation.timeRange ||
-    !newInformation.username ||
-    !newInformation.password
-  ) {
-    return res.status(400).json({ Msg: "Some parameters are missing" });
+  const newCandidate = {};
+  for (let field = 0; field < personalInformation.length; field++) {
+    newCandidate[personalInformation[field]] =
+      newInformation[personalInformation[field]];
   }
-
-  const newCandidate = {
-    name: newInformation.name,
-    email: newInformation.email,
-    gender: newInformation.gender,
-    address: newInformation.address,
-    phoneNumber: newInformation.phoneNumber,
-    dni: newInformation.dni,
-    dateOfBirth: newInformation.dateOfBirth,
-    zipCode: newInformation.zipCode,
-    city: newInformation.city,
-    state: newInformation.state,
-    country: newInformation.country,
-    timeRange: newInformation.timeRange,
-    status: newInformation.status,
-    username: newInformation.username,
-    password: newInformation.password,
-    education: [
-      {
-        institution: newInformation.education.institution,
-        startDate: newInformation.education.startDate,
-        finishDate: newInformation.education.finishDate,
-        level: newInformation.education.level,
-        inProgress: newInformation.education.inProgress,
-        title: newInformation.education.title,
-      },
-    ],
-    workExperience: [
-      {
-        company: newInformation.workExperience.company,
-        role: newInformation.workExperience.role,
-        startDate: newInformation.workExperience.startDate,
-        finishDate: newInformation.workExperience.finishDate,
-        currently: newInformation.workExperience.currently,
-        description: newInformation.workExperience.description,
-        accomplishments: newInformation.workExperience.accomplishments,
-      },
-    ],
-    description: newInformation.description,
-    nationality: newInformation.nationality,
-    maritalStatus: newInformation.maritalStatus,
-    driversLicense: newInformation.driversLicense,
-  };
-
+  newCandidate.status = "PENDING INTERVIEW";
   Candidates.create(newCandidate);
   res.status(201).json(newCandidate);
 };
