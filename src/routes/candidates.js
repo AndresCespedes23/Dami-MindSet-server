@@ -16,6 +16,11 @@ router.post(
   validations.requiredWorkExperience,
   candidates.addWorkExperience
 );
+router.put(
+  "/otherInformation/:id",
+  validations.requiredOtherInformation,
+  candidates.addOtherInformation
+);
 router.put("/:id", candidates.update);
 router.delete("/:id", candidates.remove);
 

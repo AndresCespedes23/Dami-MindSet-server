@@ -59,8 +59,17 @@ const requiredWorkExperience = (req, res, next) => {
   next();
 };
 
+const requiredOtherInformation = (req, res, next) => {
+  const data = req.body;
+  if (!data.timeRange) {
+    return res.status(400).json({ Msg: "Time Range is missing" });
+  }
+  next();
+};
+
 module.exports = {
   requiredPersonalInfo,
   requiredEducation,
   requiredWorkExperience,
+  requiredOtherInformation,
 };

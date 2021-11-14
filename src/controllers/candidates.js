@@ -46,6 +46,7 @@ const otherInfo = [
   "nationality",
   "maritalStatus",
   "driversLicense",
+  "timeRange",
 ];
 
 const allInfo = [...personalInfo, ...otherInfo];
@@ -134,6 +135,28 @@ const addWorkExperience = (req, res) => {
     });
 };
 
+const addOtherInformation = (req, res) => {
+  const data = req.body;
+  const otherInformation = {};
+  for (let field = 0; field < otherInfo.length; field++) {
+    otherInformation[otherInfo[field]] = data[otherInfo[field]];
+  }
+  Candidates.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    otherInformation,
+    { new: true },
+    (err, updatedCandidate) => {
+      if (!updatedCandidate) {
+        return res.status(404).json({
+          msg: `Candidate with id: ${req.params.id} was not found.`,
+        });
+      }
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(updatedCandidate);
+    }
+  );
+};
+
 const update = (req, res) => {
   const data = req.body;
   const updatedCandidate = {};
@@ -176,6 +199,7 @@ module.exports = {
   create,
   addEducation,
   addWorkExperience,
+  addOtherInformation,
   update,
   remove,
   getAll,
