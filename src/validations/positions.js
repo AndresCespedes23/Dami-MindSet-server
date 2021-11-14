@@ -53,11 +53,8 @@ const validate = (req, res, next) => {
         .status(400)
         .json("Description must have equal or less than 5000 characters");
   }
-  if (status) {
-    if (status !== "DONE")
-      return res.status(400).json("Status IS done");
-    if (status !== "PENDING")
-      return res.status(400).json("Status must be DONE or PENDING");
+  if (status !== "DONE" && status !== "PENDING") {
+    return res.status(400).json("Status must be DONE or PENDING");
   }
   if (address) {
     if (address.length < 5)
