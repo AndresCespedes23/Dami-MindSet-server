@@ -42,11 +42,7 @@ const getByIdCandidate = (req, res) => {
 };
 
 const create = (req, res) => {
-  if (
-    !req.body.idPsychologist ||
-    !req.body.idCandidate ||
-    !req.body.status
-  ) {
+  if (!req.body.idPsychologist || !req.body.idCandidate || !req.body.status) {
     return res.status(400).json({ msg: "Some parameters are missing" });
   }
   const newSession = {
@@ -79,8 +75,7 @@ const update = (req, res) => {
     result: req.body.result,
   };
 
-  if (req.body.dateTime)
-    updatedSession.dateTime = new Date(req.body.dateTime);
+  if (req.body.dateTime) updatedSession.dateTime = new Date(req.body.dateTime);
 
   Sessions.findByIdAndUpdate(
     new ObjectId(req.params.id),
@@ -114,5 +109,5 @@ module.exports = {
   getByIdCandidate,
   create,
   update,
-  remove
+  remove,
 };
