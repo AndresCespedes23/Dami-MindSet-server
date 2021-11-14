@@ -64,8 +64,8 @@ const formatBodyRequired = (req, res, next) => {
     let flag2 = false;
     timeRange.forEach((element) => {
       // eslint-disable-next-line eqeqeq
-      if (parseInt(element) != element) flag1 = true;
-      if (element < 0 || element > 24) flag2 = true;
+      if (parseInt(element) != element) return flag1 = true;
+      if (element < 0 || element > 24) return flag2 = true;
     });
     if (flag1)
       return res.status(400).json({ Msg: "TimeRange accepts only numbers" });
@@ -87,9 +87,9 @@ const formatBodyRequired = (req, res, next) => {
     let flag3 = false;
     dayRange.forEach((element, index) => {
       // eslint-disable-next-line eqeqeq
-      if (parseInt(element) != element) flag1 = true;
-      if (element < 1 || element > 7) flag2 = true;
-      if (dayRange.indexOf(element) !== index) flag3 = true;
+      if (parseInt(element) != element) return flag1 = true;
+      if (element < 1 || element > 7) return flag2 = true;
+      if (dayRange.indexOf(element) !== index) return flag3 = true;
     });
     if (flag1)
       return res.status(400).json({ Msg: "DayRange accepts only numbers" });
