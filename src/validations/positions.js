@@ -42,12 +42,16 @@ const validate = (req, res, next) => {
   if (name) {
     if (name.length > 50)
       return res.status(400).json("Name must have less than 50 characters");
-    if (idProfile.search(/[0-9]/) !== -1)
+    if (name.search(/[0-9]/) !== -1)
       return res.status(400).json("Name must not have numbers");
   }
-  if (description.length > 50) return res.status(400).json("Error");
-  if (!status === "DONE" || !status === "PENDING")
-    return res.status(400).json("Error");
+  if (description) {
+    if (description.length > 50) return res.status(400).json("Description must have less than 5000 characters");
+  }
+  if (status) {
+    if (status !== "DONE" || status !== "PENDING")
+    return res.status(400).json("Status must be DONE or PENDING");
+  }
   if (address.length > 50) return res.status(400).json("Error");
   if (city.length > 50) return res.status(400).json("Error");
   if (postalCode.length < 4 || postalCode.length > 8)
