@@ -1,5 +1,6 @@
 const controller = require("../controllers/clients");
 const router = require("express").Router();
+const validations = require("../validations/clients");
 
 router.get("/", controller.getAll);
 router.get("/:id", controller.getById);
