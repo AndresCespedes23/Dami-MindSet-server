@@ -77,9 +77,9 @@ const validate = (req, res, next) => {
   }
   if (postalCode) {
     if (postalCode.length < 4)
-      return res.status(400).json("City must be at least 4 characters");
+      return res.status(400).json("Postal Code must be at least 4 characters");
     if (postalCode.length > 8)
-      return res.status(400).json("City must be less than 8 characters");
+      return res.status(400).json("Postal Code must be less than 8 characters");
   }
   next();
 };
