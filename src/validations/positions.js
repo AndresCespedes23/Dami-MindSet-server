@@ -23,7 +23,11 @@ const validate = (req, res, next) => {
   const address = req.body.address;
   const city = req.body.city;
   const postalCode = req.body.postalCode;
-  if (!idClient.length === 24) return res.status(400).json("Error");
+  if (idClient) {
+    if (!idClient.length === 24) return res.status(400).json("idClient must be 24 characters");
+    if (idClient.search(/[a-z]/) < 0) return res.status(400).json("idClient must have at least 1 letter");
+    if (idClient.search(/[0-9]/) < 0) return res.status(400).json("idClient must have at least 1 number");
+  }
   if (!idProfile.length === 24) return res.status(400).json("Error");
   if (name.length > 50) return res.status(400).json("Error");
   if (description.length > 50) return res.status(400).json("Error");
