@@ -21,11 +21,30 @@ const getById = (req, res) => {
     });
 };
 
+const getByIdPsychologist = (req, res) => {
+  Sessions.findById({ _id: new ObjectId(req.params.id) })
+    .then((session) => {
+      return res.status(200).json(session);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
+};
+
+const getByIdCandidate = (req, res) => {
+  Sessions.findById({ _id: new ObjectId(req.params.id) })
+    .then((session) => {
+      return res.status(200).json(session);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
+};
+
 const create = (req, res) => {
   if (
     !req.body.idPsychologist ||
     !req.body.idCandidate ||
-    !req.body.idInterview ||
     !req.body.status
   ) {
     return res.status(400).json({ msg: "Some parameters are missing" });
@@ -44,41 +63,56 @@ const create = (req, res) => {
 };
 
 const update = (req, res) => {
-  const session = Sessions.find((session) => session.id === req.params.id);
-  const selectedSession = Sessions.findIndex(
-    (session) => session.id === req.params.id
-  );
-  if (session) {
-    const updateSession = req.query;
-    session.idPsychologist =
-      updateSession.idPsychologist || session.idPsychologist;
-    session.idCandidate = updateSession.idCandidate || session.idCandidate;
-    session.dateTime = updateSession.dateTime || session.dateTime;
-    session.status = updateSession.status || session.status;
-    session.result = updateSession.result || session.result;
-    Sessions[selectedSession] = session;
-    return res.status(200).json({ msg: "Session updated", session });
+  if (
+    !req.params.id ||
+    !req.body.idPsychologist ||
+    !req.body.idCandidate ||
+    !req.body.status
+  ) {
+    return res.status(400).json({ msg: "Some parameters are missing" });
   }
-  return res
-    .status(404)
-    .json({ msg: `No session with the id: ${req.params.id}` });
+
+  const updatedSession = {
+    idPosition: new ObjectId(req.body.idPosition),
+    idCandidate: new ObjectId(req.body.idCandidate),
+    status: req.body.status,
+    result: req.body.result,
+  };
+
+  if (req.body.dateTime)
+    updatedSession.dateTime = new Date(req.body.dateTime);
+
+  Sessions.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    updatedSession,
+    { new: true },
+    (err, updatedSession) => {
+      if (!updatedSession)
+        return res.status(404).json({
+          msg: `Session with id: ${req.params.id} was not found.`,
+        });
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(updatedSession);
+    }
+  );
 };
 
 const remove = (req, res) => {
-  const session = Sessions.findIndex((session) => session.id === req.params.id);
-  if (session > -1) {
-    const removedSession = Sessions.splice(session, 1);
-    res.status(200).json(removedSession);
-  }
-  res.status(400).json({ msg: `No session with the id: ${req.params.id}` });
+  Sessions.findByIdAndRemove(
+    new ObjectId(req.params.id),
+    (err, removedSession) => {
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(removedSession._id);
+    }
+  );
 };
 
-
 module.exports = {
-  create,
-  update,
-  remove,
   getAll,
   getById,
-  //getByIdPsychologist,
+  getByIdPsychologist,
+  getByIdCandidate,
+  create,
+  update,
+  remove
 };
