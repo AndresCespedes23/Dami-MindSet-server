@@ -47,19 +47,20 @@ const update = (req, res) => {
     city: req.body.city,
     postalCode: req.body.postalCode,
   };
-Positions.findByIdAndUpdate(
-  new ObjectId(req.params.id),
-  updatedPosition,
-  { new: true },
-  (err, updatedPosition) => {
-    if (!updatedPosition) {
-      return res
-      .status(404)
-      .json({msg: `Position with id: ${req.params.id} was not found.`});
+  Positions.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    updatedPosition,
+    { new: true },
+    (err, updatedPosition) => {
+      if (!updatedPosition) {
+        return res
+          .status(404)
+          .json({ msg: `Position with id: ${req.params.id} was not found.` });
+      }
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(updatedPosition);
     }
-    if (err) return res.status(400).json(err);
-    return res.status(200).json(updatedPosition);
-  });
+  );
 };
 
 const remove = (req, res) => {

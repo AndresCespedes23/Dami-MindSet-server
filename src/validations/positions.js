@@ -38,5 +38,5 @@ const validate = (req, res, next) => {
 
 module.exports = {
   required,
-  validate
+  validate,
 };
