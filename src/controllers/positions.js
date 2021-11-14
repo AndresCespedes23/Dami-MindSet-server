@@ -36,8 +36,13 @@ const create = (req, res) => {
     city: req.body.city,
     postalCode: req.body.postalCode,
   };
-  Positions.create(newPosition);
-  res.status(201).json(newPosition);
+  Positions.create(newPosition)
+    .then((newPosition) => {
+      return res.status(201).json(newPosition);
+    })
+    .catch((err) => {
+      return res.status(404).json(err);
+    });
 };
 
 const update = (req, res) => {
