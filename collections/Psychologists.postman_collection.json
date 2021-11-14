@@ -1,199 +1,168 @@
 {
-	"info": {
-		"_postman_id": "e1be81e7-e077-4a69-8064-e18602047e06",
-		"name": "Psychologists",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "getAll",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/psychologists/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"psychologists",
-						""
-					],
-					"query": [
-						{
-							"key": "postalCode",
-							"value": "2000",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getById",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/psychologists/619024884a07113cf9a257cc",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"psychologists",
-						"619024884a07113cf9a257cc"
-					],
-					"query": [
-						{
-							"key": "postalCode",
-							"value": "2000",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getByName",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/psychologists/byName/eugenio ponzone",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"psychologists",
-						"byName",
-						"eugenio ponzone"
-					],
-					"query": [
-						{
-							"key": "postalCode",
-							"value": "2000",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"name\":\"nikolia ponz\",\r\n\"email\":\"nscinelli2@pbs.org\",\r\n\"username\":\"nscinelli2\",\r\n\"password\":\"PbMGLQ9v\",\r\n\"phoneNumber\":\"559560380\",\r\n\"enrollmentNumber\":\"6813\",\r\n\"status\":\"false\",\r\n\"timeRange\": [4,5],\r\n\"dayRange\": [1,2,3]\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/psychologists/61917a0235694aceb220b614",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"psychologists",
-						"61917a0235694aceb220b614"
-					],
-					"query": [
-						{
-							"key": "postalCode",
-							"value": "2000",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"name\": \"otro ponzone\",\r\n\"email\":\"euge@gsa.com\",\r\n\"username\":\"eugePonz\",\r\n\"password\":\"1234aers\",\r\n\"phoneNumber\":\"365412364\",\r\n\"enrollmentNumber\":\"9874\",\r\n\"status\":\"true\",\r\n\"timeRange\": [15,24],\r\n\"dayRange\": [1,2, 4, 7]\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/psychologists/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"psychologists",
-						""
-					],
-					"query": [
-						{
-							"key": "postalCode",
-							"value": "2000",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\"name\":\"eugenio ponzone\",\r\n\"email\":\"euge@gsa.com\",\r\n\"username\":\"eugePonz\",\r\n\"password\":\"1234aers\",\r\n\"phoneNumber\":\"365412364\",\r\n\"enrollmentNumber\":\"9874\",\r\n\"status\":\"true\",\r\n\"timeRange\": [15,24],\r\n\"dayRange\": [1,2, 4, 7]\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/psychologists/61917a0235694aceb220b614",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"psychologists",
-						"61917a0235694aceb220b614"
-					],
-					"query": [
-						{
-							"key": "postalCode",
-							"value": "2000",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "e1be81e7-e077-4a69-8064-e18602047e06",
+    "name": "Psychologists",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "getAll",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/psychologists/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["psychologists", ""],
+          "query": [
+            {
+              "key": "postalCode",
+              "value": "2000",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getById",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/psychologists/619024884a07113cf9a257cc",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["psychologists", "619024884a07113cf9a257cc"],
+          "query": [
+            {
+              "key": "postalCode",
+              "value": "2000",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getByName",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/psychologists/byName/eugenio ponzone",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["psychologists", "byName", "eugenio ponzone"],
+          "query": [
+            {
+              "key": "postalCode",
+              "value": "2000",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"name\":\"nikolia ponz\",\r\n\"email\":\"nscinelli2@pbs.org\",\r\n\"username\":\"nscinelli2\",\r\n\"password\":\"PbMGLQ9v\",\r\n\"phoneNumber\":\"559560380\",\r\n\"enrollmentNumber\":\"6813\",\r\n\"status\":\"false\",\r\n\"timeRange\": [4,5],\r\n\"dayRange\": [1,2,3]\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/psychologists/61917a0235694aceb220b614",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["psychologists", "61917a0235694aceb220b614"],
+          "query": [
+            {
+              "key": "postalCode",
+              "value": "2000",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"name\": \"otro ponzone\",\r\n\"email\":\"euge@gsa.com\",\r\n\"username\":\"eugePonz\",\r\n\"password\":\"1234aers\",\r\n\"phoneNumber\":\"365412364\",\r\n\"enrollmentNumber\":\"9874\",\r\n\"status\":\"true\",\r\n\"timeRange\": [15,24],\r\n\"dayRange\": [1,2, 4, 7]\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/psychologists/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["psychologists", ""],
+          "query": [
+            {
+              "key": "postalCode",
+              "value": "2000",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"name\":\"eugenio ponzone\",\r\n\"email\":\"euge@gsa.com\",\r\n\"username\":\"eugePonz\",\r\n\"password\":\"1234aers\",\r\n\"phoneNumber\":\"365412364\",\r\n\"enrollmentNumber\":\"9874\",\r\n\"status\":\"true\",\r\n\"timeRange\": [15,24],\r\n\"dayRange\": [1,2, 4, 7]\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/psychologists/61917a0235694aceb220b614",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["psychologists", "61917a0235694aceb220b614"],
+          "query": [
+            {
+              "key": "postalCode",
+              "value": "2000",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
 }
