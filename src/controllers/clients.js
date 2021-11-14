@@ -24,9 +24,9 @@ const getById = (req, res) => {
 //CLIENT REMOVE
 const remove = (req, res) => {
   Clients.findByIdAndRemove(req.params.id, (err, removedClient) => {
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(removedClient);
-    });
+    if (err) return res.status(400).json(err);
+    return res.status(200).json(removedClient);
+  });
 };
 
 //CLIENT UPDATE
@@ -72,17 +72,13 @@ const create = (req, res) => {
 module.exports = {
   getAll,
   getById,
-  // getByName: getByName,
-  // getByPhoneNumber: getByPhoneNumber,
-  // getByCuit: getByCuit,
-  // getByAddress: getByAddress,
-  // getByActivity: getByActivity,
   remove,
   update,
-  create
+  create,
 };
 
 
+//THESE FUNCTIONS WONT BE USED FOR NOW
 // const getByName = (req, res) => {
 //   const client = Clients.find((client) => client.name === req.params.name);
 //   if (client) return res.status(200).json(client);
