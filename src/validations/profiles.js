@@ -2,7 +2,7 @@ const required = (req, res, next) => {
   if (!req.body.name) {
     return res.status(400).send("Name is required");
   }
-  if (!req.description.name) {
+  if (!req.body.description) {
     return res.status(400).send("Description is required");
   }
   next();
