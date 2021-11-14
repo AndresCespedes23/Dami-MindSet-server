@@ -50,9 +50,16 @@ const validate = (req, res, next) => {
   }
   if (status) {
     if (status !== "DONE" || status !== "PENDING")
-    return res.status(400).json("Status must be DONE or PENDING");
+      return res.status(400).json("Status must be DONE or PENDING");
   }
-  if (address.length > 50) return res.status(400).json("Error");
+  if (address) {
+    if (address.length < 5)
+      return res.status(400).json("Address must be at least 5 characters");
+    if (address.search(/[a-z]/i) < 0 || address.search(/[0-9]/) < 0 || address.indexOf(" ") === -1)
+      return res.status(400).json("The Address must have letters, numbers and at least 1 space");
+    if (address.length > 50)
+      return res.status(400).json("Address must be less than 50 characters");
+  }
   if (city.length > 50) return res.status(400).json("Error");
   if (postalCode.length < 4 || postalCode.length > 8)
     return res.status(400).json("Error");
