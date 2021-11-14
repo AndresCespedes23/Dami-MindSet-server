@@ -77,7 +77,6 @@ module.exports = {
   create,
 };
 
-
 //THESE FUNCTIONS WONT BE USED FOR NOW
 // const getByName = (req, res) => {
 //   const client = Clients.find((client) => client.name === req.params.name);
