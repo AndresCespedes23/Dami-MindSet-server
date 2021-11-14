@@ -1,57 +1,58 @@
-const fs = require("fs");
-const admins = JSON.parse(fs.readFileSync("./data/admins.json"));
+const Admins = require("../models/admins");
+
 
 const getAll = (req, res) => {
-  res.json(admins);
+  Admins.find()
+    .then((admins) => {
+      return res.status(200).json(admins);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
 };
 
 const getById = (req, res) => {
-  const admin = admins.find((admin) => admin.id === req.params.id);
-
-  if (admin) {
-    res.json(admin);
-  } else {
-    res.status(400).send("Admin not found");
-  }
+  Admins.findById(req.params.id)
+    .then((admin) => {
+      return res.status(200).json(admin);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
 };
-
 const getByName = (req, res) => {
-  const admin = admins.find((admin) => admin.name === req.params.name);
-
-  if (admin) {
-    res.json(admin);
-  } else {
-    res.status(400).send("Admin not found");
-  }
+  Admins.find({ name: req.params.name })
+    .then((admin) => {
+      return res.status(200).json(admin);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
 };
 
 const update = (req, res) => {
-  const found = admins.some((admin) => admin.id === req.params.id);
-
-  if (found) {
-    const updateAdmin = req.query;
-    admins.forEach((admin) => {
-      if (admin.id === req.params.id) {
-        admin.name = updateAdmin.name ? updateAdmin.name : admin.name;
-        admin.email = updateAdmin.email ? updateAdmin.email : admin.email;
-        admin.username = updateAdmin.username
-          ? updateAdmin.username
-          : admin.username;
-        admin.password = updateAdmin.password
-          ? updateAdmin.password
-          : admin.password;
-
-        res.json(admin);
+  const updatedAdmin = {
+    name: req.body.name,
+  };
+  Admins.findByIdAndUpdate(
+    req.params.id,
+    updatedAdmin,
+    { new: true },
+    (err, updatedAdmin) => {
+      if (!updatedAdmin) {
+        return res
+          .status(404)
+          .json({ msg: `Admin with id: ${req.params.id} was not found.` });
       }
-    });
-  } else {
-    res.status(400).send("Admin not found");
-  }
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(updatedAdmin);
+    }
+  );
 };
 
 module.exports = {
-  getAll: getAll,
-  getById: getById,
-  getByName: getByName,
-  update: update,
+  getAll,
+  getById,
+  getByName,
+  update
 };

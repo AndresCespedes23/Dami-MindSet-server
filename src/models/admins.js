@@ -3,23 +3,27 @@ const Schema = mongoose.Schema;
 const AdminsSchema = new Schema({
   name: {
     type: String,
-    ref: "Name",
+    maxlength: 50,
     required: true,
   },
   email: {
     type: String,
-    ref: "Email",
+    maxlength: 20,
     required: true,
   },
   username: {
     type: String,
-    ref: "User",
+    maxlength: 50,
     required: true,
   },
   password: {
     type: String,
-    ref: "Pass",
+    maxlength: 20,
     required: true,
   },
+  isSuperAdmin: {
+    type: Boolean,
+    required: true
+  }
 });
 module.exports = mongoose.model("Admins", AdminsSchema);
