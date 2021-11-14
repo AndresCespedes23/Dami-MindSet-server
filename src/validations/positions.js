@@ -32,12 +32,14 @@ const validate = (req, res, next) => {
       return res.status(400).json("idClient must have at least 1 number");
   }
   if (idProfile) {
-    if (idProfile.length !== 24)
-      return res.status(400).json("idProfile must be 24 characters");
-    if (idProfile.search(/[a-z]/) < 0)
-      return res.status(400).json("idProfile must have at least 1 letter");
-    if (idProfile.search(/[0-9]/) < 0)
-      return res.status(400).json("idProfile must have at least 1 number");
+    for (let i = 0; i < idProfile.length; i++) {
+      if (idProfile[i].length !== 24)
+        return res.status(400).json("idProfile must be 24 characters");
+      if (idProfile[i].search(/[a-z]/) < 0)
+        return res.status(400).json("idProfile must have at least 1 letter");
+      if (idProfile[i].search(/[0-9]/) < 0)
+        return res.status(400).json("idProfile must have at least 1 number");
+    }
   }
   if (name) {
     if (name.length > 50)
