@@ -39,7 +39,12 @@ const validate = (req, res, next) => {
     if (idProfile.search(/[0-9]/) < 0)
       return res.status(400).json("idProfile must have at least 1 number");
   }
-  if (name.length > 50) return res.status(400).json("Error");
+  if (name) {
+    if (name.length > 50)
+      return res.status(400).json("Name must have less than 50 characters");
+    if (idProfile.search(/[0-9]/) !== -1)
+      return res.status(400).json("Name must not have numbers");
+  }
   if (description.length > 50) return res.status(400).json("Error");
   if (!status === "DONE" || !status === "PENDING")
     return res.status(400).json("Error");
