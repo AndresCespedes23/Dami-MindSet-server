@@ -24,7 +24,7 @@ const validate = (req, res, next) => {
   const city = req.body.city;
   const postalCode = req.body.postalCode;
   if (idClient) {
-    if (!idClient.length === 24)
+    if (idClient.length !== 24)
       return res.status(400).json("idClient must be 24 characters");
     if (idClient.search(/[a-z]/) < 0)
       return res.status(400).json("idClient must have at least 1 letter");
@@ -32,7 +32,7 @@ const validate = (req, res, next) => {
       return res.status(400).json("idClient must have at least 1 number");
   }
   if (idProfile) {
-    if (!idProfile.length === 24)
+    if (idProfile.length !== 24)
       return res.status(400).json("idProfile must be 24 characters");
     if (idProfile.search(/[a-z]/) < 0)
       return res.status(400).json("idProfile must have at least 1 letter");
@@ -54,7 +54,9 @@ const validate = (req, res, next) => {
         .json("Description must have equal or less than 5000 characters");
   }
   if (status) {
-    if (status !== "DONE" || status !== "PENDING")
+    if (status !== "DONE")
+      return res.status(400).json("Status IS done");
+    if (status !== "PENDING")
       return res.status(400).json("Status must be DONE or PENDING");
   }
   if (address) {
