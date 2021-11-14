@@ -7,11 +7,11 @@ const PositionsSchema = new Schema({
     ref: "Clients",
     required: true,
   },
-  idProfile: {
+  idProfile: [{
     type: Schema.Types.ObjectId,
     ref: "Profiles",
     required: true,
-  },
+  }],
   name: {
     type: String,
     maxlength: 50,
