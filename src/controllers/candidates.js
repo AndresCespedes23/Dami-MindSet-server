@@ -49,7 +49,7 @@ const otherInfo = [
   "timeRange",
 ];
 
-const allInfo = [...personalInfo, ...otherInfo];
+const allInfo = [...personalInfo, ...otherInfo, "status", "profiles"];
 
 const getAll = (req, res) => {
   Candidates.find()
@@ -182,17 +182,18 @@ const update = (req, res) => {
 // TODO: create an endpoint in order to update education & workExperience
 
 const remove = (req, res) => {
-  const candidate = candidates.find(
-    (candidate) => candidate.id === req.params.id
+  Candidates.findByIdAndDelete(
+    new ObjectId(req.params.id),
+    (err, removedCandidate) => {
+      if (!removedCandidate) {
+        return res.status(404).json({
+          msg: `Candidate with id: ${req.params.id} was not found.`,
+        });
+      }
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(removedCandidate);
+    }
   );
-  if (candidate) {
-    const candidatesFilter = candidates.filter(
-      (candidate) => candidate.id !== req.params.id
-    );
-    candidates = candidatesFilter;
-    return res.status(200).json(candidate);
-  }
-  res.status(404).json({ Msg: "User not removed" });
 };
 
 module.exports = {
