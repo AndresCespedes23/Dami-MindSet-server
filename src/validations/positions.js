@@ -1,4 +1,4 @@
-const validateFields = (req, res, next) => {
+const required = (req, res, next) => {
   if (
     !req.body.idClient ||
     !req.body.idProfile ||
@@ -14,7 +14,7 @@ const validateFields = (req, res, next) => {
   next();
 };
 
-const validateFieldsType = (req, res, next) => {
+const validate = (req, res, next) => {
   const idClient = req.body.idClient;
   const idProfile = req.body.idProfile;
   const name = req.body.name;
@@ -37,6 +37,6 @@ const validateFieldsType = (req, res, next) => {
 };
 
 module.exports = {
-  validateFields,
-  validateFieldsType,
+  required,
+  validate
 };
