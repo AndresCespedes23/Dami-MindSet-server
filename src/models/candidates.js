@@ -125,14 +125,17 @@ const CandidatesSchema = new Schema({
     ref: "Profiles",
     required: false,
   },
+  // Education
   education: {
     type: [EducationSchema],
     required: false,
   },
+  // Work Experience
   workExperience: {
     type: [WorkExperienceSchema],
     required: false,
   },
+  //Other Information
   description: {
     type: String,
     required: false,

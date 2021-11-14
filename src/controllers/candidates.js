@@ -40,6 +40,16 @@ const workExperienceInfo = [
   "accomplishments",
 ];
 
+const otherInfo = [
+  "description",
+  "dni",
+  "nationality",
+  "maritalStatus",
+  "driversLicense",
+];
+
+const allInfo = [...personalInfo, ...otherInfo];
+
 const getAll = (req, res) => {
   Candidates.find()
     .then((candidates) => {
@@ -124,79 +134,29 @@ const addWorkExperience = (req, res) => {
     });
 };
 
-// TODO: create an endpoint in order to update education & workExperience
 const update = (req, res) => {
-  const candidate = candidates.find(
-    (candidate) => candidate.id === req.params.id
-  );
-  const index = candidates.findIndex(
-    (candidate) => candidate.id === req.params.id
-  );
-  const newInformation = req.query;
-  if (candidate) {
-    candidate.name = newInformation.name || candidate.name;
-    candidate.email = newInformation.email || candidate.email;
-    candidate.gender = newInformation.gender || candidate.gender;
-    candidate.address = newInformation.address || candidate.address;
-    candidate.phoneNumber = newInformation.phoneNumber || candidate.phoneNumber;
-    candidate.dni = newInformation.dni || candidate.dni;
-    candidate.dateOfBirth = newInformation.dateOfBirth || candidate.dateOfBirth;
-    candidate.city = newInformation.city || candidate.city;
-    candidate.state = newInformation.state || candidate.state;
-    candidate.country = newInformation.country || candidate.country;
-    candidate.timeRange = newInformation.timeRange || candidate.timeRange;
-    candidate.status = newInformation.status || candidate.status;
-    candidate.username = newInformation.username || candidate.username;
-    candidate.password = newInformation.password || candidate.password;
-    // For simplicity we're momentarily using the position in the array to select which education or work experience info to modify.
-    // This will be refactored in the API Rest update
-    if (newInformation.idEducation) {
-      const id = newInformation.idEducation;
-      candidate.education[id] = {
-        institution:
-          newInformation.institution || candidate.education[id].institution,
-        startDate:
-          newInformation.startDate || candidate.education[id].startDate,
-        finishDate:
-          newInformation.finishDate || candidate.education[id].finishDate,
-        level: newInformation.level || candidate.education[id].level,
-        inProgress:
-          newInformation.inProgress || candidate.education[id].inProgress,
-        title: newInformation.title || candidate.education[id].title,
-      };
-    }
-    if (newInformation.idWorkExp) {
-      const id = newInformation.idWorkExp;
-      candidate.workExperience[id] = {
-        company: newInformation.company || candidate.workExperience[id].company,
-        role: newInformation.role || candidate.workExperience[id].role,
-        workStartDate:
-          newInformation.workStartDate ||
-          candidate.workExperience[id].workStartDate,
-        workFinishDate:
-          newInformation.workFinishDate ||
-          candidate.workExperience[id].workFinishDate,
-        currently:
-          newInformation.currently || candidate.workExperience[id].currently,
-        workDescription:
-          newInformation.workDescription ||
-          candidate.workExperience[id].workDescription,
-        accomplishments:
-          newInformation.accomplishments ||
-          candidate.workExperience[id].accomplishments,
-      };
-    }
-    candidate.description = newInformation.description || candidate.description;
-    candidate.nationality = newInformation.nationality || candidate.nationality;
-    candidate.maritalStatus =
-      newInformation.maritalStatus || candidate.maritalStatus;
-    candidate.driversLicense =
-      newInformation.driversLicense || candidate.driversLicense;
-    candidates[index] = candidate;
-    return res.status(200).json(candidate);
+  const data = req.body;
+  const updatedCandidate = {};
+  for (let field = 0; field < allInfo.length; field++) {
+    updatedCandidate[allInfo[field]] = data[allInfo[field]];
   }
-  res.status(404).json({ Msg: "User doesn't exist" });
+  Candidates.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    updatedCandidate,
+    { new: true },
+    (err, updatedCandidate) => {
+      if (!updatedCandidate) {
+        return res.status(404).json({
+          msg: `Candidate with id: ${req.params.id} was not found.`,
+        });
+      }
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(updatedCandidate);
+    }
+  );
 };
+
+// TODO: create an endpoint in order to update education & workExperience
 
 const remove = (req, res) => {
   const candidate = candidates.find(
