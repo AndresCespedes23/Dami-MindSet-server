@@ -32,8 +32,8 @@ const validate = (req, res, next) => {
       return res.status(400).json("idClient must have at least 1 number");
   }
   if (idProfile) {
-    // if (typeof idProfile !== "object")
-    //   return res.status(400).json("idProfile must be an array. Add [].");
+    if (typeof idProfile !== "object")
+      return res.status(400).json("idProfile must be an array. Add [].");
     for (let i = 0; i < idProfile.length; i++) {
       if (idProfile[i].length !== 24)
         return res.status(400).json("idProfile must be 24 characters");
