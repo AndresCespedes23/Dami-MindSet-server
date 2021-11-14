@@ -29,11 +29,13 @@ const PositionsSchema = new Schema({
   },
   address: {
     type: String,
+    minLength: 5,
     maxlength: 50,
     required: true,
   },
   city: {
     type: String,
+    minLenght: 3,
     maxlength: 50,
     required: true,
   },
