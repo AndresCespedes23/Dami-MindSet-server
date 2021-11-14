@@ -22,9 +22,13 @@ const getById = (req, res) => {
 };
 
 const create = (req, res) => {
+  const idProfileArray = [];
+  req.body.idProfile.forEach((id) => {
+    idProfileArray.push(new ObjectId(id));
+  });
   const newPosition = {
     idClient: new ObjectId(req.body.idClient),
-    idProfile: new ObjectId(req.body.idProfile),
+    idProfile: idProfileArray,
     name: req.body.name,
     description: req.body.description,
     status: req.body.status,
