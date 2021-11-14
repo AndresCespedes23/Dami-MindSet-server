@@ -33,7 +33,7 @@ const validate = (req, res, next) => {
   }
   if (idProfile) {
     if (typeof idProfile !== "object")
-      return res.status(400).json("idProfile must be an array. Add []");
+      return res.status(400).json("idProfile must be an array. Add [].");
     for (let i = 0; i < idProfile.length; i++) {
       if (idProfile[i].length !== 24)
         return res.status(400).json("idProfile must be 24 characters");
