@@ -41,7 +41,9 @@ const validate = (req, res, next) => {
   }
   if (name) {
     if (name.length > 50)
-      return res.status(400).json("Name must have equal or less than 50 characters");
+      return res
+        .status(400)
+        .json("Name must have equal or less than 50 characters");
     if (name.search(/[0-9]/) !== -1)
       return res.status(400).json("Name must not have numbers");
   }
@@ -67,19 +69,25 @@ const validate = (req, res, next) => {
         .status(400)
         .json("The Address must have letters, numbers and at least 1 space");
     if (address.length > 50)
-      return res.status(400).json("Address must be equal or less than 50 characters");
+      return res
+        .status(400)
+        .json("Address must be equal or less than 50 characters");
   }
   if (city) {
     if (city.length < 3)
       return res.status(400).json("City must be at least 3 characters");
     if (city.length > 50)
-      return res.status(400).json("City must be equal or less than 50 characters");
+      return res
+        .status(400)
+        .json("City must be equal or less than 50 characters");
   }
   if (postalCode) {
     if (postalCode.length < 4)
       return res.status(400).json("Postal Code must be at least 4 characters");
     if (postalCode.length > 8)
-      return res.status(400).json("Postal Code must be equal or less than 8 characters");
+      return res
+        .status(400)
+        .json("Postal Code must be equal or less than 8 characters");
   }
   next();
 };
