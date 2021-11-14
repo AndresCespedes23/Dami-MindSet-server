@@ -1,8 +1,17 @@
 const fs = require("fs");
 let candidates = JSON.parse(fs.readFileSync("./data/candidates.json"));
 
+const Candidates = require("../models/candidates");
+// const ObjectId = require("mongoose").Types.ObjectId;
+
 const getAll = (req, res) => {
-  res.status(200).json(candidates);
+  Candidates.find()
+    .then((candidates) => {
+      return res.status(200).json(candidates);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
 };
 
 const getById = (req, res) => {
@@ -26,9 +35,7 @@ const getByName = (req, res) => {
 };
 
 const create = (req, res) => {
-  const index = candidates[candidates.length - 1].id;
-  const newIndex = parseInt(index) + 1;
-  const newInformation = req.query;
+  const newInformation = req.body;
   if (
     !newInformation.name ||
     !newInformation.email ||
@@ -46,8 +53,8 @@ const create = (req, res) => {
   ) {
     return res.status(400).json({ Msg: "Some parameters are missing" });
   }
+
   const newCandidate = {
-    id: newIndex.toString(),
     name: newInformation.name,
     email: newInformation.email,
     gender: newInformation.gender,
@@ -65,25 +72,23 @@ const create = (req, res) => {
     password: newInformation.password,
     education: [
       {
-        // TODO: We need to switch to an array of objects in the near future, given that the complexity of doing this with queryparams is very high
-        institution: newInformation.institution,
-        startDate: newInformation.startDate,
-        finishDate: newInformation.finishDate,
-        level: newInformation.level,
-        inProgress: newInformation.inProgress,
-        title: newInformation.title,
+        institution: newInformation.education.institution,
+        startDate: newInformation.education.startDate,
+        finishDate: newInformation.education.finishDate,
+        level: newInformation.education.level,
+        inProgress: newInformation.education.inProgress,
+        title: newInformation.education.title,
       },
     ],
     workExperience: [
       {
-        // TODO: We need to switch to an array of objects in the near future, given that the complexity of doing this with queryparams is very high
-        company: newInformation.company,
-        role: newInformation.role,
-        workStartDate: newInformation.workStartDate,
-        workFinishDate: newInformation.workFinishDate,
-        currently: newInformation.currently,
-        workDescription: newInformation.workDescription,
-        accomplishments: newInformation.accomplishments,
+        company: newInformation.workExperience.company,
+        role: newInformation.workExperience.role,
+        startDate: newInformation.workExperience.startDate,
+        finishDate: newInformation.workExperience.finishDate,
+        currently: newInformation.workExperience.currently,
+        description: newInformation.workExperience.description,
+        accomplishments: newInformation.workExperience.accomplishments,
       },
     ],
     description: newInformation.description,
@@ -91,7 +96,8 @@ const create = (req, res) => {
     maritalStatus: newInformation.maritalStatus,
     driversLicense: newInformation.driversLicense,
   };
-  candidates.push(newCandidate);
+
+  Candidates.create(newCandidate);
   res.status(201).json(newCandidate);
 };
 
