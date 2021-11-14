@@ -1,20 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ApplicationsSchema = new Schema({
-  idPosition: {
+const SessionsSchema = new Schema({
+  idPsychologist: {
     type: Schema.Types.ObjectId,
-    ref: "Positions",
+    ref: "Psychologists",
     required: true,
   },
   idCandidate: {
     type: Schema.Types.ObjectId,
     ref: "Candidates",
-    required: true,
-  },
-  idInterview: {
-    type: Schema.Types.ObjectId,
-    ref: "Interviews",
     required: true,
   },
   dateTime: {
@@ -23,7 +18,7 @@ const ApplicationsSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ["PENDING", "SCHEDULED", "HIRED", "REJECTED"],
+    enum: ["PENDING", "DONE"],
   },
   result: {
     type: String,
@@ -31,4 +26,4 @@ const ApplicationsSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Applications", ApplicationsSchema);
+module.exports = mongoose.model("Sessions", SessionsSchema);
