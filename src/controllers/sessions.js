@@ -20,12 +20,12 @@ const create = (req, res) => {
   if (req.body.dateTime) newSession.dateTime = new Date(req.body.dateTime);
 
   Sessions.create(newSession)
-    .then((newSession) => {
-      return res.status(201).json(newSession);
-    })
-    .catch((err) => {
-      return res.status(404).json(err);
-    });
+  .then((newSession) => {
+    return res.status(201).json(newSession);
+  })
+  .catch((err) => {
+    return res.status(404).json(err);
+  });
 
   // Sessions.create(newSession);
   // res.status(201).json(newSession);
@@ -77,41 +77,41 @@ const remove = (req, res) => {
 
 const getAll = (req, res) => {
   Sessions.find()
-    .then((sessions) => {
-      return res.status(200).json(sessions);
-    })
-    .catch((err) => {
-      return res.status(400).json(err);
-    });
+  .then((sessions) => {
+    return res.status(200).json(sessions);
+  })
+  .catch((err) => {
+    return res.status(400).json(err);
+  });
 };
 const getById = (req, res) => {
   Sessions.findById({ _id: new ObjectId(req.params.id) })
-    .then((session) => {
-      return res.status(200).json(session);
-    })
-    .catch((err) => {
-      return res.status(400).json(err);
-    });
+  .then((session) => {
+    return res.status(200).json(session);
+  })
+  .catch((err) => {
+    return res.status(400).json(err);
+  });
 };
 
 const getByIdPsychologist = (req, res) => {
   Sessions.findById({ _id: new ObjectId(req.params.id) })
-    .then((session) => {
-      return res.status(200).json(session);
-    })
-    .catch((err) => {
-      return res.status(400).json(err);
-    });
+  .then((session) => {
+    return res.status(200).json(session);
+  })
+  .catch((err) => {
+    return res.status(400).json(err);
+  });
 };
 
 const getByIdCandidate = (req, res) => {
   Sessions.findById({ _id: new ObjectId(req.params.id) })
-    .then((session) => {
-      return res.status(200).json(session);
-    })
-    .catch((err) => {
-      return res.status(400).json(err);
-    });
+  .then((session) => {
+    return res.status(200).json(session);
+  })
+  .catch((err) => {
+    return res.status(400).json(err);
+  });
 };
 
 module.exports = {
