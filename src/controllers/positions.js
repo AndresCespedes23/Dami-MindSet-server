@@ -41,7 +41,7 @@ const create = (req, res) => {
       return res.status(201).json(newPosition);
     })
     .catch((err) => {
-      return res.status(404).json(err);
+      return res.status(400).json(err);
     });
 };
 
