@@ -6,16 +6,14 @@ const create = (req, res) => {
     !req.body.idCandidate ||
     !req.body.idClient ||
     !req.body.idPosition ||
-    !req.body.dateTime ||
     !req.body.status
   ) {
     return res.status(400).json({ msg: "Some Parameters are missing" });
   }
   const newInterview = {
-    idCandidate: new ObjectId(req.body.idPosition),
+    idCandidate: new ObjectId(req.body.idCandidate),
     idClient: new ObjectId(req.body.idClient),
     idPosition: new ObjectId(req.body.idPosition),
-    dateTime: new ObjectId(req.body.dateTime),
     status: req.body.status,
   };
 
@@ -27,22 +25,18 @@ const create = (req, res) => {
 
 const update = (req, res) => {
   if (
+    !req.params.id ||
     !req.body.idCandidate ||
     !req.body.idClient ||
     !req.body.idPosition ||
-    !req.body.dateTime ||
     !req.body.status
   ) {
-    return res
-      .status(400)
-      .json({ msg: "Some Parameters are missing cannot update" });
+    return res.status(400).json({ msg: "Some Parameters are missing" });
   }
-
   const updateInterview = {
-    idCandidate: new ObjectId(req.body.idPosition),
+    idCandidate: new ObjectId(req.body.idCandidate),
     idClient: new ObjectId(req.body.idClient),
     idPosition: new ObjectId(req.body.idPosition),
-    dateTime: new ObjectId(req.body.dateTime),
     status: req.body.status,
   };
 
@@ -55,7 +49,7 @@ const update = (req, res) => {
     (err, updateInterview) => {
       if (!updateInterview)
         return res.status(404).json({
-          msg: "Interview with the Id: ${req.param.id} was not found",
+          msg: `Interview with the Id: ${req.params.id} was not found.`,
         });
       if (err) return res.status(400).json(err);
       return res.status(200).json(updateInterview);

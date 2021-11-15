@@ -24,7 +24,7 @@ const InterviewsSchema = new Schema({
   status: {
     type: String,
     enum: ["IN COURSE", "FINISHED"],
-    required: true,
+    required: true
   },
 });
 
