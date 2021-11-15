@@ -8,7 +8,8 @@ router.post(
   "/",
   validations.required,
   validations.validate,
-  positions.create);
+  positions.create
+);
 router.put(
   "/:id",
   validations.required,
