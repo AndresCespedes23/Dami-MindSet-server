@@ -7,7 +7,7 @@ const getAll = (req, res) => {
       return res.status(200).json(clients);
     })
     .catch((err) => {
-      return res.status(400).json(err);
+      return res.status(404).json(err);
     });
 };
 
@@ -17,7 +17,7 @@ const getById = (req, res) => {
       return res.status(200).json(client);
     })
     .catch((err) => {
-      return res.status(400).json(err);
+      return res.status(404).json(err);
     });
 };
 
