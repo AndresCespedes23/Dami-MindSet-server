@@ -11,12 +11,12 @@ const create = (req, res) => {
   };
 
   Sessions.create(newSession)
-  .then((newSession) => {
-    return res.status(201).json(newSession);
-  })
-  .catch((error) => {
-    return res.status(400).json(error);
-  });
+    .then((newSession) => {
+      return res.status(201).json(newSession);
+    })
+    .catch((error) => {
+      return res.status(400).json(error);
+    });
 };
 
 const update = (req, res) => {
@@ -25,7 +25,7 @@ const update = (req, res) => {
     idCandidate: new ObjectId(req.body.idCandidate),
     dateTime: new Date(req.body.dateTime),
     status: req.body.status,
-    result: req.body.result
+    result: req.body.result,
   };
 
   Sessions.findByIdAndUpdate(
@@ -59,7 +59,7 @@ const getAll = (req, res) => {
       return res.status(200).json(sessions);
     })
     .catch((err) => {
-      return res.status(400).json(err);
+      return res.status(404).json(err);
     });
 };
 
@@ -69,7 +69,7 @@ const getById = (req, res) => {
       return res.status(200).json(session);
     })
     .catch((err) => {
-      return res.status(400).json(err);
+      return res.status(404).json(err);
     });
 };
 
