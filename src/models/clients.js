@@ -5,31 +5,38 @@ const ClientsSchema = new Schema({
   name: {
     type: String,
     required: true,
+    minLength: 6,
+    maxLength: 50,
   },
   email: {
     type: String,
     required: true,
-    maxlength: 50,
+    minLength: 6,
+    maxLength: 50,
   },
   phoneNumber: {
     type: String,
     required: true,
-    maxlength: 15,
+    minLength: 6,
+    maxLength: 15,
   },
   cuit: {
     type: String,
     required: true,
-    maxlength: 11,
+    minLength: 6,
+    maxLength: 11,
   },
   address: {
     type: String,
     required: true,
-    maxlength: 50,
+    minLength: 6,
+    maxLength: 50,
   },
   activity: {
     type: String,
     required: true,
-    maxlength: 20,
+    minLength: 3,
+    maxLength: 20,
   },
 });
 

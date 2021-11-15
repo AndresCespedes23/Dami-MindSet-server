@@ -31,42 +31,28 @@ const remove = (req, res) => {
 
 //CLIENT UPDATE
 const update = (req, res) => {
-  const updatedClient = {
-    name: req.body.name,
-    email: req.body.email,
-    phoneNumber: req.body.phoneNumber,
-    cuit: req.body.cuit,
-    address: req.body.address,
-    activity: req.body.activity,
-  };
-
-  Clients.findByIdAndUpdate(
-    req.params.id,
-    updatedClient,
-    { new: true },
-    (err, updatedClient) => {
-      if (!updatedClient)
+  const id = req.params.id;
+  const client = req.body;
+  Clients.findOneAndUpdate({_id: id}, client, {new: true, runValidators: true}, (err, updatedClient) => {
+    if (!updatedClient)
         return res.status(404).json({
           msg: `Client with id: ${req.params.id} was not found.`,
         });
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(updatedClient);
-    }
-  );
+    if(err) return res.status(400).json(err.message);
+    return res.status(200).json(updatedClient);
+  });
 };
 
 //CLIENT CREATE
 const create = (req, res) => {
-  const newClient = {
-    name: req.body.name,
-    email: req.body.email,
-    phoneNumber: req.body.phoneNumber,
-    cuit: req.body.cuit,
-    address: req.body.address,
-    activity: req.body.activity,
-  };
-  Clients.create(newClient);
-  res.status(201).json(newClient);
+  const newClient = new Clients(req.body);
+  newClient.save()
+  .then((newClient) => {
+    return res.status(201).json(newClient);
+  })
+  .catch((err) => {
+    return res.status(400).json(err.message);
+  });
 };
 
 module.exports = {
