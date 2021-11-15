@@ -39,7 +39,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"name\": \"osvald\",\r\n    \"email\": \"agus@foorro.com\",\r\n    \"password\": \"estring\",\r\n    \"username\": \"pooopp\",\r\n    \"isSuperAdmin\": true\r\n}",
+          "raw": "{\r\n    \"name\": \"osvald\",\r\n    \"email\": \"agus@frro.com\",\r\n    \"password\": \"estring\",\r\n    \"username\": \"pooopp\",\r\n    \"isSuperAdmin\": true\r\n}",
           "options": {
             "raw": {
               "language": "json"
