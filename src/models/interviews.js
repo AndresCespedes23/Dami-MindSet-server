@@ -9,7 +9,7 @@ const InterviewsSchema = new Schema({
   },
   idClient: {
     type: Schema.Types.ObjectId,
-    ref: "Client",
+    ref: "Clients",
     required: true,
   },
   idPosition: {
@@ -19,7 +19,7 @@ const InterviewsSchema = new Schema({
   },
   dateTime: {
     type: Date,
-    required: false,
+    required: true,
   },
   status: {
     type: String,
