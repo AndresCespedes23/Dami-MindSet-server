@@ -26,8 +26,13 @@ const create = (req, res) => {
     name: req.body.name,
     description: req.body.description,
   };
-  Profiles.create(newProfile);
-  return res.status(201).json(newProfile);
+  Profiles.create(newProfile)
+    .then((newProfile) => {
+      return res.status(200).json(newProfile);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
 };
 
 const update = (req, res) => {
