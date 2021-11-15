@@ -87,11 +87,9 @@ const formatBodyRequired = (req, res, next) => {
         .status(400)
         .json({ Msg: "TimeRange values must be between 0 and 24" });
     if (timeRange[0] >= timeRange[1])
-      return res
-        .status(400)
-        .json({
-          Msg: "TimeRange first value must be smaller than the second one",
-        });
+      return res.status(400).json({
+        Msg: "TimeRange first value must be smaller than the second one",
+      });
   }
   const dayRange = req.body.dayRange;
   if (dayRange) {
