@@ -10,12 +10,13 @@ router.post(
   "/",
   middleware.dataBodyRequired,
   middleware.formatBodyRequired,
+  middleware.dataBodyUnique,
   psychologists.create
 );
-router.put(
+router.patch(
   "/:id",
-  middleware.dataBodyRequired,
   middleware.formatBodyRequired,
+  middleware.dataBodyUnique,
   psychologists.update
 );
 router.delete("/:id", psychologists.remove);

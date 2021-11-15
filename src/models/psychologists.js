@@ -12,11 +12,13 @@ const PsychologistsSchema = new Schema({
     type: String,
     maxLength: 30,
     required: true,
+    unique: true,
   },
   username: {
     type: String,
     maxLength: 30,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -27,11 +29,13 @@ const PsychologistsSchema = new Schema({
     type: String,
     maxLength: 15,
     required: true,
+    unique: true,
   },
   enrollmentNumber: {
     type: String,
     maxLength: 4,
     required: true,
+    unique: true,
   },
   status: {
     type: Boolean,
