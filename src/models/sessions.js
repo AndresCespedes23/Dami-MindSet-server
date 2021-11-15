@@ -14,7 +14,7 @@ const SessionsSchema = new Schema({
   },
   dateTime: {
     type: Date,
-    required: false,
+    required: true,
   },
   status: {
     type: String,
