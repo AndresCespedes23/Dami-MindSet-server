@@ -61,29 +61,29 @@ const getAll = (req, res) => {
 const getById = (req, res) => {
   Candidates.findById(new ObjectId(req.params.id))
     .then((candidate) => {
-      return res.status(200).json(candidate);
-    })
-    .catch((err, candidate) => {
       if (!candidate)
         return res
           .status(404)
           .json({ Msg: `User with name: ${req.params.name} was not found.` });
+      return res.status(200).json(candidate);
+    })
+    .catch((err) => {
       return res.status(400).json(err);
     });
 };
 
 const getByName = (req, res) => {
   Candidates.findOne({ name: req.params.name })
-  .then((candidate) => {
-    return res.status(200).json(candidate);
-  })
-  .catch((err, candidate) => {
-    if (!candidate)
-      return res
-        .status(404)
-        .json({ Msg: `User with id: ${req.params.id} was not found.` });
-    return res.status(400).json(err);
-  });
+    .then((candidate) => {
+      if (!candidate)
+        return res
+          .status(404)
+          .json({ Msg: `User with id: ${req.params.id} was not found.` });
+      return res.status(200).json(candidate);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
 };
 
 const create = (req, res) => {
