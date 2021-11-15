@@ -33,8 +33,9 @@ const validate = (req, res, next) => {
     if (idCandidate.search(/[0-9]/) < 0)
       return res.status(400).json("idCandidate must have at least 1 number");
   }
-  // if (dateTime.search("/") < 0) {
-  //   return res.status(400).json("Date format must be dd/mm/yyyy");
+  // if (dateTime) {
+  //   if (dateTime instanceof Date) {return true;}
+  //   return res.status(400).json("DateTime format error");
   // }
   if (status) {
     if (status !== "DONE" && status !== "PENDING") {

@@ -10,17 +10,22 @@ const create = (req, res) => {
     result: req.body.result,
   };
 
-  Sessions.create(newSession);
-  res.status(201).json(newSession);
+  Sessions.create(newSession)
+  .then((newSession) => {
+    return res.status(201).json(newSession);
+  })
+  .catch((error) => {
+    return res.status(400).json(error);
+  });
 };
 
 const update = (req, res) => {
   const updatedSession = {
     idPosition: new ObjectId(req.body.idPosition),
     idCandidate: new ObjectId(req.body.idCandidate),
-    dateTime: req.body.dateTime,
+    dateTime: new Date(req.body.dateTime),
     status: req.body.status,
-    result: req.body.result,
+    result: req.body.result
   };
 
   Sessions.findByIdAndUpdate(
@@ -68,31 +73,9 @@ const getById = (req, res) => {
     });
 };
 
-const getByIdPsychologist = (req, res) => {
-  Sessions.findById({ _id: new ObjectId(req.params.id) })
-    .then((session) => {
-      return res.status(200).json(session);
-    })
-    .catch((err) => {
-      return res.status(400).json(err);
-    });
-};
-
-const getByIdCandidate = (req, res) => {
-  Sessions.findById({ _id: new ObjectId(req.params.id) })
-    .then((session) => {
-      return res.status(200).json(session);
-    })
-    .catch((err) => {
-      return res.status(400).json(err);
-    });
-};
-
 module.exports = {
   getAll,
   getById,
-  getByIdPsychologist,
-  getByIdCandidate,
   create,
   update,
   remove,
