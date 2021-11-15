@@ -15,7 +15,7 @@ const create = (req, res) => {
       return res.status(201).json(newSession);
     })
     .catch((error) => {
-      return res.status(400).json(error);
+      return res.status(404).json(error);
     });
 };
 
@@ -37,7 +37,7 @@ const update = (req, res) => {
         return res.status(404).json({
           msg: `Session with id: ${req.params.id} was not found.`,
         });
-      if (err) return res.status(400).json(err);
+      if (err) return res.status(404).json(err);
       return res.status(200).json(updatedSession);
     }
   );
@@ -47,7 +47,7 @@ const remove = (req, res) => {
   Sessions.findByIdAndRemove(
     new ObjectId(req.params.id),
     (err, removedSession) => {
-      if (err) return res.status(400).json(err);
+      if (err) return res.status(404).json(err);
       return res.status(200).json(removedSession._id);
     }
   );
