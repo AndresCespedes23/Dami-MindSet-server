@@ -3,22 +3,22 @@ const Schema = mongoose.Schema;
 const AdminsSchema = new Schema({
   name: {
     type: String,
-    maxlength: 50,
+    maxLength: 50,
     required: true,
   },
   email: {
     type: String,
-    maxlength: 20,
+    maxLength: 20,
     required: true,
   },
   username: {
     type: String,
-    maxlength: 50,
+    maxLength: 50,
     required: true,
   },
   password: {
     type: String,
-    maxlength: 20,
+    maxLength: 20,
     required: true,
   },
   isSuperAdmin: {

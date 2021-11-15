@@ -36,21 +36,16 @@ const update = (req, res) => {
     password: req.body.password,
     username: req.body.username,
     isSuperAdmin: req.body.isSuperAdmin,
-
   };
-  Admins.findByIdAndUpdate(
-    req.params.id,
-    updatedAdmin,
-    (err, updatedAdmin) => {
-      if (!updatedAdmin) {
-        return res
-          .status(404)
-          .json({ msg: `Admin with id: ${req.params.id} was not found.` });
-      }
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(updatedAdmin);
+  Admins.findByIdAndUpdate(req.params.id, updatedAdmin, (err, updatedAdmin) => {
+    if (!updatedAdmin) {
+      return res
+        .status(404)
+        .json({ msg: `Admin with id: ${req.params.id} was not found.` });
     }
-  );
+    if (err) return res.status(400).json(err);
+    return res.status(200).json(updatedAdmin);
+  });
 };
 
 module.exports = {
