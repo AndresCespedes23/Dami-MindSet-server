@@ -1,0 +1,222 @@
+{
+  "info": {
+    "_postman_id": "6515d29a-5cdd-4315-84c0-141256b68e34",
+    "name": "Candidates",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Retieve all the candidates",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve candidate by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates/byId/6190774f1a575cba0f6e400e",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "byId", "6190774f1a575cba0f6e400e"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create a new candidate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Marisa Treble\",\r\n    \"email\": \"mtreble1@nytimes.com\",\r\n    \"username\": \"mtreble1\",\r\n    \"password\": \"tR0RkUD\",\r\n    \"gender\": \"Female\",\r\n    \"address\": \"2386 Fuller Trail\",\r\n    \"phoneNumber\": 545454456,\r\n    \"dateOfBirth\": \"7/18/1956\",\r\n    \"zipCode\": \"9928\",\r\n    \"city\": \"Bloemfontein\",\r\n    \"state\": \"Troms\",\r\n    \"country\": \"South Africa\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add education",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"institution\": \"Hitotsubashi University\",\r\n    \"startDate\": \"4/5/2021\",\r\n    \"finishDate\": \"1/28/2021\",\r\n    \"level\": \"Secondary\",\r\n    \"inProgress\": false,\r\n    \"title\": \"Research Associate\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/education/6190774f1a575cba0f6e400e",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "education", "6190774f1a575cba0f6e400e"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add work experience",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"company\": \"Ntag\",\r\n    \"role\": \"Structural Analysis Engineer\",\r\n    \"startDate\": \"12/30/2020\",\r\n    \"finishDate\": \"9/7/2021\",\r\n    \"currently\": false,\r\n    \"description\": \"Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/workExperience/6190774f1a575cba0f6e400e",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "workExperience", "6190774f1a575cba0f6e400e"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add other information",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"gender\": \"Male\",\r\n    \"country\": \"USA\",\r\n    \"description\": \"Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.\",\r\n    \"dni\": \"12345678\",\r\n    \"nationality\": \"Argentinian\",\r\n    \"maritalStatus\": \"Single\",\r\n    \"driversLicense\": false,\r\n    \"timeRange\": \"8am to 3pm\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/otherInformation/61908f4a182842415363bf03",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "otherInformation", "61908f4a182842415363bf03"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update candidate",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"gender\": \"Female\",\r\n    \"country\": \"USA\",\r\n    \"description\": \"Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.\",\r\n    \"dni\": \"12345678\",\r\n    \"nationality\": \"Argentinian\",\r\n    \"maritalStatus\": \"Single\",\r\n    \"driversLicense\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/6190774f1a575cba0f6e400e",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "6190774f1a575cba0f6e400e"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update education",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": \"619082114a27258130d737a6\",\r\n    \"institution\": \"Hitotsubashi University\",\r\n    \"level\": \"University\",\r\n    \"inProgress\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/education/6190516c1bbc7d2864770d02",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "education", "6190516c1bbc7d2864770d02"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove candidate by ID",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates/61909bcb1d4e0a646d1830c4",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "61909bcb1d4e0a646d1830c4"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "test validations",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"balti@gmail.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/test/test",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "test", "test"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
