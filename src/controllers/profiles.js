@@ -28,7 +28,7 @@ const create = (req, res) => {
   };
   Profiles.create(newProfile)
     .then((newProfile) => {
-      return res.status(200).json(newProfile);
+      return res.status(201).json(newProfile);
     })
     .catch((err) => {
       return res.status(400).json(err);
