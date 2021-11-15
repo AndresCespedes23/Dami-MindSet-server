@@ -16,12 +16,12 @@ const PositionsSchema = new Schema({
   ],
   name: {
     type: String,
-    maxlength: 50,
+    maxLength: 50,
     required: true,
   },
   description: {
     type: String,
-    maxlength: 5000,
+    maxLength: 5000,
     required: true,
   },
   status: {
@@ -32,19 +32,19 @@ const PositionsSchema = new Schema({
   address: {
     type: String,
     minLength: 5,
-    maxlength: 50,
+    maxLength: 50,
     required: true,
   },
   city: {
     type: String,
     minLenght: 3,
-    maxlength: 50,
+    maxLength: 50,
     required: true,
   },
   postalCode: {
     type: String,
-    minlength: 4,
-    maxlength: 8,
+    minLength: 4,
+    maxLength: 8,
     required: true,
   },
 });
