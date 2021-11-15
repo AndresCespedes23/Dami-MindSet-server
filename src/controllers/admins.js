@@ -6,7 +6,7 @@ const getAll = (req, res) => {
       return res.status(200).json(admins);
     })
     .catch((err) => {
-      return res.status(400).json(err);
+      return res.status(404).json(err);
     });
 };
 
@@ -16,7 +16,7 @@ const getById = (req, res) => {
       return res.status(200).json(admin);
     })
     .catch((err) => {
-      return res.status(400).json(err);
+      return res.status(404).json(err);
     });
 };
 const getByName = (req, res) => {
@@ -25,7 +25,7 @@ const getByName = (req, res) => {
       return res.status(200).json(admin);
     })
     .catch((err) => {
-      return res.status(400).json(err);
+      return res.status(404).json(err);
     });
 };
 

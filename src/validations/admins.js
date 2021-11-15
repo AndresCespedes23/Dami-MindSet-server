@@ -12,7 +12,9 @@ const required = (req, res, next) => {
     return res.status(400).send("Password is required");
   }
   if (!req.body.isSuperAdmin) {
-    return res.status(400).send("You should be super admin to load new information!");
+    return res
+      .status(400)
+      .send("You should be super admin to load new information!");
   }
   next();
 };
@@ -20,4 +22,3 @@ const required = (req, res, next) => {
 module.exports = {
   required,
 };
-
