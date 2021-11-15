@@ -33,26 +33,32 @@ const remove = (req, res) => {
 const update = (req, res) => {
   const id = req.params.id;
   const client = req.body;
-  Clients.findOneAndUpdate({_id: id}, client, {new: true, runValidators: true}, (err, updatedClient) => {
-    if (!updatedClient)
+  Clients.findOneAndUpdate(
+    { _id: id },
+    client,
+    { new: true, runValidators: true },
+    (err, updatedClient) => {
+      if (!updatedClient)
         return res.status(404).json({
           msg: `Client with id: ${req.params.id} was not found.`,
         });
-    if(err) return res.status(400).json(err.message);
-    return res.status(200).json(updatedClient);
-  });
+      if (err) return res.status(400).json(err.message);
+      return res.status(200).json(updatedClient);
+    }
+  );
 };
 
 //CLIENT CREATE
 const create = (req, res) => {
   const newClient = new Clients(req.body);
-  newClient.save()
-  .then((newClient) => {
-    return res.status(201).json(newClient);
-  })
-  .catch((err) => {
-    return res.status(400).json(err.message);
-  });
+  newClient
+    .save()
+    .then((newClient) => {
+      return res.status(201).json(newClient);
+    })
+    .catch((err) => {
+      return res.status(400).json(err.message);
+    });
 };
 
 module.exports = {
