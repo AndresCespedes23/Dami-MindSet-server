@@ -1,6 +1,5 @@
 const Admins = require("../models/admins");
 
-
 const getAll = (req, res) => {
   Admins.find()
     .then((admins) => {
@@ -54,5 +53,5 @@ module.exports = {
   getAll,
   getById,
   getByName,
-  update
+  update,
 };

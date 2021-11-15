@@ -23,7 +23,7 @@ const AdminsSchema = new Schema({
   },
   isSuperAdmin: {
     type: Boolean,
-    required: true
-  }
+    required: true,
+  },
 });
 module.exports = mongoose.model("Admins", AdminsSchema);
