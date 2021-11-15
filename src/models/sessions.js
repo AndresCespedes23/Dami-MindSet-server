@@ -2,11 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const SessionsSchema = new Schema({
-  idSession: {
-    type: Schema.Types.ObjectId,
-    ref: "Sessions",
-    required: true,
-  },
   idPsychologist: {
     type: Schema.Types.ObjectId,
     ref: "Psychologists",

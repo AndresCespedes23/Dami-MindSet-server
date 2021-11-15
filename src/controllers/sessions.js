@@ -42,7 +42,7 @@ const getByIdCandidate = (req, res) => {
 };
 
 const create = (req, res) => {
-  if (!req.body.idPsychologist || !req.body.idCandidate || !req.body.status) {
+  if (!req.body.idPsychologist || !req.body.idCandidate || !req.body.status || !req.body.result) {
     return res.status(400).json({ msg: "Some parameters are missing" });
   }
   const newSession = {
