@@ -1,21 +1,40 @@
 const Sessions = require("../models/sessions");
 const ObjectId = require("mongoose").Types.ObjectId;
 
+const getAll = (req, res) => {
+  Sessions.find()
+    .then((sessions) => {
+      return res.status(200).json(sessions);
+    })
+    .catch((err) => {
+      return res.status(404).json(err);
+    });
+};
+
+const getById = (req, res) => {
+  Sessions.findById({ _id: new ObjectId(req.params.id) })
+    .then((session) => {
+      return res.status(200).json(session);
+    })
+    .catch((err) => {
+      return res.status(404).json(err);
+    });
+};
+
 const create = (req, res) => {
   const newSession = {
     idPsychologist: new ObjectId(req.body.idPsychologist),
     idCandidate: new ObjectId(req.body.idCandidate),
-    dateTime: req.body.dateTime,
+    dateTime: new Date(req.body.dateTime),
     status: req.body.status,
     result: req.body.result,
   };
-
   Sessions.create(newSession)
     .then((newSession) => {
       return res.status(201).json(newSession);
     })
     .catch((error) => {
-      return res.status(404).json(error);
+      return res.status(400).json(error);
     });
 };
 
@@ -27,7 +46,6 @@ const update = (req, res) => {
     status: req.body.status,
     result: req.body.result,
   };
-
   Sessions.findByIdAndUpdate(
     new ObjectId(req.params.id),
     updatedSession,
@@ -51,26 +69,6 @@ const remove = (req, res) => {
       return res.status(200).json(removedSession._id);
     }
   );
-};
-
-const getAll = (req, res) => {
-  Sessions.find()
-    .then((sessions) => {
-      return res.status(200).json(sessions);
-    })
-    .catch((err) => {
-      return res.status(404).json(err);
-    });
-};
-
-const getById = (req, res) => {
-  Sessions.findById({ _id: new ObjectId(req.params.id) })
-    .then((session) => {
-      return res.status(200).json(session);
-    })
-    .catch((err) => {
-      return res.status(404).json(err);
-    });
 };
 
 module.exports = {

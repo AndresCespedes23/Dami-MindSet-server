@@ -4,7 +4,6 @@ const required = (req, res, next) => {
     !req.body.idCandidate ||
     !req.body.dateTime ||
     !req.body.status
-    //!req.body.result
   ) {
     return res.status(400).json({ Msg: "Parameter/s missing" });
   }

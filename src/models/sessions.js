@@ -19,6 +19,7 @@ const SessionsSchema = new Schema({
   status: {
     type: String,
     enum: ["PENDING", "DONE"],
+    required: true,
   },
   result: {
     type: String,
