@@ -1,5 +1,4 @@
 const required = (req, res, next) => {
-  //console.log(req.body.idPsychologist);
   if (
     !req.body.idPsychologist ||
     !req.body.idCandidate ||

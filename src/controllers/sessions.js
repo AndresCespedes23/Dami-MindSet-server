@@ -40,7 +40,7 @@ const create = (req, res) => {
 
 const update = (req, res) => {
   const updatedSession = {
-    idPosition: new ObjectId(req.body.idPosition),
+    idPsychologist: new ObjectId(req.body.idPsychologist),
     idCandidate: new ObjectId(req.body.idCandidate),
     dateTime: new Date(req.body.dateTime),
     status: req.body.status,
