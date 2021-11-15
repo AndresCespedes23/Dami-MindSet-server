@@ -38,7 +38,7 @@ const update = (req, res) => {
     client,
     { new: true, runValidators: true },
     (err, updatedClient) => {
-      if (!updatedClient)
+      if (updatedClient === null)
         return res.status(404).json({
           msg: `Client with id: ${req.params.id} was not found.`,
         });
