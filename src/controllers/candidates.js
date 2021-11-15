@@ -179,10 +179,53 @@ const update = (req, res) => {
   );
 };
 
+const updateEducation = (req, res) => {
+  const data = req.body;
+  const updatedInformation = {};
+  for (let field = 0; field < educationInfo.length; field++) {
+    updatedInformation[educationInfo[field]] = data[educationInfo[field]];
+  }
+  Candidates.findOne({ "education._id": new ObjectId(req.params.id) })
+    .then((candidate) => {
+      const education = candidate.education.id(new ObjectId(req.params.id));
+      console.log(education);
+      for (let field in education) {
+        education[field] = data[field] || education[field];
+      }
+      console.log(education);
+      console.log(candidate.education.id(new ObjectId(req.params.id)));
+      //candidate.education.id(new ObjectId(req.params.id)).remove();
+      //candidate.education.push(education);
+      res.json(education);
+      return candidate;
+    })
+    .then((candidate) => {
+      candidate.save();
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
+  /*
+  Candidates.findOneAndUpdate(
+    { "education._id": new ObjectId(req.params.id) },
+    updatedInformation,
+    (err, updatedInformation) => {
+      if (!updatedInformation) {
+        return res.status(404).json({
+          msg: `Information with id: ${req.params.id} was not found.`,
+        });
+      }
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(updatedInformation);
+    }
+  );
+  */
+};
+
 // TODO: create an endpoint in order to update education & workExperience
 
 const remove = (req, res) => {
-  Candidates.findByIdAndDelete(
+  Candidates.information.findByIdAndDelete(
     new ObjectId(req.params.id),
     (err, removedCandidate) => {
       if (!removedCandidate) {
@@ -197,13 +240,19 @@ const remove = (req, res) => {
 };
 
 module.exports = {
+  getAll,
+  getById,
+  getByName,
   create,
   addEducation,
   addWorkExperience,
   addOtherInformation,
   update,
+  updateEducation,
   remove,
-  getAll,
-  getById,
-  getByName,
+  personalInfo,
+  educationInfo,
+  workExperienceInfo,
+  otherInfo,
+  allInfo,
 };

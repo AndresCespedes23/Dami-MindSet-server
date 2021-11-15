@@ -22,6 +22,9 @@ router.put(
   candidates.addOtherInformation
 );
 router.put("/:id", candidates.update);
+router.put("/education/:id", candidates.updateEducation);
 router.delete("/:id", candidates.remove);
+
+router.put("/test/test", validations.validate);
 
 module.exports = router;
