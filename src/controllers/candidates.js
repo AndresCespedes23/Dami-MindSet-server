@@ -1,6 +1,3 @@
-const fs = require("fs");
-let candidates = JSON.parse(fs.readFileSync("./data/candidates.json"));
-
 const Candidates = require("../models/candidates");
 const ObjectId = require("mongoose").Types.ObjectId;
 
@@ -62,23 +59,31 @@ const getAll = (req, res) => {
 };
 
 const getById = (req, res) => {
-  const candidate = candidates.find(
-    (candidate) => candidate.id === req.params.id
-  );
-  if (!candidate) {
-    return res.status(404).json({ Msg: "User not found" });
-  }
-  res.status(200).json(candidate);
+  Candidates.findById(new ObjectId(req.params.id))
+    .then((candidate) => {
+      return res.status(200).json(candidate);
+    })
+    .catch((err, candidate) => {
+      if (!candidate)
+        return res
+          .status(404)
+          .json({ Msg: `User with name: ${req.params.name} was not found.` });
+      return res.status(400).json(err);
+    });
 };
 
 const getByName = (req, res) => {
-  const candidate = candidates.find(
-    (candidate) => candidate.name === req.params.name
-  );
-  if (!candidate) {
-    return res.status(404).json({ Msg: "User not found" });
-  }
-  res.status(200).json(candidate);
+  Candidates.findOne({ name: req.params.name })
+  .then((candidate) => {
+    return res.status(200).json(candidate);
+  })
+  .catch((err, candidate) => {
+    if (!candidate)
+      return res
+        .status(404)
+        .json({ Msg: `User with id: ${req.params.id} was not found.` });
+    return res.status(400).json(err);
+  });
 };
 
 const create = (req, res) => {
@@ -98,7 +103,7 @@ const addEducation = (req, res) => {
   for (let field = 0; field < educationInfo.length; field++) {
     newEducation[educationInfo[field]] = data[educationInfo[field]];
   }
-  Candidates.findById({ _id: new ObjectId(req.params.id) })
+  Candidates.findById(new ObjectId(req.params.id))
     .then((candidate) => {
       candidate.education.push(newEducation);
       candidate.save();
@@ -120,7 +125,7 @@ const addWorkExperience = (req, res) => {
     newWorkExperience[workExperienceInfo[field]] =
       data[workExperienceInfo[field]];
   }
-  Candidates.findById({ _id: new ObjectId(req.params.id) })
+  Candidates.findById(new ObjectId(req.params.id))
     .then((candidate) => {
       candidate.workExperience.push(newWorkExperience);
       candidate.save();
@@ -196,11 +201,8 @@ const updateEducation = (req, res) => {
       console.log(candidate.education.id(new ObjectId(req.params.id)));
       //candidate.education.id(new ObjectId(req.params.id)).remove();
       //candidate.education.push(education);
-      res.json(education);
-      return candidate;
-    })
-    .then((candidate) => {
       candidate.save();
+      res.json(education);
     })
     .catch((err) => {
       return res.status(400).json(err);
