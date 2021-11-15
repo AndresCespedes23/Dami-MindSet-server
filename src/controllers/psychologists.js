@@ -8,7 +8,7 @@ const create = (req, res) => {
     password: req.body.password,
     phoneNumber: req.body.phoneNumber,
     enrollmentNumber: req.body.enrollmentNumber,
-    status: req.body.status,
+    status: true,
   };
   if (req.body.dayRange) newPsychologist.dayRange = req.body.dayRange;
   if (req.body.timeRange) newPsychologist.timeRange = req.body.timeRange;

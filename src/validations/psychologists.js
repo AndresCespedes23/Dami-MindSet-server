@@ -11,8 +11,6 @@ const dataBodyRequired = (req, res, next) => {
     return res.status(400).json({ Msg: "PhoneNumber is missing" });
   if (!req.body.enrollmentNumber)
     return res.status(400).json({ Msg: "EnrollmentNumber is missing" });
-  if (!req.body.status)
-    return res.status(400).json({ Msg: "Status is missing" });
   next();
 };
 
