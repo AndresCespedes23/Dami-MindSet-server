@@ -57,6 +57,7 @@ const getAll = (req, res) => {
       return res.status(400).json(err);
     });
 };
+
 const getById = (req, res) => {
   Sessions.findById({ _id: new ObjectId(req.params.id) })
     .then((session) => {

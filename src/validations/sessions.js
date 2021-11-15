@@ -36,8 +36,10 @@ const validate = (req, res, next) => {
   // if (dateTime.search("/") < 0) {
   //   return res.status(400).json("Date format must be dd/mm/yyyy");
   // }
-  if (status !== "DONE" && status !== "PENDING") {
-    return res.status(400).json("Status must be DONE or PENDING");
+  if (status) {
+    if (status !== "DONE" && status !== "PENDING") {
+      return res.status(400).json("Status must be DONE or PENDING");
+    }
   }
   if (result) {
     if (result.length > 500)
