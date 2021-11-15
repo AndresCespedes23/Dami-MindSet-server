@@ -32,11 +32,15 @@ const getByName = (req, res) => {
 const update = (req, res) => {
   const updatedAdmin = {
     name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    username: req.body.username,
+    isSuperAdmin: req.body.isSuperAdmin,
+
   };
   Admins.findByIdAndUpdate(
     req.params.id,
     updatedAdmin,
-    { new: true },
     (err, updatedAdmin) => {
       if (!updatedAdmin) {
         return res

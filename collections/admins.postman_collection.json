@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "e2fd8df9-3ddf-4598-abee-dd3ea59dc1a2",
+		"name": "admins",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAdmins",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:3000/admins"
+			},
+			"response": []
+		},
+		{
+			"name": "admins/ById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:3000/admins/61916f6ff13b6ce1ba849cba"
+			},
+			"response": []
+		},
+		{
+			"name": "admins/byName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/admins/byName/agustin"
+			},
+			"response": []
+		},
+		{
+			"name": "admins/update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"osvald\",\r\n    \"email\": \"agus@foorro.com\",\r\n    \"password\": \"estring\",\r\n    \"username\": \"pooopp\",\r\n    \"isSuperAdmin\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/admins/61916f6ff13b6ce1ba849cba"
+			},
+			"response": []
+		}
+	]
+}
