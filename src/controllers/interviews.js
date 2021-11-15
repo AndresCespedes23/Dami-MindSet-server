@@ -9,7 +9,7 @@ const create = (req, res) => {
     !req.body.dateTime ||
     !req.body.status
   ) {
-    return res.status(400).json({ msg: "Some Parameters are missing"});
+    return res.status(400).json({ msg: "Some Parameters are missing" });
   }
   const newInterview = {
     idCandidate: new ObjectId(req.body.idPosition),
@@ -33,7 +33,9 @@ const update = (req, res) => {
     !req.body.dateTime ||
     !req.body.status
   ) {
-    return res.status(400).json({ msg: "Some Parameters are missing cannot update"});
+    return res
+      .status(400)
+      .json({ msg: "Some Parameters are missing cannot update" });
   }
 
   const updateInterview = {
@@ -44,8 +46,7 @@ const update = (req, res) => {
     status: req.body.status,
   };
 
-  if (req.body.dateTime)
-    updateInterview.dateTime = new Date (req.body.dateTime);
+  if (req.body.dateTime) updateInterview.dateTime = new Date(req.body.dateTime);
 
   Interviews.findByIdAndUpdate(
     new ObjectId(req.params.id),
@@ -63,13 +64,13 @@ const update = (req, res) => {
 };
 
 const remove = (req, res) => {
- Interviews.findByIdAndRemove(
-  new ObjectId(req.params.id),
-  (err, removeInterview) => {
-    if (err) return res.status(400).json(err);
-    return res.status(200).json(removeInterview);
-  }
- );
+  Interviews.findByIdAndRemove(
+    new ObjectId(req.params.id),
+    (err, removeInterview) => {
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(removeInterview);
+    }
+  );
 };
 
 const getAll = (req, res) => {
@@ -90,7 +91,6 @@ const getById = (req, res) => {
     .catch((err) => {
       return res.status(400).json(err);
     });
-
 };
 
 module.exports = {
