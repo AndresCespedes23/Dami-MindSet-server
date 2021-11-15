@@ -24,34 +24,48 @@ const create = (req, res) => {
 
 const update = (req, res) => {
   Psychologists.findById(req.params.id)
-  .then((psychologist) => {
-    psychologist.name = req.body.name ? req.body.name : psychologist.name;
-    psychologist.email = req.body.email ? req.body.email : psychologist.email;
-    psychologist.username = req.body.username ? req.body.username : psychologist.username;
-    psychologist.password = req.body.password ? req.body.password : psychologist.password;
-    psychologist.phoneNumber = req.body.phoneNumber ? req.body.phoneNumber : psychologist.phoneNumber;
-    psychologist.enrollmentNumber = req.body.enrollmentNumber ? req.body.enrollmentNumber : psychologist.enrollmentNumber;
-    psychologist.status = req.body.status ? req.body.status : psychologist.status;
-    psychologist.dayRange = req.body.dayRange ? req.body.dayRange : psychologist.dayRange;
-    psychologist.timeRange = req.body.timeRange ? req.body.timeRange : psychologist.timeRange;
+    .then((psychologist) => {
+      psychologist.name = req.body.name ? req.body.name : psychologist.name;
+      psychologist.email = req.body.email ? req.body.email : psychologist.email;
+      psychologist.username = req.body.username
+        ? req.body.username
+        : psychologist.username;
+      psychologist.password = req.body.password
+        ? req.body.password
+        : psychologist.password;
+      psychologist.phoneNumber = req.body.phoneNumber
+        ? req.body.phoneNumber
+        : psychologist.phoneNumber;
+      psychologist.enrollmentNumber = req.body.enrollmentNumber
+        ? req.body.enrollmentNumber
+        : psychologist.enrollmentNumber;
+      psychologist.status = req.body.status
+        ? req.body.status
+        : psychologist.status;
+      psychologist.dayRange = req.body.dayRange
+        ? req.body.dayRange
+        : psychologist.dayRange;
+      psychologist.timeRange = req.body.timeRange
+        ? req.body.timeRange
+        : psychologist.timeRange;
 
-    Psychologists.findByIdAndUpdate(
-      req.params.id,
-      psychologist,
-      { new: true },
-      (error, psychologist) => {
-        if (!psychologist)
-          return res.status(404).json({
-            msg: `Application with id: ${req.params.id} was not found.`,
-          });
-        if (error) return res.status(400).json(error);
-        return res.status(200).json(psychologist);
-      }
-    );
-  })
-  .catch((error) => {
-    return res.status(400).json(error);
-  });
+      Psychologists.findByIdAndUpdate(
+        req.params.id,
+        psychologist,
+        { new: true },
+        (error, psychologist) => {
+          if (!psychologist)
+            return res.status(404).json({
+              msg: `Application with id: ${req.params.id} was not found.`,
+            });
+          if (error) return res.status(400).json(error);
+          return res.status(200).json(psychologist);
+        }
+      );
+    })
+    .catch((error) => {
+      return res.status(400).json(error);
+    });
 };
 
 const remove = (req, res) => {
