@@ -1,3 +1,6 @@
+const info = require("../controllers/candidates");
+const validations = require("./validations");
+
 const requiredPersonalInfo = (req, res, next) => {
   const data = req.body;
   if (
@@ -67,9 +70,33 @@ const requiredOtherInformation = (req, res, next) => {
   next();
 };
 
+const validate = (req, res) => {
+  const data = req.body;
+  let result = [false];
+  const fields = [
+    ...info.allInfo,
+    ...info.educationInfo,
+    ...info.workExperienceInfo,
+  ];
+  console.log(fields);
+  for (let i = 0; i < fields.length; i++) {
+    console.log(fields[i]);
+    if (data[fields[i]]) {
+      console.log(data[fields[i]]);
+      result = validations[fields[i]](data[fields[i]]);
+      if (result[0]) break;
+    }
+  }
+  if (result[0]) {
+    return res.status(400).json({ Msj: result[1] });
+  }
+  return res.status(200).json({ Msj: "Validation passed" });
+};
+
 module.exports = {
   requiredPersonalInfo,
   requiredEducation,
   requiredWorkExperience,
   requiredOtherInformation,
+  validate,
 };
