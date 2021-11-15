@@ -4,7 +4,11 @@ const router = require("express").Router();
 
 router.get("/", positions.getAll);
 router.get("/:id", positions.getById);
-router.post("/", validations.required, validations.validate, positions.create);
+router.post(
+  "/",
+  validations.required,
+  validations.validate,
+  positions.create);
 router.put(
   "/:id",
   validations.required,
