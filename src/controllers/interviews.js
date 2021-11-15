@@ -1,66 +1,96 @@
-const fs = require("fs");
-const data = JSON.parse(fs.readFileSync("./data/interviews.json"));
+const Interviews = require("../models/interviews");
+const ObjectId = require("mongoose").Types.ObjectId;
 
 const create = (req, res) => {
-  let id = null;
-  do {
-    id = `${Math.round(Math.random() * 10000)}`;
-  } while (data.find((interview) => interview.id === id));
-  const interview = {
-    id: id,
-    idCandidate: req.query.idCandidate,
-    idClient: req.query.idClient,
-    idPosition: req.query.idPosition,
-    date: req.query.date,
-    time: req.query.time,
-    status: req.query.status,
+  if (
+    !req.body.idCandidate ||
+    !req.body.idClient ||
+    !req.body.idPosition ||
+    !req.body.dateTime ||
+    !req.body.status
+  ) {
+    return res.status(400).json({ msg: "Some Parameters are missing"});
+  }
+  const newInterview = {
+    idCandidate: new ObjectId(req.body.idPosition),
+    idClient: new ObjectId(req.body.idClient),
+    idPosition: new ObjectId(req.body.idPosition),
+    dateTime: new ObjectId(req.body.dateTime),
+    status: req.body.status,
   };
-  data.push(interview);
-  return res
-    .status(201)
-    .send(`Interview succesfully created! ${JSON.stringify(interview)}`);
+
+  if (req.body.dateTime) newInterview.dateTime = new Date(req.body.dateTime);
+
+  Interviews.create(newInterview);
+  res.status(201).json(newInterview);
 };
 
 const update = (req, res) => {
-  const index = data.findIndex((interview) => req.params.id === interview.id);
-  if (index === -1) {
-    return res
-      .status(400)
-      .json({ Msg: "Could not find interview with specified ID" });
+  if (
+    !req.body.idCandidate ||
+    !req.body.idClient ||
+    !req.body.idPosition ||
+    !req.body.dateTime ||
+    !req.body.status
+  ) {
+    return res.status(400).json({ msg: "Some Parameters are missing cannot update"});
   }
-  for (let property in req.query) {
-    data[index][property] = req.query[property];
-  }
-  return res
-    .status(201)
-    .send(`Interview succesfully updated! ${JSON.stringify(data[index])}`);
+
+  const updateInterview = {
+    idCandidate: new ObjectId(req.body.idPosition),
+    idClient: new ObjectId(req.body.idClient),
+    idPosition: new ObjectId(req.body.idPosition),
+    dateTime: new ObjectId(req.body.dateTime),
+    status: req.body.status,
+  };
+
+  if (req.body.dateTime)
+    updateInterview.dateTime = new Date (req.body.dateTime);
+
+  Interviews.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    updateInterview,
+    { new: true },
+    (err, updateInterview) => {
+      if (!updateInterview)
+        return res.status(404).json({
+          msg: "Interview with the Id: ${req.param.id} was not found",
+        });
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(updateInterview);
+    }
+  );
 };
 
 const remove = (req, res) => {
-  const index = data.findIndex((interview) => req.params.id === interview.id);
-  if (index === -1) {
-    return res
-      .status(400)
-      .json({ Msg: "Could not find interview with specified ID" });
+ Interviews.findByIdAndRemove(
+  new ObjectId(req.params.id),
+  (err, removeInterview) => {
+    if (err) return res.status(400).json(err);
+    return res.status(200).json(removeInterview);
   }
-  const cancelledInterview = data.splice(index, 1);
-  return res
-    .status(200)
-    .send(`Interview cancelled! ${JSON.stringify(cancelledInterview)}`);
+ );
 };
 
 const getAll = (req, res) => {
-  return res.status(200).json(data);
+  Interviews.find()
+    .then((interviews) => {
+      return res.status(200).json(interviews);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
 };
 
 const getById = (req, res) => {
-  const index = data.findIndex((interview) => req.params.id === interview.id);
-  if (index === -1) {
-    return res
-      .status(400)
-      .json({ Msg: "Could not find interview with specified ID" });
-  }
-  return res.status(200).json(data[index]);
+  Interviews.findById({ _id: new ObjectId(req.params.id) })
+    .then((interview) => {
+      return res.status(200).json(interview);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
+
 };
 
 module.exports = {
