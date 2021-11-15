@@ -102,7 +102,8 @@ const formatBodyRequired = (req, res, next) => {
       // eslint-disable-next-line eqeqeq
       if (parseInt(element) != element) return (containChars = true);
       if (element < 1 || element > 7) return (isBiggerOrSmaller = true);
-      if (dayRange.indexOf(element) !== index) return (containRepetedElements = true);
+      if (dayRange.indexOf(element) !== index)
+        return (containRepetedElements = true);
     });
     if (containChars)
       return res.status(400).json({ Msg: "DayRange accepts only numbers" });
@@ -121,19 +122,33 @@ const formatBodyRequired = (req, res, next) => {
 const dataBodyUnique = (req, res, next) => {
   Psychologists.find({ email: req.body.email })
     .then((psychologist) => {
-      if (psychologist.length > 0 ) throw new Error (res.status(400).json({ Msg: "Email is already in use" }));
+      if (psychologist.length > 0)
+        throw new Error(
+          res.status(400).json({ Msg: "Email is already in use" })
+        );
       return Psychologists.find({ username: req.body.username });
     })
-    .then((psychologist) =>{
-      if(psychologist.length > 0) throw new Error (res.status(400).json({ Msg: "Username is already in use" }));
+    .then((psychologist) => {
+      if (psychologist.length > 0)
+        throw new Error(
+          res.status(400).json({ Msg: "Username is already in use" })
+        );
       return Psychologists.find({ phoneNumber: req.body.phoneNumber });
     })
     .then((psychologist) => {
-      if(psychologist.length > 0) throw new Error (res.status(400).json({ Msg: "PhoneNumber is already in use" }));
-      return Psychologists.find({ enrollmentNumber: req.body.enrollmentNumber });
+      if (psychologist.length > 0)
+        throw new Error(
+          res.status(400).json({ Msg: "PhoneNumber is already in use" })
+        );
+      return Psychologists.find({
+        enrollmentNumber: req.body.enrollmentNumber,
+      });
     })
     .then((psychologist) => {
-      if(psychologist.length > 0) throw new Error (res.status(400).json({ Msg: "EnrollmentNumber is already in use" }));
+      if (psychologist.length > 0)
+        throw new Error(
+          res.status(400).json({ Msg: "EnrollmentNumber is already in use" })
+        );
       next();
     })
     .catch((error) => {
