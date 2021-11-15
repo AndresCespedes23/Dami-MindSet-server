@@ -52,7 +52,7 @@ const validate = (req, res, next) => {
       return res.status(400).json("Name must not have numbers");
   }
   if (description) {
-    if (description.length > 50)
+    if (description.length > 5000)
       return res
         .status(400)
         .json("Description must have equal or less than 5000 characters");
