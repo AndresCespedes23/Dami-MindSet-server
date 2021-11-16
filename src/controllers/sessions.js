@@ -46,6 +46,7 @@ const update = (req, res) => {
     status: req.body.status,
     result: req.body.result,
   };
+
   Sessions.findByIdAndUpdate(
     new ObjectId(req.params.id),
     updatedSession,
