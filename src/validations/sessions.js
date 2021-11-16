@@ -33,9 +33,12 @@ const validate = (req, res, next) => {
       return res.status(400).json("idCandidate must have at least 1 number");
   }
   if (dateTime) {
-    const formatTime = /^([1-2][0-9][0-9][0-9])-([0]{0,1}[1-9]|1[012])-([1-9]|([012][0-9])|(3[01]))T[0-2][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9]Z/;
-    if (!(formatTime.test(dateTime))) {
-       return res.status(400).json("Dateand Time format yyyy-MM-ddThh:mm:ss.000Z");
+    const formatTime =
+      /^([1-2][0-9][0-9][0-9])-([0]{0,1}[1-9]|1[012])-([1-9]|([012][0-9])|(3[01]))T[0-2][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9]Z/;
+    if (!formatTime.test(dateTime)) {
+      return res
+        .status(400)
+        .json("Dateand Time format yyyy-MM-ddThh:mm:ss.000Z");
     }
   }
   if (status) {
