@@ -1,4 +1,7 @@
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0px;
   background-color: #3a4c66;
   font-family: "Poppins", sans-serif;
@@ -41,6 +44,7 @@ td {
   border: 1px solid #091f40;
 }
 footer {
+  margin-top: auto;
   padding: 20px 0px;
   background-color: #091f40;
   color: #ffffff;
