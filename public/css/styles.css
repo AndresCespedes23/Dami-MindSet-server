@@ -10,6 +10,23 @@ nav img {
   display: block;
   margin: auto;
 }
+#recourse-table {
+  width: 60%;
+  margin: 50px auto;
+  padding: 20px;
+  border-top: 10px solid #091f40;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #091f40;
+}
+table {
+  border-collapse: collapse;
+  text-align: center;
+}
+th, td {
+  padding: 5px;
+  border: 1px solid #091f40;
+}
 footer {
   background-color: #091f40;
   color: #ffffff;
