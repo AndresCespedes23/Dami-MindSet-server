@@ -26,6 +26,8 @@ h1 {
   padding: 5px 0px;
 }
 #recourse-table {
+  display: flex;
+  flex-direction: column;
   width: 70%;
   margin: 50px auto;
   padding: 20px;
@@ -44,7 +46,8 @@ td {
   border: 1px solid #091f40;
 }
 #create-button {
-  float: right;
+  align-self: flex-end;
+  width: 100px;
   margin-top: 10px;
   padding: 5px;
   border-radius: 10px;
