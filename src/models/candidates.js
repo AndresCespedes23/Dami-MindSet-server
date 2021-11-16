@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const EducationSchema = new Schema({
   level: {
     type: String,
-    enum: ["Primary", "Secondary", "Tertiary", "University", "Course"],
+    enum: ["primary", "secondary", "tertiary", "university", "course"],
     required: true,
   },
   institution: {
@@ -69,10 +69,12 @@ const CandidatesSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   username: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -80,7 +82,7 @@ const CandidatesSchema = new Schema({
   },
   gender: {
     type: String,
-    enum: ["Male", "Female", "Other"],
+    enum: ["male", "female", "other"],
     required: true,
   },
   address: {
@@ -90,6 +92,7 @@ const CandidatesSchema = new Schema({
   phoneNumber: {
     type: Number,
     required: true,
+    unique: true,
   },
   dateOfBirth: {
     type: Date,
@@ -117,7 +120,7 @@ const CandidatesSchema = new Schema({
     required: true,
   },
   timeRange: {
-    type: String, //Ver type
+    type: [Number],
     required: false,
   },
   profiles: {
@@ -143,6 +146,7 @@ const CandidatesSchema = new Schema({
   dni: {
     type: Number,
     required: false,
+    unique: true,
   },
   nationality: {
     type: String,
@@ -150,7 +154,7 @@ const CandidatesSchema = new Schema({
   },
   maritalStatus: {
     type: String,
-    enum: ["Single", "Married", "Divorced", "Widowed"],
+    enum: ["single", "married", "divorced", "widowed"],
     required: false,
   },
   driversLicense: {
