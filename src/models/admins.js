@@ -5,26 +5,23 @@ const AdminsSchema = new Schema({
     type: String,
     maxLength: 50,
     required: true,
-
   },
   email: {
     type: String,
     maxLength: 20,
     required: true,
-    unique: true
-
+    unique: true,
   },
   username: {
     type: String,
     maxLength: 50,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
     maxLength: 20,
     required: true,
-
   },
   isSuperAdmin: {
     type: Boolean,
