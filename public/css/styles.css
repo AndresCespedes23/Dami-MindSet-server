@@ -68,7 +68,6 @@ td {
   z-index: 1;
 }
 #create-modal {
-  display: none;
   width: 40%;
   margin: 100px auto;
   padding: 30px;
