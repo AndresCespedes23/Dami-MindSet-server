@@ -93,8 +93,13 @@ const create = (req, res) => {
     newCandidate[personalInfo[field]] = data[personalInfo[field]];
   }
   newCandidate.status = "PENDING INTERVIEW";
-  Candidates.create(newCandidate);
-  res.status(201).json(newCandidate);
+  Candidates.create(newCandidate)
+    .then((candidates) => {
+      return res.status(201).json(candidates);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
 };
 
 const addEducation = (req, res) => {
