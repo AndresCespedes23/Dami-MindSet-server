@@ -1,84 +1,81 @@
-const fs = require("fs");
-const sessions = JSON.parse(fs.readFileSync("./data/sessions.json"));
-
-const create = (req, res) => {
-  const newSession = {
-    id: req.query.id,
-    idPsychologist: req.query.idPsychologist,
-    idCandidate: req.query.idCandidate,
-    dateTime: req.query.dateTime,
-    status: req.query.status,
-    result: req.query.result,
-  };
-  sessions.push(newSession);
-  if (
-    !req.query.id ||
-    !req.query.idPsychologist ||
-    !req.query.idCandidate ||
-    req.query.dateTime ||
-    !req.query.status ||
-    !req.query.result
-  ) {
-    return res.status(400).send("Some parameters are missing");
-  }
-  return res.status(201).json(sessions);
-};
-
-const update = (req, res) => {
-  const session = sessions.find((session) => session.id === req.params.id);
-  const selectedSession = sessions.findIndex(
-    (session) => session.id === req.params.id
-  );
-  if (session) {
-    const updateSession = req.query;
-    session.idPsychologist =
-      updateSession.idPsychologist || session.idPsychologist;
-    session.idCandidate = updateSession.idCandidate || session.idCandidate;
-    session.dateTime = updateSession.dateTime || session.dateTime;
-    session.status = updateSession.status || session.status;
-    session.result = updateSession.result || session.result;
-    sessions[selectedSession] = session;
-    return res.status(200).json({ msg: "Session updated", session });
-  }
-  return res
-    .status(404)
-    .json({ msg: `No session with the id: ${req.params.id}` });
-};
-
-const remove = (req, res) => {
-  const session = sessions.findIndex((session) => session.id === req.params.id);
-  if (session > -1) {
-    const removedSession = sessions.splice(session, 1);
-    res.status(200).json(removedSession);
-  }
-  res.status(400).json({ msg: `No session with the id: ${req.params.id}` });
-};
+const Sessions = require("../models/sessions");
+const ObjectId = require("mongoose").Types.ObjectId;
 
 const getAll = (req, res) => {
-  return res.status(200).json(sessions);
+  Sessions.find()
+    .then((sessions) => {
+      return res.status(200).json(sessions);
+    })
+    .catch((err) => {
+      return res.status(404).json(err);
+    });
 };
 
 const getById = (req, res) => {
-  const session = sessions.find((session) => session.id === req.params.id);
-  if (session) return res.status(200).json(session);
-  return res.status(404).json({ msg: `No session with id: ${req.params.id}` });
+  Sessions.findById({ _id: new ObjectId(req.params.id) })
+    .then((session) => {
+      return res.status(200).json(session);
+    })
+    .catch((err) => {
+      return res.status(404).json(err);
+    });
 };
 
-const getByIdPsychologist = (req, res) => {
-  const session = sessions.filter(
-    (session) => session.idPsychologist === req.params.idPsychologist
+const create = (req, res) => {
+  const newSession = {
+    idPsychologist: new ObjectId(req.body.idPsychologist),
+    idCandidate: new ObjectId(req.body.idCandidate),
+    dateTime: new Date(req.body.dateTime),
+    status: req.body.status,
+    result: req.body.result,
+  };
+  Sessions.create(newSession)
+    .then((newSession) => {
+      return res.status(201).json(newSession);
+    })
+    .catch((error) => {
+      return res.status(400).json(error);
+    });
+};
+
+const update = (req, res) => {
+  const updatedSession = {
+    idPsychologist: new ObjectId(req.body.idPsychologist),
+    idCandidate: new ObjectId(req.body.idCandidate),
+    dateTime: new Date(req.body.dateTime),
+    status: req.body.status,
+    result: req.body.result,
+  };
+
+  Sessions.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    updatedSession,
+    { new: true },
+    (err, updatedSession) => {
+      if (!updatedSession)
+        return res.status(404).json({
+          msg: `Session with id: ${req.params.id} was not found.`,
+        });
+      if (err) return res.status(404).json(err);
+      return res.status(200).json(updatedSession);
+    }
   );
-  if (session) return res.status(200).json(session);
-  return res
-    .status(404)
-    .json({ msg: `No psychologist with id: ${req.params.idPsychologist}` });
+};
+
+const remove = (req, res) => {
+  Sessions.findByIdAndRemove(
+    new ObjectId(req.params.id),
+    (err, removedSession) => {
+      if (err) return res.status(404).json(err);
+      return res.status(200).json(removedSession._id);
+    }
+  );
 };
 
 module.exports = {
+  getAll,
+  getById,
   create,
   update,
   remove,
-  getAll,
-  getById,
-  getByIdPsychologist,
 };
