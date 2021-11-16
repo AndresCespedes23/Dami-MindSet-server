@@ -1,11 +1,17 @@
 body {
   background-color: #3a4c66;
+  font-family: 'Poppins', sans-serif;
 }
 nav {
   background-color: #091f40;
   color: #ffffff;
 }
+nav img {
+  display: block;
+  margin: auto;
+}
 footer {
   background-color: #091f40;
   color: #ffffff;
+  text-align: center;
 }
