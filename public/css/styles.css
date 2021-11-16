@@ -1,6 +1,13 @@
 body {
+  margin: 0px;
   background-color: #3a4c66;
   font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+section {
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 nav {
   background-color: #091f40;
@@ -9,9 +16,14 @@ nav {
 nav img {
   display: block;
   margin: auto;
+  padding: 10px 0px;
+}
+h1 {
+  margin: 0px;
+  padding: 5px 0px;
 }
 #recourse-table {
-  width: 60%;
+  width: 70%;
   margin: 50px auto;
   padding: 20px;
   border-top: 10px solid #091f40;
@@ -29,6 +41,7 @@ td {
   border: 1px solid #091f40;
 }
 footer {
+  padding: 20px 0px;
   background-color: #091f40;
   color: #ffffff;
   text-align: center;
