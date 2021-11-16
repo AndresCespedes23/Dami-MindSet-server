@@ -54,6 +54,37 @@ td {
   text-transform: uppercase;
   color: #ffffff;
 }
+#background-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #9aa2b0;
+  z-index: 1;
+}
+#create-modal {
+  width: 40%;
+  margin: 100px auto;
+  padding: 30px;
+  border: 3px solid #091f40;
+  border-radius: 30px;
+  background-color: #ffffff;
+  text-align: center;
+}
+.modal-button {
+  width: 60px;
+  margin: 10px;
+  padding: 10px 0px;
+  border: 2px solid #091f40;
+  border-radius: 10px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+#yes-button {
+  background-color: #091f40;
+  color: #ffffff;
+}
 footer {
   margin-top: auto;
   padding: 20px 0px;
