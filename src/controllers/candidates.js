@@ -12,7 +12,6 @@ const personalInfo = [
   "city",
   "state",
   "country",
-  "timeRange",
   "status",
   "username",
   "password",
@@ -44,9 +43,10 @@ const otherInfo = [
   "maritalStatus",
   "driversLicense",
   "timeRange",
+  "profiles",
 ];
 
-const allInfo = [...personalInfo, ...otherInfo, "status", "profiles"];
+const allInfo = [...personalInfo, ...otherInfo];
 
 const getAll = (req, res) => {
   Candidates.find()
@@ -184,50 +184,10 @@ const update = (req, res) => {
   );
 };
 
-const updateEducation = (req, res) => {
-  const data = req.body;
-  const updatedInformation = {};
-  for (let field = 0; field < educationInfo.length; field++) {
-    updatedInformation[educationInfo[field]] = data[educationInfo[field]];
-  }
-  Candidates.findOne({ "education._id": new ObjectId(req.params.id) })
-    .then((candidate) => {
-      const education = candidate.education.id(new ObjectId(req.params.id));
-      console.log(education);
-      for (let field in education) {
-        education[field] = data[field] || education[field];
-      }
-      console.log(education);
-      console.log(candidate.education.id(new ObjectId(req.params.id)));
-      //candidate.education.id(new ObjectId(req.params.id)).remove();
-      //candidate.education.push(education);
-      candidate.save();
-      res.json(education);
-    })
-    .catch((err) => {
-      return res.status(400).json(err);
-    });
-  /*
-  Candidates.findOneAndUpdate(
-    { "education._id": new ObjectId(req.params.id) },
-    updatedInformation,
-    (err, updatedInformation) => {
-      if (!updatedInformation) {
-        return res.status(404).json({
-          msg: `Information with id: ${req.params.id} was not found.`,
-        });
-      }
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(updatedInformation);
-    }
-  );
-  */
-};
-
-// TODO: create an endpoint in order to update education & workExperience
+// TO DO: create endpoints in order to update and remove education & workExperience
 
 const remove = (req, res) => {
-  Candidates.information.findByIdAndDelete(
+  Candidates.findByIdAndDelete(
     new ObjectId(req.params.id),
     (err, removedCandidate) => {
       if (!removedCandidate) {
@@ -250,7 +210,6 @@ module.exports = {
   addWorkExperience,
   addOtherInformation,
   update,
-  updateEducation,
   remove,
   personalInfo,
   educationInfo,
