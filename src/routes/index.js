@@ -2,11 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const applicationsRoutes = require("./applications");
-const sessionsRoutes = require("./sessions");
 const positionsRoutes = require("./positions");
 const profilesRoutes = require("./profiles");
 const psychologistsRoutes = require("./psychologists");
+const clientsRoutes = require("./clients");
+const sessionsRoutes = require("./sessions");
 
+router.use("/clients", clientsRoutes);
 router.use("/positions", positionsRoutes);
 router.use("/applications", applicationsRoutes);
 router.use("/profiles", profilesRoutes);
