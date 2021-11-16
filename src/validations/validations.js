@@ -1,4 +1,4 @@
-function name(value) {
+const name = (value) => {
   let error = false;
   let errorMsg;
   let stringValidationResult = validateString(
@@ -8,14 +8,14 @@ function name(value) {
     "onlyLetters",
     true
   );
-  if (stringValidationResult[0]) {
+  if (stringValidationResult.error) {
     error = true;
-    errorMsg = stringValidationResult[1];
+    errorMsg = stringValidationResult.errorMsg;
   }
-  return [error, errorMsg];
-}
+  return { error, errorMsg };
+};
 
-function email(value) {
+const email = (value) => {
   let validFormat =
     // eslint-disable-next-line no-useless-escape
     /^([\w.\-+/!%]{1,64}|"[\w. ]{1,62}")@[0-9a-zA-Z\-]+(\.[a-zA-Z]+)*$/;
@@ -29,12 +29,26 @@ function email(value) {
     errorMsg = "The email must include @!";
   } else if (!validFormat.test(value)) {
     error = true;
-    errorMsg = "Enter a valid email!";
+    errorMsg = "The email should have a valid format!";
   }
-  return [error, errorMsg];
-}
+  return { error, errorMsg };
+};
 
-function password(value) {
+const username = (value) => {
+  let validFormat = /^([A-Za-z0-9])+$/;
+  let error = false;
+  let errorMsg;
+  if (value.length < 5) {
+    error = true;
+    errorMsg = "Username must be at least 5 characters long!";
+  } else if (!validFormat.test(value)) {
+    error = true;
+    errorMsg = "Username should have a valid format!";
+  }
+  return { error, errorMsg };
+};
+
+const password = (value) => {
   let validFormat = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{8,}$/;
   let includeNumber = /([0-9])+/;
   let includeLetter = /([A-Za-z])+/;
@@ -53,16 +67,16 @@ function password(value) {
     error = true;
     errorMsg = "The password can only contain numbers and letters!";
   }
-  return [error, errorMsg];
-}
+  return { error, errorMsg };
+};
 
-function age(value) {
+const age = (value) => {
   let error = false;
   let errorMsg;
   let positiveNumberResult = validatePositiveNumber(value, "Age", 1, 3);
-  if (positiveNumberResult[0]) {
+  if (positiveNumberResult.error) {
     error = true;
-    errorMsg = positiveNumberResult[1];
+    errorMsg = positiveNumberResult.errorMsg;
   } else if (value < 18) {
     error = true;
     errorMsg = "You must be over 18 to subscribe!";
@@ -70,32 +84,32 @@ function age(value) {
     error = true;
     errorMsg = "Enter a valid age!";
   }
-  return [error, errorMsg];
-}
+  return { error, errorMsg };
+};
 
-function phoneNumber(value) {
+const phoneNumber = (value) => {
   let error = false;
   let errorMsg;
   let positiveNumberResult = validatePositiveNumber(value, "Phone number", 7);
-  if (positiveNumberResult[0]) {
+  if (positiveNumberResult.error) {
     error = true;
-    errorMsg = positiveNumberResult[1];
+    errorMsg = positiveNumberResult.errorMsg;
   }
-  return [error, errorMsg];
-}
+  return { error, errorMsg };
+};
 
-function dni(value) {
+const dni = (value) => {
   let error = false;
   let errorMsg;
   let positiveNumberResult = validatePositiveNumber(value, "ID", 7, 8);
-  if (positiveNumberResult[0]) {
+  if (positiveNumberResult.error) {
     error = true;
-    errorMsg = positiveNumberResult[1];
+    errorMsg = positiveNumberResult.errorMsg;
   }
-  return [error, errorMsg];
-}
+  return { error, errorMsg };
+};
 
-function address(value) {
+const address = (value) => {
   let error = false;
   let errorMsg;
   let stringValidationResult = validateString(
@@ -105,41 +119,157 @@ function address(value) {
     "bothStrict",
     true
   );
-  if (stringValidationResult[0]) {
+  if (stringValidationResult.error) {
     error = true;
-    errorMsg = stringValidationResult[1];
+    errorMsg = stringValidationResult.errorMsg;
   }
-  return [error, errorMsg];
-}
+  return { error, errorMsg };
+};
 
-function city(value) {
+const city = (value) => validateWord(value, "City");
+const state = (value) => validateWord(value, "State");
+const country = (value) => validateWord(value, "Country");
+const nationality = (value) => validateWord(value, "Nationality");
+const institution = (value) => validateWord(value, "Institution");
+const title = (value) => validateWord(value, "Title");
+const company = (value) => validateWord(value, "Company");
+const role = (value) => validateWord(value, "Role");
+
+const validateWord = (value, field) => {
   let error = false;
   let errorMsg;
-  let stringValidationResult = validateString(value, "City", 3, "onlyLetters");
-  if (stringValidationResult[0]) {
+  let stringValidationResult = validateString(value, field, 3, "onlyLetters");
+  if (stringValidationResult.error) {
     error = true;
-    errorMsg = stringValidationResult[1];
+    errorMsg = stringValidationResult.errorMsg;
   }
-  return [error, errorMsg];
-}
+  return { error, errorMsg };
+};
 
-function zipCode(value) {
+const driversLicense = (value) => validateBoolean(value, "Drivers License");
+const inProgress = (value) => validateBoolean(value, "inProgress");
+const currently = (value) => validateBoolean(value, "Currently");
+
+const validateBoolean = (value, field) => {
+  let error = false;
+  let errorMsg;
+  if (typeof value !== "boolean") {
+    error = true;
+    errorMsg = `${field} must be a boolean!`;
+  }
+  return { error, errorMsg };
+};
+
+const gender = (value) =>
+  validateOption(value, ["male", "female", "other"], "Gender");
+const status = (value) =>
+  validateOption(
+    value,
+    ["active", "inactive", "pending interview", "disabled"],
+    "Status"
+  );
+const maritalStatus = (value) =>
+  validateOption(
+    value,
+    ["single", "married", "divorced", "widowed"],
+    "Marital status"
+  );
+const level = (value) =>
+  validateOption(
+    value,
+    ["primary", "secondary", "tertiary", "university", "course"],
+    "Level"
+  );
+
+const validateOption = (value, options, field) => {
+  let error = false;
+  let errorMsg;
+  if (!options.includes(value)) {
+    error = true;
+    errorMsg = `${field} must be one of the following: ${options}`;
+  }
+  return { error, errorMsg };
+};
+
+const zipCode = (value) => validateShortText(value, "Zip code");
+const description = (value) => validateLongText(value, "Description");
+const accomplishments = (value) => validateLongText(value, "Accomplishments");
+
+const validateShortText = (value, field) => validateText(value, field, 3);
+const validateLongText = (value, field) => validateText(value, field, 10);
+
+const validateText = (value, field, minLength) => {
   let error = false;
   let errorMsg;
   let stringValidationResult = validateString(
     value,
-    "Postal code",
-    3,
+    field,
+    minLength,
     "bothOptional"
   );
-  if (stringValidationResult[0]) {
+  if (stringValidationResult.error) {
     error = true;
-    errorMsg = stringValidationResult[1];
+    errorMsg = stringValidationResult.errorMsg;
   }
-  return [error, errorMsg];
-}
+  return { error, errorMsg };
+};
 
-function validateString(string, fieldName, minLength, format, space = false) {
+const dateOfBirth = (value) => validDate(value, "Date of birth", "long");
+const startDate = (value) => validDate(value, "Start date", "medium");
+const finishDate = (value) => validDate(value, "Finish date", "medium");
+
+const validDate = (value, field, format) => {
+  let validLongFormat = /^\d{4}\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])$/;
+  let validMediumFormat = /^\d{4}\/(0[1-9]|1[0-2])$/;
+  let validShortFormat = /^\d{4}$/;
+  let error = false;
+  let errorMsg;
+  switch (format) {
+    case "long":
+      if (!validLongFormat.test(value)) {
+        error = true;
+        errorMsg = `${field} should have a valid format (YYYY/MM/DD)!`;
+      }
+      break;
+    case "medium":
+      if (!validMediumFormat.test(value)) {
+        error = true;
+        errorMsg = `${field} should have a valid format (YYYY/MM)!`;
+      }
+      break;
+    case "short":
+      if (!validShortFormat.test(value)) {
+        error = true;
+        errorMsg = `${field} should have a valid format! (YYYY)`;
+      }
+      break;
+  }
+  return { error, errorMsg };
+};
+
+const timeRange = (value) => {
+  let error = false;
+  let errorMsg;
+  if (value.length !== 2) {
+    error = true;
+    errorMsg = "Time Range must have only two values!";
+  } else if (typeof value[0] !== "number" || typeof value[1] !== "number") {
+    error = true;
+    errorMsg = "Time Range values must be numbers!";
+  } else if (value[0] > value[1]) {
+    error = true;
+    errorMsg = "Time Range must be a valid range!";
+  }
+  return { error, errorMsg };
+};
+
+const validateString = (
+  string,
+  fieldName,
+  minLength,
+  format,
+  space = false
+) => {
   let validFormatOnlyLetters = /^([A-Za-z]+( [A-Za-z]+)*)$/;
   let validFormatBothOptional = /^([A-Za-z0-9]+( [A-Za-z0-9]+)?)$/;
   let validFormatBothStrict = /^(?=.*\d)(?=.*[a-zA-Z])(([a-zA-Z0-9]+\s?)+)$/;
@@ -180,15 +310,15 @@ function validateString(string, fieldName, minLength, format, space = false) {
         break;
     }
   }
-  return [error, errorMsg];
-}
+  return { error, errorMsg };
+};
 
-function validatePositiveNumber(
+const validatePositiveNumber = (
   number,
   fieldName,
   minLength = 0,
   maxLength = Infinity
-) {
+) => {
   let validFormat = /^([0-9]+)$/;
   let error = false;
   let errorMsg;
@@ -205,17 +335,39 @@ function validatePositiveNumber(
     error = true;
     errorMsg = `${fieldName} must be at most ${maxLength} digits long!`;
   }
-  return [error, errorMsg];
-}
+  return { error, errorMsg };
+};
 
 module.exports = {
   name,
   email,
+  username,
   password,
   age,
   phoneNumber,
   dni,
   address,
-  city,
   zipCode,
+  city,
+  state,
+  country,
+  nationality,
+  institution,
+  title,
+  company,
+  role,
+  driversLicense,
+  inProgress,
+  currently,
+  gender,
+  status,
+  maritalStatus,
+  level,
+  description,
+  accomplishments,
+  timeRange,
+  validDate,
+  dateOfBirth,
+  startDate,
+  finishDate,
 };

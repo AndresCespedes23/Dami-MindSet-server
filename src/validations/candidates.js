@@ -70,27 +70,24 @@ const requiredOtherInformation = (req, res, next) => {
   next();
 };
 
-const validate = (req, res) => {
+const validate = (req, res, next) => {
   const data = req.body;
-  let result = [false];
+  let result;
   const fields = [
     ...info.allInfo,
     ...info.educationInfo,
     ...info.workExperienceInfo,
   ];
-  console.log(fields);
   for (let i = 0; i < fields.length; i++) {
-    console.log(fields[i]);
     if (data[fields[i]]) {
-      console.log(data[fields[i]]);
       result = validations[fields[i]](data[fields[i]]);
-      if (result[0]) break;
+      if (result.error) break;
     }
   }
-  if (result[0]) {
-    return res.status(400).json({ Msj: result[1] });
+  if (result.error) {
+    return res.status(400).json({ Msj: result.errorMsg });
   }
-  return res.status(200).json({ Msj: "Validation passed" });
+  next();
 };
 
 module.exports = {
