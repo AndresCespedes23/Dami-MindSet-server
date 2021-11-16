@@ -3,7 +3,7 @@ const validations = require("../validations/candidates");
 const router = require("express").Router();
 
 router.get("/", candidates.getAll);
-router.get("/byId/:id", candidates.getById);
+router.get("/:id", candidates.getById);
 router.get("/byName/:name", candidates.getByName);
 router.post(
   "/",
