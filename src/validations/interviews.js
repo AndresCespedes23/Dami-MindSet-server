@@ -1,3 +1,16 @@
+const require = (req, res, next) => {
+  if (
+    !req.params.id ||
+    !req.body.idCandidate ||
+    !req.body.idClient ||
+    !req.body.idPosition ||
+    !req.body.status
+  ) {
+    return res.status(400).json({ msg: "Some Parameters are missing" });
+  }
+  next();
+};
+
 const validate = (req, res, next) => {
   const idCandidate = req.body.idCandidate;
   const idClient = req.body.idClient;
@@ -28,5 +41,6 @@ const validate = (req, res, next) => {
 };
 
 module.exports = {
+  require,
   validate,
 };
