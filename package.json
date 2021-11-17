@@ -10,6 +10,9 @@
     "prettier": "prettier --write .",
     "prepare": "husky install"
   },
+  "engines": {
+    "node": "16.8.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/damianalvarez/BaSD-MindSet.git"
