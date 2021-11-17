@@ -6,7 +6,6 @@ const cors = require("cors");
 const port = process.env.PORT || 4000;
 const router = require("./routes");
 
-
 // // Routes
 // const psychologistController = require("./controllers/psychologists");
 // const clientsController = require("./controllers/clients");
