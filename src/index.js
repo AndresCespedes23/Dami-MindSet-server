@@ -6,6 +6,7 @@ const cors = require("cors");
 const port = process.env.PORT || 4000;
 const router = require("./routes");
 
+
 // // Routes
 // const psychologistController = require("./controllers/psychologists");
 // const clientsController = require("./controllers/clients");
@@ -20,6 +21,7 @@ app.set("json spaces", 2);
 app.use(cors());
 app.use(express.json());
 app.use(router);
+app.use(express.static("public"));
 
 mongoose
   .connect(
