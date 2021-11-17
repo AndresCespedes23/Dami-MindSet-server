@@ -72,15 +72,22 @@ td {
 }
 #create-modal {
   width: 40%;
-  margin: 100px auto;
+  margin: 80px auto;
   padding: 30px;
   border: 3px solid #091f40;
   border-radius: 30px;
   background-color: #ffffff;
   text-align: center;
 }
+form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  font-size: 15px;
+}
 .modal-button {
-  width: 60px;
+  width: 80px;
   margin: 10px;
   padding: 10px 0px;
   border: 2px solid #091f40;
@@ -88,7 +95,7 @@ td {
   font-size: 15px;
   text-transform: uppercase;
 }
-#yes-button {
+#confirm-button {
   background-color: #091f40;
   color: #ffffff;
 }
