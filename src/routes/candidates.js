@@ -36,6 +36,18 @@ router.put(
   validations.validate,
   candidates.update
 );
+router.put(
+  "/:id/education/:educationId",
+  validations.requiredEducation,
+  validations.validate,
+  candidates.updateEducation
+);
+router.put(
+  "/:id/workExperience/:workExperienceId",
+  validations.requiredWorkExperience,
+  validations.validate,
+  candidates.updateWorkExperience
+);
 router.delete("/:id", candidates.remove);
 
 module.exports = router;

@@ -189,7 +189,55 @@ const update = (req, res) => {
   );
 };
 
-// TO DO: create endpoints in order to update and remove education & workExperience
+const updateEducation = (req, res) => {
+  const data = req.body;
+  const newEducation = {};
+  for (let field = 0; field < educationInfo.length; field++) {
+    newEducation[educationInfo[field]] = data[educationInfo[field]];
+  }
+  Candidates.findById(new ObjectId(req.params.id))
+    .then((candidate) => {
+      const educationIndex = candidate.education.findIndex(
+        (education) => education._id.toString() === req.params.educationId
+      );
+      candidate.education[educationIndex] = newEducation;
+      candidate.save();
+      res.status(201).json(newEducation);
+    })
+    .catch((err, candidate) => {
+      if (!candidate)
+        return res
+          .status(404)
+          .json({ Msg: `User with id: ${req.params.id} was not found.` });
+      return res.status(400).json(err);
+    });
+};
+
+const updateWorkExperience = (req, res) => {
+  const data = req.body;
+  const newWorkExperience = {};
+  for (let field = 0; field < workExperienceInfo.length; field++) {
+    newWorkExperience[workExperienceInfo[field]] =
+      data[workExperienceInfo[field]];
+  }
+  Candidates.findById(new ObjectId(req.params.id))
+    .then((candidate) => {
+      const workExperienceIndex = candidate.workExperience.findIndex(
+        (workExperience) =>
+          workExperience._id.toString() === req.params.workExperienceId
+      );
+      candidate.workExperience[workExperienceIndex] = newWorkExperience;
+      candidate.save();
+      res.status(201).json(newWorkExperience);
+    })
+    .catch((err, candidate) => {
+      if (!candidate)
+        return res
+          .status(404)
+          .json({ Msg: `User with id: ${req.params.id} was not found.` });
+      return res.status(400).json(err);
+    });
+};
 
 const remove = (req, res) => {
   Candidates.findByIdAndDelete(
@@ -215,6 +263,8 @@ module.exports = {
   addWorkExperience,
   addOtherInformation,
   update,
+  updateEducation,
+  updateWorkExperience,
   remove,
   personalInfo,
   educationInfo,
