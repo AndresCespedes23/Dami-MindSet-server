@@ -61,8 +61,9 @@ td {
   color: #ffffff;
 }
 #background-modal {
-  display: none;
+  /* display: none; */
   position: fixed;
+  overflow: scroll;
   left: 0;
   top: 0;
   width: 100%;
@@ -86,6 +87,24 @@ form {
   margin: auto;
   font-size: 15px;
 }
+form label {
+  padding-left: 10px;
+  text-align: left;
+}
+form input {
+  padding: 5px;
+  border-style: none;
+  border: 2px solid #091f40;
+  border-radius: 10px;
+  text-align: left;
+}
+.Error-msg {
+  margin-bottom: 15px;
+  padding-top: 5px;
+  text-align: right;
+  font-size: 12px;
+  color: #b80e0e;
+}
 .modal-button {
   width: 80px;
   margin: 10px;
@@ -105,4 +124,7 @@ footer {
   background-color: #091f40;
   color: #ffffff;
   text-align: center;
+}
+::-webkit-scrollbar {
+  display: none;
 }
