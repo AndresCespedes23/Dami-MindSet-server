@@ -11,15 +11,15 @@ const profilesRoutes = require("./profiles");
 const psychologistsRoutes = require("./psychologists");
 const sessionsRoutes = require("./sessions");
 
-router.use("/candidates", candidatesRoutes);
-router.use("/applications", applicationsRoutes);
-router.use("/interviews", interviewsRoutes);
-router.use("/clients", clientsRoutes);
-router.use("/positions", positionsRoutes);
-router.use("/applications", applicationsRoutes);
-router.use("/admins", adminsRoutes);
-router.use("/profiles", profilesRoutes);
-router.use("/psychologists", psychologistsRoutes);
-router.use("/sessions", sessionsRoutes);
+router.use("/api/candidates", candidatesRoutes);
+router.use("/api/applications", applicationsRoutes);
+router.use("/api/interviews", interviewsRoutes);
+router.use("/api/clients", clientsRoutes);
+router.use("/api/positions", positionsRoutes);
+router.use("/api/applications", applicationsRoutes);
+router.use("/api/admins", adminsRoutes);
+router.use("/api/profiles", profilesRoutes);
+router.use("/api/psychologists", psychologistsRoutes);
+router.use("/api/sessions", sessionsRoutes);
 
 module.exports = router;
