@@ -45,6 +45,9 @@ td {
   padding: 5px;
   border: 1px solid #091f40;
 }
+td {
+  font-size: 12px;
+}
 #create-button {
   align-self: flex-end;
   width: 100px;
