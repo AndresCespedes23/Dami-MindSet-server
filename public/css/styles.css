@@ -61,7 +61,6 @@ td {
   color: #ffffff;
 }
 #background-modal {
-  display: none;
   position: fixed;
   overflow: scroll;
   left: 0;
@@ -98,8 +97,15 @@ form input {
   border-radius: 10px;
   text-align: left;
 }
+fieldset {
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+  border-style: none;
+}
 .Error-msg {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   padding-top: 5px;
   text-align: right;
   font-size: 12px;
