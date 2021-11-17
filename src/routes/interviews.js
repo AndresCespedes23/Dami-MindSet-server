@@ -2,10 +2,10 @@ const interviews = require("../controllers/interviews");
 const validations = require("../validations/interviews");
 const router = require("express").Router();
 
-router.post("/", validations.require, validations.validate, interviews.create);
+router.post("/", validations.required, validations.validate, interviews.create);
 router.put(
   "/:id",
-  validations.require,
+  validations.required,
   validations.validate,
   interviews.update
 );
