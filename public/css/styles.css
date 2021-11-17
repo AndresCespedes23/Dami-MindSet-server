@@ -61,7 +61,7 @@ td {
   color: #ffffff;
 }
 #background-modal {
-  /* display: none; */
+  display: none;
   position: fixed;
   overflow: scroll;
   left: 0;
