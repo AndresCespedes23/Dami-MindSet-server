@@ -25,7 +25,7 @@ h1 {
   margin: 0px;
   padding: 5px 0px;
 }
-#recourse-table {
+#resource-table {
   display: flex;
   flex-direction: column;
   width: 70%;
