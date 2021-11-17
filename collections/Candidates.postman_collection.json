@@ -1,312 +1,263 @@
 {
-	"info": {
-		"_postman_id": "6515d29a-5cdd-4315-84c0-141256b68e34",
-		"name": "Candidates",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Retieve all the candidates",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/candidates",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"candidates"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Retrieve candidate by ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/candidates/61958b96891fc2c2e810c053",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"candidates",
-						"61958b96891fc2c2e810c053"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Retrieve candidate by name",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/candidates/byName/Candidate aaaaaa",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"candidates",
-						"byName",
-						"Candidate aaaaaa"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create a new candidate",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Candidate ffffff\",\r\n    \"email\": \"mail@gmail.com\",\r\n    \"username\": \"mtreble1\",\r\n    \"password\": \"tR0R234kUD\",\r\n    \"gender\": \"male\",\r\n    \"address\": \"2386 Fuller Trail\",\r\n    \"phoneNumber\": 545454456,\r\n    \"dateOfBirth\": \"1956/07/18\",\r\n    \"zipCode\": \"9928\",\r\n    \"city\": \"Bloemfontein\",\r\n    \"state\": \"Troms\",\r\n    \"country\": \"South Africa\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/candidates",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"candidates"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add education",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"institution\": \"Education Two\",\r\n    \"startDate\": \"2021/05\",\r\n    \"finishDate\": \"2021/09\",\r\n    \"level\": \"secondary\",\r\n    \"inProgress\": false,\r\n    \"title\": \"Research Associate\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/candidates/education/61958b90891fc2c2e810c051",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"candidates",
-						"education",
-						"61958b90891fc2c2e810c051"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add work experience",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"company\": \"Work Experience Three\",\r\n    \"role\": \"Structural Analysis Engineer\",\r\n    \"startDate\": \"2020/06\",\r\n    \"finishDate\": \"2021/12\",\r\n    \"currently\": false,\r\n    \"description\": \"Nulla tellusnibh\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/candidates/workExperience/61958b96891fc2c2e810c053",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"candidates",
-						"workExperience",
-						"61958b96891fc2c2e810c053"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update candidate",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Candiate bbbbbb\",\r\n    \"gender\": \"female\",\r\n    \"country\": \"USA\",\r\n    \"description\": \"Nulla tsdfsf\",\r\n    \"dni\": \"12345678\",\r\n    \"nationality\": \"Argentinian\",\r\n    \"email\": \"mail@gmail.com\",\r\n    \"password\": \"sfasfdf123S\",\r\n    \"username\": \"adasdasdsd\",\r\n    \"phoneNumber\": 12345678,\r\n    \"address\": \"saadsa adsaasd 23\",\r\n    \"city\": \"adsaasd\",\r\n    \"state\": \"ssad sa\",\r\n    \"status\": \"active\",\r\n    \"zipCode\": \"2000\",\r\n    \"timeRange\": [9, 17],\r\n    \"dateOfBirth\": \"1997/06/12\"\r\n    \r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/candidates/61958b8c891fc2c2e810c04f",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"candidates",
-						"61958b8c891fc2c2e810c04f"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update education",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"institution\": \"Education Two\",\r\n    \"level\": \"university\",\r\n    \"inProgress\": false,\r\n    \"title\": \"Research Associate\",\r\n    \"startDate\": \"2021/04\",\r\n    \"finishDate\": \"2021/01\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/candidates/61958b8c891fc2c2e810c04f/education/61958ce5b059c52c0995b5cc",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"candidates",
-						"61958b8c891fc2c2e810c04f",
-						"education",
-						"61958ce5b059c52c0995b5cc"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update work experience",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"company\": \"AAAAAAAAAa\",\r\n    \"role\": \"Structural Analysis Engineer\",\r\n    \"startDate\": \"2020/06\",\r\n    \"finishDate\": \"2021/12\",\r\n    \"currently\": false,\r\n    \"description\": \"Nulla tellusnibh\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/candidates/61958b96891fc2c2e810c053/workExperience/61958d18b059c52c0995b5e0",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"candidates",
-						"61958b96891fc2c2e810c053",
-						"workExperience",
-						"61958d18b059c52c0995b5e0"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Remove candidate by ID",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/candidates/61958b9c891fc2c2e810c055",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"candidates",
-						"61958b9c891fc2c2e810c055"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Remove education",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/candidates/61958b8c891fc2c2e810c04f/education/61958ce9b059c52c0995b5d0",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"candidates",
-						"61958b8c891fc2c2e810c04f",
-						"education",
-						"61958ce9b059c52c0995b5d0"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Remove work experience",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/candidates/61958b96891fc2c2e810c053/workExperience/61958d26b059c52c0995b5e9",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"candidates",
-						"61958b96891fc2c2e810c053",
-						"workExperience",
-						"61958d26b059c52c0995b5e9"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "6515d29a-5cdd-4315-84c0-141256b68e34",
+    "name": "Candidates",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Retieve all the candidates",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve candidate by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates/61958b96891fc2c2e810c053",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "61958b96891fc2c2e810c053"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve candidate by name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates/byName/Candidate aaaaaa",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "byName", "Candidate aaaaaa"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create a new candidate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Candidate ffffff\",\r\n    \"email\": \"mail@gmail.com\",\r\n    \"username\": \"mtreble1\",\r\n    \"password\": \"tR0R234kUD\",\r\n    \"gender\": \"male\",\r\n    \"address\": \"2386 Fuller Trail\",\r\n    \"phoneNumber\": 545454456,\r\n    \"dateOfBirth\": \"1956/07/18\",\r\n    \"zipCode\": \"9928\",\r\n    \"city\": \"Bloemfontein\",\r\n    \"state\": \"Troms\",\r\n    \"country\": \"South Africa\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add education",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"institution\": \"Education Two\",\r\n    \"startDate\": \"2021/05\",\r\n    \"finishDate\": \"2021/09\",\r\n    \"level\": \"secondary\",\r\n    \"inProgress\": false,\r\n    \"title\": \"Research Associate\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/education/61958b90891fc2c2e810c051",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "education", "61958b90891fc2c2e810c051"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add work experience",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"company\": \"Work Experience Three\",\r\n    \"role\": \"Structural Analysis Engineer\",\r\n    \"startDate\": \"2020/06\",\r\n    \"finishDate\": \"2021/12\",\r\n    \"currently\": false,\r\n    \"description\": \"Nulla tellusnibh\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/workExperience/61958b96891fc2c2e810c053",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "workExperience", "61958b96891fc2c2e810c053"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update candidate",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Candiate bbbbbb\",\r\n    \"gender\": \"female\",\r\n    \"country\": \"USA\",\r\n    \"description\": \"Nulla tsdfsf\",\r\n    \"dni\": \"12345678\",\r\n    \"nationality\": \"Argentinian\",\r\n    \"email\": \"mail@gmail.com\",\r\n    \"password\": \"sfasfdf123S\",\r\n    \"username\": \"adasdasdsd\",\r\n    \"phoneNumber\": 12345678,\r\n    \"address\": \"saadsa adsaasd 23\",\r\n    \"city\": \"adsaasd\",\r\n    \"state\": \"ssad sa\",\r\n    \"status\": \"active\",\r\n    \"zipCode\": \"2000\",\r\n    \"timeRange\": [9, 17],\r\n    \"dateOfBirth\": \"1997/06/12\"\r\n    \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/61958b8c891fc2c2e810c04f",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "61958b8c891fc2c2e810c04f"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update education",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"institution\": \"Education Two\",\r\n    \"level\": \"university\",\r\n    \"inProgress\": false,\r\n    \"title\": \"Research Associate\",\r\n    \"startDate\": \"2021/04\",\r\n    \"finishDate\": \"2021/01\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/61958b8c891fc2c2e810c04f/education/61958ce5b059c52c0995b5cc",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "candidates",
+            "61958b8c891fc2c2e810c04f",
+            "education",
+            "61958ce5b059c52c0995b5cc"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update work experience",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"company\": \"AAAAAAAAAa\",\r\n    \"role\": \"Structural Analysis Engineer\",\r\n    \"startDate\": \"2020/06\",\r\n    \"finishDate\": \"2021/12\",\r\n    \"currently\": false,\r\n    \"description\": \"Nulla tellusnibh\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/61958b96891fc2c2e810c053/workExperience/61958d18b059c52c0995b5e0",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "candidates",
+            "61958b96891fc2c2e810c053",
+            "workExperience",
+            "61958d18b059c52c0995b5e0"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove candidate by ID",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates/61958b9c891fc2c2e810c055",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "61958b9c891fc2c2e810c055"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove education",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates/61958b8c891fc2c2e810c04f/education/61958ce9b059c52c0995b5d0",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "candidates",
+            "61958b8c891fc2c2e810c04f",
+            "education",
+            "61958ce9b059c52c0995b5d0"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove work experience",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates/61958b96891fc2c2e810c053/workExperience/61958d26b059c52c0995b5e9",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "candidates",
+            "61958b96891fc2c2e810c053",
+            "workExperience",
+            "61958d26b059c52c0995b5e9"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
 }

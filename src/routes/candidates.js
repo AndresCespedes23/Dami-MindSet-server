@@ -24,12 +24,6 @@ router.post(
   candidates.addWorkExperience
 );
 router.put(
-  "/otherInformation/:id",
-  validations.requiredOtherInformation,
-  validations.validate,
-  candidates.addOtherInformation
-);
-router.put(
   "/:id",
   validations.requiredPersonalInfo,
   validations.requiredOtherInformation,
@@ -49,5 +43,10 @@ router.put(
   candidates.updateWorkExperience
 );
 router.delete("/:id", candidates.remove);
+router.delete("/:id/education/:educationId", candidates.removeEducation);
+router.delete(
+  "/:id/workExperience/:workExperienceId",
+  candidates.removeWorkExperience
+);
 
 module.exports = router;
