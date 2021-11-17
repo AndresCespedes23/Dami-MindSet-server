@@ -1,0 +1,285 @@
+{
+  "info": {
+    "_postman_id": "6515d29a-5cdd-4315-84c0-141256b68e34",
+    "name": "Candidates",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Retieve all the candidates",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve candidate by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates/619311f84a67607d5a62d1d5",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "619311f84a67607d5a62d1d5"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve candidate by name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates/byName/John Doe",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "byName", "John Doe"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create a new candidate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"bbb bbbb\",\r\n    \"email\": \"balti@gmail.com\",\r\n    \"username\": \"mtreble1\",\r\n    \"password\": \"tR0R234kUD\",\r\n    \"gender\": \"female\",\r\n    \"address\": \"2386 Fuller Trail\",\r\n    \"phoneNumber\": 545454456,\r\n    \"dateOfBirth\": \"1956/07/18\",\r\n    \"zipCode\": \"9928\",\r\n    \"city\": \"Bloemfontein\",\r\n    \"state\": \"Troms\",\r\n    \"country\": \"South Africa\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add education",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"institution\": \"Hitotsubashi University\",\r\n    \"startDate\": \"2021/05\",\r\n    \"finishDate\": \"2021/09\",\r\n    \"level\": \"secondary\",\r\n    \"inProgress\": false,\r\n    \"title\": \"Research Associate\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/education/619311f84a67607d5a62d1d5",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "education", "619311f84a67607d5a62d1d5"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add work experience",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"company\": \"Ntag\",\r\n    \"role\": \"Structural Analysis Engineer\",\r\n    \"startDate\": \"2020/06\",\r\n    \"finishDate\": \"2021/12\",\r\n    \"currently\": false,\r\n    \"description\": \"Nulla tellusnibh\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/workExperience/619311f84a67607d5a62d1d5",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "workExperience", "619311f84a67607d5a62d1d5"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add other information",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"balti@gmail.com\",\r\n    \"username\": \"mtreble1\",\r\n    \"password\": \"tR0R234kUD\",\r\n    \"gender\": \"female\",\r\n    \"address\": \"2386 Fuller Trail\",\r\n    \"phoneNumber\": 545454456,\r\n    \"dateOfBirth\": \"1956/07/18\",\r\n    \"zipCode\": \"9928\",\r\n    \"city\": \"Bloemfontein\",\r\n    \"state\": \"Troms\",\r\n    \"country\": \"South Africa\",\r\n    \"name\": \"John Doe\",\r\n    \"description\": \"Nulla tellusasdasd\",\r\n    \"dni\": \"12345678\",\r\n    \"nationality\": \"Argentinian\",\r\n    \"maritalStatus\": \"single\",\r\n    \"driversLicense\": false,\r\n    \"timeRange\": [8, 16]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/otherInformation/61908f4a182842415363bf03",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "otherInformation", "61908f4a182842415363bf03"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update candidate",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"gender\": \"female\",\r\n    \"country\": \"USA\",\r\n    \"description\": \"Nulla tsdfsf\",\r\n    \"dni\": \"12345678\",\r\n    \"nationality\": \"Argentinian\",\r\n    \"email\": \"balti2@gmail.com\",\r\n    \"password\": \"sfasfdf123S\",\r\n    \"username\": \"adasdasdsd\",\r\n    \"phoneNumber\": 12345678,\r\n    \"address\": \"saadsa adsaasd 23\",\r\n    \"city\": \"adsaasd\",\r\n    \"state\": \"ssad sa\",\r\n    \"status\": \"active\",\r\n    \"zipCode\": \"2000\",\r\n    \"timeRange\": [9, 17],\r\n    \"dateOfBirth\": \"1997/06/12\"\r\n    \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/61930ba01eb9f91506f1a320",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "61930ba01eb9f91506f1a320"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update education [WIP]",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"institution\": \"Hitotsubashi University\",\r\n    \"level\": \"University\",\r\n    \"inProgress\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/education/619311f84a67607d5a62d1d5",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "education", "619311f84a67607d5a62d1d5"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove candidate by ID",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/candidates/619313ca4a67607d5a62d20e",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "619313ca4a67607d5a62d20e"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "test validations - main info",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"balti@gmail.com\",\r\n    \"password\": \"sfasfdf123S\",\r\n    \"username\": \"adasdasdsd\",\r\n    \"phoneNumber\": 12345678,\r\n    \"address\": \"saadsa adsaasd 23\",\r\n    \"city\": \"adsaasd\",\r\n    \"state\": \"ssad sa\",\r\n    \"country\": \"saadsa adsaasd\",\r\n    \"nationality\": \"ssad sa\",\r\n    \"driversLicense\": true,\r\n    \"gender\": \"male\",\r\n    \"status\": \"active\",\r\n    \"maritalStatus\": \"single\",\r\n    \"zipCode\": \"2000\",\r\n    \"description\": \"asdasdasds\",\r\n    \"timeRange\": [9, 17],\r\n    \"dateOfBirth\": \"1997/06/12\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/6190516c1bbc7d2864770d01",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "6190516c1bbc7d2864770d01"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "test validations - education [WIP]",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"balti@gmail.com\",\r\n    \"state\": \"ssad sa\",\r\n    \"country\": \"saadsa adsaasd\",\r\n    \"nationality\": \"ssad sa\",\r\n    \"institution\": \"seresa\",\r\n    \"title\": \"swera\",\r\n    \"company\": \"swera\",\r\n    \"role\": \"swera\",\r\n    \"driversLicense\": true,\r\n    \"inProgress\": \"true\",\r\n    \"currently\": 1,\r\n    \"gender\": \"true\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/test/test",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "test", "test"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "test validations - work exp [WIP]",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"balti@gmail.com\",\r\n    \"state\": \"ssad sa\",\r\n    \"country\": \"saadsa adsaasd\",\r\n    \"nationality\": \"ssad sa\",\r\n    \"institution\": \"seresa\",\r\n    \"title\": \"swera\",\r\n    \"company\": \"swera\",\r\n    \"role\": \"swera\",\r\n    \"driversLicense\": true,\r\n    \"inProgress\": \"true\",\r\n    \"currently\": 1,\r\n    \"gender\": \"true\",\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/candidates/test/test",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["candidates", "test", "test"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
