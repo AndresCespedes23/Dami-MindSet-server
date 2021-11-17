@@ -71,16 +71,16 @@ const formatBodyRequired = (req, res, next) => {
   if (timeRange) {
     if (timeRange.length !== 2)
       return res.status(400).json({ Msg: "TimeRange accepts only two values" });
-    let flag1 = false;
-    let flag2 = false;
+    let containChars = false;
+    let isBiggerOrSmaller = false;
     timeRange.forEach((element) => {
       // eslint-disable-next-line eqeqeq
-      if (parseInt(element) != element) return (flag1 = true);
-      if (element < 0 || element > 24) return (flag2 = true);
+      if (parseInt(element) != element) return (containChars = true);
+      if (element < 0 || element > 24) return (isBiggerOrSmaller = true);
     });
-    if (flag1)
+    if (containChars)
       return res.status(400).json({ Msg: "TimeRange accepts only numbers" });
-    if (flag2)
+    if (isBiggerOrSmaller)
       return res
         .status(400)
         .json({ Msg: "TimeRange values must be between 0 and 24" });
@@ -95,22 +95,23 @@ const formatBodyRequired = (req, res, next) => {
       return res
         .status(400)
         .json({ Msg: "DayRange length cannot be higger than seven" });
-    let flag1 = false;
-    let flag2 = false;
-    let flag3 = false;
+    let containChars = false;
+    let isBiggerOrSmaller = false;
+    let containRepetedElements = false;
     dayRange.forEach((element, index) => {
       // eslint-disable-next-line eqeqeq
-      if (parseInt(element) != element) return (flag1 = true);
-      if (element < 1 || element > 7) return (flag2 = true);
-      if (dayRange.indexOf(element) !== index) return (flag3 = true);
+      if (parseInt(element) != element) return (containChars = true);
+      if (element < 1 || element > 7) return (isBiggerOrSmaller = true);
+      if (dayRange.indexOf(element) !== index)
+        return (containRepetedElements = true);
     });
-    if (flag1)
+    if (containChars)
       return res.status(400).json({ Msg: "DayRange accepts only numbers" });
-    if (flag2)
+    if (isBiggerOrSmaller)
       return res
         .status(400)
         .json({ Msg: "DayRange values must be between 1 and 7" });
-    if (flag3)
+    if (containRepetedElements)
       return res
         .status(400)
         .json({ Msg: "DayRange does not allow repeted values" });
@@ -119,45 +120,39 @@ const formatBodyRequired = (req, res, next) => {
 };
 
 const dataBodyUnique = (req, res, next) => {
-  Psychologists.find()
-    .then((psychologists) => {
-      let flag1 = false;
-      let flag2 = false;
-      let flag3 = false;
-      let flag4 = false;
-      psychologists.forEach((psychologist) => {
-        if (psychologist.email && psychologist.email === req.body.email)
-          return (flag1 = true);
-        if (
-          psychologist.username &&
-          psychologist.username === req.body.username
-        )
-          return (flag2 = true);
-        if (
-          psychologist.phoneNumber &&
-          psychologist.phoneNumber === req.body.phoneNumber
-        )
-          return (flag3 = true);
-        if (
-          psychologist.enrollmentNumber &&
-          psychologist.enrollmentNumber === req.body.enrollmentNumber
-        )
-          return (flag4 = true);
+  Psychologists.find({ email: req.body.email })
+    .then((psychologist) => {
+      if (psychologist.length > 0)
+        throw new Error(
+          res.status(400).json({ Msg: "Email is already in use" })
+        );
+      return Psychologists.find({ username: req.body.username });
+    })
+    .then((psychologist) => {
+      if (psychologist.length > 0)
+        throw new Error(
+          res.status(400).json({ Msg: "Username is already in use" })
+        );
+      return Psychologists.find({ phoneNumber: req.body.phoneNumber });
+    })
+    .then((psychologist) => {
+      if (psychologist.length > 0)
+        throw new Error(
+          res.status(400).json({ Msg: "PhoneNumber is already in use" })
+        );
+      return Psychologists.find({
+        enrollmentNumber: req.body.enrollmentNumber,
       });
-      if (flag1)
-        return res.status(400).json({ Msg: "Email is already in use" });
-      if (flag2)
-        return res.status(400).json({ Msg: "Username is already in use" });
-      if (flag3)
-        return res.status(400).json({ Msg: "PhoneNumber is already in use" });
-      if (flag4)
-        return res
-          .status(400)
-          .json({ Msg: "EnrollmentNumber is already in use" });
+    })
+    .then((psychologist) => {
+      if (psychologist.length > 0)
+        throw new Error(
+          res.status(400).json({ Msg: "EnrollmentNumber is already in use" })
+        );
       next();
     })
     .catch((error) => {
-      return res.status(400).json(error);
+      return error;
     });
 };
 
