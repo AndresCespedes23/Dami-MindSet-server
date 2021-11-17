@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+const candidatesRoutes = require("./candidates");
 const applicationsRoutes = require("./applications");
 const positionsRoutes = require("./positions");
 const profilesRoutes = require("./profiles");
@@ -8,6 +9,7 @@ const psychologistsRoutes = require("./psychologists");
 const clientsRoutes = require("./clients");
 const sessionsRoutes = require("./sessions");
 
+router.use("/candidates", candidatesRoutes);
 router.use("/applications", applicationsRoutes);
 router.use("/clients", clientsRoutes);
 router.use("/positions", positionsRoutes);

@@ -63,14 +63,6 @@ app.get("/", (req, res) => {
 // app.get("/clients/byAddress/:address", clientsController.getByAddress);
 // app.get("/clients/byActivity/:activity", clientsController.getByActivity);
 
-// //CANDIDATES
-// app.get("/candidates/create", candidatesController.create);
-// app.get("/candidates/update/:id", candidatesController.update);
-// app.get("/candidates/remove/:id", candidatesController.remove);
-// app.get("/candidates", candidatesController.getAll);
-// app.get("/candidates/byId/:id", candidatesController.getById);
-// app.get("/candidates/byName/:name", candidatesController.getByName);
-
 // //ADMIN
 // app.get("/admins/update/:id", adminsController.update);
 // app.get("/admins", adminsController.getAll);
