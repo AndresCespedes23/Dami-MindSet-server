@@ -1,0 +1,114 @@
+{
+  "info": {
+    "_postman_id": "45c2c9ea-a58c-4b0e-8470-8ac9eb869b4b",
+    "name": "Interviews",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Retrieve all the Interviews",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/interviews",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["interviews"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve Interview by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "Create Interview",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"idPosition\": \"618ed774a490024ac64fc906\",\r\n    \"idCandidate\": \"618ed783a490024ac64fc907\",\r\n    \"idClient\": \"618ed78ea490024ac64fc908\",\r\n    \"status\": \"FINISHED\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/interviews/",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["interviews", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update application",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/interviews/618ed783a490024ac64fc907",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["interviews", "618ed783a490024ac64fc907"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove Interview by ID",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/interviews/618ed783a490024ac64fc907",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["interviews", "618ed783a490024ac64fc907"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
