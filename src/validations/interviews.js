@@ -1,4 +1,4 @@
-const require = (req, res, next) => {
+const required = (req, res, next) => {
   if (
     !req.params.id ||
     !req.body.idCandidate ||
@@ -41,6 +41,6 @@ const validate = (req, res, next) => {
 };
 
 module.exports = {
-  require,
+  required,
   validate,
 };
