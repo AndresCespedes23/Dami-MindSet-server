@@ -1,24 +1,16 @@
+const { ObjectId } = require("mongoose").Types;
 const Sessions = require("../models/sessions");
-const ObjectId = require("mongoose").Types.ObjectId;
 
 const getAll = (req, res) => {
   Sessions.find()
-    .then((sessions) => {
-      return res.status(200).json(sessions);
-    })
-    .catch((err) => {
-      return res.status(404).json(err);
-    });
+    .then((sessions) => res.status(200).json(sessions))
+    .catch((err) => res.status(404).json(err));
 };
 
 const getById = (req, res) => {
   Sessions.findById({ _id: new ObjectId(req.params.id) })
-    .then((session) => {
-      return res.status(200).json(session);
-    })
-    .catch((err) => {
-      return res.status(404).json(err);
-    });
+    .then((session) => res.status(200).json(session))
+    .catch((err) => res.status(404).json(err));
 };
 
 const create = (req, res) => {
@@ -30,12 +22,8 @@ const create = (req, res) => {
     result: req.body.result,
   };
   Sessions.create(newSession)
-    .then((newSession) => {
-      return res.status(201).json(newSession);
-    })
-    .catch((error) => {
-      return res.status(400).json(error);
-    });
+    .then((sessionDoc) => res.status(201).json(sessionDoc))
+    .catch((error) => res.status(400).json(error));
 };
 
 const update = (req, res) => {
@@ -51,14 +39,15 @@ const update = (req, res) => {
     new ObjectId(req.params.id),
     updatedSession,
     { new: true },
-    (err, updatedSession) => {
-      if (!updatedSession)
+    (err, sessionDoc) => {
+      if (!sessionDoc) {
         return res.status(404).json({
           msg: `Session with id: ${req.params.id} was not found.`,
         });
+      }
       if (err) return res.status(404).json(err);
-      return res.status(200).json(updatedSession);
-    }
+      return res.status(200).json(sessionDoc);
+    },
   );
 };
 
@@ -68,7 +57,7 @@ const remove = (req, res) => {
     (err, removedSession) => {
       if (err) return res.status(404).json(err);
       return res.status(200).json(removedSession._id);
-    }
+    },
   );
 };
 

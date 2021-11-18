@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+
+const { Schema } = mongoose;
 
 const EducationSchema = new Schema({
   level: {
@@ -61,7 +62,7 @@ const WorkExperienceSchema = new Schema({
 });
 
 const CandidatesSchema = new Schema({
-  //Personal Information
+  // Personal Information
   name: {
     type: String,
     required: true,
@@ -138,7 +139,7 @@ const CandidatesSchema = new Schema({
     type: [WorkExperienceSchema],
     required: false,
   },
-  //Other Information
+  // Other Information
   description: {
     type: String,
     required: false,

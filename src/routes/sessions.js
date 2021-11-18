@@ -1,6 +1,6 @@
+const router = require("express").Router();
 const sessions = require("../controllers/sessions");
 const validations = require("../validations/sessions");
-const router = require("express").Router();
 
 router.get("/", sessions.getAll);
 router.get("/:id", sessions.getById);
