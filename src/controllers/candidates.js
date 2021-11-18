@@ -145,28 +145,6 @@ const addWorkExperience = (req, res) => {
     });
 };
 
-const addOtherInformation = (req, res) => {
-  const data = req.body;
-  const otherInformation = {};
-  for (let field = 0; field < otherInfo.length; field++) {
-    otherInformation[otherInfo[field]] = data[otherInfo[field]];
-  }
-  Candidates.findByIdAndUpdate(
-    new ObjectId(req.params.id),
-    otherInformation,
-    { new: true },
-    (err, updatedCandidate) => {
-      if (!updatedCandidate) {
-        return res.status(404).json({
-          msg: `Candidate with id: ${req.params.id} was not found.`,
-        });
-      }
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(updatedCandidate);
-    }
-  );
-};
-
 const update = (req, res) => {
   const data = req.body;
   const updatedCandidate = {};
@@ -189,7 +167,63 @@ const update = (req, res) => {
   );
 };
 
-// TO DO: create endpoints in order to update and remove education & workExperience
+const updateEducation = (req, res) => {
+  const data = req.body;
+  const newEducation = {};
+  for (let field = 0; field < educationInfo.length; field++) {
+    newEducation[educationInfo[field]] = data[educationInfo[field]];
+  }
+  Candidates.findById(new ObjectId(req.params.id))
+    .then((candidate) => {
+      const educationIndex = candidate.education.findIndex(
+        (education) => education._id.toString() === req.params.educationId
+      );
+      if (educationIndex === -1)
+        return res.status(404).json({
+          Msg: `Education with id: ${req.params.educationId} was not found.`,
+        });
+      candidate.education[educationIndex] = newEducation;
+      candidate.save();
+      res.status(200).json(newEducation);
+    })
+    .catch((err, candidate) => {
+      if (!candidate)
+        return res
+          .status(404)
+          .json({ Msg: `User with id: ${req.params.id} was not found.` });
+      return res.status(400).json(err);
+    });
+};
+
+const updateWorkExperience = (req, res) => {
+  const data = req.body;
+  const newWorkExperience = {};
+  for (let field = 0; field < workExperienceInfo.length; field++) {
+    newWorkExperience[workExperienceInfo[field]] =
+      data[workExperienceInfo[field]];
+  }
+  Candidates.findById(new ObjectId(req.params.id))
+    .then((candidate) => {
+      const workExperienceIndex = candidate.workExperience.findIndex(
+        (workExperience) =>
+          workExperience._id.toString() === req.params.workExperienceId
+      );
+      if (workExperienceIndex === -1)
+        return res.status(404).json({
+          Msg: `Work experience with id: ${req.params.workExperienceId} was not found.`,
+        });
+      candidate.workExperience[workExperienceIndex] = newWorkExperience;
+      candidate.save();
+      res.status(200).json(newWorkExperience);
+    })
+    .catch((err, candidate) => {
+      if (!candidate)
+        return res
+          .status(404)
+          .json({ Msg: `User with id: ${req.params.id} was not found.` });
+      return res.status(400).json(err);
+    });
+};
 
 const remove = (req, res) => {
   Candidates.findByIdAndDelete(
@@ -206,6 +240,56 @@ const remove = (req, res) => {
   );
 };
 
+const removeEducation = (req, res) => {
+  Candidates.findById(new ObjectId(req.params.id))
+    .then((candidate) => {
+      const educationIndex = candidate.education.findIndex(
+        (education) => education._id.toString() === req.params.educationId
+      );
+      if (educationIndex === -1)
+        return res.status(404).json({
+          Msg: `Education with id: ${req.params.educationId} was not found.`,
+        });
+      const removedEducation = candidate.education[educationIndex];
+      candidate.education.splice(educationIndex, 1);
+      candidate.save();
+      res.status(200).json(removedEducation);
+    })
+    .catch((err, candidate) => {
+      if (!candidate)
+        return res
+          .status(404)
+          .json({ Msg: `User with id: ${req.params.id} was not found.` });
+      return res.status(400).json(err);
+    });
+};
+
+const removeWorkExperience = (req, res) => {
+  Candidates.findById(new ObjectId(req.params.id))
+    .then((candidate) => {
+      const workExperienceIndex = candidate.workExperience.findIndex(
+        (workExperience) =>
+          workExperience._id.toString() === req.params.workExperienceId
+      );
+      if (workExperienceIndex === -1)
+        return res.status(404).json({
+          Msg: `Work experience with id: ${req.params.workExperienceId} was not found.`,
+        });
+      const removedWorkExperience =
+        candidate.workExperience[workExperienceIndex];
+      candidate.workExperience.splice(workExperienceIndex, 1);
+      candidate.save();
+      res.status(200).json(removedWorkExperience);
+    })
+    .catch((err, candidate) => {
+      if (!candidate)
+        return res
+          .status(404)
+          .json({ Msg: `User with id: ${req.params.id} was not found.` });
+      return res.status(400).json(err);
+    });
+};
+
 module.exports = {
   getAll,
   getById,
@@ -213,9 +297,12 @@ module.exports = {
   create,
   addEducation,
   addWorkExperience,
-  addOtherInformation,
   update,
+  updateEducation,
+  updateWorkExperience,
   remove,
+  removeEducation,
+  removeWorkExperience,
   personalInfo,
   educationInfo,
   workExperienceInfo,
