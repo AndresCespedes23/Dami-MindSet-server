@@ -14,4 +14,8 @@ window.onload = function() {
         console.log(error);
       });
   }
+
+  function createList(interviews) {
+    const table = document.getElementById("table-list");
+  }
 }
