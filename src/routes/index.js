@@ -1,6 +1,6 @@
 const express = require("express");
-const router = express.Router();
 
+const router = express.Router();
 const candidatesRoutes = require("./candidates");
 const applicationsRoutes = require("./applications");
 const adminsRoutes = require("./admins");

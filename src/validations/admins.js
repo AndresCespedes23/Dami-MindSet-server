@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const required = (req, res, next) => {
   if (!req.body.name) {
     return res.status(400).send("Name is required");

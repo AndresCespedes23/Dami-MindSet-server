@@ -14,17 +14,14 @@ const create = (req, res) => {
   if (req.body.timeRange) newPsychologist.timeRange = req.body.timeRange;
 
   Psychologists.create(newPsychologist)
-    .then((newPsychologist) => {
-      return res.status(201).json(newPsychologist);
-    })
-    .catch((error) => {
-      return res.status(400).json(error);
-    });
+    .then((psychologistDoc) => res.status(201).json(psychologistDoc))
+    .catch((error) => res.status(400).json(error));
 };
 
 const update = (req, res) => {
   Psychologists.findById(req.params.id)
-    .then((psychologist) => {
+    .then((psychologystDoc) => {
+      const psychologist = psychologystDoc;
       psychologist.name = req.body.name ? req.body.name : psychologist.name;
       psychologist.email = req.body.email ? req.body.email : psychologist.email;
       psychologist.username = req.body.username
@@ -49,63 +46,46 @@ const update = (req, res) => {
         ? req.body.timeRange
         : psychologist.timeRange;
 
-      Psychologists.findByIdAndUpdate(
+      return Psychologists.findByIdAndUpdate(
         req.params.id,
         psychologist,
         { new: true },
-        (error, psychologist) => {
-          if (!psychologist)
+        (error, updatedPychologistDoc) => {
+          if (!updatedPychologistDoc) {
             return res.status(404).json({
               msg: `Application with id: ${req.params.id} was not found.`,
             });
+          }
           if (error) return res.status(400).json(error);
-          return res.status(200).json(psychologist);
-        }
+          return res.status(200).json(updatedPychologistDoc);
+        },
       );
     })
-    .catch((error) => {
-      return res.status(400).json(error);
-    });
+    .catch((error) => res.status(400).json(error));
 };
 
 const remove = (req, res) => {
   Psychologists.findByIdAndRemove(req.params.id)
-    .then((removePsychologist) => {
-      return res.status(200).json(removePsychologist);
-    })
-    .catch((error) => {
-      return res.status(400).json(error);
-    });
+    .then((removePsychologist) => res.status(200).json(removePsychologist))
+    .catch((error) => res.status(400).json(error));
 };
 
 const getAll = (req, res) => {
   Psychologists.find()
-    .then((psychologist) => {
-      return res.status(200).json(psychologist);
-    })
-    .catch((error) => {
-      return res.status(400).json(error);
-    });
+    .then((psychologist) => res.status(200).json(psychologist))
+    .catch((error) => res.status(400).json(error));
 };
 
 const getById = (req, res) => {
   Psychologists.findById(req.params.id)
-    .then((psychologist) => {
-      return res.status(200).json(psychologist);
-    })
-    .catch((error) => {
-      return res.status(400).json(error);
-    });
+    .then((psychologist) => res.status(200).json(psychologist))
+    .catch((error) => res.status(400).json(error));
 };
 
 const getByName = (req, res) => {
   Psychologists.find({ name: req.params.name })
-    .then((psychologist) => {
-      return res.status(200).json(psychologist);
-    })
-    .catch((error) => {
-      return res.status(400).json(error);
-    });
+    .then((psychologist) => res.status(200).json(psychologist))
+    .catch((error) => res.status(400).json(error));
 };
 
 module.exports = {
