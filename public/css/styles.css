@@ -60,8 +60,10 @@ td {
   text-transform: uppercase;
   color: #ffffff;
 }
-#background-modal {
+.hidden-background-modal {
   display: none;
+}
+#background-modal {
   position: fixed;
   overflow: scroll;
   left: 0;
