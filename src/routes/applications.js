@@ -1,5 +1,5 @@
-const applications = require("../controllers/applications");
 const router = require("express").Router();
+const applications = require("../controllers/applications");
 
 router.get("/", applications.getAll);
 router.get("/:id", applications.getById);
