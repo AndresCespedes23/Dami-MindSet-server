@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./src/index",
     "dev": "nodemon ./src/index",
-    "lint": "eslint -c './.eslintrc.json' --fix './src/**/*.js'",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
     "prettier": "prettier --write .",
     "prepare": "husky install"
   },
