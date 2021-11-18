@@ -135,3 +135,9 @@ footer {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.button-list{
+  border: none;
+  cursor: pointer;
+  background-color: unset;
+}
