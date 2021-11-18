@@ -28,7 +28,7 @@ h1 {
 #resource-table {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 90%;
   margin: 50px auto;
   padding: 20px;
   border-top: 10px solid #091f40;
