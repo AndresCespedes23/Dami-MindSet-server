@@ -6,7 +6,8 @@
     "quotes": ["error", "double"],
     "semi": [2, "always"],
     "no-plusplus": 0,
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "linebreak-style": 0
   },
   "parserOptions": {
     "ecmaVersion": 12
