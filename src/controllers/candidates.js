@@ -171,7 +171,7 @@ const updateEducation = (req, res) => {
     (err, candidateDoc) => {
       if (!candidateDoc) {
         return res.status(404).json({
-          Msg: `Education with id: ${req.params.educationId} was not found.`,
+          msg: `Education with id: ${req.params.educationId} was not found.`,
         });
       }
       if (err) return res.status(400).json(err);
@@ -195,7 +195,7 @@ const updateWorkExperience = (req, res) => {
       );
       if (workExperienceIndex === -1) {
         return res.status(404).json({
-          Msg: `Work experience with id: ${req.params.workExperienceId} was not found.`,
+          msg: `Work experience with id: ${req.params.workExperienceId} was not found.`,
         });
       }
       candidate.workExperience[workExperienceIndex] = newWorkExperience;
@@ -206,7 +206,7 @@ const updateWorkExperience = (req, res) => {
       if (!candidate) {
         return res
           .status(404)
-          .json({ Msg: `User with id: ${req.params.id} was not found.` });
+          .json({ msg: `User with id: ${req.params.id} was not found.` });
       }
       return res.status(400).json(err);
     });
@@ -235,7 +235,7 @@ const removeEducation = (req, res) => {
       );
       if (educationIndex === -1) {
         return res.status(404).json({
-          Msg: `Education with id: ${req.params.educationId} was not found.`,
+          msg: `Education with id: ${req.params.educationId} was not found.`,
         });
       }
       const removedEducation = candidate.education[educationIndex];
@@ -247,7 +247,7 @@ const removeEducation = (req, res) => {
       if (!candidate) {
         return res
           .status(404)
-          .json({ Msg: `User with id: ${req.params.id} was not found.` });
+          .json({ msg: `User with id: ${req.params.id} was not found.` });
       }
       return res.status(400).json(err);
     });
@@ -260,7 +260,7 @@ const removeWorkExperience = (req, res) => Candidates.findById(new ObjectId(req.
     );
     if (workExperienceIndex === -1) {
       return res.status(404).json({
-        Msg: `Work experience with id: ${req.params.workExperienceId} was not found.`,
+        msg: `Work experience with id: ${req.params.workExperienceId} was not found.`,
       });
     }
     const removedWorkExperience = candidate.workExperience[workExperienceIndex];
@@ -272,7 +272,7 @@ const removeWorkExperience = (req, res) => Candidates.findById(new ObjectId(req.
     if (!candidate) {
       return res
         .status(404)
-        .json({ Msg: `User with id: ${req.params.id} was not found.` });
+        .json({ msg: `User with id: ${req.params.id} was not found.` });
     }
     return res.status(400).json(err);
   });

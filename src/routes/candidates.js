@@ -24,12 +24,6 @@ router.post(
   candidates.addWorkExperience,
 );
 router.put(
-  "/otherInformation/:id",
-  validations.requiredOtherInformation,
-  validations.validate,
-  candidates.addOtherInformation,
-);
-router.put(
   "/:id",
   validations.requiredPersonalInfo,
   validations.requiredOtherInformation,
