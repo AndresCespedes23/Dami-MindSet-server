@@ -1,6 +1,6 @@
+const router = require("express").Router();
 const positions = require("../controllers/positions");
 const validations = require("../validations/positions");
-const router = require("express").Router();
 
 router.get("/", positions.getAll);
 router.get("/:id", positions.getById);
@@ -9,7 +9,7 @@ router.put(
   "/:id",
   validations.required,
   validations.validate,
-  positions.update
+  positions.update,
 );
 router.delete("/:id", positions.remove);
 

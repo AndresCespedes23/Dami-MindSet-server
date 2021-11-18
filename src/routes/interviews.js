@@ -1,13 +1,13 @@
+const router = require("express").Router();
 const interviews = require("../controllers/interviews");
 const validations = require("../validations/interviews");
-const router = require("express").Router();
 
 router.post("/", validations.required, validations.validate, interviews.create);
 router.put(
   "/:id",
   validations.required,
   validations.validate,
-  interviews.update
+  interviews.update,
 );
 router.delete("/:id", interviews.remove);
 router.get("/", interviews.getAll);

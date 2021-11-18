@@ -1,5 +1,5 @@
-const psychologists = require("../controllers/psychologists");
 const router = require("express").Router();
+const psychologists = require("../controllers/psychologists");
 
 const middleware = require("../validations/psychologists");
 
@@ -11,13 +11,13 @@ router.post(
   middleware.dataBodyRequired,
   middleware.formatBodyRequired,
   middleware.dataBodyUnique,
-  psychologists.create
+  psychologists.create,
 );
 router.patch(
   "/:id",
   middleware.formatBodyRequired,
   middleware.dataBodyUnique,
-  psychologists.update
+  psychologists.update,
 );
 router.delete("/:id", psychologists.remove);
 
