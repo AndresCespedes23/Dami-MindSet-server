@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./src/index",
     "dev": "nodemon ./src/index",
-    "lint": "eslint -c './.eslintrc.json' --fix './src/**/*.js'",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
     "prettier": "prettier --write .",
     "prepare": "husky install"
   },
@@ -25,11 +26,13 @@
   "homepage": "https://github.com/damianalvarez/BaSD-MindSet#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.12"
   },
   "devDependencies": {
     "eslint": "^7.31.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.23.4",
@@ -37,7 +40,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-standard": "^5.0.0",
-    "eslint-config-airbnb-base": "^15.0.0",
     "husky": "^7.0.0",
     "nodemon": "^2.0.14"
   }
