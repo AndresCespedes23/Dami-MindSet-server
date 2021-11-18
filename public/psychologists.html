@@ -17,16 +17,19 @@
     </nav>
     <section>
       <div id="resource-table">
-        <h1>Applications</h1>
+        <h1>Psychologists</h1>
         <table>
           <tr>
             <th>id</th>
-            <th>idPosition</th>
-            <th>idCandidate</th>
-            <th>idInterview</th>
-            <th>dateTime</th>
+            <th>name</th>
+            <th>email</th>
+            <th>username</th>
+            <th>password</th>
+            <th>phoneNumber</th>
+            <th>enrollmentNumber</th>
             <th>status</th>
-            <th>result</th>
+            <th>enrollmentNumber</th>
+            <th>enrollmentNumber</th>
             <th></th>
             <th></th>
           </tr>
@@ -41,6 +44,9 @@
               Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna
               vulputate luctus.
             </td>
+            <td>Hired</td>
+            <td>Hired</td>
+            <td>Hired</td>
             <td><img src="img/Icon-edit.png" alt="Edit" /></td>
             <td><img src="img/Icon-remove.png" alt="Remove" /></td>
           </tr>
@@ -55,6 +61,9 @@
               Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor
               gravida sem.
             </td>
+            <td>Hired</td>
+            <td>Hired</td>
+            <td>Hired</td>
             <td><img src="img/Icon-edit.png" alt="Edit" /></td>
             <td><img src="img/Icon-remove.png" alt="Remove" /></td>
           </tr>
@@ -69,54 +78,49 @@
             </p>
             <form>
               <fieldset>
-                <label for="idPosition">idPosition</label>
-                <input
-                  type="text"
-                  id="idPosition"
-                  name="idPosition"
-                  value="idPosition"
-                />
+                <label for="name">name</label>
+                <input type="text" id="name" name="name" value="name"/>
                 <span id="Error1" class="Error-msg">Error</span>
               </fieldset>
               <fieldset>
-                <label for="idCandidate">idCandidate</label>
-                <input
-                  type="text"
-                  id="idCandidate"
-                  name="idCandidate"
-                  value="idCandidate"
-                />
+                <label for="email">email</label>
+                <input type="text" id="email" name="email" value="email"/>
                 <span id="Error2" class="Error-msg">Error</span>
               </fieldset>
               <fieldset>
-                <label for="idInterview">idInterview</label>
-                <input
-                  type="text"
-                  id="idInterview"
-                  name="idInterview"
-                  value="idInterview"
-                />
+                <label for="username">username</label>
+                <input type="text" id="username" name="username" value="username"/>
                 <span id="Error3" class="Error-msg">Error</span>
               </fieldset>
               <fieldset>
-                <label for="dateTime">dateTime</label>
-                <input
-                  type="text"
-                  id="dateTime"
-                  name="dateTime"
-                  value="dateTime"
-                />
+                <label for="password">password</label>
+                <input type="text" id="password" name="password" value="password"/>
                 <span id="Error4" class="Error-msg">Error</span>
               </fieldset>
               <fieldset>
-                <label for="status">status</label>
-                <input type="text" id="status" name="status" value="status" />
+                <label for="phoneNumber">phoneNumber</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" value="phoneNumber"/>
                 <span id="Error5" class="Error-msg">Error</span>
               </fieldset>
               <fieldset>
-                <label for="result">result</label>
-                <input type="text" id="result" name="result" value="result" />
+                <label for="enrollmentNumber">enrollmentNumber</label>
+                <input type="text" id="enrollmentNumber" name="enrollmentNumber" value="enrollmentNumber"/>
                 <span id="Error6" class="Error-msg">Error</span>
+              </fieldset>
+              <fieldset>
+                <label for="status">status</label>
+                <input type="text" id="status" name="status" value="status"/>
+                <span id="Error7" class="Error-msg">Error</span>
+              </fieldset>
+              <fieldset>
+                <label for="timeRange">timeRange</label>
+                <input type="text" id="timeRange" name="timeRange" value="timeRange" />
+                <span id="Error8" class="Error-msg">Error</span>
+              </fieldset>
+              <fieldset>
+                <label for="dayRange">dayRange</label>
+                <input type="text" id="dayRange" name="dayRange" value="dayRange" />
+                <span id="Error9" class="Error-msg">Error</span>
               </fieldset>
             </form>
             <div>
