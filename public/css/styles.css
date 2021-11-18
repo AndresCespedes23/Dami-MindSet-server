@@ -60,8 +60,10 @@ td {
   text-transform: uppercase;
   color: #ffffff;
 }
-#background-modal {
+.hidden-background-modal {
   display: none;
+}
+#background-modal {
   position: fixed;
   overflow: scroll;
   left: 0;
@@ -71,7 +73,7 @@ td {
   background-color: #9aa2b0;
   z-index: 1;
 }
-#create-modal {
+.modal {
   width: 40%;
   margin: 80px auto;
   padding: 30px;
