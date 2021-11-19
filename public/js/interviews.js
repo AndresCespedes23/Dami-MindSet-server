@@ -8,7 +8,17 @@ window.onload = function() {
   const confirmUpdateButton = document.getElementById("confirm-update-button");
   const confirmRemoveButton = document.getElementById("confirm-remove-button");
   const modalTitle = document.getElementById("modal-title");
-  
+
+  createButton.addEventListener("click", openCreateModal);
+
+  //----- CREATE -----//
+
+  function openCreateModal() {
+    modal.classList.remove("hidden");
+    confirmCreateButton.classList.remove("hidden");
+    modalTitle.innerHTML = "Create Interview";
+  }
+
   //----- READ -----//
 
   function requestInterviews() {
