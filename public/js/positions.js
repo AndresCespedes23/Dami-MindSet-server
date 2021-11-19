@@ -17,15 +17,15 @@ function positionTable(positions) {
   const table = document.getElementById("table-list");
   positions.forEach(position => {
     let itemList = document.createElement("tr");
-    itemList.innerHTML = `<td class="position-id" onclick="showId()">${position._id}</td>
-      <td>${position.idClient}</td>
-      <td>${position.idProfiles}</td>
-      <td>${position.name}</td>
-      <td>${position.description}</td>
-      <td>${position.status}</td>
-      <td>${position.address}</td>
-      <td>${position.city}</td>
-      <td>${position.postalCode}</td>
+    itemList.innerHTML = `<td id="position-id" onclick="show()">${position._id}</td>
+      <td id="idClient">${position.idClient}</td>
+      <td id="idProfiles">${position.idProfiles}</td>
+      <td id="name">${position.name}</td>
+      <td id="description">${position.description}</td>
+      <td id="status">${position.status}</td>
+      <td id="address">${position.address}</td>
+      <td id="city">${position.city}</td>
+      <td id="postalCode">${position.postalCode}</td>
       <td><button id="edit" class="button-list"><img src="img/Icon-edit.png" alt="Edit"></button></td>
       <td><button id="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button></td>`
     table.appendChild(itemList);
@@ -42,12 +42,26 @@ function positionTable(positions) {
   });
 };
 
-function showId() {
+function show() {
+  const url = "http://localhost:4000/api/positions/";
+  fetch(url)
+    .then((res) => {
+      if (res.status === 200) return res.json();
+      throw new Error(`HTTP ${res.status}`);
+    })
+    .then((data) => {
+      showId(data)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+function showId(positions) {
   emptyModal();
-  const removeModal = document.getElementById("remove-div");
-  removeModal.innerHTML = "";
   let modal = document.getElementById("background-modal");
   modal.classList.remove("hidden-background-modal");
+  const showIdDiv = document.getElementById("showId");
   const updateConfirm = document.querySelectorAll(".update-button");
   updateConfirm[0].style.display = "none";
   const createConfirm = document.querySelectorAll(".create-button");
@@ -56,23 +70,23 @@ function showId() {
   removeConfirm[0].style.display = "none";
   const cancelButton = document.querySelectorAll(".cancel-button");
   cancelButton[0].addEventListener("click", closeModal);
-  let itemList = document.createElement("tr");
-    itemList.innerHTML = `<td"> + ${position._id} + </td>
-      <td>${position.idClient}</td>
-      <td>${position.idProfiles}</td>
-      <td>${position.name}</td>
-      <td>${position.description}</td>
-      <td>${position.status}</td>
-      <td>${position.address}</td>
-      <td>${position.city}</td>
-      <td>${position.postalCode}</td>`
-    table.appendChild(itemList);
+  if (positions) {
+    let itemList = document.createElement("p");
+    itemList.innerHTML = `id: ${positions._id}<br>
+    idClient: ${positions[0].idClient}<br>
+    idProfiles: ${positions[0].idProfiles}<br>
+    name: ${positions[0].name}<br>
+    description: ${positions[0].description}<br>
+    status: ${positions[0].status}<br>
+    address: ${positions[0].address}<br>
+    city: ${positions[0].city}<br>
+    postalCode: ${positions[0].postalCode}<br>`;
+    showIdDiv.appendChild(itemList);
+  }
 }
 
 function showUpdateModal() {
   emptyModal();
-  const removeModal = document.getElementById("remove-div");
-  removeModal.innerHTML = "";
   let modal = document.getElementById("background-modal");
   modal.classList.remove("hidden-background-modal");
   const form = document.getElementById("form");
@@ -134,8 +148,6 @@ function showRemoveModal() {
 
 function showCreateModal() {
   emptyModal();
-  const removeModal = document.getElementById("remove-div");
-  removeModal.innerHTML = "";
   let modal = document.getElementById("background-modal");
   modal.classList.remove("hidden-background-modal");
   const form = document.getElementById("form");
@@ -177,8 +189,12 @@ function showCreateModal() {
 }
 
 function emptyModal() {
-  const form = document.getElementById("form");
+  let form = document.getElementById("form");
   form.innerHTML = "";
+  let showId = document.getElementById("showId");
+  showId.innerHTML = "";
+  const removeModal = document.getElementById("remove-div");
+  removeModal.innerHTML = "";
 }
 
 function closeModal() {
