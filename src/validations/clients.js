@@ -18,7 +18,7 @@ const formatBodyRequired = (req, res, next) => {
   }
   if (req.body.email) {
     if (typeof req.body.email !== "string") return res.status(400).json({ msg: "Email must be string" });
-    if (req.body.email.length > 50 || req.body.email.length > 6) return res.status(400).json({ msg: "Email cannot be bigger than 50 or smaller than 2" });
+    if (req.body.email.length > 50 || req.body.email.length < 6) return res.status(400).json({ msg: "Email cannot be bigger than 50 or smaller than 2" });
   }
   if (req.body.phoneNumber) {
     if (typeof req.body.phoneNumber !== "string") return res.status(400).json({ msg: "´PhoneNumber must be string" });
@@ -60,38 +60,48 @@ const formatBodyRequired = (req, res, next) => {
 };
 
 const dataBodyUnique = (req, res, next) => {
-  Clients.find({ name: req.body.email })
-    .then((name) => {
-      if (name.length > 0) {
-        throw new Error(
-          res.status(400).json({ msg: "Name is already in use" }),
-        );
+  Clients.find({ name: req.body.name })
+    .then((client) => {
+      if (client.length > 0) {
+        if (!req.params.id) {
+          throw new Error(res.status(400).json({ msg: "Name is already in use" }));
+        // eslint-disable-next-line eqeqeq
+        } else if (req.params.id != client[0]._id) {
+          throw new Error(res.status(400).json({ msg: "Name is already in use" }));
+        }
       }
-      return Clients.find({ email: req.body.name });
+      return Clients.find({ email: req.body.email });
     })
-    .then((email) => {
-      if (email.length > 0) {
-        throw new Error(
-          res.status(400).json({ msg: "Email is already in use" }),
-        );
+    .then((client) => {
+      if (client.length > 0) {
+        if (!req.params.id) {
+          throw new Error(res.status(400).json({ msg: "Email is already in use" }));
+        // eslint-disable-next-line eqeqeq
+        } else if (req.params.id != client[0]._id) {
+          throw new Error(res.status(400).json({ msg: "Email is already in use" }));
+        }
       }
       return Clients.find({ phoneNumber: req.body.phoneNumber });
     })
-    .then((phoneNumber) => {
-      if (phoneNumber.length > 0) {
-        throw new Error(
-          res.status(400).json({ msg: "PhoneNumber is already in use" }),
-        );
+    .then((client) => {
+      if (client.length > 0) {
+        if (!req.params.id) {
+          throw new Error(res.status(400).json({ msg: "PhoneNumber is already in use" }));
+        // eslint-disable-next-line eqeqeq
+        } else if (req.params.id != client[0]._id) {
+          throw new Error(res.status(400).json({ msg: "PhoneNumber is already in use" }));
+        }
       }
-      return Clients.find({
-        cuit: req.body.cuit,
-      });
+      return Clients.find({ cuit: req.body.cuit });
     })
-    .then((cuit) => {
-      if (cuit.length > 0) {
-        throw new Error(
-          res.status(400).json({ msg: "Cuit is already in use" }),
-        );
+    .then((client) => {
+      if (client.length > 0) {
+        if (!req.params.id) {
+          throw new Error(res.status(400).json({ msg: "Cuit is already in use" }));
+        // eslint-disable-next-line eqeqeq
+        } else if (req.params.id != client[0]._id) {
+          throw new Error(res.status(400).json({ msg: "Cuit is already in use" }));
+        }
       }
       next();
     })

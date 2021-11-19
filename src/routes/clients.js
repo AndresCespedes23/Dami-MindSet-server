@@ -5,10 +5,18 @@ const middleware = require("../validations/clients");
 
 router.get("/", controller.getAll);
 router.get("/:id", controller.getById);
-router.post("/", middleware.dataBodyRequired, controller.create);
+router.post(
+  "/",
+  middleware.dataBodyRequired,
+  middleware.formatBodyRequired,
+  middleware.dataBodyUnique,
+  controller.create,
+);
 router.put(
   "/:id",
-  // middleware.formatBodyRequired,
+  middleware.dataBodyRequired,
+  middleware.formatBodyRequired,
+  middleware.dataBodyUnique,
   controller.update,
 );
 router.delete("/:id", controller.remove);

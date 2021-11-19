@@ -50,16 +50,20 @@ function reqCreateClient(e) {
       "Content-Type": "application/json",
     },
   })
-    .then((res) => {
-      if (res.status === 201) return res.json();
-      throw new Error(JSON.stringify(res.json()));
+    .then(async (res) => {
+      const data = await res.json();
+      if (res.status === 201) return data;
+      console.log(data.msg)
+      throw new Error(data.msg);
     })
     .then((data) => {
+      console.log(data);
       createModal.classList.toggle("hide", true);
-      location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
+      // location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
     })
-    .catch((error) => {
-      console.log(error);
+    .catch((err) => {
+      console.log(err);
+      console.log(err.message);
     });
 }
 
@@ -139,16 +143,19 @@ function reqUpdateClient(e) {
       "Content-Type": "application/json",
     },
   })
-    .then((res) => {
-      if (res.status === 200) return res.json();
-      throw new Error(`HTTP ${res.status}`);
+    .then(async (res) => {
+      const data = await res.json();
+      if (res.status === 200) return data;
+      throw new Error(data.msg);
     })
     .then((data) => {
+      console.log(data);
       updateModal.classList.toggle("hide", true);
-      // location.reload();  //CAMBIAR POR createList cuando pueda hacerlo
+      // location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
     })
-    .catch((error) => {
-      console.log(error);
+    .catch((err) => {
+      console.log(err);
+      console.log(err.message);
     });
 }
 
@@ -168,15 +175,19 @@ function reqDeleteClient(){
   fetch(url, {
     method: "DELETE",
   })
-    .then((res) => {
-      if (res.status === 200) return res.json();
-      throw new Error(`HTTP ${res.status}`);
+    .then(async (res) => {
+      const data = await res.json();
+      if (res.status === 200) return data;
+      throw new Error(data.msg);
     })
-    .then(() => {
+    .then((data) => {
+      console.log(data);
+      deleteModal.classList.toggle("hide", true);
       location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
     })
-    .catch((error) => {
-      console.log(error);
+    .catch((err) => {
+      console.log(err);
+      console.log(err.message);
     });
 }
 
