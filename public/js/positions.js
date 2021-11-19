@@ -80,3 +80,20 @@ function showUpdateModal() {
     <span id="Error8" class="Error-msg">Error</span>`
   form.appendChild(updateForm);
 };
+
+function showRemoveModal() {
+  emptyModal();
+  const removeModal = document.getElementById("remove-div");
+  let modal = document.getElementById("background-modal");
+  modal.classList.remove("hidden-background-modal");
+  const removeConfirm = document.getElementById("remove-button");
+  removeConfirm.style.display = "block";
+  const updateConfirm = document.getElementById("update-button");
+  updateConfirm.style.display = "none";
+  const createConfirm = document.getElementById("create-button");
+  createConfirm.style.display = "none";
+  const cancelButton = document.getElementById("cancel-button");
+  cancelButton.addEventListener("click", closeModal);
+  removeModal.innerHTML = `<h2>Remove Position</h2>
+  <p>Are you sure ?</p>`;
+}
