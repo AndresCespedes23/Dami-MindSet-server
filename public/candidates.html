@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/candidates.css" />
     <script src="./js/candidates.js" defer></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
@@ -27,15 +27,14 @@
             <th>Address</th>
             <th>Status</th>
             <th>Profiles</th>
-            <th>Personal Info</th>
-            <th>See CV</th>
             <th>See applications</th>
+            <th>See Profile</th>
             <th></th>
             <th></th>
           </tr>
         </table>
         <div id="background-modal">
-          <div id="create-modal">
+          <div id="create-modal" class="modal-content">
             <h2>Create Application</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
@@ -97,6 +96,11 @@
               <button class="modal-button">Cancel</button>
               <button id="confirm-button" class="modal-button">Confirm</button>
             </div>
+          </div>
+          <div id="confirm-modal" class="modal-content">
+            <h2>Are you sure?</h2>
+            <button id="no">NO</button>
+            <button id="yes">YES</button>
           </div>
         </div>
       </div>
