@@ -138,3 +138,13 @@ function showCreateModal() {
     <span id="Error8" class="Error-msg">Error</span>`
   form.appendChild(createForm);
 }
+
+function emptyModal() {
+  const form = document.getElementById("form");
+  form.innerHTML = "";
+}
+
+function closeModal() {
+  let hideModal = document.getElementById("background-modal");
+  hideModal.classList.add("hidden-background-modal");
+}
