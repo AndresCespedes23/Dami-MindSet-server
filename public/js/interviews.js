@@ -2,6 +2,13 @@ window.onload = function() {
 
   requestInterviews();
 
+  const modal = document.getElementById("background-modal");
+  const createButton = document.getElementById("create-button");
+  const confirmCreateButton = document.getElementById("confirm-create-button");
+  const confirmUpdateButton = document.getElementById("confirm-update-button");
+  const confirmRemoveButton = document.getElementById("confirm-remove-button");
+  const modalTitle = document.getElementById("modal-title");
+  
   //----- READ -----//
 
   function requestInterviews() {
