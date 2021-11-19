@@ -37,3 +37,46 @@ function positionTable(positions) {
     createButton.addEventListener("click", showCreateModal);
   });
 };
+
+function showUpdateModal() {
+  emptyModal();
+  const form = document.getElementById("form");
+  let modal = document.getElementById("background-modal");
+  modal.classList.remove("hidden-background-modal");
+  const updateConfirm = document.getElementById("update-button");
+  updateConfirm.style.display = "block";
+  const createConfirm = document.getElementById("create-button");
+  createConfirm.style.display = "none";
+  const removeConfirm = document.getElementById("remove-button");
+  removeConfirm.style.display = "none";
+  const cancelButton = document.getElementById("cancel-button");
+  cancelButton.addEventListener("click", closeModal);
+  let createForm = document.createElement("fieldset");
+  createForm.innerHTML = "";
+  let updateForm = document.createElement("fieldset");
+  updateForm.innerHTML = `<label for="idClient">idClient</label>
+    <input type="text" id="idClient" name="idClient"/>
+    <span id="Error1" class="Error-msg">Error</span>
+    <label for="idProfiles">idProfiles</label>
+    <input type="text" id="idProfiles" name="idProfiles"/>
+    <span id="Error2" class="Error-msg">Error</span>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name"/>
+    <span id="Error3" class="Error-msg">Error</span>
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description"/>
+    <span id="Error4" class="Error-msg">Error</span>
+    <label for="status">Status</label>
+    <input type="text" id="status" name="status"/>
+    <span id="Error5" class="Error-msg">Error</span>
+    <label for="address">Address</label>
+    <input type="text" id="address" name="address"/>
+    <span id="Error6" class="Error-msg">Error</span>
+    <label for="city">City</label>
+    <input type="text" id="city" name="city"/>
+    <span id="Error7" class="Error-msg">Error</span>
+    <label for="postalCode">postalCode</label>
+    <input type="text" id="postalCode" name="postalCode" />
+    <span id="Error8" class="Error-msg">Error</span>`
+  form.appendChild(updateForm);
+};
