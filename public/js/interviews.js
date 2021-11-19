@@ -27,6 +27,35 @@ window.onload = function() {
     modalTitle.innerHTML = "Create Interview";
   }
 
+  function requestCreateInterview() {
+    let interview = {
+      idCandidate: document.getElementById("idCandidate").value,
+      idClient: document.getElementById("idClient").value,
+      idPosition: document.getElementById("idPosition").value,
+      dateTime: document.getElementById("dateTime").value,
+      status: document.getElementById("status").value
+    }
+    const url = "http://localhost:4000/api/interviews";
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(interview),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status === 201) return res.json();
+        throw new Error(JSON.stringify(res.json()));
+      })
+      .then(() => {
+        modal.classList.add("hidden");
+        requestInterviews();
+      })
+      .catch((error) => {
+        return error;
+      });
+    }
+
   //----- READ -----//
 
   function requestInterviews() {
