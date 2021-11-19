@@ -33,7 +33,6 @@ function positionTable(positions) {
     const editButton = document.querySelectorAll("#edit");
     for (let i = 0; i < editButton.length; i++) {
       editButton[i].addEventListener("click", showUpdateModal.bind(position));
-      let numberI = i;
     };
     const removeButton = document.querySelectorAll("#remove");
     for (let i = 0; i < removeButton.length; i++) {
@@ -150,31 +149,61 @@ function showCreateModal() {
   cancelButton[0].addEventListener("click", closeModal);
   let createForm = document.createElement("fieldset");
   createForm.innerHTML = `<h2>Create Position</h2>
-  <label for="idClient">idClient</label>
-    <input type="text" id="idClient" name="idClient"/>
-    <span id="Error1" class="Error-msg">Error</span>
-    <label for="idProfiles">idProfiles</label>
-    <input type="text" id="idProfiles" name="idProfiles"/>
-    <span id="Error2" class="Error-msg">Error</span>
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name"/>
-    <span id="Error3" class="Error-msg">Error</span>
-    <label for="description">Description</label>
-    <input type="text" id="description" name="description"/>
-    <span id="Error4" class="Error-msg">Error</span>
-    <label for="status">Status</label>
-    <input type="text" id="status" name="status"/>
-    <span id="Error5" class="Error-msg">Error</span>
-    <label for="address">Address</label>
-    <input type="text" id="address" name="address"/>
-    <span id="Error6" class="Error-msg">Error</span>
-    <label for="city">City</label>
-    <input type="text" id="city" name="city"/>
-    <span id="Error7" class="Error-msg">Error</span>
-    <label for="postalCode">postalCode</label>
-    <input type="text" id="postalCode" name="postalCode" />
-    <span id="Error8" class="Error-msg">Error</span>`
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name"/>
+  <span id="Error3" class="Error-msg">Error</span>
+  <label for="description">Description</label>
+  <input type="text" id="description" name="description"/>
+  <span id="Error4" class="Error-msg">Error</span>
+  <label for="status">Status</label>
+  <input type="text" id="status" name="status"/>
+  <span id="Error5" class="Error-msg">Error</span>
+  <label for="address">Address</label>
+  <input type="text" id="address" name="address"/>
+  <span id="Error6" class="Error-msg">Error</span>
+  <label for="city">City</label>
+  <input type="text" id="city" name="city"/>
+  <span id="Error7" class="Error-msg">Error</span>
+  <label for="postalCode">postalCode</label>
+  <input type="text" id="postalCode" name="postalCode" />
+  <span id="Error8" class="Error-msg">Error</span>`
   form.appendChild(createForm);
+  createConfirm[0].addEventListener("click", sendCreate);
+}
+
+  let name1 = document.querySelector('input[id="name"]');
+  let description = document.querySelector('input[id="description"]');
+  let status1 = document.querySelector('input[id="status"]');
+  let address = document.querySelector('input[id="address"]');
+  let city = document.querySelector('input[id="city"]');
+  let postalCode = document.querySelector('input[id="postalCode"]');
+  const createPosition = {
+    name1 : name1.value,
+    description : description.value,
+    status : status1.value,
+    address : address.value,
+    city : city.value,
+    postalCode : postalCode.value,
+  };
+
+
+function sendCreate() {
+  const url = "http://localhost:4000/api/positions/";
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(),
+    headers: { "Content-type" : "application/json"}
+  })
+    .then((res) => {
+      if (res.status === 201) return res.json(createPosition);
+      throw new Error(`HTTP ${res.status}`);
+    })
+    .then((data) => {
+      positionTable(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 function emptyModal() {
