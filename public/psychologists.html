@@ -20,7 +20,7 @@
     <section>
       <div id="resource-table">
         <h1>Psychologists</h1>
-        <table>
+        <table id="table-list">
           <tr>
             <th>id</th>
             <th>name</th>
@@ -35,34 +35,6 @@
             <th></th>
             <th></th>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>Juan Pablo Perez</td>
-            <td>jaaja@gmail.com</td>
-            <td>juampi1</td>
-            <td>wont tell ya</td>
-            <td>3416454545</td>
-            <td>654654</td>
-            <td>Hired</td>
-            <td>09:00-19:00</td>
-            <td>Mon-Fri</td>
-            <td><img src="img/Icon-edit.png" alt="Edit" /></td>
-            <td><img src="img/Icon-remove.png" alt="Remove" /></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Santiago Repez</td>
-            <td>jiji@gmail.com</td>
-            <td>santicanob</td>
-            <td>will tell</td>
-            <td>3413898989</td>
-            <td>8001</td>
-            <td>Pending</td>
-            <td>08-00-19:00</td>
-            <td>Mon-Sat</td>
-            <td><img src="img/Icon-edit.png" alt="Edit" /></td>
-            <td><img src="img/Icon-remove.png" alt="Remove" /></td>
-          </tr>
         </table>
         <button id="create-button">Create ></button>
         <div id="background-modal" class="modal-hide background-modal">
@@ -75,12 +47,12 @@
               <fieldset>
                 <label for="name">name</label>
                 <input type="text" id="name" name="name" placeholder="name" />
-                <span id="Error1" class="Error-msg">Error</span>
+                <span id="Error1" class="error-msg">Error</span>
               </fieldset>
               <fieldset>
                 <label for="email">email</label>
                 <input type="text" id="email" name="email" placeholder="email" />
-                <span id="Error2" class="Error-msg">Error</span>
+                <span id="Error2" class="error-msg">Error</span>
               </fieldset>
               <fieldset>
                 <label for="username">username</label>
@@ -90,7 +62,7 @@
                   name="username"
                   placeholder="username"
                 />
-                <span id="Error3" class="Error-msg">Error</span>
+                <span id="Error3" class="error-msg">Error</span>
               </fieldset>
               <fieldset>
                 <label for="password">password</label>
@@ -100,7 +72,7 @@
                   name="password"
                   placeholder="password"
                 />
-                <span id="Error4" class="Error-msg">Error</span>
+                <span id="Error4" class="error-msg">Error</span>
               </fieldset>
               <fieldset>
                 <label for="phoneNumber">phoneNumber</label>
@@ -110,7 +82,7 @@
                   name="phoneNumber"
                   placeholder="phoneNumber"
                 />
-                <span id="Error5" class="Error-msg">Error</span>
+                <span id="Error5" class="error-msg">Error</span>
               </fieldset>
               <fieldset>
                 <label for="enrollmentNumber">enrollmentNumber</label>
@@ -120,12 +92,12 @@
                   name="enrollmentNumber"
                   placeholder="enrollmentNumber"
                 />
-                <span id="Error6" class="Error-msg">Error</span>
+                <span id="Error6" class="error-msg">Error</span>
               </fieldset>
               <fieldset>
                 <label for="status">status</label>
                 <input type="text" id="status" name="status" placeholder="status" />
-                <span id="Error7" class="Error-msg">Error</span>
+                <span id="Error7" class="error-msg">Error</span>
               </fieldset>
               <fieldset>
                 <label for="timeRange">timeRange</label>
@@ -135,7 +107,7 @@
                   name="timeRange"
                   placeholder="timeRange"
                 />
-                <span id="Error8" class="Error-msg">Error</span>
+                <span id="Error8" class="error-msg">Error</span>
               </fieldset>
               <fieldset>
                 <label for="dayRange">dayRange</label>
@@ -145,7 +117,7 @@
                   name="dayRange"
                   placeholder="dayRange"
                 />
-                <span id="Error9" class="Error-msg">Error</span>
+                <span id="Error9" class="error-msg">Error</span>
               </fieldset>
             </form>
             <div>

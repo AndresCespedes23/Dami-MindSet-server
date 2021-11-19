@@ -6,22 +6,23 @@ const username = document.getElementById("username");
 const password = document.getElementById("password");
 const phoneNumber = document.getElementById("phoneNumber");
 const enrollmentNumber = document.getElementById("enrollmentNumber");
+const status = document.getElementById("status");
 const timeRange = document.getElementById("timeRange");
 const dayRange = document.getElementById("dayRange");
 
+// const updateModal = document.getElementById("update-modal");
+// const confirmUpdateButton = document.getElementById("confirm-update-button");
+// confirmUpdateButton.addEventListener("click", reqUpdateClient);
+
+//createButton.disabled = true; //disable the button until the page is completely loaded.
+readPsy();
+
+// CREATE *******************************************************
 const createButton = document.getElementById("create-button");
 const createModal = document.getElementById("create-modal");
 const cancelCreateButton = document.getElementById("cancel-create-button");
 const confirmCreateButton = document.getElementById("confirm-create-button");
 
-const updateModal = document.getElementById("update-modal");
-const confirmUpdateButton = document.getElementById("confirm-update-button");
-confirmUpdateButton.addEventListener("click", reqUpdateClient);
-
-//createButton.disabled = true; //disable the button until the page is completely loaded.
-readClients();
-
-// CREATE *******************************************************
 createButton.addEventListener("click", openCreateModal);
 cancelCreateButton.addEventListener("click", cancelCreate);
 confirmCreateButton.addEventListener("click", reqCreate);
@@ -36,19 +37,15 @@ function cancelCreate() {
 }
 
 function reqCreate() {
-  if (!req.body.name) return res.status(400).json({ msg: "Name is missing" });
-  if (!req.body.username) return res.status(400).json({ msg: "Username is missing" });
-  if (!req.body.email) return res.status(400).json({ msg: "Email is missing" });
-  if (!req.body.password) return res.status(400).json({ msg: "Password is missing" });
-  if (!req.body.phoneNumber) return res.status(400).json({ msg: "PhoneNumber is missing" });
-  if (!req.body.enrollmentNumber) return res.status(400).json({ msg: "EnrollmentNumber is missing" });
-  //validate all again
-  // validateName();
-  // validateEmail();
-  // validatePhoneNumber();
-  // validateCuit();
-  // validateAddress();
-  // validateActivity();
+  if (!name.value) return res.status(400).json({ msg: "Name is missing" });
+  if (!username.value) return res.status(400).json({ msg: "Username is missing" });
+  if (!email.value) return res.status(400).json({ msg: "Email is missing" });
+  if (!password.value) return res.status(400).json({ msg: "Password is missing" });
+  if (!phoneNumber.value) return res.status(400).json({ msg: "PhoneNumber is missing" });
+  if (!enrollmentNumber.value) return res.status(400).json({ msg: "EnrollmentNumber is missing" });
+  if (!status.value) return res.status(400).json({ msg: "Status is missing" });
+  if (!timeRange.value) return res.status(400).json({ msg: "TimeRange is missing" });
+  if (!dayRange.value) return res.status(400).json({ msg: "DayRange is missing" });
 
   const dataForm = document.querySelectorAll("#create-form input");
 
@@ -60,7 +57,7 @@ function reqCreate() {
     address: dataForm[4].value,
     activity: dataForm[5].value,
   };
-  const url = "http://localhost:4000/api/clients/";
+  const url = "http://localhost:4000/api/psychologists/";
   fetch(url, {
     method: "POST",
     body: JSON.stringify(dataBody),
@@ -81,9 +78,9 @@ function reqCreate() {
     });
 }
 
-// READ CLIENTS **************************************************************
-function readClients() {
-  let url = "http://localhost:4000/api/clients/";
+// READ PSYS **************************************************************
+function readPsy() {
+  let url = "http://localhost:4000/api/psychologists/";
   fetch(url)
     .then((res) => {
       if (res.status === 200) return res.json();
@@ -96,22 +93,25 @@ function readClients() {
       console.log(error);
     });
 }
-function createList(clients) {
+function createList(psys) {
   const table = document.getElementById("table-list");
   let i = 0;
-  clients.forEach((client) => {
+  psys.forEach((psy) => {
     const itemList = document.createElement("tr");
     itemList.id = "item-" + i;
-    itemList.innerHTML = `<td>${client._id}</td>
-      <td>${client.name}</td>
-      <td>${client.email}</td>
-      <td>${client.phoneNumber}</td>
-      <td>${client.cuit}</td>
-      <td>${client.address}</td>
-      <td>${client.activity}</td>
+    itemList.innerHTML = `<td>${psy._id}</td>
+      <td>${psy.name}</td>
+      <td>${psy.email}</td>
+      <td>${psy.username}</td>
+      <td>${psy.password}</td>
+      <td>${psy.phoneNumber}</td>
+      <td>${psy.enrollmentNumber}</td>
+      <td>${psy.status}</td>
+      <td>${psy.timeRange}</td>
+      <td>${psy.dayRange}</td>
       <td><button class="button-list" onclick="openUpdateModal(${i})"><img src="img/Icon-edit.png" alt="Edit"></button></td>
-      <td><button class="button-list" onclick="deleteClient(${i})"><img src="img/Icon-remove.png" alt="Remove"/></button>
-      </form></td>`;
+      <td><button class="button-list" onclick="deletePsychologist(${i})"><img src="img/Icon-remove.png" alt="Remove"/></button>
+      </td>`;
     table.appendChild(itemList);
     i++;
   });
@@ -151,7 +151,7 @@ function reqUpdateClient(e) {
     activity: dataForm[6].value,
   };
   const idClient = dataForm[0].value; //this field is hidden in the modalUpdate
-  const url = "http://localhost:4000/api/clients/" + idClient;
+  const url = "http://localhost:4000/api/psychologists/" + idClient;
   fetch(url, {
     method: "PUT",
     body: JSON.stringify(dataBody),
@@ -177,7 +177,7 @@ function deleteClient(index) {
   const itemToDelete = document.getElementById(`item-${index}`);
   const idClient = itemToDelete.firstElementChild.innerText;
 
-  const url = "http://localhost:4000/api/clients/" + idClient;
+  const url = "http://localhost:4000/api/psychologists/" + idClient;
   fetch(url, {
     method: "DELETE",
   })
