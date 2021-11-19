@@ -15,8 +15,9 @@
   flex-direction: row;
   width: 100%;
   margin: auto;
+  margin-left: 30%;
 }
-#create-button, #update-button, #remove-button {
+.create-button, .update-button, .remove-button {
   background-color: #091f40;
   color: #ffffff;
 }

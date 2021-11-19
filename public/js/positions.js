@@ -29,32 +29,39 @@ function positionTable(positions) {
       <td><button id="edit" class="button-list"><img src="img/Icon-edit.png" alt="Edit"></button></td>
       <td><button id="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button></td>`
     table.appendChild(itemList);
-    const editButton = document.getElementById("edit");
-    editButton.addEventListener("click", showUpdateModal);
-    const removeButton = document.getElementById("remove");
-    removeButton.addEventListener("click", showRemoveModal);
-    const createButton = document.getElementById("create");
-    createButton.addEventListener("click", showCreateModal);
+    const editButton = document.querySelectorAll("#edit");
+    for (let i = 0; i < editButton.length; i++) {
+      editButton[i].addEventListener("click", showUpdateModal);
+    };
+    const removeButton = document.querySelectorAll("#remove");
+    for (let i = 0; i < removeButton.length; i++) {
+      removeButton[i].addEventListener("click", showRemoveModal);
+    }
+    const createButton = document.querySelectorAll("#create");
+    createButton[0].addEventListener("click", showCreateModal);
   });
 };
 
 function showUpdateModal() {
   emptyModal();
-  const form = document.getElementById("form");
+  const removeModal = document.getElementById("remove-div");
+  removeModal.innerHTML = "";
   let modal = document.getElementById("background-modal");
   modal.classList.remove("hidden-background-modal");
-  const updateConfirm = document.getElementById("update-button");
-  updateConfirm.style.display = "block";
-  const createConfirm = document.getElementById("create-button");
-  createConfirm.style.display = "none";
-  const removeConfirm = document.getElementById("remove-button");
-  removeConfirm.style.display = "none";
-  const cancelButton = document.getElementById("cancel-button");
-  cancelButton.addEventListener("click", closeModal);
+  const form = document.getElementById("form");
+  const updateConfirm = document.querySelectorAll(".update-button");
+  updateConfirm[0].style.display = "block";
+  const createConfirm = document.querySelectorAll(".create-button");
+  createConfirm[0].style.display = "none";
+  const removeConfirm = document.querySelectorAll(".remove-button");
+  removeConfirm[0].style.display = "none";
+  const cancelButton = document.querySelectorAll(".cancel-button");
+  cancelButton[0].addEventListener("click", closeModal);
   let createForm = document.createElement("fieldset");
   createForm.innerHTML = "";
   let updateForm = document.createElement("fieldset");
-  updateForm.innerHTML = `<label for="idClient">idClient</label>
+  updateForm.innerHTML = `<h2>Update Position</h2>
+  <label for="idClient">idClient</label>
     <input type="text" id="idClient" name="idClient"/>
     <span id="Error1" class="Error-msg">Error</span>
     <label for="idProfiles">idProfiles</label>
@@ -83,36 +90,39 @@ function showUpdateModal() {
 
 function showRemoveModal() {
   emptyModal();
-  const removeModal = document.getElementById("remove-div");
   let modal = document.getElementById("background-modal");
   modal.classList.remove("hidden-background-modal");
-  const removeConfirm = document.getElementById("remove-button");
-  removeConfirm.style.display = "block";
-  const updateConfirm = document.getElementById("update-button");
-  updateConfirm.style.display = "none";
-  const createConfirm = document.getElementById("create-button");
-  createConfirm.style.display = "none";
-  const cancelButton = document.getElementById("cancel-button");
-  cancelButton.addEventListener("click", closeModal);
+  const removeModal = document.getElementById("remove-div");
   removeModal.innerHTML = `<h2>Remove Position</h2>
   <p>Are you sure ?</p>`;
+  const updateConfirm = document.querySelectorAll(".update-button");
+  updateConfirm[0].style.display = "none";
+  const createConfirm = document.querySelectorAll(".create-button");
+  createConfirm[0].style.display = "none";
+  const removeConfirm = document.querySelectorAll(".remove-button");
+  removeConfirm[0].style.display = "block";
+  const cancelButton = document.querySelectorAll(".cancel-button");
+  cancelButton[0].addEventListener("click", closeModal);
 }
 
 function showCreateModal() {
   emptyModal();
-  const form = document.getElementById("form");
+  const removeModal = document.getElementById("remove-div");
+  removeModal.innerHTML = "";
   let modal = document.getElementById("background-modal");
   modal.classList.remove("hidden-background-modal");
-  const createConfirm = document.getElementById("create-button");
-  createConfirm.style.display = "block";
-  const updateConfirm = document.getElementById("update-button");
-  updateConfirm.style.display = "none";
-  const removeConfirm = document.getElementById("remove-button");
-  removeConfirm.style.display = "none";
-  const cancelButton = document.getElementById("cancel-button");
-  cancelButton.addEventListener("click", closeModal);
+  const form = document.getElementById("form");
+  const updateConfirm = document.querySelectorAll(".update-button");
+  updateConfirm[0].style.display = "none";
+  const createConfirm = document.querySelectorAll(".create-button");
+  createConfirm[0].style.display = "block";
+  const removeConfirm = document.querySelectorAll(".remove-button");
+  removeConfirm[0].style.display = "none";
+  const cancelButton = document.querySelectorAll(".cancel-button");
+  cancelButton[0].addEventListener("click", closeModal);
   let createForm = document.createElement("fieldset");
-  createForm.innerHTML = `<label for="idClient">idClient</label>
+  createForm.innerHTML = `<h2>Create Position</h2>
+  <label for="idClient">idClient</label>
     <input type="text" id="idClient" name="idClient"/>
     <span id="Error1" class="Error-msg">Error</span>
     <label for="idProfiles">idProfiles</label>
