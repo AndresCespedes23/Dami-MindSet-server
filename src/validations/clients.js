@@ -63,10 +63,8 @@ const dataBodyUnique = (req, res, next) => {
   Clients.find({ name: req.body.name })
     .then((client) => {
       if (client.length > 0) {
-        if (!req.params.id) {
-          throw new Error(res.status(400).json({ msg: "Name is already in use" }));
         // eslint-disable-next-line eqeqeq
-        } else if (req.params.id != client[0]._id) {
+        if (!req.params.id || (req.params.id != client[0]._id)) {
           throw new Error(res.status(400).json({ msg: "Name is already in use" }));
         }
       }
@@ -74,10 +72,8 @@ const dataBodyUnique = (req, res, next) => {
     })
     .then((client) => {
       if (client.length > 0) {
-        if (!req.params.id) {
-          throw new Error(res.status(400).json({ msg: "Email is already in use" }));
         // eslint-disable-next-line eqeqeq
-        } else if (req.params.id != client[0]._id) {
+        if (!req.params.id || (req.params.id != client[0]._id)) {
           throw new Error(res.status(400).json({ msg: "Email is already in use" }));
         }
       }
@@ -85,10 +81,8 @@ const dataBodyUnique = (req, res, next) => {
     })
     .then((client) => {
       if (client.length > 0) {
-        if (!req.params.id) {
-          throw new Error(res.status(400).json({ msg: "PhoneNumber is already in use" }));
         // eslint-disable-next-line eqeqeq
-        } else if (req.params.id != client[0]._id) {
+        if (!req.params.id || (req.params.id != client[0]._id)) {
           throw new Error(res.status(400).json({ msg: "PhoneNumber is already in use" }));
         }
       }
@@ -96,11 +90,9 @@ const dataBodyUnique = (req, res, next) => {
     })
     .then((client) => {
       if (client.length > 0) {
-        if (!req.params.id) {
-          throw new Error(res.status(400).json({ msg: "Cuit is already in use" }));
         // eslint-disable-next-line eqeqeq
-        } else if (req.params.id != client[0]._id) {
-          throw new Error(res.status(400).json({ msg: "Cuit is already in use" }));
+        if (!req.params.id || (req.params.id != client[0]._id)) {
+          throw new Error(res.status(400).json({ msg: "CUIT is already in use" }));
         }
       }
       next();
