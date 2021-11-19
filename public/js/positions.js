@@ -17,7 +17,7 @@ function positionTable(positions) {
   const table = document.getElementById("table-list");
   positions.forEach(position => {
     let itemList = document.createElement("tr");
-    itemList.innerHTML = `<td>${position._id}</td>
+    itemList.innerHTML = `<td class="position-id" onclick="showId()">${position._id}</td>
       <td>${position.idClient}</td>
       <td>${position.idProfiles}</td>
       <td>${position.name}</td>
@@ -41,6 +41,33 @@ function positionTable(positions) {
     createButton[0].addEventListener("click", showCreateModal);
   });
 };
+
+function showId() {
+  emptyModal();
+  const removeModal = document.getElementById("remove-div");
+  removeModal.innerHTML = "";
+  let modal = document.getElementById("background-modal");
+  modal.classList.remove("hidden-background-modal");
+  const updateConfirm = document.querySelectorAll(".update-button");
+  updateConfirm[0].style.display = "none";
+  const createConfirm = document.querySelectorAll(".create-button");
+  createConfirm[0].style.display = "none";
+  const removeConfirm = document.querySelectorAll(".remove-button");
+  removeConfirm[0].style.display = "none";
+  const cancelButton = document.querySelectorAll(".cancel-button");
+  cancelButton[0].addEventListener("click", closeModal);
+  let itemList = document.createElement("tr");
+    itemList.innerHTML = `<td"> + ${position._id} + </td>
+      <td>${position.idClient}</td>
+      <td>${position.idProfiles}</td>
+      <td>${position.name}</td>
+      <td>${position.description}</td>
+      <td>${position.status}</td>
+      <td>${position.address}</td>
+      <td>${position.city}</td>
+      <td>${position.postalCode}</td>`
+    table.appendChild(itemList);
+}
 
 function showUpdateModal() {
   emptyModal();
