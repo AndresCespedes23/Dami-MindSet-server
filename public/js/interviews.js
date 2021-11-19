@@ -7,9 +7,15 @@ window.onload = function() {
   const confirmCreateButton = document.getElementById("confirm-create-button");
   const confirmUpdateButton = document.getElementById("confirm-update-button");
   const confirmRemoveButton = document.getElementById("confirm-remove-button");
+  const cancelButton = document.getElementById("cancel-button");
   const modalTitle = document.getElementById("modal-title");
 
   createButton.addEventListener("click", openCreateModal);
+  cancelButton.addEventListener("click", closeModal);
+
+  function closeModal() {
+    modal.classList.add("hidden");
+  }
 
   //----- CREATE -----//
 
