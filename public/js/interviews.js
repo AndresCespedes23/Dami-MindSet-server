@@ -12,6 +12,8 @@ window.onload = function() {
 
   createButton.addEventListener("click", openCreateModal);
   cancelButton.addEventListener("click", closeModal);
+  confirmCreateButton.addEventListener("click", requestCreateInterview);
+
 
   function closeModal() {
     modal.classList.add("hidden");
