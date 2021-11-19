@@ -1,8 +1,7 @@
 /* eslint-disable consistent-return */
 const required = (req, res, next) => {
   if (
-    !req.params.id
-    || !req.body.idCandidate
+    !req.body.idCandidate
     || !req.body.idClient
     || !req.body.idPosition
     || !req.body.status
