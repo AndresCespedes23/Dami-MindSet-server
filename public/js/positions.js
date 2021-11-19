@@ -17,7 +17,7 @@ function positionTable(positions) {
   const table = document.getElementById("table-list");
   positions.forEach(position => {
     let itemList = document.createElement("tr");
-    itemList.innerHTML = `<td id="position-id" onclick="show()">${position._id}</td>
+    itemList.innerHTML = `<td id="position-id" >${position._id}</td>
       <td id="idClient">${position.idClient}</td>
       <td id="idProfiles">${position.idProfiles}</td>
       <td id="name">${position.name}</td>
@@ -29,9 +29,11 @@ function positionTable(positions) {
       <td><button id="edit" class="button-list"><img src="img/Icon-edit.png" alt="Edit"></button></td>
       <td><button id="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button></td>`
     table.appendChild(itemList);
+    itemList.querySelector("#position-id").addEventListener("click", showId.bind(position));
     const editButton = document.querySelectorAll("#edit");
     for (let i = 0; i < editButton.length; i++) {
-      editButton[i].addEventListener("click", showUpdateModal);
+      editButton[i].addEventListener("click", showUpdateModal.bind(position));
+      let numberI = i;
     };
     const removeButton = document.querySelectorAll("#remove");
     for (let i = 0; i < removeButton.length; i++) {
@@ -42,22 +44,8 @@ function positionTable(positions) {
   });
 };
 
-function show() {
-  const url = "http://localhost:4000/api/positions/";
-  fetch(url)
-    .then((res) => {
-      if (res.status === 200) return res.json();
-      throw new Error(`HTTP ${res.status}`);
-    })
-    .then((data) => {
-      showId(data)
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
 function showId(positions) {
+  positions = this;
   emptyModal();
   let modal = document.getElementById("background-modal");
   modal.classList.remove("hidden-background-modal");
@@ -73,19 +61,20 @@ function showId(positions) {
   if (positions) {
     let itemList = document.createElement("p");
     itemList.innerHTML = `id: ${positions._id}<br>
-    idClient: ${positions[0].idClient}<br>
-    idProfiles: ${positions[0].idProfiles}<br>
-    name: ${positions[0].name}<br>
-    description: ${positions[0].description}<br>
-    status: ${positions[0].status}<br>
-    address: ${positions[0].address}<br>
-    city: ${positions[0].city}<br>
-    postalCode: ${positions[0].postalCode}<br>`;
+    idClient: ${positions.idClient}<br>
+    idProfiles: ${positions.idProfiles}<br>
+    name: ${positions.name}<br>
+    description: ${positions.description}<br>
+    status: ${positions.status}<br>
+    address: ${positions.address}<br>
+    city: ${positions.city}<br>
+    postalCode: ${positions.postalCode}<br>`;
     showIdDiv.appendChild(itemList);
   }
 }
 
-function showUpdateModal() {
+function showUpdateModal(positions) {
+  positions = this;
   emptyModal();
   let modal = document.getElementById("background-modal");
   modal.classList.remove("hidden-background-modal");
@@ -103,29 +92,29 @@ function showUpdateModal() {
   let updateForm = document.createElement("fieldset");
   updateForm.innerHTML = `<h2>Update Position</h2>
   <label for="idClient">idClient</label>
-    <input type="text" id="idClient" name="idClient"/>
-    <span id="Error1" class="Error-msg">Error</span>
-    <label for="idProfiles">idProfiles</label>
-    <input type="text" id="idProfiles" name="idProfiles"/>
-    <span id="Error2" class="Error-msg">Error</span>
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name"/>
-    <span id="Error3" class="Error-msg">Error</span>
-    <label for="description">Description</label>
-    <input type="text" id="description" name="description"/>
-    <span id="Error4" class="Error-msg">Error</span>
-    <label for="status">Status</label>
-    <input type="text" id="status" name="status"/>
-    <span id="Error5" class="Error-msg">Error</span>
-    <label for="address">Address</label>
-    <input type="text" id="address" name="address"/>
-    <span id="Error6" class="Error-msg">Error</span>
-    <label for="city">City</label>
-    <input type="text" id="city" name="city"/>
-    <span id="Error7" class="Error-msg">Error</span>
-    <label for="postalCode">postalCode</label>
-    <input type="text" id="postalCode" name="postalCode" />
-    <span id="Error8" class="Error-msg">Error</span>`
+  <input type="text" id="idClient" name="idClient" value=${positions.idClient} />
+  <span id="Error1" class="Error-msg">Error</span>
+  <label for="idProfiles">idProfiles</label>
+  <input type="text" id="idProfiles" name="idProfiles" value=${positions.idProfiles} />
+  <span id="Error2" class="Error-msg">Error</span>
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" value=${positions.name} />
+  <span id="Error3" class="Error-msg">Error</span>
+  <label for="description">Description</label>
+  <input type="text" id="description" name="description" value=${positions.description} />
+  <span id="Error4" class="Error-msg">Error</span>
+  <label for="status">Status</label>
+  <input type="text" id="status" name="status" value=${positions.status} />
+  <span id="Error5" class="Error-msg">Error</span>
+  <label for="address">Address</label>
+  <input type="text" id="address" name="address" value=${positions.address} />
+  <span id="Error6" class="Error-msg">Error</span>
+  <label for="city">City</label>
+  <input type="text" id="city" name="city" value=${positions.city} />
+  <span id="Error7" class="Error-msg">Error</span>
+  <label for="postalCode">postalCode</label>
+  <input type="text" id="postalCode" name="postalCode" value=${positions.postalCode} />
+  <span id="Error8" class="Error-msg">Error</span>`
   form.appendChild(updateForm);
 };
 
