@@ -37,13 +37,13 @@
           </tr>
         </table>
         <button id="create-button">Create ></button>
-        <div id="background-modal" class="modal-hide background-modal">
-          <div id="create-modal" class="modal-hide">
+        <div id="background-modal" class="hide background-modal">
+          <div id="create-modal" class="hide">
             <h2>Create Psychologist</h2>
             <p>
               Fill the info to create a new psychologist
             </p>
-            <form>
+            <form id="create-form">
               <fieldset>
                 <label for="name">name</label>
                 <input type="text" id="name" name="name" placeholder="name" />
@@ -122,7 +122,9 @@
             </form>
             <div>
               <button id="cancel-create-button" class="modal-button">Cancel</button>
-              <button id="confirm-create-button" class="modal-button confirm-button">Confirm</button>
+              <button id="create-confirm-button" type="submit" class="modal-button confirm-button hide">Confirm</button>
+              <button id="update-confirm-button" class="modal-button confirm-button hide">Confirm</button>
+              <button id="delete-confirm-button" class="modal-button confirm-button hide">Confirm</button>
             </div>
           </div>
         </div>

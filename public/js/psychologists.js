@@ -1,5 +1,15 @@
 const backgroundModal = document.getElementById("background-modal");
 
+// const updateModal = document.getElementById("update-modal");
+// const confirmUpdateButton = document.getElementById("confirm-update-button");
+// confirmUpdateButton.addEventListener("click", reqUpdateClient);
+
+//createButton.disabled = true; //disable the button until the page is completely loaded.
+readPsy();
+
+// CREATE *******************************************************
+const dataForm = document.querySelectorAll("#create-form input");
+
 const name = document.getElementById("name");
 const email = document.getElementById("email");
 const username = document.getElementById("username");
@@ -10,36 +20,31 @@ const status = document.getElementById("status");
 const timeRange = document.getElementById("timeRange");
 const dayRange = document.getElementById("dayRange");
 
-// const updateModal = document.getElementById("update-modal");
-// const confirmUpdateButton = document.getElementById("confirm-update-button");
-// confirmUpdateButton.addEventListener("click", reqUpdateClient);
-
-//createButton.disabled = true; //disable the button until the page is completely loaded.
-readPsy();
-
-// CREATE *******************************************************
 const createButton = document.getElementById("create-button");
 const createModal = document.getElementById("create-modal");
 const cancelCreateButton = document.getElementById("cancel-create-button");
-const confirmCreateButton = document.getElementById("confirm-create-button");
+const createConfirmButton = document.getElementById("create-confirm-button");
 
 createButton.addEventListener("click", openCreateModal);
 cancelCreateButton.addEventListener("click", cancelCreate);
-confirmCreateButton.addEventListener("click", reqCreate);
+createConfirmButton.addEventListener("click", reqCreate);
 
 function openCreateModal() {
-  backgroundModal.classList.toggle("modal-hide", false);
-  createModal.classList.toggle("modal-hide", false);
+  backgroundModal.classList.toggle("hide", false);
+  createModal.classList.toggle("hide", false);
+  createConfirmButton.classList.toggle("hide", false);
 }
 function cancelCreate() {
-  backgroundModal.classList.toggle("modal-hide", true);
-  createModal.classList.toggle("modal-hide", true);
+  backgroundModal.classList.toggle("hide", true);
+  createModal.classList.toggle("hide", true);
+  createConfirmButton.classList.toggle("hide", true);
 }
 
-function reqCreate() {
+function reqCreate(e) {
+  e.preventDefault()
   if (!name.value) return res.status(400).json({ msg: "Name is missing" });
-  if (!username.value) return res.status(400).json({ msg: "Username is missing" });
   if (!email.value) return res.status(400).json({ msg: "Email is missing" });
+  if (!username.value) return res.status(400).json({ msg: "Username is missing" });
   if (!password.value) return res.status(400).json({ msg: "Password is missing" });
   if (!phoneNumber.value) return res.status(400).json({ msg: "PhoneNumber is missing" });
   if (!enrollmentNumber.value) return res.status(400).json({ msg: "EnrollmentNumber is missing" });
@@ -48,14 +53,16 @@ function reqCreate() {
   if (!dayRange.value) return res.status(400).json({ msg: "DayRange is missing" });
 
   const dataForm = document.querySelectorAll("#create-form input");
-
   let dataBody = {
     name: dataForm[0].value,
     email: dataForm[1].value,
-    phoneNumber: dataForm[2].value,
-    cuit: dataForm[3].value,
-    address: dataForm[4].value,
-    activity: dataForm[5].value,
+    username: dataForm[2].value,
+    password: dataForm[3].value,
+    phoneNumber: dataForm[4].value,
+    enrollmentNumber: dataForm[5].value,
+    status: dataForm[6].value,
+    timeRange: dataForm[7].value,
+    dayRange: dataForm[8].value,
   };
   const url = "http://localhost:4000/api/psychologists/";
   fetch(url, {
@@ -65,22 +72,22 @@ function reqCreate() {
       "Content-Type": "application/json",
     },
   })
-    .then((res) => {
-      if (res.status === 201) return res.json();
-      throw new Error(`HTTP ${res.status}`);
-    })
-    .then((data) => {
-      createModal.classList.toggle("hide", true);
-      location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  .then((res) => {
+    if (res.status === 201) return res.json();
+    throw new Error(`HTTP ${res.status}`);
+  })
+  .then((data) => {
+    createModal.classList.toggle("hide", true);
+    location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 }
 
 // READ PSYS **************************************************************
 function readPsy() {
-  let url = "http://localhost:4000/api/psychologists/";
+  const url = "http://localhost:4000/api/psychologists/";
   fetch(url)
     .then((res) => {
       if (res.status === 200) return res.json();
@@ -150,8 +157,8 @@ function reqUpdateClient(e) {
     address: dataForm[5].value,
     activity: dataForm[6].value,
   };
-  const idClient = dataForm[0].value; //this field is hidden in the modalUpdate
-  const url = "http://localhost:4000/api/psychologists/" + idClient;
+  const idPsy = dataForm[0].value; //this field is hidden in the modalUpdate
+  const url = "http://localhost:4000/api/psychologists/" + idPsy;
   fetch(url, {
     method: "PUT",
     body: JSON.stringify(dataBody),
@@ -175,20 +182,20 @@ function reqUpdateClient(e) {
 // DELETE CLIENTS***************************************************
 function deleteClient(index) {
   const itemToDelete = document.getElementById(`item-${index}`);
-  const idClient = itemToDelete.firstElementChild.innerText;
+  const idPsy = itemToDelete.firstElementChild.innerText;
 
-  const url = "http://localhost:4000/api/psychologists/" + idClient;
+  const url = "http://localhost:4000/api/psychologists/" + idPsy;
   fetch(url, {
     method: "DELETE",
   })
-    .then((res) => {
-      if (res.status === 200) return res.json();
-      throw new Error(`HTTP ${res.status}`);
-    })
-    .then(() => {
-      location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  .then((res) => {
+    if (res.status === 200) return res.json();
+    throw new Error(`HTTP ${res.status}`);
+  })
+  .then(() => {
+    location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 }

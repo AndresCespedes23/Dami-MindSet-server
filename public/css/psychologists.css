@@ -74,7 +74,7 @@ button, img {
   background-color: #9aa2b0;
   z-index: 1;
 }
-.modal-hide {
+.hide {
   display: none;
 }
 #create-modal {
