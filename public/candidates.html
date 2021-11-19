@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/normalize.css" />
+    <script src="./js/candidates.js" defer></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
     </style>
@@ -16,50 +17,23 @@
       <img src="img/Logo-MindSet.png" alt="MindSet logo" />
     </nav>
     <section>
-      <div id="resource-table">
-        <h1>Applications</h1>
-        <table>
-          <tr>
+      <div id="resource-table-container">
+        <h1>Candidates</h1>
+        <table id="resource-table">
+          <tr id="table-headers">
             <th>id</th>
-            <th>idPosition</th>
-            <th>idCandidate</th>
-            <th>idInterview</th>
-            <th>dateTime</th>
-            <th>status</th>
-            <th>result</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Profiles</th>
+            <th>Personal Info</th>
+            <th>See CV</th>
+            <th>See applications</th>
             <th></th>
             <th></th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>3</td>
-            <td>8</td>
-            <td>6</td>
-            <td>08/10/2021</td>
-            <td>Hired</td>
-            <td>
-              Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna
-              vulputate luctus.
-            </td>
-            <td><img src="img/Icon-edit.png" alt="Edit" /></td>
-            <td><img src="img/Icon-remove.png" alt="Remove" /></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>4</td>
-            <td>6</td>
-            <td>10</td>
-            <td></td>
-            <td>Pending</td>
-            <td>
-              Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor
-              gravida sem.
-            </td>
-            <td><img src="img/Icon-edit.png" alt="Edit" /></td>
-            <td><img src="img/Icon-remove.png" alt="Remove" /></td>
           </tr>
         </table>
-        <button id="create-button">Create ></button>
         <div id="background-modal">
           <div id="create-modal">
             <h2>Create Application</h2>

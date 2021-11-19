@@ -25,7 +25,7 @@ h1 {
   margin: 0px;
   padding: 5px 0px;
 }
-#resource-table {
+#resource-table-container {
   display: flex;
   flex-direction: column;
   width: 70%;
@@ -134,4 +134,7 @@ footer {
 }
 ::-webkit-scrollbar {
   display: none;
+}
+.show {
+  display: block;
 }
