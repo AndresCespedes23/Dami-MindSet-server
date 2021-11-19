@@ -1,3 +1,6 @@
+const validationClient = require ("validationClients.js")
+
+const formModal = document.getElementById("form-modal");
 const createModal = document.getElementById("create-modal");
 const updateModal = document.getElementById("update-modal");
 const deleteModal = document.getElementById("delete-modal");
@@ -5,20 +8,24 @@ const createButton = document.getElementById("create-button");
 const submitCreateButton = document.getElementById("confirm-create-button");
 const submitUpdateButton = document.getElementById("confirm-update-button");
 const submitDeleteButton = document.getElementById("confirm-delete-button");
-const cancelDeleteButtom = document.getElementById("cancel-delete-button");
+const cancelFormButton = document.getElementById("cancel-form-button");
+const cancelDeleteButton = document.getElementById("cancel-delete-button");
 
 createButton.addEventListener("click", openCreateModal);
 submitCreateButton.addEventListener("click", reqCreateClient);
 submitUpdateButton.addEventListener("click", reqUpdateClient);
 submitDeleteButton.addEventListener("click", reqDeleteClient);
-cancelDeleteButtom.addEventListener("click", closeDeleteModal);
+cancelFormButton.addEventListener("click", closeFormModal);
+cancelDeleteButton.addEventListener("click", closeDeleteModal);
 
 createButton.disabled = true; //disable the button until the page is completely loaded.
 readClients();
 
 // CREATE CLIENTS*******************************************************
 function openCreateModal() {
+  formModal.classList.toggle("hide", false);
   createModal.classList.toggle("hide", false);
+  submitCreateButton.classList.toggle("hide", false);
 }
 
 function reqCreateClient(e) {
@@ -32,15 +39,15 @@ function reqCreateClient(e) {
   // validateAddress();
   // validateActivity();
 
-  const dataForm = document.querySelectorAll("#create-form input");
+  const dataForm = document.querySelectorAll("#form input");
 
   let dataBody = {
-    name: dataForm[0].value,
-    email: dataForm[1].value,
-    phoneNumber: dataForm[2].value,
-    cuit: dataForm[3].value,
-    address: dataForm[4].value,
-    activity: dataForm[5].value,
+    name: dataForm[1].value,
+    email: dataForm[2].value,
+    phoneNumber: dataForm[3].value,
+    cuit: dataForm[4].value,
+    address: dataForm[5].value,
+    activity: dataForm[6].value,
   };
   const url = "http://localhost:4000/api/clients/";
   fetch(url, {
@@ -58,8 +65,10 @@ function reqCreateClient(e) {
     })
     .then((data) => {
       console.log(data);
-      createModal.classList.toggle("hide", true);
-      // location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
+      // formModal.classList.toggle("hide", false);
+      // createModal.classList.toggle("hide", false);
+      // submitCreateButton.classList.toggle("hide", false);
+      location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
     })
     .catch((err) => {
       console.log(err);
@@ -105,8 +114,12 @@ function createList(clients) {
 
 // UPDATE CLIENTS********************************************************
 function openUpdateModal(index) {
+  formModal.classList.toggle("hide", false);
   updateModal.classList.toggle("hide", false);
-  const dataForm = document.querySelectorAll("#update-form input");
+  submitUpdateButton.classList.toggle("hide", false);
+
+  updateModal.classList.toggle("hide", false);
+  const dataForm = document.querySelectorAll("#form input");
   let contentItem = document.getElementById(`item-${index}`).firstChild;
   for (let i = 0; i < dataForm.length; i++) {
     dataForm[i].value = contentItem.innerText;
@@ -125,7 +138,7 @@ function reqUpdateClient(e) {
   // validateAddress();
   // validateActivity();
 
-  const dataForm = document.querySelectorAll("#update-form input");
+  const dataForm = document.querySelectorAll("#form input");
   let dataBody = {
     name: dataForm[1].value,
     email: dataForm[2].value,
@@ -151,7 +164,7 @@ function reqUpdateClient(e) {
     .then((data) => {
       console.log(data);
       updateModal.classList.toggle("hide", true);
-      // location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
+      location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
     })
     .catch((err) => {
       console.log(err);
@@ -191,6 +204,22 @@ function reqDeleteClient(){
     });
 }
 
-function closeDeleteModal(index) {
+// CLOSE MODALS
+function closeDeleteModal(e) {
+  e.preventDefault();
   deleteModal.classList.toggle("hide", true);
+}
+
+function closeFormModal(e) {
+  e.preventDefault();
+  formModal.classList.toggle("hide", true);
+  createModal.classList.toggle("hide", true);
+  submitCreateButton.classList.toggle("hide", true);
+  updateModal.classList.toggle("hide", true);
+  submitUpdateButton.classList.toggle("hide", true);
+
+  const dataForm = document.querySelectorAll("#form input");
+  for (let i = 0; i < dataForm.length; i++) {
+    dataForm[i].value = "";
+  }
 }
