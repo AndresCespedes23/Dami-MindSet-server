@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/normalize.css" />
+    <!-- <link rel="stylesheet" href="css/styles.css" /> -->
+    <link rel="stylesheet" href="css/psychologists.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
     </style>
+    <script defer type="text/javascript" src="js/psychologists.js"></script>
     <title>MindSet</title>
   </head>
   <body>
@@ -28,63 +30,56 @@
             <th>phoneNumber</th>
             <th>enrollmentNumber</th>
             <th>status</th>
-            <th>enrollmentNumber</th>
-            <th>enrollmentNumber</th>
+            <th>timeRange</th>
+            <th>dayRange</th>
             <th></th>
             <th></th>
           </tr>
           <tr>
             <td>1</td>
-            <td>3</td>
-            <td>8</td>
-            <td>6</td>
-            <td>08/10/2021</td>
+            <td>Juan Pablo Perez</td>
+            <td>jaaja@gmail.com</td>
+            <td>juampi1</td>
+            <td>wont tell ya</td>
+            <td>3416454545</td>
+            <td>654654</td>
             <td>Hired</td>
-            <td>
-              Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna
-              vulputate luctus.
-            </td>
-            <td>Hired</td>
-            <td>Hired</td>
-            <td>Hired</td>
+            <td>09:00-19:00</td>
+            <td>Mon-Fri</td>
             <td><img src="img/Icon-edit.png" alt="Edit" /></td>
             <td><img src="img/Icon-remove.png" alt="Remove" /></td>
           </tr>
           <tr>
             <td>2</td>
-            <td>4</td>
-            <td>6</td>
-            <td>10</td>
-            <td></td>
+            <td>Santiago Repez</td>
+            <td>jiji@gmail.com</td>
+            <td>santicanob</td>
+            <td>will tell</td>
+            <td>3413898989</td>
+            <td>8001</td>
             <td>Pending</td>
-            <td>
-              Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor
-              gravida sem.
-            </td>
-            <td>Hired</td>
-            <td>Hired</td>
-            <td>Hired</td>
+            <td>08-00-19:00</td>
+            <td>Mon-Sat</td>
             <td><img src="img/Icon-edit.png" alt="Edit" /></td>
             <td><img src="img/Icon-remove.png" alt="Remove" /></td>
           </tr>
         </table>
         <button id="create-button">Create ></button>
-        <div id="background-modal">
-          <div id="create-modal">
-            <h2>Create Application</h2>
+        <div id="background-modal" class="modal-hide background-modal">
+          <div id="create-modal" class="modal-hide">
+            <h2>Create Psychologist</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
-              nulla alias nisi quidem doloribus.
+              Fill the info to create a new psychologist
             </p>
             <form>
               <fieldset>
                 <label for="name">name</label>
-                <input type="text" id="name" name="name" value="name" />
+                <input type="text" id="name" name="name" placeholder="name" />
                 <span id="Error1" class="Error-msg">Error</span>
               </fieldset>
               <fieldset>
                 <label for="email">email</label>
-                <input type="text" id="email" name="email" value="email" />
+                <input type="text" id="email" name="email" placeholder="email" />
                 <span id="Error2" class="Error-msg">Error</span>
               </fieldset>
               <fieldset>
@@ -93,7 +88,7 @@
                   type="text"
                   id="username"
                   name="username"
-                  value="username"
+                  placeholder="username"
                 />
                 <span id="Error3" class="Error-msg">Error</span>
               </fieldset>
@@ -103,7 +98,7 @@
                   type="text"
                   id="password"
                   name="password"
-                  value="password"
+                  placeholder="password"
                 />
                 <span id="Error4" class="Error-msg">Error</span>
               </fieldset>
@@ -113,7 +108,7 @@
                   type="text"
                   id="phoneNumber"
                   name="phoneNumber"
-                  value="phoneNumber"
+                  placeholder="phoneNumber"
                 />
                 <span id="Error5" class="Error-msg">Error</span>
               </fieldset>
@@ -123,13 +118,13 @@
                   type="text"
                   id="enrollmentNumber"
                   name="enrollmentNumber"
-                  value="enrollmentNumber"
+                  placeholder="enrollmentNumber"
                 />
                 <span id="Error6" class="Error-msg">Error</span>
               </fieldset>
               <fieldset>
                 <label for="status">status</label>
-                <input type="text" id="status" name="status" value="status" />
+                <input type="text" id="status" name="status" placeholder="status" />
                 <span id="Error7" class="Error-msg">Error</span>
               </fieldset>
               <fieldset>
@@ -138,7 +133,7 @@
                   type="text"
                   id="timeRange"
                   name="timeRange"
-                  value="timeRange"
+                  placeholder="timeRange"
                 />
                 <span id="Error8" class="Error-msg">Error</span>
               </fieldset>
@@ -148,14 +143,14 @@
                   type="text"
                   id="dayRange"
                   name="dayRange"
-                  value="dayRange"
+                  placeholder="dayRange"
                 />
                 <span id="Error9" class="Error-msg">Error</span>
               </fieldset>
             </form>
             <div>
-              <button class="modal-button">Cancel</button>
-              <button id="confirm-button" class="modal-button">Confirm</button>
+              <button id="cancel-create-button" class="modal-button">Cancel</button>
+              <button id="confirm-create-button" class="modal-button confirm-button">Confirm</button>
             </div>
           </div>
         </div>
