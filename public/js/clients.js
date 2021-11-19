@@ -120,6 +120,7 @@ function createList(clients) {
   clients.forEach((client) => {
     const itemList = document.createElement("tr");
     itemList.id = "item-" + i;
+    itemList.classList = "items"
     itemList.innerHTML = `<td>${client._id}</td>
       <td>${client.name}</td>
       <td>${client.email}</td>
@@ -128,11 +129,44 @@ function createList(clients) {
       <td>${client.address}</td>
       <td>${client.activity}</td>
       <td><button class="button-list" onclick="openUpdateModal(${i})"><img src="img/Icon-edit.png" alt="Edit"></button></td>
-      <td><button class="button-list" onclick="openDeleteModal(${i})"><img src="img/Icon-remove.png" alt="Remove"/></button>`;
+      <td><button class="button-list" onclick="openDeleteModal(${i})"><img src="img/Icon-remove.png" alt="Remove"/></button></td>
+      <td><button class="button-list" onclick="openViewDetail(${i})">View Detail</button></td>`;
     table.appendChild(itemList);
     i++;
   });
   createButton.disabled = false;
+}
+
+function openViewDetail(index){
+  const idClientElement = document.getElementById(`item-${index}`).firstChild;
+  let idClient = idClientElement.innerText;
+  const url = "http://localhost:4000/api/clients/" + idClient;
+
+  fetch(url)
+    .then((res) => {
+      if (res.status === 200) return res.json();
+      throw new Error(`HTTP ${res.status}`);
+    })
+    .then((data) => {
+      infoModal.classList.toggle("hide",false);
+      confirmInfoButton.classList.toggle("hide",false);
+      infoTitle.innerText = "Server Info";
+      infoDescription.innerHTML = `Successfull Request! The client info is:
+      <ul>
+      <li>Name: ${data.name}</li>
+      <li>Email: ${data.email}</li>
+      <li>PhoneNumber: ${data.phoneNumber}</li>
+      <li>CUIT: ${data.cuit}</li>
+      <li>Address: ${data.address}</li>
+      <li>Activity: ${data.activity}</li>
+      </ul>`;
+    })
+    .catch((err) => {
+      infoModal.classList.toggle("hide",false);
+      closeInfoButton.classList.toggle("hide", false);
+      infoTitle.innerText = "Server Info";
+      infoDescription.innerText = `Failed Request: ${err.message}.`;
+    });
 }
 
 // UPDATE CLIENTS********************************************************
@@ -238,13 +272,24 @@ function reqDeleteClient(){
       throw new Error(data.msg);
     })
     .then((data) => {
-      console.log(data);
-      deleteModal.classList.toggle("hide", true);
-      location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
+      infoModal.classList.toggle("hide",false);
+      confirmInfoButton.classList.toggle("hide",false);
+      infoTitle.innerText = "Server Info";
+      infoDescription.innerHTML = `Successfull Request! The client was correctly removed:
+      <ul>
+      <li>Name: ${data.name}</li>
+      <li>Email: ${data.email}</li>
+      <li>PhoneNumber: ${data.phoneNumber}</li>
+      <li>CUIT: ${data.cuit}</li>
+      <li>Address: ${data.address}</li>
+      <li>Activity: ${data.activity}</li>
+      </ul>`;
     })
     .catch((err) => {
-      console.log(err);
-      console.log(err.message);
+      infoModal.classList.toggle("hide",false);
+      closeInfoButton.classList.toggle("hide", false);
+      infoTitle.innerText = "Server Info";
+      infoDescription.innerHTML = `Failed Request: ${err.message}.`;
     });
 }
 
@@ -281,6 +326,7 @@ function closeModals(){
   formModal.classList.toggle("hide", true);
   createModal.classList.toggle("hide", true);
   updateModal.classList.toggle("hide", true);
+  deleteModal.classList.toggle("hide", true);
   submitCreateButton.classList.toggle("hide", true);
   submitUpdateButton.classList.toggle("hide", true);
   closeInfoButton.classList.toggle("hide", true);
@@ -291,7 +337,7 @@ function closeModals(){
   for (let i = 0; i < errorMsgs.length; i++) {
     errorMsgs[i].innerText = "";
   }
-  // location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
+  location.reload();
 }
 
 // VALIDATIONS ****************************************************************************
