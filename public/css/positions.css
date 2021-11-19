@@ -1,0 +1,25 @@
+#create {
+  align-self: flex-end;
+  width: 100px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  border-style: none;
+  background-color: #091f40;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+#buttons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: auto;
+}
+#create-button, #update-button, #remove-button {
+  background-color: #091f40;
+  color: #ffffff;
+}
+p {
+  font-size: 20px;
+}

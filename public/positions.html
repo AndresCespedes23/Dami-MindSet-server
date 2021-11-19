@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/positions.css" />
     <script src="js/positions.js"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
@@ -34,84 +35,16 @@
             <th></th>
           </tr>
         </table>
-        <button id="create-button">Create ></button>
+        <button id="create">Create ></button>
         <div id="background-modal" class="hidden-background-modal">
           <div id="modal" class="modal">
-            <h2></h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-            <form>
-              <fieldset>
-                <label for="idClient">idClient</label>
-                <input
-                  type="text"
-                  id="idClient"
-                  name="idClient"
-                  value="idClient"
-                />
-                <span id="Error1" class="Error-msg">Error</span>
-              </fieldset>
-              <fieldset>
-                <label for="idProfiles">idProfiles</label>
-                <input
-                  type="text"
-                  id="idProfiles"
-                  name="idProfiles"
-                  value="idProfiles"
-                />
-                <span id="Error2" class="Error-msg">Error</span>
-              </fieldset>
-              <fieldset>
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" value="name" />
-                <span id="Error3" class="Error-msg">Error</span>
-              </fieldset>
-              <fieldset>
-                <label for="description">Description</label>
-                <input
-                  type="text"
-                  id="description"
-                  name="description"
-                  value="description"
-                />
-                <span id="Error4" class="Error-msg">Error</span>
-              </fieldset>
-              <fieldset>
-                <label for="status">Status</label>
-                <input type="text" id="status" name="status" value="status" />
-                <span id="Error5" class="Error-msg">Error</span>
-              </fieldset>
-              <fieldset>
-                <label for="address">Address</label>
-                <input
-                  type="text"
-                  id="address"
-                  name="address"
-                  value="address"
-                />
-                <span id="Error6" class="Error-msg">Error</span>
-              </fieldset>
-              <fieldset>
-                <label for="city">City</label>
-                <input type="text" id="city" name="city" value="city" />
-                <span id="Error7" class="Error-msg">Error</span>
-              </fieldset>
-              <fieldset>
-                <label for="postalCode">postalCode</label>
-                <input
-                  type="text"
-                  id="postalCode"
-                  name="postalCode"
-                  value="postalCode"
-                />
-                <span id="Error8" class="Error-msg">Error</span>
-              </fieldset>
-            </form>
-            <div>
+            <form id="form"></form>
+            <div id="remove-div"></div>
+            <div id="buttons">
               <button id="cancel-button" class="modal-button">Cancel</button>
               <button id="create-button" class="modal-button">Confirm</button>
               <button id="update-button" class="modal-button">Confirm</button>
+              <button id="remove-button" class="modal-button">Confirm</button>
             </div>
           </div>
         </div>
