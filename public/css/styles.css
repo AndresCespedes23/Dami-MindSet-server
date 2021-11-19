@@ -60,7 +60,7 @@ td {
   text-transform: uppercase;
   color: #ffffff;
 }
-.hidden-background-modal, .hidden-modal {
+.hidden-background-modal, .hidden-modal, .hidden-button {
   display: none;
 }
 #background-modal {
