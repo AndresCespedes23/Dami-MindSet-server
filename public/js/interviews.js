@@ -1,19 +1,23 @@
 window.onload = function() {
 
+  requestInterviews();
+
   //----- READ -----//
 
-  const url = "http://localhost:4000/api/interviews/";
-  fetch(url)
-    .then((res) => {
-      if (res.status === 200) return res.json();
-      throw new Error(`HTTP ${res.status}`);
-    })
-    .then((data) => {
-      createList(data);
-    })
-    .catch((error) => {
-      return error;
-    });
+  function requestInterviews() {
+    const url = "http://localhost:4000/api/interviews/";
+    fetch(url)
+      .then((res) => {
+        if (res.status === 200) return res.json();
+        throw new Error(`HTTP ${res.status}`);
+      })
+      .then((data) => {
+        createList(data);
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
 
   function createList(interviews) {
     const table = document.getElementById("table-list");
