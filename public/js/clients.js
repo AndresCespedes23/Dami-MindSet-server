@@ -1,3 +1,4 @@
+const url = "http://localhost:4000/api/clients/";
 const formModal = document.getElementById("form-modal");
 const createModal = document.getElementById("create-modal");
 const updateModal = document.getElementById("update-modal");
@@ -37,33 +38,11 @@ function openCreateModal() {
 
 function reqCreateClient(e) {
   e.preventDefault();
-  validateName();
-  validateEmail();
-  validatePhoneNumber();
-  validateCuit();
-  validateAddress();
-  validateActivity();
-  let withErrors = false;
-  errorMsgs.forEach ( error => {
-    if (error.innerText !== "") withErrors = true;
-  })
-  if (withErrors) {
-    infoModal.classList.toggle("hide",false);
-    closeInfoButton.classList.toggle("hide", false);
-    infoTitle.innerText = "Upss"
-    infoDescription.innerText = "We cannot send this request until you amend the errors."
-    return
-  }
+  const withErrors = validations()
+  if (withErrors) return;
 
-  let dataBody = {
-    name: dataForm[1].value,
-    email: dataForm[2].value,
-    phoneNumber: dataForm[3].value,
-    cuit: dataForm[4].value,
-    address: dataForm[5].value,
-    activity: dataForm[6].value,
-  };
-  const url = "http://localhost:4000/api/clients/";
+  const dataBody = setData();
+
   fetch(url, {
     method: "POST",
     body: JSON.stringify(dataBody),
@@ -77,30 +56,15 @@ function reqCreateClient(e) {
       throw new Error(data.msg);
     })
     .then((data) => {
-      infoModal.classList.toggle("hide",false);
-      confirmInfoButton.classList.toggle("hide",false);
-      infoTitle.innerText = "Server Info";
-      infoDescription.innerHTML = `Successfull Request! The new client was correctly created:
-      <ul>
-      <li>Name: ${data.name}</li>
-      <li>Email: ${data.email}</li>
-      <li>PhoneNumber: ${data.phoneNumber}</li>
-      <li>CUIT: ${data.cuit}</li>
-      <li>Address: ${data.address}</li>
-      <li>Activity: ${data.activity}</li>
-      </ul>`;
+      success(data,"The new client was correctly created:");
     })
     .catch((err) => {
-      infoModal.classList.toggle("hide",false);
-      closeInfoButton.classList.toggle("hide", false);
-      infoTitle.innerText = "Server Info";
-      infoDescription.innerText = `Failed Request: ${err.message}.`;
+      fail(err);
     });
 }
 
 // READ CLIENTS **************************************************************
 function readClients() {
-  const url = "http://localhost:4000/api/clients/";
   fetch(url)
     .then((res) => {
       if (res.status === 200) return res.json();
@@ -140,32 +104,17 @@ function createList(clients) {
 function openViewDetail(index){
   const idClientElement = document.getElementById(`item-${index}`).firstChild;
   let idClient = idClientElement.innerText;
-  const url = "http://localhost:4000/api/clients/" + idClient;
-
-  fetch(url)
+  const urlGet = url + idClient;
+  fetch(urlGet)
     .then((res) => {
       if (res.status === 200) return res.json();
       throw new Error(`HTTP ${res.status}`);
     })
     .then((data) => {
-      infoModal.classList.toggle("hide",false);
-      confirmInfoButton.classList.toggle("hide",false);
-      infoTitle.innerText = "Server Info";
-      infoDescription.innerHTML = `Successfull Request! The client info is:
-      <ul>
-      <li>Name: ${data.name}</li>
-      <li>Email: ${data.email}</li>
-      <li>PhoneNumber: ${data.phoneNumber}</li>
-      <li>CUIT: ${data.cuit}</li>
-      <li>Address: ${data.address}</li>
-      <li>Activity: ${data.activity}</li>
-      </ul>`;
+      success(data, "The client info is:");
     })
     .catch((err) => {
-      infoModal.classList.toggle("hide",false);
-      closeInfoButton.classList.toggle("hide", false);
-      infoTitle.innerText = "Server Info";
-      infoDescription.innerText = `Failed Request: ${err.message}.`;
+      fail(err);
     });
 }
 
@@ -180,44 +129,18 @@ function openUpdateModal(index) {
     dataForm[i].value = contentItem.innerText;
     contentItem = contentItem.nextElementSibling;
   }
-  validateName();
-  validateEmail();
-  validatePhoneNumber();
-  validateCuit();
-  validateAddress();
-  validateActivity();
 }
 
 function reqUpdateClient(e) {
   e.preventDefault();
-  validateName();
-  validateEmail();
-  validatePhoneNumber();
-  validateCuit();
-  validateAddress();
-  validateActivity();
-  let withErrors = false;
-  errorMsgs.forEach ( error => {
-    if (error.innerText !== "") withErrors = true;
-  })
-  if (withErrors) {
-    infoModal.classList.toggle("hide",false);
-    closeInfoButton.classList.toggle("hide", false);
-    infoTitle.innerText = "Upss"
-    infoDescription.innerText = "We cannot send this request until you amend the errors."
-    return
-  }
-  let dataBody = {
-    name: dataForm[1].value,
-    email: dataForm[2].value,
-    phoneNumber: dataForm[3].value,
-    cuit: dataForm[4].value,
-    address: dataForm[5].value,
-    activity: dataForm[6].value,
-  };
+  const withErrors = validations()
+  if (withErrors) return;
+
+  const dataBody = setData();
+
   const idClient = dataForm[0].value; //this field is hidden in the modalUpdate
-  const url = "http://localhost:4000/api/clients/" + idClient;
-  fetch(url, {
+  const urlUpdate = url + idClient;
+  fetch(urlUpdate, {
     method: "PUT",
     body: JSON.stringify(dataBody),
     headers: {
@@ -230,24 +153,10 @@ function reqUpdateClient(e) {
       throw new Error(data.msg);
     })
     .then((data) => {
-      infoModal.classList.toggle("hide",false);
-      confirmInfoButton.classList.toggle("hide",false);
-      infoTitle.innerText = "Server Info";
-      infoDescription.innerHTML = `Successfull Request! The client was correctly updated:
-      <ul>
-      <li>Name: ${data.name}</li>
-      <li>Email: ${data.email}</li>
-      <li>PhoneNumber: ${data.phoneNumber}</li>
-      <li>CUIT: ${data.cuit}</li>
-      <li>Address: ${data.address}</li>
-      <li>Activity: ${data.activity}</li>
-      </ul>`;
+      success(data,"The client was correctly updated:");
     })
     .catch((err) => {
-      infoModal.classList.toggle("hide",false);
-      closeInfoButton.classList.toggle("hide", false);
-      infoTitle.innerText = "Server Info";
-      infoDescription.innerHTML = `Failed Request: ${err.message}.`;
+      fail(err);
     });
 }
 
@@ -262,8 +171,8 @@ function openDeleteModal(index) {
 
 function reqDeleteClient(){
   const idClient = document.getElementById("idClientDelete").innerText;
-  const url = "http://localhost:4000/api/clients/" + idClient;
-  fetch(url, {
+  const urlDelete = url + idClient;
+  fetch(urlDelete, {
     method: "DELETE",
   })
     .then(async (res) => {
@@ -272,24 +181,10 @@ function reqDeleteClient(){
       throw new Error(data.msg);
     })
     .then((data) => {
-      infoModal.classList.toggle("hide",false);
-      confirmInfoButton.classList.toggle("hide",false);
-      infoTitle.innerText = "Server Info";
-      infoDescription.innerHTML = `Successfull Request! The client was correctly removed:
-      <ul>
-      <li>Name: ${data.name}</li>
-      <li>Email: ${data.email}</li>
-      <li>PhoneNumber: ${data.phoneNumber}</li>
-      <li>CUIT: ${data.cuit}</li>
-      <li>Address: ${data.address}</li>
-      <li>Activity: ${data.activity}</li>
-      </ul>`;
+      success(data, "The client was correctly removed:");
     })
     .catch((err) => {
-      infoModal.classList.toggle("hide",false);
-      closeInfoButton.classList.toggle("hide", false);
-      infoTitle.innerText = "Server Info";
-      infoDescription.innerHTML = `Failed Request: ${err.message}.`;
+      fail(err)
     });
 }
 
@@ -340,6 +235,61 @@ function closeModals(){
   location.reload();
 }
 
+// REUSED FUNCTIONS
+function validations(){
+  validateName();
+  validateEmail();
+  validatePhoneNumber();
+  validateCuit();
+  validateAddress();
+  validateActivity();
+  let flagErrors = false;
+  errorMsgs.forEach ( error => {
+    if (error.innerText !== "") flagErrors = true;
+  })
+  if (flagErrors) {
+    infoModal.classList.toggle("hide",false);
+    closeInfoButton.classList.toggle("hide", false);
+    infoTitle.innerText = "Upss";
+    infoDescription.innerText = "We cannot send this request until you amend the errors.";
+    return true;
+  }
+  return false;
+}
+
+function setData(){
+  return {
+    name: dataForm[1].value,
+    email: dataForm[2].value,
+    phoneNumber: dataForm[3].value,
+    cuit: dataForm[4].value,
+    address: dataForm[5].value,
+    activity: dataForm[6].value,
+  };
+}
+
+function success(data,msg){
+  infoModal.classList.toggle("hide",false);
+  confirmInfoButton.classList.toggle("hide",false);
+  infoTitle.innerText = "Server Info";
+  infoDescription.innerHTML = `Successfull Request! ${msg}
+  <ul>
+  <li>Name: ${data.name}</li>
+  <li>Email: ${data.email}</li>
+  <li>PhoneNumber: ${data.phoneNumber}</li>
+  <li>CUIT: ${data.cuit}</li>
+  <li>Address: ${data.address}</li>
+  <li>Activity: ${data.activity}</li>
+  </ul>`;
+}
+
+function fail(err){
+  infoModal.classList.toggle("hide",false);
+  closeInfoButton.classList.toggle("hide", false);
+  infoTitle.innerText = "Server Info";
+  infoDescription.innerHTML = `Failed Request: ${err.message}.`;
+}
+
 // VALIDATIONS ****************************************************************************
 const names = document.getElementById('name');
 const email = document.getElementById('email');
@@ -347,12 +297,12 @@ const phoneNumber = document.getElementById('phoneNumber');
 const cuit = document.getElementById('cuit');
 const address = document.getElementById('address');
 const activity = document.getElementById('activity');
-const errorName = document.getElementById('ErrorName');
-const errorEmail = document.getElementById('ErrorEmail');
-const errorPhoneNumber = document.getElementById('ErrorPhoneNumber');
-const errorCuit = document.getElementById('ErrorCuit');
-const errorAddress = document.getElementById('ErrorAddress');
-const errorActivity = document.getElementById('ErrorActivity');
+const errorName = document.getElementById('error-name');
+const errorEmail = document.getElementById('error-email');
+const errorPhoneNumber = document.getElementById('error-phoneNumber');
+const errorCuit = document.getElementById('error-cuit');
+const errorAddress = document.getElementById('error-address');
+const errorActivity = document.getElementById('error-activity');
 
 //EVENTS LISTENER
 //EVENTS BLUR
@@ -370,74 +320,3 @@ phoneNumber.addEventListener('focus', focusFunction);
 cuit.addEventListener('focus', focusFunction);
 address.addEventListener('focus', focusFunction);
 activity.addEventListener('focus',focusFunction);
-
-function  validateName(){
-  errorName.innerText = "";
-  if (!names.value)
-    return errorName.innerText = "Name is missing.";
-  if (names.value.length > 50 || names.value.length < 2)
-    return errorName.innerText = "Name cannot be bigger than 50 or smaller than 2.";
-};
-
-function  validateEmail(){
-  errorEmail.innerText = "";
-  if (!email.value)
-    return errorEmail.innerText = "Email is missing.";
-  if (email.value.length > 50 || email.value.length < 6)
-    return errorEmail.innerText = "Email cannot be bigger than 50 or smaller than 6.";
-  // eslint-disable-next-line no-useless-escape
-  const validFormat = /^([\w.\-+/!%]{1,64}|"[\w. ]{1,62}")@[0-9a-zA-Z\-]+(\.[a-zA-Z]+)*$/;
-  if (!validFormat.test(email.value))
-    return errorEmail.innerText = "The email should have a valid format.";
-};
-
-function  validatePhoneNumber(){
-  errorPhoneNumber.innerText = "";
-  if (!phoneNumber.value)
-    return errorPhoneNumber.innerText = "PhoneNumber is missing.";
-  if (phoneNumber.value.length > 15 || phoneNumber.value.length < 6)
-    return errorPhoneNumber.innerText = "PhoneNumber cannot be bigger than 15 or smaller than 6.";
-  // eslint-disable-next-line no-useless-escape
-  const validFormat = /^\d+$/;
-  if (!validFormat.test(phoneNumber.value))
-    return errorPhoneNumber.innerText = "The PhoneNumber should contain only numbers";
-};
-
-function  validateCuit(){
-  errorCuit.innerText = "";
-  if (!cuit.value)
-    return errorCuit.innerText = "Cuit is missing.";
-  if (cuit.value.length > 15 || cuit.value.length < 6)
-    return errorCuit.innerText = "Cuit cannot be bigger than 15 or smaller than 6.";
-  const validFormat = /^\d+$/;
-  if (!validFormat.test(cuit.value))
-    return errorCuit.innerText = "The Cuit should contain only numbers";
-};
-
-function  validateAddress(){
-  errorAddress.innerText = "";
-  if (!address.value)
-    return errorAddress.innerText = "Address is missing.";
-  if (address.value.length > 100 || address.value.length < 6)
-    return errorAddress.innerText = "Address cannot be bigger than 100 or smaller than 6.";
-  const validFormat = /^[a-zA-Z0-9\s,.'-]{3,}$/;
-  if (!validFormat.test(address.value))
-    return errorAddress.innerText = "The Address shouldn't contain special characters";
-};
-
-function  validateActivity(){
-  errorActivity.innerText = "";
-  if (!activity.value)
-    return errorActivity.innerText = "Activity is missing.";
-  if (activity.value.length > 30 || activity.value.length < 3)
-    return errorActivity.innerText = "Activity cannot be bigger than 30 or smaller than 3.";
-  const validFormat = /^([^0-9]*)$/;
-  if (!validFormat.test(activity.value))
-    return errorActivity.innerText = "The Activity shouldn't contain numbers";
-};
-
-// FUNCTIONS FOCUS ***********************************************************************************************
-function focusFunction(e){
-  let errorElement = e.target.nextElementSibling;
-  errorElement.innerText = "";
-};
