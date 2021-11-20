@@ -16,6 +16,8 @@ const infoTitle = document.getElementById("info-title");
 const infoDescription = document.getElementById("info-description");
 const dataForm = document.querySelectorAll("#form input");
 const errorMsgs = document.querySelectorAll(".Error-msg");
+const idsArray = [];
+let idSelected;
 
 createButton.addEventListener("click", openCreateModal);
 submitCreateButton.addEventListener("click", reqCreateClient);
@@ -25,6 +27,7 @@ cancelFormButton.addEventListener("click", closeFormModal);
 cancelDeleteButton.addEventListener("click", closeDeleteModal);
 closeInfoButton.addEventListener("click", closeInfoModal);
 confirmInfoButton.addEventListener("click", closeModals);
+
 
 createButton.disabled = true; //disable the button until the page is completely loaded.
 readClients();
@@ -73,8 +76,11 @@ function readClients() {
     .then((data) => {
       createList(data);
     })
-    .catch((error) => {
-      console.log(error);
+    .catch((err) => {
+      err = {
+        message: "Ups... We cannot get the clients data ",
+      }
+      fail(err)
     });
 }
 
@@ -85,7 +91,7 @@ function createList(clients) {
     const itemList = document.createElement("tr");
     itemList.id = "item-" + i;
     itemList.classList = "items"
-    itemList.innerHTML = `<td>${client._id}</td>
+    itemList.innerHTML = `<td>${i+1}</td>
       <td>${client.name}</td>
       <td>${client.email}</td>
       <td>${client.phoneNumber}</td>
@@ -96,14 +102,14 @@ function createList(clients) {
       <td><button class="button-list" onclick="openDeleteModal(${i})"><img src="img/Icon-remove.png" alt="Remove"/></button></td>
       <td><button class="button-list" onclick="openViewDetail(${i})">View Detail</button></td>`;
     table.appendChild(itemList);
+    idsArray.push(client._id);
     i++;
   });
   createButton.disabled = false;
 }
 
 function openViewDetail(index){
-  const idClientElement = document.getElementById(`item-${index}`).firstChild;
-  let idClient = idClientElement.innerText;
+  let idClient = idsArray[index];
   const urlGet = url + idClient;
   fetch(urlGet)
     .then((res) => {
@@ -124,7 +130,8 @@ function openUpdateModal(index) {
   updateModal.classList.toggle("hide", false);
   submitUpdateButton.classList.toggle("hide", false);
 
-  let contentItem = document.getElementById(`item-${index}`).firstChild;
+  let contentItem = document.getElementById(`item-${index}`).firstChild.nextElementSibling;
+  idSelected = idsArray[index];
   for (let i = 0; i < dataForm.length; i++) {
     dataForm[i].value = contentItem.innerText;
     contentItem = contentItem.nextElementSibling;
@@ -138,8 +145,7 @@ function reqUpdateClient(e) {
 
   const dataBody = setData();
 
-  const idClient = dataForm[0].value; //this field is hidden in the modalUpdate
-  const urlUpdate = url + idClient;
+  const urlUpdate = url + idSelected;
   fetch(urlUpdate, {
     method: "PUT",
     body: JSON.stringify(dataBody),
@@ -163,15 +169,11 @@ function reqUpdateClient(e) {
 // DELETE CLIENTS***************************************************
 function openDeleteModal(index) {
   deleteModal.classList.toggle("hide", false);
-
-  const idClient = document.getElementById("idClientDelete");
-  let idClientElement = document.getElementById(`item-${index}`).firstChild;
-  idClient.innerText = idClientElement.innerText;
+  idSelected = idsArray[index];;
 }
 
 function reqDeleteClient(){
-  const idClient = document.getElementById("idClientDelete").innerText;
-  const urlDelete = url + idClient;
+  const urlDelete = url + idSelected;
   fetch(urlDelete, {
     method: "DELETE",
   })
@@ -259,12 +261,12 @@ function validations(){
 
 function setData(){
   return {
-    name: dataForm[1].value,
-    email: dataForm[2].value,
-    phoneNumber: dataForm[3].value,
-    cuit: dataForm[4].value,
-    address: dataForm[5].value,
-    activity: dataForm[6].value,
+    name: dataForm[0].value,
+    email: dataForm[1].value,
+    phoneNumber: dataForm[2].value,
+    cuit: dataForm[3].value,
+    address: dataForm[4].value,
+    activity: dataForm[5].value,
   };
 }
 
