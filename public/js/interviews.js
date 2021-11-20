@@ -3,6 +3,7 @@ window.onload = function() {
   requestInterviews();
 
   const modal = document.getElementById("background-modal");
+  const form = document.getElementById("form");
   const createButton = document.getElementById("create-button");
   const confirmCreateButton = document.getElementById("confirm-create-button");
   const confirmUpdateButton = document.getElementById("confirm-update-button");
