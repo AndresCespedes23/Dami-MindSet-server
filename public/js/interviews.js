@@ -91,4 +91,13 @@ window.onload = function() {
       table.appendChild(itemList);
     })
   }
+
+  //----- DELETE -----//
+
+  function openRemoveModal() {
+    modal.classList.remove("hidden");
+    form.classList.add("hidden");
+    confirmRemoveButton.classList.remove("hidden");
+    modalTitle.innerHTML = "Remove Interview";
+  }
 }
