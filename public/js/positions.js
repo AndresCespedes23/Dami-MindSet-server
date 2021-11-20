@@ -171,21 +171,14 @@ function showCreateModal() {
   createConfirm[0].addEventListener("click", sendCreate);
 }
 
-  let name1 = document.querySelector('input[id="name"]');
-  let description = document.querySelector('input[id="description"]');
-  let status1 = document.querySelector('input[id="status"]');
-  let address = document.querySelector('input[id="address"]');
-  let city = document.querySelector('input[id="city"]');
-  let postalCode = document.querySelector('input[id="postalCode"]');
-  const createPosition = {
-    name1 : name1.value,
-    description : description.value,
-    status : status1.value,
-    address : address.value,
-    city : city.value,
-    postalCode : postalCode.value,
-  };
-
+const createPosition = {
+  name : document.getElementById("name").value,
+  description : document.getElementById("description").value,
+  status : document.getElementById("status").value,
+  address : document.getElementById("address").value,
+  city : document.getElementById("city").value,
+  postalCode : document.getElementById("postalCode").value,
+};
 
 function sendCreate() {
   const url = "http://localhost:4000/api/positions/";
