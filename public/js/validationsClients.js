@@ -48,8 +48,33 @@ function  validateAddress(){
   if (address.value.length > 100 || address.value.length < 6)
     return errorAddress.innerText = "Address cannot be bigger than 100 or smaller than 6.";
   const validFormat = /^[a-zA-Z0-9\s,.'-]{3,}$/;
-  if (!validFormat.test(address.value))
-    return errorAddress.innerText = "The Address shouldn't contain special characters";
+  let firstSpace = address.value.indexOf(' ');
+  let lastSpace = address.value.lastIndexOf(' ');
+  if (firstSpace == -1)
+    return errorAddress.innerText = 'Must contain an space.';
+  if (lastSpace == address.value.length-1){
+    return errorAddress.innerText = 'The space must not be at the end.';
+  }
+  let arrayAddress = address.value.split('');
+  let countLetter = 0;
+  let countNumber = 0;
+  let countSpace = 0;
+  arrayAddress.forEach(char => {
+      let ascii = char.charCodeAt();
+      if ( (ascii>=65 && ascii<=90)||(ascii>=97 && ascii<=122)){
+          countLetter++;
+      } else if (char == ' '){
+          countSpace++;
+      } else if ((parseInt (char) == char)){
+          countNumber++;
+      }
+  });
+  if (address.value.length < 5)
+      return errorAddress.innerText = 'The length must be more than 5 characters. ';
+  if (countLetter==0 || countNumber==0 || countSpace==0)
+    return errorAddress.innerText = 'Must contain at least one letter, one number and one space. ';
+  if (arrayAddress.length -  countLetter - countNumber - countSpace != 0)
+    return errorAddress.innerText = 'Must be made only of letters, numbers and spaces.';
 };
 
 function  validateActivity(){
