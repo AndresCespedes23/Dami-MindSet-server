@@ -14,17 +14,20 @@ window.onload = function() {
   createButton.addEventListener("click", openCreateModal);
   cancelButton.addEventListener("click", closeModal);
   confirmCreateButton.addEventListener("click", requestCreateInterview);
-  confirmUpdateButton.addEventListener("click", requestUpdateInterview);
-  confirmRemoveButton.addEventListener("click", requestRemoveInterview);
 
   function closeModal() {
     modal.classList.add("hidden");
+    form.classList.add("hidden");
+    confirmCreateButton.classList.add("hidden");
+    confirmUpdateButton.classList.add("hidden");
+    confirmRemoveButton.classList.add("hidden");
   }
 
   //----- CREATE -----//
 
   function openCreateModal() {
     modal.classList.remove("hidden");
+    form.classList.remove("hidden");
     confirmCreateButton.classList.remove("hidden");
     modalTitle.innerHTML = "Create Interview";
   }
@@ -51,6 +54,8 @@ window.onload = function() {
       })
       .then(() => {
         modal.classList.add("hidden");
+        form.classList.add("hidden");
+        confirmCreateButton.classList.add("hidden");
         requestInterviews();
       })
       .catch((error) => {
@@ -103,7 +108,6 @@ window.onload = function() {
     confirmRemoveButton.classList.remove("hidden");
     modalTitle.innerHTML = "Remove Interview";
     confirmRemoveButton.onclick = function() {
-      clearTable();
       requestRemoveInterview(interview);
     }
   }
@@ -122,6 +126,8 @@ window.onload = function() {
       })
       .then(() => {
         modal.classList.add("hidden");
+        form.classList.add("hidden");
+        confirmRemoveButton.classList.add("hidden");
         requestInterviews();
       })
       .catch((error) => {
