@@ -1,0 +1,16 @@
+#create-btn {
+  align-self: flex-end;
+  width: 100px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  border-style: none;
+  background-color: #091f40;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+#confirm-btn {
+  background-color: #091f40;
+  color: #ffffff;
+}
