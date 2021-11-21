@@ -61,7 +61,6 @@ body {
     color: #ffffff;
   }
   #background-modal {
-    display: none;
     position: fixed;
     overflow: scroll;
     left: 0;
@@ -133,5 +132,8 @@ body {
     text-align: center;
   }
   ::-webkit-scrollbar {
+    display: none;
+  }
+  .hide {
     display: none;
   }

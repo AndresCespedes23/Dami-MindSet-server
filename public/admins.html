@@ -27,7 +27,6 @@
               <th>password</th>
               <th>superadmin</th>
               <th>edit</th>
-              <th>delete</th>
             </tr>
           </thead>
           <tbody>
@@ -38,7 +37,6 @@
               <td>4</td>
               <td>5</td>
               <td><button class="editButton"><img src="img/Icon-edit.png" alt="EditAdmin"/></button></td>
-              <td><button class="deleteButton"><img src="img/Icon-remove.png" alt="Remove" /></button></td>
             </tr>
           </tbody>
         </table>
@@ -51,61 +49,61 @@
               nulla alias nisi quidem doloribus.
             </p>
             <form>
-              <fieldset>
-                <label for="name">Name</label>
-                <input
-                  type="text"
-                  id="adminName"
-                  name="name"
-                  value=""
-                />
-                <span id="Error1" class="Error-msg">Error</span>
-              </fieldset>
-              <fieldset>
-                <label for="e-mail">E-Mail</label>
-                <input
-                  type="text"
-                  id="e-mail"
-                  name="e-mail"
-                  value=""
-                />
-                <span id="Error2" class="Error-msg">Error</span>
-              </fieldset>
-              <fieldset>
-                <label for="username">UserName</label>
-                <input
-                  type="text"
-                  id="username"
-                  name="username"
-                  value=""
-                />
-                <span id="Error3" class="Error-msg">Error</span>
-              </fieldset>
-              <fieldset>
-                <label for="password">PassWord</label>
-                <input
-                  type="text"
-                  id="password"
-                  name="password"
-                  value=""
-                />
-                <span id="Error4" class="Error-msg">Error</span>
-              </fieldset>
-              <fieldset>
-                <label for="superadmin">SuperAdmin</label>
-                <input
-                  type="boolean"
-                  id="superadmin"
-                  name="superadmin"
-                  value=""
-                />
-                <span id="Error5" class="Error-msg">Error</span>
-              </fieldset>
+                <fieldset>
+                    <label for="name">Name</label>
+                    <input
+                        type="text"
+                        id="adminName"
+                        name="name"
+                        value=""
+                    />
+                    <span id="Error1" class="Error-msg">Error</span>
+                </fieldset>
+                <fieldset>
+                    <label for="e-mail">E-Mail</label>
+                    <input
+                        type="text"
+                        id="e-mail"
+                        name="e-mail"
+                        value=""
+                    />
+                    <span id="Error2" class="Error-msg">Error</span>
+                </fieldset>
+                <fieldset>
+                    <label for="username">UserName</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        value=""
+                    />
+                    <span id="Error3" class="Error-msg">Error</span>
+                </fieldset>
+                <fieldset>
+                    <label for="password">PassWord</label>
+                    <input
+                        type="text"
+                        id="password"
+                        name="password"
+                        value=""
+                    />
+                    <span id="Error4" class="Error-msg">Error</span>
+                </fieldset>
+                <fieldset>
+                    <label for="superadmin">SuperAdmin</label>
+                    <input
+                        type="boolean"
+                        id="superadmin"
+                        name="superadmin"
+                        value=""
+                    />
+                    <span id="Error5" class="Error-msg">Error</span>
+                </fieldset>
+                <div>
+                    <button id="closeModal" class="modal-button">Cancel</button>
+                    <button type="submit" id="confirm-button" class="modal-button">Confirm</button>
+                </div>
             </form>
-            <div>
-              <button class="modal-button">Cancel</button>
-              <button id="confirm-button" class="modal-button">Confirm</button>
-            </div>
           </div>
         </div>
       </div>
