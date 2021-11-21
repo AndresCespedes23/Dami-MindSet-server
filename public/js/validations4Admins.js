@@ -68,3 +68,19 @@ function userBlur(e) {
   } return adminsNameError.innerText = "✓";
 };
 
+// Validations for admin's password
+adminPassWord.addEventListener("focus", passWFocus);
+function passWFocus(e) {
+  e.preventDefault();
+  adminPassWordError.innerText = "";
+};
+
+adminPassWord.addEventListener("blur", passWBLur);
+function passWBLur(e) {
+  e.preventDefault();
+  let passValue = adminPassWord.value;
+  let passWFormat = /^[a-z0-9]{8,18}$/;
+  if (!passWFormat.test(passValue)) {
+    return adminPassWordError.innerText = "The password only accepts letters or numbers and also must have a lenght of 8 characters";
+  } return adminPassWordError.innerText = "✓";
+};
