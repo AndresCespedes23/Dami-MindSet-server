@@ -68,6 +68,36 @@ window.onload = function() {
       });
   }
 
+  function createSelectCandidate(collection) {
+    const select = document.getElementById("idCandidate");
+    collection.forEach((doc) => {
+      const option = document.createElement("option");
+      option.value = doc._id;
+      option.innerHTML = doc.name;
+      select.appendChild(option);
+    })
+  }
+
+  function createSelectClient(collection) {
+    const select = document.getElementById("idClient");
+    collection.forEach((doc) => {
+      const option = document.createElement("option");
+      option.value = doc._id;
+      option.innerHTML = doc.name;
+      select.appendChild(option);
+    })
+  }
+
+  function createSelectPosition(collection) {
+    const select = document.getElementById("idPosition");
+    collection.forEach((doc) => {
+      const option = document.createElement("option");
+      option.value = doc._id;
+      option.innerHTML = doc.name;
+      select.appendChild(option);
+    })
+  }
+
   //----- CREATE -----//
 
   function openCreateModal() {
