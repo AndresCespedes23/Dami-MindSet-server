@@ -111,7 +111,7 @@ window.onload = function() {
   }
 
   function requestCreateInterview() {
-    let interview = {
+    let createInterview = {
       idCandidate: document.getElementById("idCandidate").value,
       idClient: document.getElementById("idClient").value,
       idPosition: document.getElementById("idPosition").value,
@@ -121,7 +121,7 @@ window.onload = function() {
     const url = "http://localhost:4000/api/interviews";
     fetch(url, {
       method: "POST",
-      body: JSON.stringify(interview),
+      body: JSON.stringify(createInterview),
       headers: {
         "Content-Type": "application/json",
       },
@@ -197,17 +197,17 @@ window.onload = function() {
   }
 
   function requestUpdateInterview(interview) {
-    let interview = {
+    let updateInterview = {
       idCandidate: document.getElementById("idCandidate").value,
       idClient: document.getElementById("idClient").value,
       idPosition: document.getElementById("idPosition").value,
       dateTime: document.getElementById("dateTime").value,
       status: document.getElementById("status").value
     }
-    const url = `http://localhost:4000/api/interviews/${interview._id}`;
+    const url = `http://localhost:4000/api/updateInterviews/${interview._id}`;
     fetch(url, {
       method: "PUT",
-      body: JSON.stringify(interview),
+      body: JSON.stringify(updateInterview),
       headers: {
         "Content-Type": "application/json",
       },
