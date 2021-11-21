@@ -107,4 +107,25 @@ window.onload = function() {
       requestRemoveInterview(interview);
     }
   }
+
+  function requestRemoveInterview(interview) {
+    const url = `http://localhost:4000/api/interviews/${interview._id}`;
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) return res.json();
+        throw new Error(JSON.stringify(res.json()));
+      })
+      .then(() => {
+        modal.classList.add("hidden");
+        requestInterviews();
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
 }
