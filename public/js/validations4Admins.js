@@ -19,12 +19,13 @@ isSuperAdminError.innerText = "";
 
 //validations for the admin's name
 nameAdmin.addEventListener("focus", namefocus);
-function namefocus (e){
+function namefocus(e) {
   e.preventDefault();
   nameError.innerText = "";
-}
+};
+
 nameAdmin.addEventListener("blur", adminBlur);
-function adminBlur (e) {
+function adminBlur(e) {
   e.preventDefault();
   const onlyTxt = (/[a-zA-Z]$/);
   var n = nameAdmin.value;
@@ -35,3 +36,18 @@ function adminBlur (e) {
     } return nameError.innerText = "✓";
 };
 
+//validations for admin's e-mail
+eMail.addEventListener("focus", mailFocus);
+function mailFocus(e) {
+  e.preventDefault();
+  eMailError.innerText = "";
+};
+
+eMail.addEventListener("blur", mailBlur);
+function mailBlur(e) {
+  var eV = eMail.value;
+  var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+  if (!emailFormat.test(eV)) {
+    return eMailError.innerText = "Invalid E-Mail Format";
+  } return eMailError.innerText = "✓";
+};
