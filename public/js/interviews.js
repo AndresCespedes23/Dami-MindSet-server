@@ -204,7 +204,7 @@ window.onload = function() {
       dateTime: document.getElementById("dateTime").value,
       status: document.getElementById("status").value
     }
-    const url = `http://localhost:4000/api/updateInterviews/${interview._id}`;
+    const url = `http://localhost:4000/api/interviews/${interview._id}`;
     fetch(url, {
       method: "PUT",
       body: JSON.stringify(updateInterview),
@@ -213,7 +213,7 @@ window.onload = function() {
       },
     })
       .then((res) => {
-        if (res.status === 201) return res.json();
+        if (res.status === 200) return res.json();
         throw new Error(JSON.stringify(res.json()));
       })
       .then(() => {
