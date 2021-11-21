@@ -1,7 +1,7 @@
 // get all the elements by the ID
 const nameAdmin = document.getElementById("adminName");
 const eMail = document.getElementById("e-mail");
-const adminsName = document.getElementById("username");
+const adminsUserName = document.getElementById("username");
 const adminPassWord = document.getElementById("password");
 const isSuperAdmin = document.getElementById("superadmin");
 
@@ -28,7 +28,7 @@ nameAdmin.addEventListener("blur", adminBlur);
 function adminBlur(e) {
   e.preventDefault();
   const onlyTxt = (/[a-zA-Z]$/);
-  var n = nameAdmin.value;
+  let n = nameAdmin.value;
     if (n.length < 6 || n.indexOf(" ") <= 0 || n.indexOf(" ") == n.length -1) {
       return nameError.innerText = "The name must be longer than 6 characters & have at least one space between name and surname";
     } if (!onlyTxt.test(n)) {
@@ -45,9 +45,26 @@ function mailFocus(e) {
 
 eMail.addEventListener("blur", mailBlur);
 function mailBlur(e) {
-  var eV = eMail.value;
-  var emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+  e.preventDefault();
+  let eV = eMail.value;
+  let emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
   if (!emailFormat.test(eV)) {
     return eMailError.innerText = "Invalid E-Mail Format";
   } return eMailError.innerText = "✓";
 };
+
+//Validation for admin's username
+adminsUserName.addEventListener("focus", userFocus);
+function userFocus(e) {
+  e.preventDefault();
+  adminsNameError.innerText = "";
+};
+
+adminsUserName.addEventListener("blur", userBlur);
+function userBlur(e) {
+  e.preventDefault();
+  if (adminsUserName.value.length < 2 || adminsUserName.value.length > 20) {
+    return adminsNameError.innerText = "The UserName must be longer than 2 characters but less than 20";
+  } return adminsNameError.innerText = "✓";
+};
+
