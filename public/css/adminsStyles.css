@@ -104,6 +104,13 @@ body {
     padding: 0px;
     border-style: none;
   }
+  form select {
+    padding: 5px;
+    border-style: none;
+    border: 2px solid #091f40;
+    border-radius: 10px;
+    text-align: left;
+  }
   .Error-msg {
     margin-bottom: 5px;
     padding-top: 5px;

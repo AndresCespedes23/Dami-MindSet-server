@@ -92,13 +92,10 @@
                 </fieldset>
                 <fieldset>
                     <label for="superadmin">SuperAdmin</label>
-                    <input
-                        type="boolean"
-                        id="superadmin"
-                        name="superadmin"
-                        value=""
-                    />
-                    <span id="Error5" class="Error-msg">Error</span>
+                    <select name="isSuperAdmin" id="superadmin">
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </select>
                 </fieldset>
                 <div>
                     <button id="closeModal" class="modal-button">Cancel</button>

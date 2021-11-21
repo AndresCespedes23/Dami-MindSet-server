@@ -3,7 +3,7 @@ const nameAdmin = document.getElementById("adminName");
 const eMail = document.getElementById("e-mail");
 const adminsUserName = document.getElementById("username");
 const adminPassWord = document.getElementById("password");
-const isSuperAdmin = document.getElementById("superadmin");
+//const isSuperAdmin = document.getElementById("superadmin");
 
 //get all the errors
 const nameError = document.getElementById("Error1");
@@ -15,7 +15,7 @@ nameError.innerText = "";
 eMailError.innerText = "";
 adminsNameError.innerText = "";
 adminPassWordError.innerText = "";
-isSuperAdminError.innerText = "";
+//isSuperAdminError.innerText = "";
 
 //validations for the admin's name
 nameAdmin.addEventListener("focus", namefocus);
@@ -84,3 +84,19 @@ function passWBLur(e) {
     return adminPassWordError.innerText = "The password only accepts letters or numbers and also must have a lenght of 8 characters";
   } return adminPassWordError.innerText = "✓";
 };
+
+// Validations for admin's Superadmin
+/*isSuperAdmin.addEventListener("focus", superAFocus);
+function superAFocus(e) {
+  e.preventDefault();
+  isSuperAdminError.innerText = "";
+};
+
+isSuperAdmin.addEventListener("blur", superABlur);
+function superABlur(e) {
+  e.preventDefault();
+  let superValue = isSuperAdmin.value
+  if (!superValue.includes("true") && !superValue.includes("false")) {
+    return isSuperAdminError.innerText = "only accepts the words 'true' or 'false'";
+  } return isSuperAdminError.innerText = "✓";
+};*/
