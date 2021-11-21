@@ -175,7 +175,25 @@ window.onload = function() {
       itemList.querySelector(".remove").addEventListener("click", function() {
         openRemoveModal(interview);
       });
+      itemList.querySelector(".update").addEventListener("click", function() {
+        openUpdateModal(interview);
+      });
     })
+  }
+
+  //----- UPDATE -----//
+
+  function openUpdateModal(interview) {
+    modal.classList.remove("hidden");
+    form.classList.remove("hidden");
+    confirmUpdateButton.classList.remove("hidden");
+    modalTitle.innerHTML = "Update Interview";
+    selectCandidate();
+    selectClient();
+    selectPosition();
+    confirmUpdateButton.onclick = function() {
+      requestUpdateInterview(interview);
+    }
   }
 
   //----- DELETE -----//
