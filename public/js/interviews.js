@@ -97,10 +97,14 @@ window.onload = function() {
 
   //----- DELETE -----//
 
-  function openRemoveModal() {
+  function openRemoveModal(interview) {
     modal.classList.remove("hidden");
     form.classList.add("hidden");
     confirmRemoveButton.classList.remove("hidden");
     modalTitle.innerHTML = "Remove Interview";
+    confirmRemoveButton.onclick = function() {
+      clearTable();
+      requestRemoveInterview(interview);
+    }
   }
 }
