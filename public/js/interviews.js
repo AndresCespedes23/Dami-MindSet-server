@@ -196,6 +196,37 @@ window.onload = function() {
     }
   }
 
+  function requestUpdateInterview(interview) {
+    let interview = {
+      idCandidate: document.getElementById("idCandidate").value,
+      idClient: document.getElementById("idClient").value,
+      idPosition: document.getElementById("idPosition").value,
+      dateTime: document.getElementById("dateTime").value,
+      status: document.getElementById("status").value
+    }
+    const url = `http://localhost:4000/api/interviews/${interview._id}`;
+    fetch(url, {
+      method: "PUT",
+      body: JSON.stringify(interview),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status === 201) return res.json();
+        throw new Error(JSON.stringify(res.json()));
+      })
+      .then(() => {
+        modal.classList.add("hidden");
+        form.classList.add("hidden");
+        confirmUpdateButton.classList.add("hidden");
+        requestInterviews();
+      })
+      .catch((error) => {
+        return error;
+      });
+    }
+
   //----- DELETE -----//
 
   function openRemoveModal(interview) {
