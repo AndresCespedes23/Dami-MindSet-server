@@ -17,7 +17,6 @@ const EMail = document.getElementById("e-mail");
 const userName = document.getElementById("username");
 const passWord = document.getElementById("password");
 const superAdmin = document.getElementById("superadmin");
-let save = "";
 
 //function to show all the admins in the db
 const showData = (admins) => {
@@ -36,8 +35,6 @@ const showData = (admins) => {
   })
   container.innerHTML = results;
 }
-
-
 
 //show Admins
 
@@ -77,10 +74,17 @@ on(document, 'click', '.editButton', e => {
   superAdmin.value = adminsIsSuperAdmin
   adminModal.classList.remove("hide");
 } )
+
+//get Ids of the admins
+let adminId = on(document, 'click', '.editButton', e => {
+    const adminsLane = e.target.parentNode.parentNode.parentNode
+    adminId = adminsLane.children[0].innerHTML
+});
+
 //Submit changes
 const submit = (e) => {
   e.preventDefault(e)
-    fetch(url+"61916f6ff13b6ce1ba849cba", {
+    fetch(url+adminId, {
       method: "PUT",
       headers: {
           "Content-Type":"application/json"
@@ -103,21 +107,19 @@ const submit = (e) => {
       });
       adminModal.classList.add("hide");
 };
-
-formModal.addEventListener("submit", submit)
-
-
+formModal.addEventListener("submit", submit);
 
 //Cancel changes
 closeModal.addEventListener("click", closeFModal)
 function closeFModal (e){
     e.preventDefault();
     adminModal.classList.add("hide");
-}
+};
+
 //click outside the modal also close it
 window.onclick = function(outside){
     if (outside.target == adminModal){
         adminModal.classList.add("hide");
-    }
-}
-adminModal.classList.add("hide")
+    };
+};
+adminModal.classList.add("hide");
