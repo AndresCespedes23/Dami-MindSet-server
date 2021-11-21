@@ -23,6 +23,51 @@ window.onload = function() {
     confirmRemoveButton.classList.add("hidden");
   }
 
+  function selectCandidate() {
+    const url = "http://localhost:4000/api/candidates";
+    fetch(url)
+      .then((res) => {
+        if (res.status === 200) return res.json();
+        throw new Error(`HTTP ${res.status}`);
+      })
+      .then((data) => {
+        createSelectCandidate(data);
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
+
+  function selectClient() {
+    const url = "http://localhost:4000/api/clients";
+    fetch(url)
+      .then((res) => {
+        if (res.status === 200) return res.json();
+        throw new Error(`HTTP ${res.status}`);
+      })
+      .then((data) => {
+        createSelectClient(data);
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
+
+  function selectPosition() {
+    const url = "http://localhost:4000/api/positions";
+    fetch(url)
+      .then((res) => {
+        if (res.status === 200) return res.json();
+        throw new Error(`HTTP ${res.status}`);
+      })
+      .then((data) => {
+        createSelectPosition(data);
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
+
   //----- CREATE -----//
 
   function openCreateModal() {
@@ -30,6 +75,9 @@ window.onload = function() {
     form.classList.remove("hidden");
     confirmCreateButton.classList.remove("hidden");
     modalTitle.innerHTML = "Create Interview";
+    selectCandidate();
+    selectClient();
+    selectPosition();
   }
 
   function requestCreateInterview() {
