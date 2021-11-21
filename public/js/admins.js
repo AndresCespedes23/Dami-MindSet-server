@@ -24,6 +24,7 @@ const showData = (admins) => {
   admins.forEach(admin => {
     results +=`
       <tr>
+        <td>${admin._id}</td>
         <td>${admin.name}</td>
         <td>${admin.email}</td>
         <td>${admin.username}</td>
@@ -64,24 +65,22 @@ const on = (element, event, selector, handler) => {
 };
 on(document, 'click', '.editButton', e => {
   const adminsLane = e.target.parentNode.parentNode.parentNode
-  const adminsName = adminsLane.children[0].innerHTML
-  const adminsEmail = adminsLane.children[1].innerHTML
-  const adminsUsername = adminsLane.children[2].innerHTML
-  const adminsPassword = adminsLane.children[3].innerHTML
-  const adminsIsSuperAdmin = adminsLane.children[4].innerHTML
+  const adminsName = adminsLane.children[1].innerHTML
+  const adminsEmail = adminsLane.children[2].innerHTML
+  const adminsUsername = adminsLane.children[3].innerHTML
+  const adminsPassword = adminsLane.children[4].innerHTML
+  const adminsIsSuperAdmin = adminsLane.children[5].innerHTML
   adminName.value = adminsName
   EMail.value = adminsEmail
   userName.value = adminsUsername
   passWord.value = adminsPassword
   superAdmin.value = adminsIsSuperAdmin
-  save = "Edit"
   adminModal.classList.remove("hide");
-  console.log(adminsName)
 } )
-//Sumbmit changes
-formModal.addEventListener("submit", (e) => {
+//Submit changes
+const submit = (e) => {
   e.preventDefault(e)
-    fetch(url+adminName, {
+    fetch(url+"61916f6ff13b6ce1ba849cba", {
       method: "PUT",
       headers: {
           "Content-Type":"application/json"
@@ -97,13 +96,17 @@ formModal.addEventListener("submit", (e) => {
     .then((res) => {
         if (res.status === 200)
           return res.json();
-      })
-      .then(Response => location.reload())
-      .catch((err) => {
+    })
+    .then( res => location.reload())
+    .catch((err) => {
         console.log(err);
       });
       adminModal.classList.add("hide");
-})
+};
+
+formModal.addEventListener("submit", submit)
+
+
 
 //Cancel changes
 closeModal.addEventListener("click", closeFModal)
