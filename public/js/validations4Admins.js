@@ -3,8 +3,8 @@ const nameAdmin = document.getElementById("adminName");
 const eMail = document.getElementById("e-mail");
 const adminsUserName = document.getElementById("username");
 const adminPassWord = document.getElementById("password");
-//const isSuperAdmin = document.getElementById("superadmin");
-
+const confirmB = document.getElementById("confirm-button");
+confirmB.classList.remove("hide");
 //get all the errors
 const nameError = document.getElementById("Error1");
 const eMailError = document.getElementById("Error2");
@@ -15,7 +15,6 @@ nameError.innerText = "";
 eMailError.innerText = "";
 adminsNameError.innerText = "";
 adminPassWordError.innerText = "";
-//isSuperAdminError.innerText = "";
 
 //validations for the admin's name
 nameAdmin.addEventListener("focus", namefocus);
@@ -30,10 +29,14 @@ function adminBlur(e) {
   const onlyTxt = (/[a-zA-Z]$/);
   let n = nameAdmin.value;
     if (n.length < 6 || n.indexOf(" ") <= 0 || n.indexOf(" ") == n.length -1) {
+      confirmB.classList.add("hide");
       return nameError.innerText = "The name must be longer than 6 characters & have at least one space between name and surname";
     } if (!onlyTxt.test(n)) {
+      confirmB.classList.add("hide");
       return nameError.innerText = "Only text allowed";
-    } return nameError.innerText = "✓";
+    } confirmB.classList.remove("hide");
+      return nameError.innerText = "✓";
+
 };
 
 //validations for admin's e-mail
@@ -49,8 +52,10 @@ function mailBlur(e) {
   let eV = eMail.value;
   let emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
   if (!emailFormat.test(eV)) {
+    confirmB.classList.add("hide");
     return eMailError.innerText = "Invalid E-Mail Format";
-  } return eMailError.innerText = "✓";
+  } confirmB.classList.remove("hide");
+    return eMailError.innerText = "✓";
 };
 
 //Validation for admin's username
@@ -64,8 +69,10 @@ adminsUserName.addEventListener("blur", userBlur);
 function userBlur(e) {
   e.preventDefault();
   if (adminsUserName.value.length < 2 || adminsUserName.value.length > 20) {
+    confirmB.classList.add("hide");
     return adminsNameError.innerText = "The UserName must be longer than 2 characters but less than 20";
-  } return adminsNameError.innerText = "✓";
+  } confirmB.classList.remove("hide");
+    return adminsNameError.innerText = "✓";
 };
 
 // Validations for admin's password
@@ -81,22 +88,8 @@ function passWBLur(e) {
   let passValue = adminPassWord.value;
   let passWFormat = /^[a-z0-9]{8,18}$/;
   if (!passWFormat.test(passValue)) {
+    confirmB.classList.add("hide");
     return adminPassWordError.innerText = "The password only accepts letters or numbers and also must have a lenght of 8 characters";
-  } return adminPassWordError.innerText = "✓";
+  } confirmB.classList.remove("hide");
+    return adminPassWordError.innerText = "✓";
 };
-
-// Validations for admin's Superadmin
-/*isSuperAdmin.addEventListener("focus", superAFocus);
-function superAFocus(e) {
-  e.preventDefault();
-  isSuperAdminError.innerText = "";
-};
-
-isSuperAdmin.addEventListener("blur", superABlur);
-function superABlur(e) {
-  e.preventDefault();
-  let superValue = isSuperAdmin.value
-  if (!superValue.includes("true") && !superValue.includes("false")) {
-    return isSuperAdminError.innerText = "only accepts the words 'true' or 'false'";
-  } return isSuperAdminError.innerText = "✓";
-};*/
