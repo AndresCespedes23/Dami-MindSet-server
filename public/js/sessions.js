@@ -1,8 +1,12 @@
 const table = document.querySelector("table");
+const createCandidateBtn = document.getElementById("create-btn");
+const modal = document.getElementById("background-modal");
 
 var baseUrl = "http://localhost:4000/api/";
 
 window.onload = () => listSessions();
+
+createCandidateBtn.addEventListener("click", openCreateModal);
 
 /******************** LIST SESSIONS ********************/
 function listSessions() {
@@ -61,6 +65,51 @@ function displayError(err) {
   console.log(err);
 }
 
+/******************** MODAL ********************/
+function openCreateModal(e) {
+  modal.innerHTML = fillFormModal();
+  openModal();
+}
+
+function fillFormModal() {
+  const title = `<h2>Create Session</h2>`;
+  const description = `<p>Enter the session's information:</p>`;
+  let form = "";
+  sessionsFormModel.forEach((elem) => {
+    const label = `<label for="${elem.id}">${elem.label}</label>`;
+    let field;
+    if (elem.element === "input") {
+      field = `<input id="${elem.id}" type="${elem.type}" name="${elem.name}"
+        placeholder="${elem.placeholder}"/>`;
+    } else {
+      field = `<select id="${elem.id}" name="${elem.name}">${elem.placeholder}
+        </select>`;
+    }
+    const error = `<span class="error">Error</span>`;
+    form += `<fieldset>${label}${field}${error}</fieldset>`;
+  });
+  form = `<form>${form}</form>`;
+  const closeBtn = `<button id="close-btn" class="modal-button">Cancel</button>`;
+  const confirmBtn = `<button id="confirm-btn" class="modal-button">Confirm</button>`;
+  const buttons = `<div>${closeBtn}${confirmBtn}</div>`;
+  const modal = `<div class="modal">${title}${description}${form}${buttons}<div>`;
+  return modal;
+}
+
+function openModal() {
+  modal.classList.toggle("hidden");
+  const closeBtn = document.getElementById("close-btn");
+  closeBtn.addEventListener("click", closeModal);
+}
+
+function closeModal(e) {
+  modal.classList.toggle("hidden");
+  const closeBtn = document.getElementById("close-btn");
+  closeBtn.removeEventListener("click", closeModal);
+  modal.innerHTML = "";
+}
+
+/******************** UTILITIES ********************/
 function capitalize(str) {
   const words = str.split(" ");
   words.forEach((word, i) => {
