@@ -85,10 +85,13 @@ window.onload = function() {
         <td>${interview.idPosition}</td>
         <td>${interview.dateTime}</td>
         <td>${interview.status}</td>
-        <td><button class="button-list" onclick="updatePosition(${interview._id})"><img src="img/Icon-edit.png" alt="Edit"></button></td>
-        <td><button class="button-list" onclick="deletePosition(${interview._id})"><img src="img/Icon-remove.png" alt="Remove"/></button>
+        <td><button class="update" class="button-list" onclick="updatePosition(${interview._id})"><img src="img/Icon-edit.png" alt="Edit"></button></td>
+        <td><button class="remove" class="button-list" onclick="deletePosition(${interview._id})"><img src="img/Icon-remove.png" alt="Remove"/></button>
         </td>`
       table.appendChild(itemList);
+      itemList.querySelector(".remove").addEventListener("click", function() {
+        openRemoveModal(interview);
+      });
     })
   }
 
