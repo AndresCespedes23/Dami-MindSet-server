@@ -106,10 +106,8 @@ function createSession(e) {
 
 /******************** UPDATE SESSION ********************/
 async function openEditModal(e) {
-  console.log("edit modal");
-  const target = e.target.tagName === "IMG" ? e.target.parentElement : e.target;
-  selectedSession = getCurrentData(target.parentElement.parentElement);
-  console.log(selectedSession);
+  const target = getTarget(e);
+  selectedSession = getCurrentData(target);
   modal.innerHTML = fillFormModal("update");
   openModal();
   fillSelectedSession();
@@ -156,7 +154,46 @@ function updateSession(e) {
     });
 }
 
-/********************  ********************/
+/******************** DELETE SESSION ********************/
+function openDeleteModal(e) {
+  fillDeleteModal();
+  const target = getTarget(e);
+  selectedSession.id = target.getAttribute("data-id");
+  selectedSession.target = target;
+  const deleteBtn = document.getElementById("delete-btn");
+  deleteBtn.addEventListener("click", deleteSession);
+}
+
+function fillDeleteModal() {
+  const title = `<h2>Are you sure you want to delete this session?</h2>`;
+  const closeBtn = `<button id="close-btn" class="modal-button">Close</button>`;
+  const confirmBtn = `<button id="delete-btn" class="modal-button">Delete</button>`;
+  const buttons = `<div>${closeBtn}${confirmBtn}</div>`;
+  const modalContent = `<div class="modal">${title}${buttons}<div>`;
+  modal.innerHTML = modalContent;
+  openModal();
+}
+
+function deleteSession() {
+  table.firstElementChild.removeChild(selectedSession.target);
+  fetch(baseUrl + "sessions/" + selectedSession.id, {
+    method: "DELETE",
+  })
+    .then(async (res) => {
+      const data = await res.json();
+      requestSuccessful(data, "deleted");
+    })
+    .catch((err) => {
+      displayError(err);
+    });
+}
+
+/******************** COMMON FUNCTIONS ********************/
+function getTarget(e) {
+  const target = e.target.tagName === "IMG" ? e.target.parentElement : e.target;
+  return target.parentElement.parentElement;
+}
+
 function getFormData() {
   const data = {};
   data.idCandidate = document.getElementById("candidate").value;
@@ -168,8 +205,6 @@ function getFormData() {
 }
 
 function requestSuccessful(data, operation) {
-  const form = document.getElementById("modal-form");
-  form.removeEventListener("submit", createSession); //ver si es necesario
   const title = `<h2>Session ${operation} successfully!</h2>`;
   let sessionInfo = ``;
   for (let elem in data) {
@@ -201,8 +236,6 @@ function openModal() {
 
 function closeModal(e) {
   modal.classList.toggle("hidden", true);
-  const closeBtn = document.getElementById("close-btn");
-  closeBtn.removeEventListener("click", closeModal); //ver si es necesario
   modal.innerHTML = "";
   listSessions();
 }
