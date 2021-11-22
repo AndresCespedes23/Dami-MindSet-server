@@ -85,7 +85,7 @@
     function passWBLur(e) {
       e.preventDefault();
       let passValue = adminPassWord.value;
-      let passWFormat = /^[a-z0-9]{8,18}$/;
+      let passWFormat = /^[a-z0-9]{8,24}$/;
       if (!passWFormat.test(passValue)) {
       confirmB.classList.add("hide");
       return adminPassWordError.innerText = "The password only accepts letters or numbers and also must have a length between 8 to 24 characters";
