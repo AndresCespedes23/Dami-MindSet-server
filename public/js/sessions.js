@@ -35,12 +35,12 @@ function getSessionsInfo(sessions) {
     candidates.forEach((candidate, i) => {
       sessions[i].candidate = candidate;
     });
-  });
-  Promise.all(psychologists).then((psychologists) => {
-    psychologists.forEach((psychologist, i) => {
-      sessions[i].psychologist = psychologist;
+    Promise.all(psychologists).then((psychologists) => {
+      psychologists.forEach((psychologist, i) => {
+        sessions[i].psychologist = psychologist;
+      });
+      displaySessions(sessions);
     });
-    displaySessions(sessions);
   });
 }
 
