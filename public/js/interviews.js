@@ -180,7 +180,7 @@ window.onload = function() {
 
   //----- Create rows with data retrieved from Interviews into table -----//
 
-  function createList(interviews) {
+  async function createList(interviews) {
     const tableBody = document.getElementById("table-body");
     tableBody.innerHTML = "";
     interviews.forEach(async (interview) => {
