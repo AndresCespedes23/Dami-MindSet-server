@@ -1,0 +1,146 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0px;
+    background-color: #3a4c66;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+  }
+  section {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  nav {
+    background-color: #091f40;
+    color: #ffffff;
+  }
+  nav img {
+    display: block;
+    margin: auto;
+    padding: 10px 0px;
+  }
+  h1 {
+    margin: 0px;
+    padding: 5px 0px;
+  }
+  #resource-table {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 50px auto;
+    padding: 20px;
+    border-top: 10px solid #091f40;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #091f40;
+  }
+  table {
+    border-collapse: collapse;
+    text-align: center;
+  }
+  th,
+  td {
+    padding: 5px;
+    border: 1px solid #091f40;
+  }
+  td {
+    font-size: 12px;
+  }
+  #back-button {
+    align-self: flex-end;
+    width: 100px;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: #091f40;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+  #background-modal {
+    position: fixed;
+    overflow: scroll;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #9aa2b0;
+    z-index: 1;
+  }
+  #create-modal {
+    width: 40%;
+    margin: 80px auto;
+    padding: 30px;
+    border: 3px solid #091f40;
+    border-radius: 30px;
+    background-color: #ffffff;
+    text-align: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    font-size: 15px;
+  }
+  form label {
+    padding-left: 10px;
+    text-align: left;
+  }
+  form input {
+    padding: 5px;
+    border-style: none;
+    border: 2px solid #091f40;
+    border-radius: 10px;
+    text-align: left;
+  }
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+    border-style: none;
+  }
+  form select {
+    padding: 5px;
+    border-style: none;
+    border: 2px solid #091f40;
+    border-radius: 10px;
+    text-align: left;
+  }
+  .error-msg {
+    margin-bottom: 5px;
+    padding-top: 5px;
+    text-align: right;
+    font-size: 12px;
+    color: #b80e0e;
+  }
+  .modal-button {
+    width: 80px;
+    margin: 10px;
+    padding: 10px 0px;
+    border: 2px solid #091f40;
+    border-radius: 10px;
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+  #confirm-button {
+    background-color: #091f40;
+    color: #ffffff;
+  }
+  footer {
+    margin-top: auto;
+    padding: 20px 0px;
+    background-color: #091f40;
+    color: #ffffff;
+    text-align: center;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
