@@ -3,6 +3,7 @@ const createCandidateBtn = document.getElementById("create-btn");
 const modal = document.getElementById("background-modal");
 
 var baseUrl = "http://localhost:4000/api/";
+let selectedSession = {};
 
 window.onload = () => listSessions();
 
@@ -28,19 +29,20 @@ async function displaySessions(sessions) {
   <th>Date</th><th>Status</th><th>Result</th><th></th><th></th></tr>`;
   for (let i = 0; i < Math.min(sessions.length, 20); i++) {
     let session = "";
-    const candidateName = await getName(sessions[i].idCandidate, "candidates/");
-    if (!candidateName) return;
-    session += `<td>${candidateName}</td>`;
-    const psychologistName = await getName(
+    const candidate = await getName(sessions[i].idCandidate, "candidates/");
+    if (!candidate) return;
+    session += `<td data-id="${candidate.id}">${candidate.name}</td>`;
+    const psychologist = await getName(
       sessions[i].idPsychologist,
       "psychologists/"
     );
-    if (!psychologistName) return;
-    session += `<td>${psychologistName}</td>`;
+    if (!psychologist) return;
+    session += `<td data-id="${psychologist.id}">${psychologist.name}</td>`;
     const date = `${sessions[i].dateTime.substr(0, 10)} ${sessions[
       i
     ].dateTime.substr(11, 5)}`;
-    session += `<td>${date}</td>`;
+    session += `<td data-date="${sessions[i].dateTime.substr(0, 16)}">
+      ${date}</td>`;
     session += `<td>${sessions[i].status}</td>`;
     let result = sessions[i].result;
     if (!result) result = "-";
@@ -65,7 +67,7 @@ async function getName(id, resource) {
     const res = await fetch(baseUrl + resource + id);
     if (res.status === 200) {
       const data = await res.json();
-      return capitalize(data.name);
+      return { id: data._id, name: capitalize(data.name) };
     }
     throw new Error(`HTTP ${res.status}`);
   } catch (err) {
@@ -75,10 +77,10 @@ async function getName(id, resource) {
 
 /******************** CREATE SESSION ********************/
 async function openCreateModal() {
-  modal.innerHTML = fillFormModal();
+  modal.innerHTML = fillFormModal("create");
   openModal();
-  await fillFormNames("candidates", "candidate");
-  await fillFormNames("psychologists", "psychologist");
+  await fillFormNames("candidates", "candidate", "create");
+  await fillFormNames("psychologists", "psychologist", "create");
   const form = document.getElementById("modal-form");
   form.addEventListener("submit", createSession);
 }
@@ -96,6 +98,58 @@ function createSession(e) {
     .then(async (res) => {
       const data = await res.json();
       requestSuccessful(data, "created");
+    })
+    .catch((err) => {
+      displayError(err);
+    });
+}
+
+/******************** UPDATE SESSION ********************/
+async function openEditModal(e) {
+  console.log("edit modal");
+  const target = e.target.tagName === "IMG" ? e.target.parentElement : e.target;
+  selectedSession = getCurrentData(target.parentElement.parentElement);
+  console.log(selectedSession);
+  modal.innerHTML = fillFormModal("update");
+  openModal();
+  fillSelectedSession();
+  await fillFormNames("candidates", "candidate", "update");
+  await fillFormNames("psychologists", "psychologist", "update");
+  const form = document.getElementById("modal-form");
+  form.addEventListener("submit", updateSession);
+}
+
+function getCurrentData(tableRow) {
+  const session = {};
+  session.id = tableRow.getAttribute("data-id");
+  const fields = tableRow.children;
+  session.idCandidate = fields[0].getAttribute("data-id");
+  session.idPsychologist = fields[1].getAttribute("data-id");
+  session.dateTime = fields[2].getAttribute("data-date");
+  session.status = fields[3].innerHTML;
+  session.result = fields[4].innerHTML;
+  return session;
+}
+
+function fillSelectedSession() {
+  const { dateTime, result } = selectedSession;
+  document.getElementById("date").value = dateTime;
+  document.getElementById("result").value = result;
+}
+
+function updateSession(e) {
+  e.preventDefault();
+  const data = getFormData();
+  fetch(baseUrl + "sessions/" + selectedSession.id, {
+    method: "PUT",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(async (res) => {
+      const data = await res.json();
+      requestSuccessful(data, "updated");
     })
     .catch((err) => {
       displayError(err);
@@ -153,8 +207,8 @@ function closeModal(e) {
   listSessions();
 }
 
-function fillFormModal() {
-  const title = `<h2>Create Session</h2>`;
+function fillFormModal(operation) {
+  const title = `<h2>${capitalize(operation)} Session</h2>`;
   const description = `<p>Enter the session's information:</p>`;
   let form = "";
   sessionsFormModel.forEach((elem) => {
@@ -166,7 +220,11 @@ function fillFormModal() {
     } else if (elem.options) {
       let options = ``;
       elem.options.forEach((option) => {
-        options += `<option value="${option}">${option}</option>`;
+        if (operation === "update" && option === selectedSession.status) {
+          options += `<option value="${option}" selected>${option}</option>`;
+        } else {
+          options += `<option value="${option}">${option}</option>`;
+        }
       });
       field = `<select id="${elem.id}" name="${elem.name}" ${elem.required}>
       ${options}</select>`;
@@ -186,12 +244,26 @@ function fillFormModal() {
   return modal;
 }
 
-async function fillFormNames(resource, elementId) {
+async function fillFormNames(resource, elementId, operation) {
   const names = await getNames(resource);
   if (!names) return;
   let namesList = ``;
+  let currentValue;
+  if (operation === "create") {
+    namesList += `<option value="" selected disabled hidden>Select a ${elementId}
+      </option>`;
+  } else {
+    currentValue =
+      elementId === "candidate"
+        ? selectedSession.idCandidate
+        : selectedSession.idPsychologist;
+  }
   names.forEach((name) => {
-    namesList += `<option value="${name.id}">${name.name}</option>`;
+    if (name.id === currentValue) {
+      namesList += `<option value="${name.id}" selected>${name.name}</option>`;
+    } else {
+      namesList += `<option value="${name.id}">${name.name}</option>`;
+    }
   });
   const select = document.getElementById(elementId);
   select.innerHTML = namesList;
