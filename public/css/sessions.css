@@ -1,3 +1,22 @@
+ul {
+  width: 80%;
+  padding: 0;
+  margin: auto;
+}
+ul li {
+  padding: 10px 0 0;
+  text-align: left;
+  list-style-type: none;
+}
+.edit-btn,
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+#modal-form {
+  width: 70%;
+}
 #create-btn {
   align-self: flex-end;
   width: 100px;

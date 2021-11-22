@@ -280,7 +280,7 @@ function fillFormModal(operation) {
       field = `<select id="${elem.id}" name="${elem.name}" ${elem.required}>
       </select>`;
     }
-    const error = `<span class="error">Error</span>`;
+    const error = `<span class="error"></span>`;
     form += `<fieldset>${label}${field}${error}</fieldset>`;
   });
   form = `<form id="modal-form">${form}</form>`;
