@@ -49,9 +49,9 @@ window.onload = function() {
     confirmUpdateButton.classList.remove("hidden");
     modalTitle.innerHTML = "Update Interview";
     description.innerHTML = "Please complete the form to update this interview"
-    selectCandidate();
-    selectClient();
-    selectPosition();
+    selectCandidate(interview.idCandidate);
+    selectClient(interview.idClient);
+    selectPosition(interview.idPosition);
     confirmUpdateButton.onclick = function() {
       requestUpdateInterview(interview);
     }
@@ -114,7 +114,7 @@ window.onload = function() {
 
   //----- Retrieve data from Candidates, Clients & Positions -----//
 
-  function selectCandidate() {
+  function selectCandidate(id) {
     const url = "http://localhost:4000/api/candidates";
     fetch(url)
       .then((res) => {
@@ -122,14 +122,14 @@ window.onload = function() {
         throw new Error(`HTTP ${res.status}`);
       })
       .then((data) => {
-        createSelectCandidate(data);
+        createSelectCandidate(data, id);
       })
       .catch((error) => {
         return error;
       });
   }
 
-  function selectClient() {
+  function selectClient(id) {
     const url = "http://localhost:4000/api/clients";
     fetch(url)
       .then((res) => {
@@ -137,14 +137,14 @@ window.onload = function() {
         throw new Error(`HTTP ${res.status}`);
       })
       .then((data) => {
-        createSelectClient(data);
+        createSelectClient(data, id);
       })
       .catch((error) => {
         return error;
       });
   }
 
-  function selectPosition() {
+  function selectPosition(id) {
     const url = "http://localhost:4000/api/positions";
     fetch(url)
       .then((res) => {
@@ -152,7 +152,7 @@ window.onload = function() {
         throw new Error(`HTTP ${res.status}`);
       })
       .then((data) => {
-        createSelectPosition(data);
+        createSelectPosition(data, id);
       })
       .catch((error) => {
         return error;
@@ -161,22 +161,24 @@ window.onload = function() {
 
   //----- Create selects in form -----//
 
-  function createSelectCandidate(collection) {
+  function createSelectCandidate(collection, id) {
     const select = document.getElementById("idCandidate");
     collection.forEach((doc) => {
       const option = document.createElement("option");
       option.value = doc._id;
       option.innerHTML = doc.name;
+      if (id === doc._id) option.setAttribute("selected","selected");
       select.appendChild(option);
     })
   }
 
-  function createSelectClient(collection) {
+  function createSelectClient(collection, id) {
     const select = document.getElementById("idClient");
     collection.forEach((doc) => {
       const option = document.createElement("option");
       option.value = doc._id;
       option.innerHTML = doc.name;
+      if (id === doc._id) option.setAttribute("selected","selected");
       select.appendChild(option);
     })
   }
@@ -187,6 +189,7 @@ window.onload = function() {
       const option = document.createElement("option");
       option.value = doc._id;
       option.innerHTML = doc.name;
+      if (id === doc._id) option.setAttribute("selected","selected");
       select.appendChild(option);
     })
   }
