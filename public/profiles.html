@@ -36,13 +36,13 @@
                         Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna
                         vulputate luctus.
                         </td>
-                        <td><button id="edit-button"><img src="img/Icon-edit.png" alt="EditProfile" /></button></td>
-                        <td><button id="delete-button"><img src="img/Icon-remove.png" alt="Remove"/></button></td>
+                        <td><button class="editButton"><img src="img/Icon-edit.png" alt="EditProfile" /></button></td>
+                        <td><button class="deleteButton"><img src="img/Icon-remove.png" alt="Remove"/></button></td>
                     </tr>
                 </tbody>
             </table>
             <button id="create-button">Create ></button>
-            <div id="background-modal" class="hide">
+            <div id="background-modal">
                 <div id="create-modal">
                     <h2>Create Profile</h2>
                     <p>
@@ -71,8 +71,8 @@
                             <span id="Error2" class="Error-msg">Error</span>
                         </fieldset>
                         <div>
-                            <button class="modal-button">Cancel</button>
-                            <button id="confirm-button" class="modal-button">Confirm</button>
+                            <button id="closeModal" class="modal-button">Cancel</button>
+                            <button type="submit" id="confirm-button" class="modal-button">Confirm</button>
                         </div>
                     </form>
                 </div>
