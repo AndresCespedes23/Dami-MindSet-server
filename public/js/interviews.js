@@ -52,6 +52,8 @@ window.onload = function() {
     selectCandidate(interview.idCandidate);
     selectClient(interview.idClient);
     selectPosition(interview.idPosition);
+    saveDateTime(interview.dateTime);
+    createSelectStatus(interview.status);
     confirmUpdateButton.onclick = function() {
       requestUpdateInterview(interview);
     }
@@ -183,7 +185,7 @@ window.onload = function() {
     })
   }
 
-  function createSelectPosition(collection) {
+  function createSelectPosition(collection, id) {
     const select = document.getElementById("idPosition");
     collection.forEach((doc) => {
       const option = document.createElement("option");
@@ -192,6 +194,27 @@ window.onload = function() {
       if (id === doc._id) option.setAttribute("selected","selected");
       select.appendChild(option);
     })
+  }
+
+  function saveDateTime(date) {
+    const input = document.getElementById("dateTime");
+    const dateTime = date.substring(0,date.length-8);
+    input.value = dateTime;
+  }
+
+  function createSelectStatus(status) {
+    const select = document.getElementById("status");
+    const finished = document.createElement("option");
+    finished.innerHTML = "FINISHED";
+    const inCourse = document.createElement("option");
+    inCourse.innerHTML = "IN COURSE";
+    if (status === "FINISHED") {
+      finished.setAttribute("selected","selected");
+    } else {
+      inCourse.setAttribute("selected","selected");
+    }
+    select.appendChild(finished);
+    select.appendChild(inCourse);
   }
 
   //----- Retrieve names from Candidates, Clients & Positions -----//
