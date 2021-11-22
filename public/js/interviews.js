@@ -158,14 +158,31 @@ window.onload = function() {
       });
   }
 
+  async function getName(id, resource) {
+    try {
+      const res = await fetch(`http://localhost:4000/api/${resource}/${id}`);
+      if (res.status === 200) {
+        const data = await res.json();
+        return data.name;
+      }
+      throw new Error(`HTTP ${res.status}`);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function createList(interviews) {
     const table = document.getElementById("table-list");
-    interviews.forEach((interview) => {
+    table.innerHTML = "";
+    interviews.forEach(async (interview) => {
+      let candidate = await getName(interview.idCandidate,"candidates");
+      let client = await getName(interview.idClient,"clients");
+      let position = await getName(interview.idPosition,"positions");
       let itemList = document.createElement("tr");
       itemList.innerHTML = `<td>${interview._id}</td>
-        <td>${interview.idCandidate}</td>
-        <td>${interview.idClient}</td>
-        <td>${interview.idPosition}</td>
+        <td>${candidate}</td>
+        <td>${client}</td>
+        <td>${position}</td>
         <td>${interview.dateTime}</td>
         <td>${interview.status}</td>
         <td><button class="update" class="button-list"><img src="img/Icon-edit.png" alt="Edit"></button></td>
