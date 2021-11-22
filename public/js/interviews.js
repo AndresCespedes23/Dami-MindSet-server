@@ -111,6 +111,7 @@ window.onload = function() {
     modalTitle.innerHTML = "Failed Request!";
     description.innerHTML = `${error}`;
   }
+
   //----- Retrieve data from Candidates, Clients & Positions -----//
 
   function selectCandidate() {
@@ -270,7 +271,7 @@ window.onload = function() {
     })
       .then((res) => {
         if (res.status === 201) return res.json();
-        // throw new Error(JSON.stringify(res.json()));
+        throw new Error(JSON.stringify(res.json()));
       })
       .then((data) => {
         successModal(data);
@@ -318,7 +319,7 @@ window.onload = function() {
     })
       .then((res) => {
         if (res.status === 200) return res.json();
-        // throw new Error(JSON.stringify(res.json()));
+        throw new Error(JSON.stringify(res.json()));
       })
       .then((data) => {
         successModal(data);
@@ -341,7 +342,7 @@ window.onload = function() {
     })
       .then((res) => {
         if (res.status === 200) return res.json();
-        // throw new Error(JSON.stringify(res.json()));
+        throw new Error(JSON.stringify(res.json()));
       })
       .then((data) => {
         successModal(data);
