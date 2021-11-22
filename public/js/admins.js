@@ -14,7 +14,7 @@
 
   //the modal's elements
   const adminName = document.getElementById("adminName");
-  const EMail = document.getElementById("e-mail");
+  const eMail = document.getElementById("e-mail");
   const userName = document.getElementById("username");
   const passWord = document.getElementById("password");
   const superAdmin = document.getElementById("superadmin");
@@ -67,7 +67,7 @@
     const adminsPassword = adminsLane.children[4].innerHTML
     const adminsIsSuperAdmin = adminsLane.children[5].innerHTML
     adminName.value = adminsName
-    EMail.value = adminsEmail
+    eMail.value = adminsEmail
     userName.value = adminsUsername
     passWord.value = adminsPassword
     superAdmin.value = adminsIsSuperAdmin
@@ -90,7 +90,7 @@
         },
         body: JSON.stringify({
           name:adminName.value,
-          email:EMail.value,
+          email:eMail.value,
           username:userName.value,
           password:passWord.value,
           isSuperAdmin:superAdmin.value,

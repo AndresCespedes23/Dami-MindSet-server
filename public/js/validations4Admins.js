@@ -88,7 +88,7 @@
       let passWFormat = /^[a-z0-9]{8,18}$/;
       if (!passWFormat.test(passValue)) {
       confirmB.classList.add("hide");
-      return adminPassWordError.innerText = "The password only accepts letters or numbers and also must have a lenght of 8 characters";
+      return adminPassWordError.innerText = "The password only accepts letters or numbers and also must have a length between 8 to 24 characters";
       } confirmB.classList.remove("hide");
       return adminPassWordError.innerText = "✓";
     };
