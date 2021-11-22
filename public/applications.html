@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+    </style>
+    <title>MindSet</title>
+  </head>
+  <body>
+    <nav>
+      <img src="img/Logo-MindSet.png" alt="MindSet logo" />
+    </nav>
+    <section>
+      <div id="resource-table">
+        <h1>Applications</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Position</th>
+              <th>Candidate</th>
+              <th>Interview</th>
+              <th>dateTime</th>
+              <th>status</th>
+              <th>result</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+        <button id="create-button">Create ></button>
+        <div id="background-modal" class="hidden">
+          <div id="modal">
+            <h2 id="modal-title">Title</h2>
+            <div id="modal-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
+              nulla alias nisi quidem doloribus.
+            </div>
+            <form id="form">
+              <fieldset>
+                <label for="idPosition">Position</label>
+                <select name="idPosition" id="idPosition">
+                  <option value="" selected disabled hidden>Select a Position</option>
+                </select>
+              </fieldset>
+              <fieldset>
+                <label for="idCandidate">Candidate</label>
+                <select name="idCandidate" id="idCandidate">
+                  <option value="" selected disabled hidden>Select a Candidate</option>
+                </select>
+              </fieldset>
+              <fieldset>
+                <label for="idInterview">Interview</label>
+                <select name="idInterview" id="idInterview">
+                  <option value="" selected disabled hidden>Select a Interview</option>
+                </select>
+              </fieldset>
+              <fieldset>
+                <label for="dateTime">Date and time</label>
+                <input
+                  type="datetime-local"
+                  id="dateTime"
+                  name="dateTime"
+                />
+              </fieldset>
+              <fieldset>
+                <select name="status" id="status">
+                  <option value="" selected disabled hidden>Select a Status</option>
+                </select>
+              </fieldset>
+              <fieldset>
+                <label for="result">result</label>
+                <input type="text" id="result" name="result" value="result" />
+                <span id="Error6" class="Error-msg">Error</span>
+              </fieldset>
+            </form>
+            <div>
+              <button id="cancel-button" class="modal-button">Cancel</button>
+              <button id="confirm-create-button" class="modal-button hidden">Create</button>
+              <button id="confirm-update-button" class="modal-button hidden">Update</button>
+              <button id="confirm-remove-button" class="modal-button hidden">Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>Footer</footer>
+  </body>
+</html>
