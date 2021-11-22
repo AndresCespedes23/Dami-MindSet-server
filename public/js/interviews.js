@@ -2,6 +2,8 @@ window.onload = function() {
 
   requestInterviews();
 
+  //----- Variables -----//
+
   const modal = document.getElementById("background-modal");
   const form = document.getElementById("form");
   const createButton = document.getElementById("create-button");
@@ -11,11 +13,13 @@ window.onload = function() {
   const cancelButton = document.getElementById("cancel-button");
   const modalTitle = document.getElementById("modal-title");
 
+  //----- Event Listeners -----//
+
   createButton.addEventListener("click", openCreateModal);
   cancelButton.addEventListener("click", closeModal);
   confirmCreateButton.addEventListener("click", requestCreateInterview);
 
-  //----- MODAL -----//
+  //----- Modals -----//
 
   function closeModal() {
     modal.classList.add("hidden");
@@ -23,6 +27,16 @@ window.onload = function() {
     confirmCreateButton.classList.add("hidden");
     confirmUpdateButton.classList.add("hidden");
     confirmRemoveButton.classList.add("hidden");
+  }
+
+  function openCreateModal() {
+    modal.classList.remove("hidden");
+    form.classList.remove("hidden");
+    confirmCreateButton.classList.remove("hidden");
+    modalTitle.innerHTML = "Create Interview";
+    selectCandidate();
+    selectClient();
+    selectPosition();
   }
 
   function openUpdateModal(interview) {
@@ -38,16 +52,6 @@ window.onload = function() {
     }
   }
 
-  function openCreateModal() {
-    modal.classList.remove("hidden");
-    form.classList.remove("hidden");
-    confirmCreateButton.classList.remove("hidden");
-    modalTitle.innerHTML = "Create Interview";
-    selectCandidate();
-    selectClient();
-    selectPosition();
-  }
-
   function openRemoveModal(interview) {
     modal.classList.remove("hidden");
     form.classList.add("hidden");
@@ -57,6 +61,8 @@ window.onload = function() {
       requestRemoveInterview(interview);
     }
   }
+
+  //----- Retrieve data from Candidates, Clients & Positions -----//
 
   function selectCandidate() {
     const url = "http://localhost:4000/api/candidates";
@@ -103,6 +109,8 @@ window.onload = function() {
       });
   }
 
+  //----- Create selects in form -----//
+
   function createSelectCandidate(collection) {
     const select = document.getElementById("idCandidate");
     collection.forEach((doc) => {
@@ -133,7 +141,51 @@ window.onload = function() {
     })
   }
 
-  //----- CREATE -----//
+  //----- Retrieve names from Candidates, Clients & Positions -----//
+
+  async function getName(id, resource) {
+    try {
+      const res = await fetch(`http://localhost:4000/api/${resource}/${id}`);
+      if (res.status === 200) {
+        const data = await res.json();
+        return data.name;
+      }
+      throw new Error(`HTTP ${res.status}`);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  //----- Create rows with data retrieved from Interviews into table -----//
+
+  function createList(interviews) {
+    const tableBody = document.getElementById("table-body");
+    tableBody.innerHTML = "";
+    interviews.forEach(async (interview) => {
+      let candidate = await getName(interview.idCandidate,"candidates");
+      let client = await getName(interview.idClient,"clients");
+      let position = await getName(interview.idPosition,"positions");
+      let itemList = document.createElement("tr");
+      itemList.innerHTML = `<td>${interview._id}</td>
+        <td>${candidate}</td>
+        <td>${client}</td>
+        <td>${position}</td>
+        <td>${interview.dateTime}</td>
+        <td>${interview.status}</td>
+        <td><button class="update" class="button-list"><img src="img/Icon-edit.png" alt="Edit"></button></td>
+        <td><button class="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button>
+        </td>`
+      tableBody.appendChild(itemList);
+      itemList.querySelector(".remove").addEventListener("click", function() {
+        openRemoveModal(interview);
+      });
+      itemList.querySelector(".update").addEventListener("click", function() {
+        openUpdateModal(interview);
+      });
+    })
+  }
+
+  //----- Create -----//
 
   function requestCreateInterview() {
     let createInterview = {
@@ -181,47 +233,7 @@ window.onload = function() {
       });
   }
 
-  async function getName(id, resource) {
-    try {
-      const res = await fetch(`http://localhost:4000/api/${resource}/${id}`);
-      if (res.status === 200) {
-        const data = await res.json();
-        return data.name;
-      }
-      throw new Error(`HTTP ${res.status}`);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  function createList(interviews) {
-    const tableBody = document.getElementById("table-body");
-    tableBody.innerHTML = "";
-    interviews.forEach(async (interview) => {
-      let candidate = await getName(interview.idCandidate,"candidates");
-      let client = await getName(interview.idClient,"clients");
-      let position = await getName(interview.idPosition,"positions");
-      let itemList = document.createElement("tr");
-      itemList.innerHTML = `<td>${interview._id}</td>
-        <td>${candidate}</td>
-        <td>${client}</td>
-        <td>${position}</td>
-        <td>${interview.dateTime}</td>
-        <td>${interview.status}</td>
-        <td><button class="update" class="button-list"><img src="img/Icon-edit.png" alt="Edit"></button></td>
-        <td><button class="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button>
-        </td>`
-      tableBody.appendChild(itemList);
-      itemList.querySelector(".remove").addEventListener("click", function() {
-        openRemoveModal(interview);
-      });
-      itemList.querySelector(".update").addEventListener("click", function() {
-        openUpdateModal(interview);
-      });
-    })
-  }
-
-  //----- UPDATE -----//
+  //----- Update -----//
 
   function requestUpdateInterview(interview) {
     let updateInterview = {
@@ -252,7 +264,7 @@ window.onload = function() {
       });
     }
 
-  //----- DELETE -----//
+  //----- Delete -----//
 
   function requestRemoveInterview(interview) {
     const url = `http://localhost:4000/api/interviews/${interview._id}`;
