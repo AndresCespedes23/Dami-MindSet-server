@@ -1,18 +1,18 @@
   // get all the elements by the ID
   const nameAdmin = document.getElementById("adminName");
-  const eMail = document.getElementById("e-mail");
+  const email = document.getElementById("e-mail");
   const adminsUserName = document.getElementById("username");
   const adminPassWord = document.getElementById("password");
   const confirmB = document.getElementById("confirm-button");
   confirmB.classList.remove("hide");
   //get all the errors
   const nameError = document.getElementById("Error1");
-  const eMailError = document.getElementById("Error2");
+  const emailError = document.getElementById("Error2");
   const adminsNameError = document.getElementById("Error3");
   const adminPassWordError = document.getElementById("Error4");
   const isSuperAdminError = document.getElementById("Error5");
   nameError.innerText = "";
-  eMailError.innerText = "";
+  emailError.innerText = "";
   adminsNameError.innerText = "";
   adminPassWordError.innerText = "";
 
@@ -39,22 +39,22 @@
     };
 
   //validations for admin's e-mail
-  eMail.addEventListener("focus", mailFocus);
+  email.addEventListener("focus", mailFocus);
     function mailFocus(e) {
       e.preventDefault();
-      eMailError.innerText = "";
+      emailError.innerText = "";
     };
 
-  eMail.addEventListener("blur", mailBlur);
+  email.addEventListener("blur", mailBlur);
     function mailBlur(e) {
       e.preventDefault();
-      let eV = eMail.value;
+      let eV = email.value;
       let emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
       if (!emailFormat.test(eV)) {
       confirmB.classList.add("hide");
-      return eMailError.innerText = "Invalid E-Mail Format";
+      return emailError.innerText = "Invalid E-Mail Format";
       } confirmB.classList.remove("hide");
-      return eMailError.innerText = "✓";
+      return emailError.innerText = "✓";
     };
 
   //Validation for admin's username
