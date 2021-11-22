@@ -172,8 +172,8 @@ window.onload = function() {
   }
 
   function createList(interviews) {
-    const table = document.getElementById("table-list");
-    table.innerHTML = "";
+    const tableBody = document.getElementById("table-body");
+    tableBody.innerHTML = "";
     interviews.forEach(async (interview) => {
       let candidate = await getName(interview.idCandidate,"candidates");
       let client = await getName(interview.idClient,"clients");
@@ -188,7 +188,7 @@ window.onload = function() {
         <td><button class="update" class="button-list"><img src="img/Icon-edit.png" alt="Edit"></button></td>
         <td><button class="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button>
         </td>`
-      table.appendChild(itemList);
+      tableBody.appendChild(itemList);
       itemList.querySelector(".remove").addEventListener("click", function() {
         openRemoveModal(interview);
       });
