@@ -223,6 +223,7 @@ window.onload = function() {
     selectFormPosition.innerHTML = "";
     selectFormStatus.innerHTML = "";
   }
+
   //----- Create -----//
 
   function requestCreateInterview() {
@@ -245,14 +246,30 @@ window.onload = function() {
         if (res.status === 201) return res.json();
         throw new Error(JSON.stringify(res.json()));
       })
-      .then(() => {
-        clearSelects();
-        closeModal();
+      .then((data) => {
+        successModal(data);
         requestInterviews();
       })
       .catch((error) => {
         return error;
       });
+    }
+
+    function successModal(interview) {
+      modal.classList.remove("hidden");
+      form.classList.add("hidden");
+      confirmCreateButton.classList.add("hidden");
+      confirmUpdateButton.classList.add("hidden");
+      confirmRemoveButton.classList.add("hidden");
+      modalTitle.innerHTML = "Successful Request!";
+      description.innerHTML =
+      `<ul>
+        <li>Candidate: ${interview.idCandidate}</li>
+        <li>Client: ${interview.idClient}</li>
+        <li>Position: ${interview.idPosition}</li>
+        <li>Data and time: ${interview.dateTime}</li>
+        <li>Status: ${interview.status}</li>
+      </ul>`;
     }
 
   //----- Read all -----//
@@ -294,9 +311,8 @@ window.onload = function() {
         if (res.status === 200) return res.json();
         throw new Error(JSON.stringify(res.json()));
       })
-      .then(() => {
-        clearSelects();
-        closeModal();
+      .then((data) => {
+        successModal(data);
         requestInterviews();
       })
       .catch((error) => {
@@ -318,8 +334,8 @@ window.onload = function() {
         if (res.status === 200) return res.json();
         throw new Error(JSON.stringify(res.json()));
       })
-      .then(() => {
-        closeModal();
+      .then((data) => {
+        successModal(data);
         requestInterviews();
       })
       .catch((error) => {
