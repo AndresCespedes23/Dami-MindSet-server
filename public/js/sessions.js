@@ -17,11 +17,44 @@ function listSessions() {
       throw new Error(`HTTP ${res.status}`);
     })
     .then((data) => {
-      displaySessions(data);
+      getSessionsInfo(data);
     })
     .catch((err) => {
       displayError(err);
     });
+}
+
+function getSessionsInfo(sessions) {
+  const candidates = [];
+  const psychologists = [];
+  for (let i = 0; i < Math.min(sessions.length, 20); i++) {
+    candidates.push(getName(sessions[i].idCandidate, "candidates/"));
+    psychologists.push(getName(sessions[i].idPsychologist, "psychologists/"));
+  }
+  Promise.all(candidates).then((candidates) => {
+    candidates.forEach((candidate, i) => {
+      sessions[i].candidate = candidate;
+    });
+  });
+  Promise.all(psychologists).then((psychologists) => {
+    psychologists.forEach((psychologist, i) => {
+      sessions[i].psychologist = psychologist;
+    });
+    displaySessions(sessions);
+  });
+}
+
+async function getName(id, resource) {
+  try {
+    const res = await fetch(baseUrl + resource + id);
+    if (res.status === 200) {
+      const data = await res.json();
+      return capitalize(data.name);
+    }
+    throw new Error(`HTTP ${res.status}`);
+  } catch (err) {
+    displayError(err);
+  }
 }
 
 async function displaySessions(sessions) {
@@ -29,15 +62,10 @@ async function displaySessions(sessions) {
   <th>Date</th><th>Status</th><th>Result</th><th></th><th></th></tr>`;
   for (let i = 0; i < Math.min(sessions.length, 20); i++) {
     let session = "";
-    const candidate = await getName(sessions[i].idCandidate, "candidates/");
-    if (!candidate) return;
-    session += `<td data-id="${candidate.id}">${candidate.name}</td>`;
-    const psychologist = await getName(
-      sessions[i].idPsychologist,
-      "psychologists/"
-    );
-    if (!psychologist) return;
-    session += `<td data-id="${psychologist.id}">${psychologist.name}</td>`;
+    session += `<td data-id="${sessions[i].idCandidate}">
+      ${sessions[i].candidate}</td>`;
+    session += `<td data-id="${sessions[i].idPsychologist}">
+      ${sessions[i].psychologist}</td>`;
     const date = `${sessions[i].dateTime.substr(0, 10)} ${sessions[
       i
     ].dateTime.substr(11, 5)}`;
@@ -60,19 +88,6 @@ async function displaySessions(sessions) {
       button.addEventListener("click", openDeleteModal);
     }
   });
-}
-
-async function getName(id, resource) {
-  try {
-    const res = await fetch(baseUrl + resource + id);
-    if (res.status === 200) {
-      const data = await res.json();
-      return { id: data._id, name: capitalize(data.name) };
-    }
-    throw new Error(`HTTP ${res.status}`);
-  } catch (err) {
-    displayError(err);
-  }
 }
 
 /******************** CREATE SESSION ********************/
