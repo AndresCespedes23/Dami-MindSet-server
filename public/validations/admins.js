@@ -6,11 +6,11 @@
   const confirmB = document.getElementById("confirm-button");
   confirmB.classList.remove("hide");
   //get all the errors
-  const nameError = document.getElementById("Error1");
-  const emailError = document.getElementById("Error2");
-  const adminsNameError = document.getElementById("Error3");
-  const adminPassWordError = document.getElementById("Error4");
-  const isSuperAdminError = document.getElementById("Error5");
+  const nameError = document.getElementById("error1");
+  const emailError = document.getElementById("error2");
+  const adminsNameError = document.getElementById("error3");
+  const adminPassWordError = document.getElementById("error4");
+  const isSuperAdminError = document.getElementById("error5");
   nameError.innerText = "";
   emailError.innerText = "";
   adminsNameError.innerText = "";

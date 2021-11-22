@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/adminsStyles.css"/>
-    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="./css/adminsStyles.css"/>
+    <link rel="stylesheet" href="./css/normalize.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
     </style>
@@ -32,12 +32,6 @@
           </thead>
           <tbody>
             <tr>
-              <td>1</td>
-              <td>3</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-              <td><button class="editButton"><img src="img/Icon-edit.png" alt="EditAdmin"/></button></td>
             </tr>
           </tbody>
         </table>
@@ -58,7 +52,7 @@
                         name="name"
                         value=""
                     />
-                    <span id="Error1" class="Error-msg">Error</span>
+                    <span id="error1" class="error-msg">Error</span>
                 </fieldset>
                 <fieldset>
                     <label for="e-mail">E-Mail</label>
@@ -68,7 +62,7 @@
                         name="e-mail"
                         value=""
                     />
-                    <span id="Error2" class="Error-msg">Error</span>
+                    <span id="error2" class="error-msg">Error</span>
                 </fieldset>
                 <fieldset>
                     <label for="username">UserName</label>
@@ -78,7 +72,7 @@
                         name="username"
                         value=""
                     />
-                    <span id="Error3" class="Error-msg">Error</span>
+                    <span id="error3" class="error-msg">Error</span>
                 </fieldset>
                 <fieldset>
                     <label for="password">PassWord</label>
@@ -88,7 +82,7 @@
                         name="password"
                         value=""
                     />
-                    <span id="Error4" class="Error-msg">Error</span>
+                    <span id="error4" class="error-msg">Error</span>
                 </fieldset>
                 <fieldset>
                     <label for="superadmin">SuperAdmin</label>
@@ -98,7 +92,7 @@
                     </select>
                 </fieldset>
                 <div>
-                    <button id="closeModal" class="modal-button">Cancel</button>
+                    <button id="close-modal" class="modal-button">Cancel</button>
                     <button type="submit" id="confirm-button" class="modal-button hide">Confirm</button>
                 </div>
             </form>
@@ -107,7 +101,7 @@
       </div>
     </section>
     <footer>Footer</footer>
-    <script src="/public/validations/admins.js"></script>
-    <script src="/public/js/admins.js"></script>
+    <script src="./validations/admins.js"></script>
+    <script src="./js/admins.js"></script>
   </body>
 </html>

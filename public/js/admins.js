@@ -10,7 +10,7 @@
 
   //the modal's form
   const formModal = document.querySelector("form");
-  const closeModal = document.getElementById("closeModal")
+  const closeModal = document.getElementById("close-modal")
 
   //the modal's elements
   const adminName = document.getElementById("adminName");
