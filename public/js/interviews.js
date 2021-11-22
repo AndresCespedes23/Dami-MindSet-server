@@ -29,6 +29,7 @@ window.onload = function() {
     confirmUpdateButton.classList.add("hidden");
     confirmRemoveButton.classList.add("hidden");
     description.innerHTML = "";
+    clearSelects();
   }
 
   function openCreateModal() {
@@ -78,7 +79,7 @@ window.onload = function() {
     `<ul>
       <li>Candidate: ${interview.idCandidate}</li>
       <li>Client: ${interview.idClient}</li>
-      <li>Positino: ${interview.idPosition}</li>
+      <li>Position: ${interview.idPosition}</li>
       <li>Data and time: ${interview.dateTime}</li>
       <li>Status: ${interview.status}</li>
     </ul>`;
@@ -210,6 +211,18 @@ window.onload = function() {
     })
   }
 
+  //----- Clear select form -----//
+
+  function clearSelects() {
+    const selectFormCandidate = document.getElementById("idCandidate");
+    const selectFormClient = document.getElementById("idClient");
+    const selectFormPosition = document.getElementById("idPosition");
+    const selectFormStatus = document.getElementById("status");
+    selectFormCandidate.innerHTML = "";
+    selectFormClient.innerHTML = "";
+    selectFormPosition.innerHTML = "";
+    selectFormStatus.innerHTML = "";
+  }
   //----- Create -----//
 
   function requestCreateInterview() {
@@ -233,6 +246,7 @@ window.onload = function() {
         throw new Error(JSON.stringify(res.json()));
       })
       .then(() => {
+        clearSelects();
         closeModal();
         requestInterviews();
       })
@@ -281,6 +295,7 @@ window.onload = function() {
         throw new Error(JSON.stringify(res.json()));
       })
       .then(() => {
+        clearSelects();
         closeModal();
         requestInterviews();
       })
