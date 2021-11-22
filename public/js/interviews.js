@@ -12,6 +12,7 @@ window.onload = function() {
   const confirmRemoveButton = document.getElementById("confirm-remove-button");
   const cancelButton = document.getElementById("cancel-button");
   const modalTitle = document.getElementById("modal-title");
+  const description = document.getElementById("modal-description");
 
   //----- Event Listeners -----//
 
@@ -27,6 +28,7 @@ window.onload = function() {
     confirmCreateButton.classList.add("hidden");
     confirmUpdateButton.classList.add("hidden");
     confirmRemoveButton.classList.add("hidden");
+    description.innerHTML = "";
   }
 
   function openCreateModal() {
@@ -34,6 +36,7 @@ window.onload = function() {
     form.classList.remove("hidden");
     confirmCreateButton.classList.remove("hidden");
     modalTitle.innerHTML = "Create Interview";
+    description.innerHTML = "Please fill out the form to create a new interview"
     selectCandidate();
     selectClient();
     selectPosition();
@@ -44,6 +47,7 @@ window.onload = function() {
     form.classList.remove("hidden");
     confirmUpdateButton.classList.remove("hidden");
     modalTitle.innerHTML = "Update Interview";
+    description.innerHTML = "Please complete the form to update this interview"
     selectCandidate();
     selectClient();
     selectPosition();
@@ -57,9 +61,27 @@ window.onload = function() {
     form.classList.add("hidden");
     confirmRemoveButton.classList.remove("hidden");
     modalTitle.innerHTML = "Remove Interview";
+    description.innerHTML = "Are you sure you want to remove this interview?"
     confirmRemoveButton.onclick = function() {
       requestRemoveInterview(interview);
     }
+  }
+
+  function infoModal(interview) {
+    modal.classList.remove("hidden");
+    form.classList.add("hidden");
+    confirmCreateButton.classList.add("hidden");
+    confirmUpdateButton.classList.add("hidden");
+    confirmRemoveButton.classList.add("hidden");
+    modalTitle.innerHTML = "Interview Information";
+    description.innerHTML =
+    `<ul>
+      <li>Candidate: ${interview.idCandidate}</li>
+      <li>Client: ${interview.idClient}</li>
+      <li>Positino: ${interview.idPosition}</li>
+      <li>Data and time: ${interview.dateTime}</li>
+      <li>Status: ${interview.status}</li>
+    </ul>`;
   }
 
   //----- Retrieve data from Candidates, Clients & Positions -----//
@@ -166,7 +188,7 @@ window.onload = function() {
       let client = await getName(interview.idClient,"clients");
       let position = await getName(interview.idPosition,"positions");
       let itemList = document.createElement("tr");
-      itemList.innerHTML = `<td>${interview._id}</td>
+      itemList.innerHTML = `<td class="interview" >${interview._id}</td>
         <td>${candidate}</td>
         <td>${client}</td>
         <td>${position}</td>
@@ -176,6 +198,9 @@ window.onload = function() {
         <td><button class="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button>
         </td>`
       tableBody.appendChild(itemList);
+      itemList.querySelector(".interview").addEventListener("click", function() {
+        infoModal(interview);
+      });
       itemList.querySelector(".remove").addEventListener("click", function() {
         openRemoveModal(interview);
       });
@@ -216,7 +241,7 @@ window.onload = function() {
       });
     }
 
-  //----- READ -----//
+  //----- Read all -----//
 
   function requestInterviews() {
     const url = "http://localhost:4000/api/interviews/";
