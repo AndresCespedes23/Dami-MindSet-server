@@ -130,8 +130,26 @@ function showRemoveModal() {
   createConfirm[0].style.display = "none";
   const removeConfirm = document.querySelectorAll(".remove-button");
   removeConfirm[0].style.display = "block";
+  removeConfirm[0].addEventListener("click", confirmRemove)
   const cancelButton = document.querySelectorAll(".cancel-button");
   cancelButton[0].addEventListener("click", closeModal);
+}
+
+function confirmRemove(position) {
+  const url = `http://localhost:4000/api/positions/${position._id}`;
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) return res.json();
+        throw new Error(JSON.stringify(res.json()));
+      })
+      .catch((error) => {
+        return error;
+      });
 }
 
 function showCreateModal() {
@@ -171,31 +189,29 @@ function showCreateModal() {
   createConfirm[0].addEventListener("click", sendCreate);
 }
 
-const createPosition = {
-  name : document.getElementById("name").value,
-  description : document.getElementById("description").value,
-  status : document.getElementById("status").value,
-  address : document.getElementById("address").value,
-  city : document.getElementById("city").value,
-  postalCode : document.getElementById("postalCode").value,
-};
-
 function sendCreate() {
-  const url = "http://localhost:4000/api/positions/";
+  let createPosition = {
+    name: document.querySelector('input[id="name"]').value,
+    description: document.querySelector('input[id="description"]').value,
+    status: document.querySelector('input[id="status"]').value,
+    address: document.querySelector('input[id="address"]').value,
+    city: document.querySelector('input[id="city"]').value,
+    postalCode: document.querySelector('input[id="postalCode"]').value
+  }
+  const url = "http://localhost:4000/api/positions";
   fetch(url, {
     method: "POST",
-    body: JSON.stringify(),
-    headers: { "Content-type" : "application/json"}
+    body: JSON.stringify(createPosition),
+    headers: {
+      "Content-Type": "application/json",
+    },
   })
     .then((res) => {
-      if (res.status === 201) return res.json(createPosition);
-      throw new Error(`HTTP ${res.status}`);
-    })
-    .then((data) => {
-      positionTable(data);
+      if (res.status === 201) return res.json();
+      throw new Error(JSON.stringify(res.json()));
     })
     .catch((error) => {
-      console.log(error);
+      return error;
     });
 }
 
