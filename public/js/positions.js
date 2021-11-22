@@ -80,6 +80,7 @@ function showUpdateModal(positions) {
   const form = document.getElementById("form");
   const updateConfirm = document.querySelectorAll(".update-button");
   updateConfirm[0].style.display = "block";
+  updateConfirm[0].addEventListener("click", confirmUpdate);
   const createConfirm = document.querySelectorAll(".create-button");
   createConfirm[0].style.display = "none";
   const removeConfirm = document.querySelectorAll(".remove-button");
@@ -116,6 +117,32 @@ function showUpdateModal(positions) {
   <span id="Error8" class="Error-msg">Error</span>`
   form.appendChild(updateForm);
 };
+
+function confirmUpdate(position) {
+  let updatePosition = {
+    name: document.querySelector('input[id="name"]').value,
+    description: document.querySelector('input[id="description"]').value,
+    status: document.querySelector('input[id="status"]').value,
+    address: document.querySelector('input[id="address"]').value,
+    city: document.querySelector('input[id="city"]').value,
+    postalCode: document.querySelector('input[id="postalCode"]').value
+  }
+  const url = `http://localhost:4000/api/positions/${position._id}`;
+  fetch(url, {
+    method: "PUT",
+    body: JSON.stringify(updatePosition),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) return res.json();
+      throw new Error(JSON.stringify(res.json()));
+    })
+    .catch((error) => {
+      return error;
+    });
+}
 
 function showRemoveModal() {
   emptyModal();
