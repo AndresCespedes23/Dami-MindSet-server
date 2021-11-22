@@ -15,12 +15,47 @@ window.onload = function() {
   cancelButton.addEventListener("click", closeModal);
   confirmCreateButton.addEventListener("click", requestCreateInterview);
 
+  //----- MODAL -----//
+
   function closeModal() {
     modal.classList.add("hidden");
     form.classList.add("hidden");
     confirmCreateButton.classList.add("hidden");
     confirmUpdateButton.classList.add("hidden");
     confirmRemoveButton.classList.add("hidden");
+  }
+
+  function openUpdateModal(interview) {
+    modal.classList.remove("hidden");
+    form.classList.remove("hidden");
+    confirmUpdateButton.classList.remove("hidden");
+    modalTitle.innerHTML = "Update Interview";
+    selectCandidate();
+    selectClient();
+    selectPosition();
+    confirmUpdateButton.onclick = function() {
+      requestUpdateInterview(interview);
+    }
+  }
+
+  function openCreateModal() {
+    modal.classList.remove("hidden");
+    form.classList.remove("hidden");
+    confirmCreateButton.classList.remove("hidden");
+    modalTitle.innerHTML = "Create Interview";
+    selectCandidate();
+    selectClient();
+    selectPosition();
+  }
+
+  function openRemoveModal(interview) {
+    modal.classList.remove("hidden");
+    form.classList.add("hidden");
+    confirmRemoveButton.classList.remove("hidden");
+    modalTitle.innerHTML = "Remove Interview";
+    confirmRemoveButton.onclick = function() {
+      requestRemoveInterview(interview);
+    }
   }
 
   function selectCandidate() {
@@ -100,16 +135,6 @@ window.onload = function() {
 
   //----- CREATE -----//
 
-  function openCreateModal() {
-    modal.classList.remove("hidden");
-    form.classList.remove("hidden");
-    confirmCreateButton.classList.remove("hidden");
-    modalTitle.innerHTML = "Create Interview";
-    selectCandidate();
-    selectClient();
-    selectPosition();
-  }
-
   function requestCreateInterview() {
     let createInterview = {
       idCandidate: document.getElementById("idCandidate").value,
@@ -131,9 +156,7 @@ window.onload = function() {
         throw new Error(JSON.stringify(res.json()));
       })
       .then(() => {
-        modal.classList.add("hidden");
-        form.classList.add("hidden");
-        confirmCreateButton.classList.add("hidden");
+        closeModal();
         requestInterviews();
       })
       .catch((error) => {
@@ -200,19 +223,6 @@ window.onload = function() {
 
   //----- UPDATE -----//
 
-  function openUpdateModal(interview) {
-    modal.classList.remove("hidden");
-    form.classList.remove("hidden");
-    confirmUpdateButton.classList.remove("hidden");
-    modalTitle.innerHTML = "Update Interview";
-    selectCandidate();
-    selectClient();
-    selectPosition();
-    confirmUpdateButton.onclick = function() {
-      requestUpdateInterview(interview);
-    }
-  }
-
   function requestUpdateInterview(interview) {
     let updateInterview = {
       idCandidate: document.getElementById("idCandidate").value,
@@ -234,9 +244,7 @@ window.onload = function() {
         throw new Error(JSON.stringify(res.json()));
       })
       .then(() => {
-        modal.classList.add("hidden");
-        form.classList.add("hidden");
-        confirmUpdateButton.classList.add("hidden");
+        closeModal();
         requestInterviews();
       })
       .catch((error) => {
@@ -245,16 +253,6 @@ window.onload = function() {
     }
 
   //----- DELETE -----//
-
-  function openRemoveModal(interview) {
-    modal.classList.remove("hidden");
-    form.classList.add("hidden");
-    confirmRemoveButton.classList.remove("hidden");
-    modalTitle.innerHTML = "Remove Interview";
-    confirmRemoveButton.onclick = function() {
-      requestRemoveInterview(interview);
-    }
-  }
 
   function requestRemoveInterview(interview) {
     const url = `http://localhost:4000/api/interviews/${interview._id}`;
@@ -269,9 +267,7 @@ window.onload = function() {
         throw new Error(JSON.stringify(res.json()));
       })
       .then(() => {
-        modal.classList.add("hidden");
-        form.classList.add("hidden");
-        confirmRemoveButton.classList.add("hidden");
+        closeModal();
         requestInterviews();
       })
       .catch((error) => {
