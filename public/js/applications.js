@@ -310,4 +310,34 @@ function requestApplications() {
     });
   }
 
+  //----- Update -----//
+
+  function requestUpdateAplication(aplication) {
+    let updateAplication = {
+      idCandidate: document.getElementById("idCandidate").value,
+      idClient: document.getElementById("idClient").value,
+      idPosition: document.getElementById("idPosition").value,
+      dateTime: document.getElementById("dateTime").value,
+      status: document.getElementById("status").value
+    }
+    const url = `http://localhost:4000/api/aplications/${aplication._id}`;
+    fetch(url, {
+      method: "PUT",
+      body: JSON.stringify(updateAplication),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) return res.json();
+        throw new Error(JSON.stringify(res.json()));
+      })
+      .then((data) => {
+        successModal(data);
+        requestInterviews();
+      })
+      .catch((error) => {
+        errorModal(error);
+      });
+    }
 }
