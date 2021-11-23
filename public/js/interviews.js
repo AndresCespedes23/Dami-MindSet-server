@@ -210,17 +210,17 @@ window.onload = function() {
   function createSelectStatus(status) {
     const select = document.getElementById("status");
     select.innerHTML = `<option value="" selected disabled hidden>Select a Status</option>`
-    const finished = document.createElement("option");
-    finished.innerHTML = "FINISHED";
-    const inCourse = document.createElement("option");
-    inCourse.innerHTML = "IN COURSE";
-    if (status === "FINISHED") {
-      finished.setAttribute("selected","selected");
+    const donde = document.createElement("option");
+    donde.innerHTML = "DONE";
+    const pending = document.createElement("option");
+    pending.innerHTML = "PENDING";
+    if (status === "DONE") {
+      donde.setAttribute("selected","selected");
     } else {
-      inCourse.setAttribute("selected","selected");
+      pending.setAttribute("selected","selected");
     }
-    select.appendChild(finished);
-    select.appendChild(inCourse);
+    select.appendChild(donde);
+    select.appendChild(pending);
   }
 
   //----- Retrieve names from Candidates, Clients & Positions -----//
