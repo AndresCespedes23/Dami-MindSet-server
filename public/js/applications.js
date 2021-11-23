@@ -13,7 +13,6 @@ window.onload = function() {
   const confirmRemoveButton = document.getElementById("confirm-remove-button");
   const cancelButton = document.getElementById("cancel-button");
 
-}
 
 //----- Event Listeners -----//
 
@@ -105,4 +104,5 @@ function requestApplications() {
     .catch((error) => {
       return error;
     });
+  }
 }
