@@ -51,7 +51,6 @@ function openUpdateModal(application) {
   selectPosition(application.idPosition);
   selectCandidate(application.idCandidate);
   selectInterview(application.idInterview);
-  
 }
 
 function openRemoveModal() {
@@ -60,6 +59,34 @@ function openRemoveModal() {
   confirmRemoveButton.classList.remove("hidden");
   modalTitle.innerHTML = "Remove Application";
   description.innerHTML = "Are you sure you want to remove this application?"
+}
+
+function successModal(application) {
+  modal.classList.remove("hidden");
+  form.classList.add("hidden");
+  confirmCreateButton.classList.add("hidden");
+  confirmUpdateButton.classList.add("hidden");
+  confirmRemoveButton.classList.add("hidden");
+  modalTitle.innerHTML = "Successful Request!";
+  description.innerHTML =
+  `<ul>
+    <li>Candidate: ${application.idCandidate}</li>
+    <li>Position: ${application.idPosition}</li>
+    <li>Interview: ${application.idInterview}</li>
+    <li>Data and time: ${application.dateTime}</li>
+    <li>Status: ${application.status}</li>
+    <li>Result: ${application.result}</li>
+  </ul>`;
+}
+
+function errorModal(error) {
+  modal.classList.remove("hidden");
+  form.classList.add("hidden");
+  confirmCreateButton.classList.add("hidden");
+  confirmUpdateButton.classList.add("hidden");
+  confirmRemoveButton.classList.add("hidden");
+  modalTitle.innerHTML = "Failed Request!";
+  description.innerHTML = `${error}`;
 }
 
 //----- Retrieve data from Candidates, Clients & Positions -----//
