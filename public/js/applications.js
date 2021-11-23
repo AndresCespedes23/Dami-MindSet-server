@@ -14,7 +14,6 @@ window.onload = function() {
   const confirmRemoveButton = document.getElementById("confirm-remove-button");
   const cancelButton = document.getElementById("cancel-button");
 
-
 //----- Event Listeners -----//
 
 createButton.addEventListener("click", openCreateModal);
@@ -29,6 +28,7 @@ function closeModal() {
   confirmUpdateButton.classList.add("hidden");
   confirmRemoveButton.classList.add("hidden");
   description.innerHTML = "";
+  requestApplications();
 }
 
 function openCreateModal() {
