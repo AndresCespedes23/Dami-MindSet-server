@@ -1,5 +1,5 @@
   //URl
-  const url = "http://localhost:4000/api/admins/";
+  const url = `${window.location.origin}/api/admins`;
 
   //catch the table's body and results
   const container = document.querySelector("tbody");
