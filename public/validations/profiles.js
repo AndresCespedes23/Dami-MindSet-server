@@ -30,3 +30,25 @@ function nameBlur(e) {
   } confirmB.classList.remove("hide");
   return nameError.innerText = "✓";
 };
+
+//validation for description
+descriptProfile.addEventListener("focus", descriptfocus);
+function descriptfocus(e) {
+  e.preventDefault();
+  descriptionError.innerText = "";
+};
+
+descriptProfile.addEventListener("blur", descriptBlur);
+function descriptBlur(e) {
+  e.preventDefault();
+  const onlyTxt = (/[a-zA-Z ]$/);
+  let n = descriptProfile.value;
+  if (n.length < 6 || n.length > 24) {
+  confirmB.classList.add("hide");
+  return descriptionError.innerText = "The description must be longer than 6 characters but less than 24";
+  } if (!onlyTxt.test(n)) {
+  confirmB.classList.add("hide");
+  return descriptionError.innerText = "only text allowed";
+  } confirmB.classList.remove("hide");
+  return descriptionError.innerText = "✓";
+};
