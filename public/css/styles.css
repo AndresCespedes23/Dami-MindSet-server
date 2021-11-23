@@ -144,3 +144,7 @@ footer {
 ::-webkit-scrollbar {
   display: none;
 }
+
+ul li {
+  list-style-type: none;
+}
