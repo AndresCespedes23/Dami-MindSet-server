@@ -18,16 +18,17 @@ const closeModal = document.getElementById("closeModal")
 //the modal's elements
 const profileName = document.getElementById("nameProfile");
 const profileDescription = document.getElementById("descriptionProfile");
-
+let option = ""
 // CREATE Function
 createProfile.addEventListener("click", () => {
     profileModal.classList.remove("hide");
+    option = "create"
   })
 
 //function to READ all the profiles in the DB
-const showData = (profiles) => {
+function showData(profiles) {
     profiles.forEach(profile => {
-      results +=`
+        results += `
         <tr>
           <td>${profile._id}</td>
           <td>${profile.name}</td>
@@ -36,9 +37,9 @@ const showData = (profiles) => {
           <td><button class="deleteButton"><img src="img/Icon-remove.png" alt="Remove"/></button></td>
         </tr>
       `;
-    })
+    });
     container.innerHTML = results;
-  }
+}
 
 //show all the profiles
   fetch(url)
@@ -56,7 +57,7 @@ const showData = (profiles) => {
 
 
 
-//Function to UPDATE a Profile
+//Function on
 const on = (element, event, selector, handler) => {
     element.addEventListener(event, e => {
       if (e.target.closest(selector)) {
@@ -64,45 +65,61 @@ const on = (element, event, selector, handler) => {
       }
     })
   };
-  on(document, 'click', '.editButton', e => {
+
+ // CREATE and UPDATE functions
+//Function On to fill the modal
+ on(document, 'click', '.editButton', e => {
     const profilesLane = e.target.parentNode.parentNode.parentNode
     const profilesName = profilesLane.children[1].innerHTML
     const profilesDescription = profilesLane.children[2].innerHTML
     profileName.value = profilesName
     profileDescription.value = profilesDescription
+    option = "edit"
     profileModal.classList.remove("hide");
   });
+ //get Ids of the profiles to update
+ let profileId = on(document, 'click', '.editButton', e => {
+    const profilesLane = e.target.parentNode.parentNode.parentNode
+    profileId = profilesLane.children[0].innerHTML
+  });
 
-  //get Ids of the admins
-  let profileId = on(document, 'click', '.editButton', e => {
-      const profilesLane = e.target.parentNode.parentNode.parentNode
-      profileId = profilesLane.children[0].innerHTML
-    });
-
-  //Submit changes
-  const submit = (e) => {
+  formModal.addEventListener("submit", (e) => {
     e.preventDefault()
-      fetch(url+profileId, {
-        method: "PUT",
-        headers: {
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify({
-          name:profileName.value,
-          description:profileDescription.value,
+    if (option == "create") {                    ///CREATE FUNCTION
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "content-type":"application/json"
+            },
+            body: JSON.stringify({
+                name:profileName.value,
+                description:profileDescription.value,
+            })
         })
-    })
-    .then((res) => {
-      if (res.status === 200)
-      return res.json();
-    })
-    //.then( res => location.reload())
-    .catch((err) => {
-      console.log(err);
+        .then((res) => {
+            if (res.status === 200)
+            return res.json();
+          })
+        return profileModal.classList.add("hide");
+    }
+    if (option == "edit") {                       ///UPDATE FUNCTION
+        fetch(url+profileId, {
+            method: "PUT",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+              name:profileName.value,
+              description:profileDescription.value,
+            })
+        })
+        .then((res) => {
+          if (res.status === 200)
+          return res.json();
+        })
+        .then( res => location.reload())
+        } return profileModal.classList.add("hide");
     });
-      profileModal.classList.add("hide");
-  };
-  formModal.addEventListener("submit", submit);
 
 // function to DELETE profiles
 on(document, 'click', '.deleteButton', e => {
@@ -121,7 +138,7 @@ on(document, 'click', '.deleteButton', e => {
       });
     });
 
-  //Cancel changes
+  //Cancel changes on the modal
   closeModal.addEventListener("click", closeFModal)
     function closeFModal (e){
       e.preventDefault();
@@ -134,4 +151,5 @@ on(document, 'click', '.deleteButton', e => {
       profileModal.classList.add("hide");
     };
     };
+  //the modal is hide by default
   profileModal.classList.add("hide");
