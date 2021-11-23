@@ -39,15 +39,23 @@ function openCreateModal() {
   description.innerHTML = "Please fill out the form to create a new application"
 }
 
+function openUpdateModal() {
+  modal.classList.remove("hidden");
+  form.classList.remove("hidden");
+  confirmUpdateButton.classList.remove("hidden");
+  modalTitle.innerHTML = "Update Application";
+  description.innerHTML = "Please complete the form to update this application"
+}
+
 function openRemoveModal() {
   modal.classList.remove("hidden");
   form.classList.add("hidden");
   confirmRemoveButton.classList.remove("hidden");
-  modalTitle.innerHTML = "Remove Interview";
+  modalTitle.innerHTML = "Remove Application";
   description.innerHTML = "Are you sure you want to remove this application?"
 }
 
-//----- Retrieve names from Candidates, Clients & Positions -----//
+//----- Retrieve names from Candidates & Positions -----//
 
 async function getName(id, resource) {
   try {
