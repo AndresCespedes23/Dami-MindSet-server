@@ -132,6 +132,21 @@ function selectPosition(id) {
     });
 }
 
+function selectInterview(id) {
+  const url = "http://localhost:4000/api/interviews";
+  fetch(url)
+    .then((res) => {
+      if (res.status === 200) return res.json();
+      throw new Error(`HTTP ${res.status}`);
+    })
+    .then((data) => {
+      createSelectInterview(data, id);
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
 //----- Create selects in form -----//
 
 function createSelectCandidate(collection, id) {
@@ -197,12 +212,12 @@ function createSelectStatus(status) {
 
 function clearSelects() {
   const selectFormCandidate = document.getElementById("idCandidate");
-  const selectFormClient = document.getElementById("idClient");
   const selectFormPosition = document.getElementById("idPosition");
+  const selectFormInterview = document.getElementById("idInterview");
   const selectFormStatus = document.getElementById("status");
   selectFormCandidate.innerHTML = "";
-  selectFormClient.innerHTML = "";
   selectFormPosition.innerHTML = "";
+  selectFormInterview.innerHTML = "";
   selectFormStatus.innerHTML = "";
 }
 
