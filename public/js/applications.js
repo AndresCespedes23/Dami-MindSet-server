@@ -89,6 +89,67 @@ function errorModal(error) {
   description.innerHTML = `${error}`;
 }
 
+//----- Create selects in form -----//
+
+function createSelectCandidate(collection, id) {
+  const select = document.getElementById("idCandidate");
+  collection.forEach((doc) => {
+    const option = document.createElement("option");
+    option.value = doc._id;
+    option.innerHTML = doc.name;
+    if (id === doc._id) option.setAttribute("selected","selected");
+    select.appendChild(option);
+  })
+}
+
+function createSelectPosition(collection, id) {
+  const select = document.getElementById("idPosition");
+  collection.forEach((doc) => {
+    const option = document.createElement("option");
+    option.value = doc._id;
+    option.innerHTML = doc.name;
+    if (id === doc._id) option.setAttribute("selected","selected");
+    select.appendChild(option);
+  })
+}
+
+function createSelectInterview(collection, id) {
+  const select = document.getElementById("idInterview");
+  collection.forEach((doc) => {
+    const option = document.createElement("option");
+    option.value = doc._id;
+    option.innerHTML = doc.name;
+    if (id === doc._id) option.setAttribute("selected","selected");
+    select.appendChild(option);
+  })
+}
+
+function saveDateTime(date) {
+  const input = document.getElementById("dateTime");
+  const dateTime = date.substring(0,date.length-8);
+  input.value = dateTime;
+}
+
+function createSelectStatus(status) {
+  const select = document.getElementById("status");
+  const finished = document.createElement("option");
+  finished.innerHTML = "FINISHED";
+  const scheduled = document.createElement("option");
+  scheduled.innerHTML = "SCHEDULED";
+  const hired = document.createElement("option");
+  hired.innerHTML = "HIRED";
+  const rejected = document.createElement("option");
+  rejected.innerHTML = "REJECTED";
+  if (status === "FINISHED") finished.setAttribute("selected","selected");
+  if (status === "SCHEDULED") finished.setAttribute("selected","selected");
+  if (status === "HIRED") finished.setAttribute("selected","selected");
+  if (status === "REJECTED") finished.setAttribute("selected","selected");
+  select.appendChild(finished);
+  select.appendChild(scheduled);
+  select.appendChild(hired);
+  select.appendChild(rejected);
+}
+
 //----- Retrieve data from Candidates, Clients & Positions -----//
 
 function selectCandidate(id) {
