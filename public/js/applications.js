@@ -120,7 +120,7 @@ function createSelectInterview(collection, id) {
   collection.forEach((doc) => {
     const option = document.createElement("option");
     option.value = doc._id;
-    option.innerHTML = doc.name;
+    option.innerHTML = doc._id;
     if (id === doc._id) option.setAttribute("selected","selected");
     select.appendChild(option);
   })
