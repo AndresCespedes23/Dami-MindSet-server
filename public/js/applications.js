@@ -6,7 +6,7 @@ window.onload = function() {
 
   const modal = document.getElementById("background-modal");
   const form = document.getElementById("form");
-  const title = document.getElementById("modal-title");
+  const modalTitle = document.getElementById("modal-title");
   const description = document.getElementById("modal-description");
   const createButton = document.getElementById("create-button");
   const confirmCreateButton = document.getElementById("confirm-create-button");
@@ -79,11 +79,15 @@ async function createList(applications) {
       <td>${application.dateTime}</td>
       <td>${application.status}</td>
       <td>${application.result}</td>
+      <td><button class="remove" class="button-list"><img src="img/Icon-edit.png" alt="Edit"/></button>
       <td><button class="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button>
       </td>`
     tableBody.appendChild(itemList);
     itemList.querySelector(".application").addEventListener("click", function() {
       infoModal(application);
+    });
+    itemList.querySelector(".remove").addEventListener("click", function() {
+      openRemoveModal(application);
     });
     itemList.querySelector(".remove").addEventListener("click", function() {
       openRemoveModal(application);
