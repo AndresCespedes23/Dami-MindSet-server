@@ -54,6 +54,52 @@ function openRemoveModal() {
   modalTitle.innerHTML = "Remove Application";
   description.innerHTML = "Are you sure you want to remove this application?"
 }
+//----- Retrieve data from Candidates, Clients & Positions -----//
+
+function selectCandidate(id) {
+  const url = "http://localhost:4000/api/candidates";
+  fetch(url)
+    .then((res) => {
+      if (res.status === 200) return res.json();
+      throw new Error(`HTTP ${res.status}`);
+    })
+    .then((data) => {
+      createSelectCandidate(data, id);
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
+function selectPosition(id) {
+  const url = "http://localhost:4000/api/positions";
+  fetch(url)
+    .then((res) => {
+      if (res.status === 200) return res.json();
+      throw new Error(`HTTP ${res.status}`);
+    })
+    .then((data) => {
+      createSelectPosition(data, id);
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
+function selectInterview(id) {
+  const url = "http://localhost:4000/api/interviews";
+  fetch(url)
+    .then((res) => {
+      if (res.status === 200) return res.json();
+      throw new Error(`HTTP ${res.status}`);
+    })
+    .then((data) => {
+      createSelectClient(data, id);
+    })
+    .catch((error) => {
+      return error;
+    });
+}
 
 //----- Retrieve names from Candidates & Positions -----//
 
@@ -95,7 +141,7 @@ async function createList(applications) {
       infoModal(application);
     });
     itemList.querySelector(".remove").addEventListener("click", function() {
-      openRemoveModal(application);
+      openUpdateModel(application);
     });
     itemList.querySelector(".remove").addEventListener("click", function() {
       openRemoveModal(application);
