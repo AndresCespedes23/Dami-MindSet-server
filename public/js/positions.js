@@ -2,6 +2,9 @@ window.onload = function () {
   const url = "http://localhost:4000/api/positions/";
   const createButton = document.getElementById("create");
   createButton.addEventListener("click", showCreateModal);
+  let flag = true;
+  let i = 0;
+  let idPosition = 0;
   fetch(url)
     .then((res) => {
       if (res.status === 200) return res.json();
@@ -12,7 +15,7 @@ window.onload = function () {
     })
     .catch((error) => {
       console.log(error);
-      window.location.reload();
+      // window.location.reload();
     });
 
   function positionTable(positions) {
@@ -28,20 +31,21 @@ window.onload = function () {
         <td id="address">${position.address}</td>
         <td id="city">${position.city}</td>
         <td id="postalCode">${position.postalCode}</td>
-        <td><button id="edit" class="button-list"><img src="img/Icon-edit.png" alt="Edit"></button></td>
+        <td><button class="edit" class="button-list"><img src="img/Icon-edit.png" alt="Edit"></button></td>
         <td><button id="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button></td>`
       table.appendChild(itemList);
       itemList.querySelector(".position-id").addEventListener("click", function() {
         showId(position);
       });
-      const editButton = document.querySelectorAll("#edit");
-      for (let i = 0; i < editButton.length; i++) {
+      const editButton = document.querySelectorAll(".edit");
+      for (i = 0; i < editButton.length; i++) {
         editButton[i].addEventListener("click", function() {
-          showUpdateModal(positions);
+          showUpdateModal(position);
+          idPosition = i;
         });
       };
       const removeButton = document.querySelectorAll("#remove");
-      for (let i = 0; i < removeButton.length; i++) {
+      for (i = 0; i < removeButton.length; i++) {
         removeButton[i].addEventListener("click", function() {
           showRemoveModal(position);
         });
@@ -77,14 +81,16 @@ window.onload = function () {
     }
   }
 
-  function showUpdateModal(positions) {
+  function showUpdateModal(position) {
     emptyModal();
     let modal = document.getElementById("background-modal");
     modal.classList.remove("hidden-background-modal");
     const form = document.getElementById("form");
     const updateConfirm = document.querySelectorAll(".update-button");
     updateConfirm[0].style.display = "block";
-    updateConfirm[0].addEventListener("click", confirmUpdate);
+    updateConfirm[0].addEventListener("click", function() {
+      confirmUpdate(position);
+    });;
     const createConfirm = document.querySelectorAll(".create-button");
     createConfirm[0].style.display = "none";
     const removeConfirm = document.querySelectorAll(".remove-button");
@@ -96,59 +102,63 @@ window.onload = function () {
     let updateForm = document.createElement("fieldset");
     updateForm.innerHTML = `<h2>Update Position</h2>
     <label for="idClient">idClient</label>
-    <input type="text" id="idClient" name="idClient" value=${positions.idClient} />
+    <input type="text" id="idClient" name="idClient" value=${position.idClient} />
     <span id="Error1" class="Error-msg">Error</span>
     <label for="idProfiles">idProfiles</label>
-    <input type="text" id="idProfiles" name="idProfiles" value=${positions.idProfiles} />
+    <input type="text" id="idProfiles" name="idProfiles" value=${position.idProfiles} />
     <span id="Error2" class="Error-msg">Error</span>
     <label for="name">Name</label>
-    <input type="text" id="name" name="name" value=${positions.name} />
+    <input type="text" id="name" name="name" value=${position.name} />
     <span id="Error3" class="Error-msg">Error</span>
     <label for="description">Description</label>
-    <input type="text" id="description" name="description" value=${positions.description} />
+    <input type="text" id="description" name="description" value=${position.description} />
     <span id="Error4" class="Error-msg">Error</span>
     <label for="status">Status</label>
-    <input type="text" id="status" name="status" value=${positions.status} />
+    <input type="text" id="status" name="status" value=${position.status} />
     <span id="Error5" class="Error-msg">Error</span>
     <label for="address">Address</label>
-    <input type="text" id="address" name="address" value=${positions.address} />
+    <input type="text" id="address" name="address" value=${position.address} />
     <span id="Error6" class="Error-msg">Error</span>
     <label for="city">City</label>
-    <input type="text" id="city" name="city" value=${positions.city} />
+    <input type="text" id="city" name="city" value=${position.city} />
     <span id="Error7" class="Error-msg">Error</span>
     <label for="postalCode">postalCode</label>
-    <input type="text" id="postalCode" name="postalCode" value=${positions.postalCode} />
+    <input type="text" id="postalCode" name="postalCode" value=${position.postalCode} />
     <span id="Error8" class="Error-msg">Error</span>`
     form.appendChild(updateForm);
   };
 
-  function confirmUpdate() {
-    let updatePosition = {
-      name: document.querySelector('input[id="name"]').value,
-      description: document.querySelector('input[id="description"]').value,
-      status: document.querySelector('input[id="status"]').value,
-      address: document.querySelector('input[id="address"]').value,
-      city: document.querySelector('input[id="city"]').value,
-      postalCode: document.querySelector('input[id="postalCode"]').value
-    }
-    const url = `http://localhost:4000/api/positions/${position._id}`;
-    fetch(url, {
-      method: "PUT",
-      body: JSON.stringify(updatePosition),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        if (res.status === 200) return res.json();
-        throw new Error(JSON.stringify(res.json()));
+  function confirmUpdate(position) {
+    flag = false;
+    if (!flag) {
+      let updatePosition = {
+        name: document.querySelector('input[id="name"]').value,
+        description: document.querySelector('input[id="description"]').value,
+        status: document.querySelector('input[id="status"]').value,
+        address: document.querySelector('input[id="address"]').value,
+        city: document.querySelector('input[id="city"]').value,
+        postalCode: document.querySelector('input[id="postalCode"]').value
+      }
+      const url = `http://localhost:4000/api/positions/${position._id}`;
+      fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(updatePosition),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((error) => {
-        return error;
-      });
+        .then((res) => {
+          if (res.status === 200) return res.json();
+          throw new Error(JSON.stringify(res.json()));
+        })
+        .then(() => {
+          window.location.reload();
+        })
+        .catch((error) => {
+          return error;
+        });
+    }
   }
-
-  let flag = true;
 
   function showRemoveModal(position) {
     emptyModal();
@@ -186,12 +196,11 @@ window.onload = function () {
       })
       .then(() => {
         window.location.reload();
-      }
-
-      )
+      })
       .catch((error) => {
         console.log(error);
       });
+      flag = true;
     }
   }
 
