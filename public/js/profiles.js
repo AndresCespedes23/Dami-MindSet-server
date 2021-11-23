@@ -1,6 +1,5 @@
 //URL
-const url = "http://localhost:4000/api/profiles/";
-
+const url = `${window.location.origin}/api/profiles`;
 //catch the table's body and results
 const container = document.querySelector("tbody");
 let results = "";
@@ -149,7 +148,7 @@ if (outside.target == profileModal) {
 };
 };
 
-// function to DELETE profiles
+// function ON to DELETE profiles
 on(document, 'click', '.deleteButton', e => {
     const profileLane = e.target.parentNode.parentNode.parentNode
     idProfile = profileLane.firstElementChild.innerHTML
