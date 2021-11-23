@@ -104,6 +104,7 @@ const on = (element, event, selector, handler) => {
             if (res.status === 200)
             return res.json();
           })
+        .then( res => location.reload())
         return profileModal.classList.add("hide");
     }
     if (option == "edit") {                       ///UPDATE FUNCTION

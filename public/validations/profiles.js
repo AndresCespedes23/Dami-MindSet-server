@@ -21,9 +21,9 @@ function nameBlur(e) {
   e.preventDefault();
   const onlyTxt = (/[a-zA-Z0-9 ]$/);
   let n = profName.value;
-  if (n.length < 6 || n.length > 20) {
+  if (n.length < 6 || n.length > 30) {
   confirmB.classList.add("hide");
-  return nameError.innerText = "The name must be longer than 6 characters but less than 20";
+  return nameError.innerText = "The name must be longer than 6 characters but less than 30";
   } if (!onlyTxt.test(n)) {
   confirmB.classList.add("hide");
   return nameError.innerText = "no special characters allowed";
@@ -43,9 +43,9 @@ function descriptBlur(e) {
   e.preventDefault();
   const onlyTxt = (/[a-zA-Z ]$/);
   let n = descriptProfile.value;
-  if (n.length < 6 || n.length > 24) {
+  if (n.length < 6 || n.length > 30) {
   confirmB.classList.add("hide");
-  return descriptionError.innerText = "The description must be longer than 6 characters but less than 24";
+  return descriptionError.innerText = "The description must be longer than 6 characters but less than 30";
   } if (!onlyTxt.test(n)) {
   confirmB.classList.add("hide");
   return descriptionError.innerText = "only text allowed";
