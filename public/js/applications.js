@@ -346,7 +346,7 @@ function requestApplications() {
   //----- Update -----//
 
   function requestUpdateApplication(application) {
-    let updateAplication = {
+    let updateApplication = {
       idCandidate: document.getElementById("idCandidate").value,
       idPosition: document.getElementById("idPosition").value,
       idInterview: document.getElementById("idInterview").value,
@@ -357,7 +357,7 @@ function requestApplications() {
     const url = `http://localhost:4000/api/aplications/${application._id}`;
     fetch(url, {
       method: "PUT",
-      body: JSON.stringify(updateAplication),
+      body: JSON.stringify(updateApplication),
       headers: {
         "Content-Type": "application/json",
       },
