@@ -15,7 +15,6 @@ section {
 nav {
   background-color: #091f40;
   color: #ffffff;
-  z-index: 2;
 }
 nav img {
   display: block;
@@ -49,6 +48,9 @@ td {
 td {
   font-size: 12px;
 }
+button, img {
+  cursor:pointer;
+}
 #create-button {
   align-self: flex-end;
   width: 100px;
@@ -61,28 +63,29 @@ td {
   text-transform: uppercase;
   color: #ffffff;
 }
-.hidden {
-  display: none;
-}
-#background-modal {
+.background-modal {
+  display: flex;
   position: fixed;
   overflow: scroll;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #3a4c66;
+  background-color: #9aa2b0;
   z-index: 1;
 }
-.modal {
-  overflow: scroll;
+.hide {
+  display: none;
+}
+#modal {
   width: 40%;
-  margin: 120px auto;
+  margin: 80px auto;
   padding: 30px;
   border: 3px solid #091f40;
   border-radius: 30px;
   background-color: #ffffff;
   text-align: center;
+  overflow: scroll;
 }
 form {
   display: flex;
@@ -95,8 +98,7 @@ form label {
   padding-left: 10px;
   text-align: left;
 }
-form input,
-form select {
+form input {
   padding: 5px;
   border-style: none;
   border: 2px solid #091f40;
@@ -110,12 +112,15 @@ fieldset {
   padding: 0px;
   border-style: none;
 }
-.Error-msg {
+.error-msg {
   margin-bottom: 5px;
   padding-top: 5px;
   text-align: right;
   font-size: 12px;
   color: #b80e0e;
+}
+.opacity {
+  opacity: 0;
 }
 .modal-button {
   width: 80px;
@@ -126,7 +131,7 @@ fieldset {
   font-size: 15px;
   text-transform: uppercase;
 }
-#confirm-button {
+.confirm-button {
   background-color: #091f40;
   color: #ffffff;
 }
@@ -136,12 +141,7 @@ footer {
   background-color: #091f40;
   color: #ffffff;
   text-align: center;
-  z-index: 2;
 }
 ::-webkit-scrollbar {
   display: none;
-}
-
-ul li {
-  list-style-type: none;
 }
