@@ -15,6 +15,32 @@ window.onload = function() {
 
 }
 
+//----- Modals -----//
+
+function closeModal() {
+  modal.classList.add("hidden");
+  form.classList.add("hidden");
+  confirmCreateButton.classList.add("hidden");
+  confirmRemoveButton.classList.add("hidden");
+  description.innerHTML = "";
+}
+
+function openCreateModal() {
+  modal.classList.remove("hidden");
+  form.classList.remove("hidden");
+  confirmCreateButton.classList.remove("hidden");
+  modalTitle.innerHTML = "Create Application";
+  description.innerHTML = "Please fill out the form to create a new application"
+}
+
+function openRemoveModal() {
+  modal.classList.remove("hidden");
+  form.classList.add("hidden");
+  confirmRemoveButton.classList.remove("hidden");
+  modalTitle.innerHTML = "Remove Interview";
+  description.innerHTML = "Are you sure you want to remove this application?"
+}
+
 //----- Retrieve names from Candidates, Clients & Positions -----//
 
 async function getName(id, resource) {
