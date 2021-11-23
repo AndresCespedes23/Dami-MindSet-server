@@ -150,6 +150,19 @@ function createSelectStatus(status) {
   select.appendChild(rejected);
 }
 
+//----- Clear selects in form -----//
+
+function clearSelects() {
+  const selectFormCandidate = document.getElementById("idCandidate");
+  const selectFormClient = document.getElementById("idClient");
+  const selectFormPosition = document.getElementById("idPosition");
+  const selectFormStatus = document.getElementById("status");
+  selectFormCandidate.innerHTML = "";
+  selectFormClient.innerHTML = "";
+  selectFormPosition.innerHTML = "";
+  selectFormStatus.innerHTML = "";
+}
+
 //----- Retrieve data from Candidates, Clients & Positions -----//
 
 function selectCandidate(id) {
