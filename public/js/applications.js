@@ -10,7 +10,7 @@ window.onload = function() {
   const description = document.getElementById("modal-description");
   const createButton = document.getElementById("create-button");
   const confirmCreateButton = document.getElementById("confirm-create-button");
-  const confirmUpdateButton = document.getElementById("confirm-create-button");
+  const confirmUpdateButton = document.getElementById("confirm-update-button");
   const confirmRemoveButton = document.getElementById("confirm-remove-button");
   const cancelButton = document.getElementById("cancel-button");
 
@@ -37,14 +37,21 @@ function openCreateModal() {
   confirmCreateButton.classList.remove("hidden");
   modalTitle.innerHTML = "Create Application";
   description.innerHTML = "Please fill out the form to create a new application"
+  selectPosition();
+  selectCandidate();
+  selectInterview();
 }
 
-function openUpdateModal() {
+function openUpdateModal(application) {
   modal.classList.remove("hidden");
   form.classList.remove("hidden");
   confirmUpdateButton.classList.remove("hidden");
   modalTitle.innerHTML = "Update Application";
   description.innerHTML = "Please complete the form to update this application"
+  selectPosition(application.idPosition);
+  selectCandidate(application.idCandidate);
+  selectInterview(application.idInterview);
+  
 }
 
 function openRemoveModal() {
@@ -54,6 +61,7 @@ function openRemoveModal() {
   modalTitle.innerHTML = "Remove Application";
   description.innerHTML = "Are you sure you want to remove this application?"
 }
+
 //----- Retrieve data from Candidates, Clients & Positions -----//
 
 function selectCandidate(id) {
@@ -94,7 +102,7 @@ function selectInterview(id) {
       throw new Error(`HTTP ${res.status}`);
     })
     .then((data) => {
-      createSelectClient(data, id);
+      createSelectInterview(data, id);
     })
     .catch((error) => {
       return error;
@@ -133,14 +141,14 @@ async function createList(applications) {
       <td>${application.dateTime}</td>
       <td>${application.status}</td>
       <td>${application.result}</td>
-      <td><button class="remove" class="button-list"><img src="img/Icon-edit.png" alt="Edit"/></button>
+      <td><button class="update" class="button-list"><img src="img/Icon-edit.png" alt="Edit"/></button>
       <td><button class="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button>
       </td>`
     tableBody.appendChild(itemList);
     itemList.querySelector(".application").addEventListener("click", function() {
       infoModal(application);
     });
-    itemList.querySelector(".remove").addEventListener("click", function() {
+    itemList.querySelector(".update").addEventListener("click", function() {
       openUpdateModel(application);
     });
     itemList.querySelector(".remove").addEventListener("click", function() {
