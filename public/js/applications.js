@@ -258,7 +258,7 @@ async function createList(applications) {
       infoModal(application);
     });
     itemList.querySelector(".update").addEventListener("click", function() {
-      openUpdateModel(application);
+      openUpdateModal(application);
     });
     itemList.querySelector(".remove").addEventListener("click", function() {
       openRemoveModal(application);
