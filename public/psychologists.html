@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <!-- <link rel="stylesheet" href="css/styles.css" /> -->
+    <link rel="stylesheet" href="css/psychologists.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+    </style>
+    <script defer type="text/javascript" src="js/psychologists.js"></script>
+    <title>MindSet</title>
+  </head>
+  <body>
+    <nav>
+      <img src="img/Logo-MindSet.png" alt="MindSet logo" />
+    </nav>
+    <section>
+      <div id="resource-table">
+        <h1>Psychologists</h1>
+        <table id="table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>email</th>
+              <th>username</th>
+              <th>password</th>
+              <th>phoneNumber</th>
+              <th>enrollmentNumber</th>
+              <th>status</th>
+              <th>timeRange</th>
+              <th>dayRange</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+        <button id="create-button">Create ></button>
+        <div id="background-modal" class="hide background-modal">
+          <div id="modal" class="hide">
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+            <form id="form">
+              <fieldset>
+                <label for="name">name</label>
+                <input type="text" id="name" name="name" placeholder="name" />
+                <span id="name-error" class="error-msg opacity">Error</span>
+              </fieldset>
+              <fieldset>
+                <label for="email">email</label>
+                <input type="text" id="email" name="email" placeholder="email" />
+                <span id="email-error" class="error-msg opacity">Error</span>
+              </fieldset>
+              <fieldset>
+                <label for="username">username</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="username"
+                />
+                <span id="username-error" class="error-msg opacity">Error</span>
+              </fieldset>
+              <fieldset>
+                <label for="password">password</label>
+                <input
+                  type="text"
+                  id="password"
+                  name="password"
+                  placeholder="password"
+                />
+                <span id="password-error" class="error-msg opacity">Error</span>
+              </fieldset>
+              <fieldset>
+                <label for="phoneNumber">phoneNumber</label>
+                <input
+                  type="text"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  placeholder="phoneNumber"
+                />
+                <span id="phoneNumber-error" class="error-msg opacity">Error</span>
+              </fieldset>
+              <fieldset>
+                <label for="enrollmentNumber">enrollmentNumber</label>
+                <input
+                  type="text"
+                  id="enrollmentNumber"
+                  name="enrollmentNumber"
+                  placeholder="enrollmentNumber"
+                />
+                <span id="enrollmentNumber-error" class="error-msg opacity">Error</span>
+              </fieldset>
+              <fieldset>
+                <label for="status">status</label>
+                <input type="text" id="status" name="status" placeholder="status" />
+                <span id="status-error" class="error-msg opacity">Error</span>
+              </fieldset>
+              <fieldset>
+                <label for="timeRange">timeRange</label>
+                <input
+                  type="text"
+                  id="timeRange"
+                  name="timeRange"
+                  placeholder="timeRange"
+                />
+                <span id="timeRange-error" class="error-msg opacity">Error</span>
+              </fieldset>
+              <fieldset>
+                <label for="dayRange">dayRange</label>
+                <input
+                  type="text"
+                  id="dayRange"
+                  name="dayRange"
+                  placeholder="dayRange"
+                />
+                <span id="dayRange-error" class="error-msg opacity">Error</span>
+              </fieldset>
+            </form>
+            <div>
+              <button id="cancel-button" class="modal-button hide">Cancel</button>
+              <button id="create-confirm-button" class="modal-button confirm-button hide">Confirm</button>
+              <button id="update-confirm-button" class="modal-button confirm-button hide">Confirm</button>
+              <button id="delete-confirm-button" class="modal-button confirm-button hide">Confirm</button>
+              <button id="success-confirm-button" class="modal-button confirm-button hide">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>Footer</footer>
+  </body>
+</html>
