@@ -51,9 +51,14 @@ function openUpdateModal(application) {
   confirmUpdateButton.classList.remove("hidden");
   modalTitle.innerHTML = "Update Application";
   description.innerHTML = "Please complete the form to update this application"
-  // selectPosition(application.idPosition);
-  // selectCandidate(application.idCandidate);
-  // selectInterview(application.idInterview);
+  selectPosition(application.idPosition);
+  selectCandidate(application.idCandidate);
+  selectInterview(application.idInterview);
+  saveDateTime(application.dateTime);
+  createSelectStatus(application.status);
+  confirmUpdateButton.onclick = function() {
+    requestUpdateApplication(application);
+  }
 }
 
 function openRemoveModal() {
