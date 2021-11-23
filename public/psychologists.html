@@ -20,30 +20,31 @@
     <section>
       <div id="resource-table">
         <h1>Psychologists</h1>
-        <table id="table-list">
-          <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>email</th>
-            <th>username</th>
-            <th>password</th>
-            <th>phoneNumber</th>
-            <th>enrollmentNumber</th>
-            <th>status</th>
-            <th>timeRange</th>
-            <th>dayRange</th>
-            <th></th>
-            <th></th>
-          </tr>
+        <table id="table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>email</th>
+              <th>username</th>
+              <th>password</th>
+              <th>phoneNumber</th>
+              <th>enrollmentNumber</th>
+              <th>status</th>
+              <th>timeRange</th>
+              <th>dayRange</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
         </table>
         <button id="create-button">Create ></button>
         <div id="background-modal" class="hide background-modal">
           <div id="modal" class="hide">
-            <h2>Create Psychologist</h2>
-            <p>
-              Fill the info to create a new psychologist
-            </p>
-            <form id="create-form">
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+            <form id="form">
               <fieldset>
                 <label for="name">name</label>
                 <input type="text" id="name" name="name" placeholder="name" />
@@ -121,10 +122,11 @@
               </fieldset>
             </form>
             <div>
-              <button id="cancel-button" class="modal-button">Cancel</button>
-              <button id="create-confirm-button" type="submit" class="modal-button confirm-button hide">Confirm</button>
+              <button id="cancel-button" class="modal-button hide">Cancel</button>
+              <button id="create-confirm-button" class="modal-button confirm-button hide">Confirm</button>
               <button id="update-confirm-button" class="modal-button confirm-button hide">Confirm</button>
               <button id="delete-confirm-button" class="modal-button confirm-button hide">Confirm</button>
+              <button id="success-confirm-button" class="modal-button confirm-button hide">Ok</button>
             </div>
           </div>
         </div>

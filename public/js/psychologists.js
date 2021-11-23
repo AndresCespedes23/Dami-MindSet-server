@@ -1,74 +1,54 @@
 const backgroundModal = document.getElementById("background-modal");
 const modal = document.getElementById("modal");
+const form = document.getElementById("form");
+const modalTitle = document.getElementById("modal-title");
+const modalDescription = document.getElementById("modal-description");
+const tableBody = document.getElementById("table-body");
 
-//createButton.disabled = true; //disable the button until the page is completely loaded.
-readPsy();
 
-const dataForm = document.querySelectorAll("#create-form input");
-
-const name = document.getElementById("name");
-const nameError = document.getElementById("name-error");
-name.addEventListener('focus', nameFocus);
-function nameFocus() {nameError.classList.toggle("opacity", true), name.select()};
-const email = document.getElementById("email");
-const emailError = document.getElementById("email-error");
-email.addEventListener('focus', emailFocus);
-function emailFocus() {emailError.classList.toggle("opacity", true), email.select()};
-const username = document.getElementById("username");
-const usernameError = document.getElementById("username-error");
-username.addEventListener('focus', usernameFocus);
-function usernameFocus() {usernameError.classList.toggle("opacity", true), username.select()};
-const password = document.getElementById("password");
-const passwordError = document.getElementById("password-error");
-password.addEventListener('focus', passwordFocus);
-function passwordFocus() {passwordError.classList.toggle("opacity", true), password.select()};
-const phoneNumber = document.getElementById("phoneNumber");
-const phoneNumberError = document.getElementById("phoneNumber-error");
-phoneNumber.addEventListener('focus', phoneNumberFocus);
-function phoneNumberFocus() {phoneNumberError.classList.toggle("opacity", true), phoneNumber.select()};
-const enrollmentNumber = document.getElementById("enrollmentNumber");
-const enrollmentNumberError = document.getElementById("enrollmentNumber-error");
-enrollmentNumber.addEventListener('focus', enrollmentNumberFocus);
-function enrollmentNumberFocus() {enrollmentNumberError.classList.toggle("opacity", true), enrollmentNumber.select()};
-const status = document.getElementById("status");
-const statusError = document.getElementById("status-error");
-status.addEventListener('focus', statusFocus);
-function statusFocus() {statusError.classList.toggle("opacity", true), status.select()};
-const timeRange = document.getElementById("timeRange");
-const timeRangeError = document.getElementById("timeRange-error");
-timeRange.addEventListener('focus', timeRangeFocus);
-function timeRangeFocus() {timeRangeError.classList.toggle("opacity", true), timeRange.select()};
-const dayRange = document.getElementById("dayRange");
-const dayRangeError = document.getElementById("dayRange-error");
-dayRange.addEventListener('focus', dayRangeFocus);
-function dayRangeFocus() {dayRangeError.classList.toggle("opacity", true), dayRange.select()};
-
-// CREATE *******************************************************
+const dataForm = document.querySelectorAll("#form input");
 
 const createButton = document.getElementById("create-button");
+const updateButtons = document.querySelectorAll("update-button");
+const deleteButtons = document.querySelectorAll("delete-button");
 const cancelButton = document.getElementById("cancel-button");
 const createConfirmButton = document.getElementById("create-confirm-button");
+const updateConfirmButton = document.getElementById("update-confirm-button");
+const deleteConfirmButton = document.getElementById("delete-confirm-button");
+const successConfirmButton = document.getElementById("success-confirm-button");
 
-createButton.addEventListener("click", openModal);
-cancelButton.addEventListener("click", cancelButtonFunc);
+readPsy();
+// CREATE ////////////////////////////////////////////////////////////////////
+createButton.addEventListener("click", openCreateModal);
+cancelButton.addEventListener("click", closeModal);
 createConfirmButton.addEventListener("click", reqCreate);
+successConfirmButton.addEventListener("click", closeModal)
 
-function openModal() {
+function openCreateModal() {
   backgroundModal.classList.toggle("hide", false);
   modal.classList.toggle("hide", false);
   createConfirmButton.classList.toggle("hide", false);
+  deleteConfirmButton.classList.toggle("hide", true);
+  updateConfirmButton.classList.toggle("hide", true);
+  cancelButton.classList.toggle("hide", false);
+  modalTitle.innerHTML = "Create Psychologist";
+  modalDescription.innerHTML = "Fill the info to create a new psychologist";
 }
-function cancelButtonFunc() {
+
+function closeModal() {
   backgroundModal.classList.toggle("hide", true);
   modal.classList.toggle("hide", true);
+  modalTitle.innerHTML = "";
+  modalDescription.innerHTML = "";
   createConfirmButton.classList.toggle("hide", true);
+  successConfirmButton.classList.toggle("hide", true);
 }
 
 function reqCreate(e) {
   e.preventDefault()
   validateMissing()
   validateAll()
-  const dataForm = document.querySelectorAll("#create-form input");
+  const dataForm = document.querySelectorAll("#form input");
   let dataBody = {
     name: dataForm[0].value,
     email: dataForm[1].value,
@@ -76,9 +56,9 @@ function reqCreate(e) {
     password: dataForm[3].value,
     phoneNumber: dataForm[4].value,
     enrollmentNumber: dataForm[5].value,
-    status: dataForm[6].value,
+    status: dataForm[6].value === "true" ? true : false,
     timeRange: dataForm[7].value,
-    dayRange: dataForm[8].value,
+    dayRange: dataForm[8].value
   };
   console.log(dataBody)
   const url = "http://localhost:4000/api/psychologists/";
@@ -86,19 +66,20 @@ function reqCreate(e) {
     method: "POST",
     body: JSON.stringify(dataBody),
     headers: {
-      "Content-Type": "psychologist/json",
+      "Content-Type": "application/json",
     },
   })
-    .then(async (res) => {
-      const data = await res.json();
-      if (res.status === 201) return data;
-      throw new Error(data.msg);
-    })
+    .then((res) => {
+    if (res.status === 201) return res.json();
+    throw new Error(JSON.stringify(res.json()));
+  })
     .then((data) => {
-      success(data,"The new psychologist was correctly created:");
+      successModal(data);
+      readPsy();
     })
-    .catch((err) => {
-      fail(err);
+    .catch((error) => {
+      console.log(error);
+      return error;
     });
 }
 
@@ -118,11 +99,9 @@ function readPsy() {
     });
 }
 function createList(psys) {
-  const table = document.getElementById("table-list");
-  let i = 0;
+  tableBody.innerHTML = "";
   psys.forEach((psy) => {
     const itemList = document.createElement("tr");
-    itemList.id = "item-" + i;
     itemList.innerHTML = `<td>${psy._id}</td>
       <td>${psy.name}</td>
       <td>${psy.email}</td>
@@ -133,97 +112,129 @@ function createList(psys) {
       <td>${psy.status}</td>
       <td>${psy.timeRange}</td>
       <td>${psy.dayRange}</td>
-      <td><button class="button-list update-button" onclick="openUpdateModal(${i})"><img src="img/Icon-edit.png" alt="Edit"></button></td>
-      <td><button class="button-list delete-button" onclick="deletePsychologist(${i})"><img src="img/Icon-remove.png" alt="Remove"/></button>
-      </td>`;
-    table.appendChild(itemList);
-    i++;
-  });
-  createButton.disabled = false;
+      <td><button class="update" class="button-list"><img src="img/Icon-edit.png" alt="Edit"></button></td>
+      <td><button class="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button>
+      </td>`
+    tableBody.appendChild(itemList);
+    // itemList.querySelector(".update").addEventListener("click", function() {
+    //   openUpdateModal(psy)});
+    itemList.querySelector(".update").addEventListener("click", function() {
+      openUpdateModal(psy);
+    });
+    itemList.querySelector(".remove").addEventListener("click", function() {
+      openDeleteModal(psy)});
+  })
 }
 
-// UPDATE Psys********************************************************
-const updateButtons = document.querySelectorAll("update-button");
-const updateConfirmButton = document.getElementById("update-confirm-button");
 
-updateButtons.forEach(updateButtons.addEventListener("click", openModal));
-updateConfirmButton.addEventListener("click", reqUpdate);
-
-function openUpdateModal(index) {
-  updateModal.classList.toggle("hide", false);
-
-  const dataForm = document.querySelectorAll("#update-form input");
-  let contentItem = document.getElementById(`item-${index}`).firstChild;
-  for (let i = 0; i < dataForm.length; i++) {
-    dataForm[i].value = contentItem.innerText;
-    contentItem = contentItem.nextElementSibling;
+///////////////////////////////////// UPDATE Psys /////////////////////////////////
+function openUpdateModal(psy) {
+  backgroundModal.classList.toggle("hide", false);
+  modal.classList.toggle("hide", false);
+  form.classList.toggle("hide", false);
+  updateConfirmButton.classList.toggle("hide", false);
+  cancelButton.classList.toggle("hide", false);
+  modalTitle.innerHTML = "Update Psychologist";
+  modalDescription.innerHTML = "Please complete the form to update this psychologist"
+  const dataForm = document.querySelectorAll("#form input");
+    dataForm[0].value = psy.name
+    dataForm[1].value = psy.email
+    dataForm[2].value = psy.username
+    dataForm[3].value = psy.password
+    dataForm[4].value = psy.phoneNumber
+    dataForm[5].value = psy.enrollmentNumber
+    dataForm[6].value = psy.status
+    dataForm[7].value = psy.timeRange
+    dataForm[8].value = psy.dayRange
+  updateConfirmButton.onclick = function() {reqUpdate(psy);
   }
 }
-
-function reqUpdateClient(e) {
-  e.preventDefault();
-
-  //validate all again
-  // validateName();
-  // validateEmail();
-  // validatePhoneNumber();
-  // validateCuit();
-  // validateAddress();
-  // validateActivity();
-
-  const dataForm = document.querySelectorAll("#update-form input");
-  let dataBody = {
-    name: dataForm[1].value,
-    email: dataForm[2].value,
-    phoneNumber: dataForm[3].value,
-    cuit: dataForm[4].value,
-    address: dataForm[5].value,
-    activity: dataForm[6].value,
+function reqUpdate(psychologist) {
+  const dataForm = document.querySelectorAll("#form input");
+  let updatePsy = {
+    name: dataForm[0].value,
+    email: dataForm[1].value,
+    username: dataForm[2].value,
+    password: dataForm[3].value,
+    phoneNumber: dataForm[4].value,
+    enrollmentNumber: dataForm[5].value,
+    status: dataForm[6].value === "true" ? true : false,
+    timeRange: dataForm[7].value,
+    dayRange: dataForm[8].value
   };
-  const idPsy = dataForm[0].value; //this field is hidden in the modalUpdate
-  const url = "http://localhost:4000/api/psychologists/" + idPsy;
+  validateMissing();
+  validateAll();
+
+  const url = `http://localhost:4000/api/psychologists/${psychologist._id}`;
   fetch(url, {
     method: "PUT",
-    body: JSON.stringify(dataBody),
+    body: JSON.stringify(updatePsy),
     headers: {
       "Content-Type": "application/json",
     },
   })
     .then((res) => {
       if (res.status === 200) return res.json();
-      throw new Error(`HTTP ${res.status}`);
     })
     .then((data) => {
-      updateModal.classList.toggle("hide", true);
-      // location.reload();  //CAMBIAR POR createList cuando pueda hacerlo
+      successModal(data);
+      readPsy();
+    })
+    .catch((error) => {
+      console.log(error);
+      return error;
+    });
+}
+
+/////////////////////////////////// DELETE CLIENTS //////////////////////////////
+function openDeleteModal(psy) {
+  backgroundModal.classList.toggle("hide", false);
+  modal.classList.toggle("hide", false);
+  form.classList.toggle("hide", false);
+  deleteConfirmButton.classList.toggle("hide", false);
+  cancelButton.classList.toggle("hide", false);
+  updateConfirmButton.classList.toggle("hide", true);
+  createConfirmButton.classList.toggle("hide", true);
+  modalTitle.innerHTML = "Delete Psychologist ?";
+  modalDescription.innerHTML = ""
+  const dataForm = document.querySelectorAll("#form input");
+    dataForm[0].value = psy.name
+    dataForm[1].value = psy.email
+    dataForm[2].value = psy.username
+    dataForm[3].value = psy.password
+    dataForm[4].value = psy.phoneNumber
+    dataForm[5].value = psy.enrollmentNumber
+    dataForm[6].value = psy.status
+    dataForm[7].value = psy.timeRange
+    dataForm[8].value = psy.dayRange
+  deleteConfirmButton.onclick = function() {
+    reqDelete(psy);
+  }
+}
+
+function reqDelete(psy) {
+  console.log(psy._id)
+  const url = `http://localhost:4000/api/interviews/${psy._id}`;
+  fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (res.status === 200) return res.json();
+      throw new Error(JSON.stringify(res.json()));
+    })
+    .then((data) => {
+      successModal(data);
+      requestInterviews();
     })
     .catch((error) => {
       console.log(error);
     });
 }
 
-// DELETE CLIENTS***************************************************
-function deleteClient(index) {
-  const itemToDelete = document.getElementById(`item-${index}`);
-  const idPsy = itemToDelete.firstElementChild.innerText;
-
-  const url = "http://localhost:4000/api/psychologists/" + idPsy;
-  fetch(url, {
-    method: "DELETE",
-  })
-  .then((res) => {
-    if (res.status === 200) return res.json();
-    throw new Error(`HTTP ${res.status}`);
-  })
-  .then(() => {
-    location.reload(); //CAMBIAR POR createList cuando pueda hacerlo
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-}
-
-/////////////////////////////////////////////////// Validations ***************************
+//////////////////////////////////////////// Validations ////////////////////////////////////
 function validateMissing(req, res) {
   if (!name.value) return res.status(400).json({ msg: "Name is missing" });
   if (!email.value) return res.status(400).json({ msg: "Email is missing" });
@@ -232,8 +243,8 @@ function validateMissing(req, res) {
   if (!phoneNumber.value) return res.status(400).json({ msg: "PhoneNumber is missing" });
   if (!enrollmentNumber.value) return res.status(400).json({ msg: "EnrollmentNumber is missing" });
   if (!status.value) return res.status(400).json({ msg: "Status is missing" });
-  if (!timeRange.value) return res.status(400).json({ msg: "TimeRange is missing" });
-  if (!dayRange.value) return res.status(400).json({ msg: "DayRange is missing" });
+  // if (!timeRange.value) return res.status(400).json({ msg: "TimeRange is missing" });
+  // if (!dayRange.value) return res.status(400).json({ msg: "DayRange is missing" });
 }
 function validateAll() {
   if (name.value) {
@@ -297,54 +308,54 @@ function validateAll() {
   if (status.value && status.value !== ("true" || "false")) {
     statusError.classList.toggle("opacity", false);
     statusError.innerText = "Status must be boolean";
-    return res.status(400).json({ msg: "Status must be boolean" });
+    return res.status(400).json({ msg: "Status must be boolean!" });
   }
-  if (timeRange.value) {
-    if (timeRange.value.length !== 2) {
-      timeRangeError.classList.toggle("opacity", false);
-      timeRangeError.innerText = "TimeRange accepts only two numbers";
-      return res.status(400).json({ msg: "TimeRange accepts only two numbers" });
-    }
-    // let containChars = false;
-    // let isBiggerOrSmaller = false;
-    // timeRange.value.forEach((element) => {
-    //   if (parseInt(element, 10) != element) {
-    //     containChars = true;
-    //     return containChars;
-    //   }
-    //   if (element < 0 || element > 24) {
-    //     isBiggerOrSmaller = true;
-    //     return isBiggerOrSmaller;
-    //   }
-    // });
-    // if (containChars) {
-    // timeRangeError.classList.toggle("opacity", false);
-    // timeRangeError.innerText = "TimeRange accepts only numbers";
-    // return res.status(400).json({ msg: "TimeRange accepts only numbers" });
-    // }
-    // if (isBiggerOrSmaller) {
-    // timeRangeError.classList.toggle("opacity", false);
-    // timeRangeError.innerText = "TimeRange values must be between 0 and 24";
-    //   return res
-    //     .status(400)
-    //     .json({ msg: "TimeRange values must be between 0 and 24" });
-    // }
-    // if (timeRange.value[0] >= timeRange.value[1]) {
-    //   timeRangeError.classList.toggle("opacity", false);
-    //   timeRangeError.innerText = "TimeRange first value must be smaller than the second one";
-    //   return res.status(400).json({
-    //     msg: "TimeRange first value must be smaller than the second one",
-    //   });
-    // }
-  }
-  if (dayRange.value) {
-    if (dayRange.value.length > 7) {
-      dayRangeError.classList.toggle("opacity", false);
-      dayRangeError.innerText = "DayRange length cannot be higher than seven";
-      return res
-        .status(400)
-        .json({ msg: "DayRange length cannot be higher than seven" });
-    }
+  // if (timeRange.value) {
+  //   if (timeRange.value.length !== 2) {
+  //     timeRangeError.classList.toggle("opacity", false);
+  //     timeRangeError.innerText = "TimeRange accepts only two numbers";
+  //     return res.status(400).json({ msg: "TimeRange accepts only two numbers" });
+  //   }
+  //   let containChars = false;
+  //   let isBiggerOrSmaller = false;
+  //   timeRange.forEach((element) => {
+  //     if (parseInt(element, 10) != element) {
+  //       containChars = true;
+  //       return containChars;
+  //     }
+  //     if (element < 0 || element > 24) {
+  //       isBiggerOrSmaller = true;
+  //       return isBiggerOrSmaller;
+  //     }
+  //   });
+  //   if (containChars) {
+  //   timeRangeError.classList.toggle("opacity", false);
+  //   timeRangeError.innerText = "TimeRange accepts only numbers";
+  //   return res.status(400).json({ msg: "TimeRange accepts only numbers" });
+  //   }
+  //   if (isBiggerOrSmaller) {
+  //   timeRangeError.classList.toggle("opacity", false);
+  //   timeRangeError.innerText = "TimeRange values must be between 0 and 24";
+  //     return res
+  //       .status(400)
+  //       .json({ msg: "TimeRange values must be between 0 and 24" });
+  //   }
+  //   if (timeRange[0] >= timeRange[1]) {
+  //     timeRangeError.classList.toggle("opacity", false);
+  //     timeRangeError.innerText = "TimeRange first value must be smaller than the second one";
+  //     return res.status(400).json({
+  //       msg: "TimeRange first value must be smaller than the second one",
+  //     });
+  //   }
+  // }
+  // if (dayRange.value) {
+  //   if (dayRange.value.length > 7) {
+  //     dayRangeError.classList.toggle("opacity", false);
+  //     dayRangeError.innerText = "DayRange length cannot be higher than seven";
+  //     return res
+  //       .status(400)
+  //       .json({ msg: "DayRange length cannot be higher than seven" });
+  //   }
     // let containChars = false;
     // let isBiggerOrSmaller = false;
     // let containRepetedElements = false;
@@ -381,6 +392,66 @@ function validateAll() {
     //     .status(400)
     //     .json({ msg: "DayRange does not allow repeted values" });
     // }
-  }
+  // }
 }
 
+function successModal(data) {
+  form.classList.toggle("hide", true);
+  createConfirmButton.classList.toggle("hide", true);
+  updateConfirmButton.classList.toggle("hide", true);
+  deleteConfirmButton.classList.toggle("hide", true);
+  cancelButton.classList.toggle("hide", true);
+  backgroundModal.classList.toggle("hide", false);
+  modal.classList.toggle("hide", false);
+  successConfirmButton.classList.toggle("hide", false);
+  modalTitle.innerHTML = "Successful Request!";
+  modalDescription.innerHTML =
+  `<ul>
+    <li>Name: ${data.name}</li>
+    <li>Email: ${data.email}</li>
+    <li>Username: ${data.username}</li>
+    <li>Password: ${data.password}</li>
+    <li>Phone Number: ${data.phoneNumber}</li>
+    <li>Enrollment Number: ${data.enrollmentNumber}</li>
+    <li>Status: ${data.status}</li>
+    <li>Time Range: ${data.timeRange}</li>
+    <li>Day Range: ${data.dayRange}</li>
+  </ul>`;
+}
+
+const name = document.getElementById("name");
+const nameError = document.getElementById("name-error");
+name.addEventListener('focus', nameFocus);
+function nameFocus() {nameError.classList.toggle("opacity", true), name.select()};
+const email = document.getElementById("email");
+const emailError = document.getElementById("email-error");
+email.addEventListener('focus', emailFocus);
+function emailFocus() {emailError.classList.toggle("opacity", true), email.select()};
+const username = document.getElementById("username");
+const usernameError = document.getElementById("username-error");
+username.addEventListener('focus', usernameFocus);
+function usernameFocus() {usernameError.classList.toggle("opacity", true), username.select()};
+const password = document.getElementById("password");
+const passwordError = document.getElementById("password-error");
+password.addEventListener('focus', passwordFocus);
+function passwordFocus() {passwordError.classList.toggle("opacity", true), password.select()};
+const phoneNumber = document.getElementById("phoneNumber");
+const phoneNumberError = document.getElementById("phoneNumber-error");
+phoneNumber.addEventListener('focus', phoneNumberFocus);
+function phoneNumberFocus() {phoneNumberError.classList.toggle("opacity", true), phoneNumber.select()};
+const enrollmentNumber = document.getElementById("enrollmentNumber");
+const enrollmentNumberError = document.getElementById("enrollmentNumber-error");
+enrollmentNumber.addEventListener('focus', enrollmentNumberFocus);
+function enrollmentNumberFocus() {enrollmentNumberError.classList.toggle("opacity", true), enrollmentNumber.select()};
+const status = document.getElementById("status");
+const statusError = document.getElementById("status-error");
+status.addEventListener('focus', statusFocus);
+function statusFocus() {statusError.classList.toggle("opacity", true), status.select()};
+const timeRange = document.getElementById("timeRange");
+const timeRangeError = document.getElementById("timeRange-error");
+timeRange.addEventListener('focus', timeRangeFocus);
+function timeRangeFocus() {timeRangeError.classList.toggle("opacity", true), timeRange.select()};
+const dayRange = document.getElementById("dayRange");
+const dayRangeError = document.getElementById("dayRange-error");
+dayRange.addEventListener('focus', dayRangeFocus);
+function dayRangeFocus() {dayRangeError.classList.toggle("opacity", true), dayRange.select()};
