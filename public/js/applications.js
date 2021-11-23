@@ -368,24 +368,26 @@ function requestApplications() {
       });
     }
 
-    function requestRemoveApplication(application) {
-      const url = `http://localhost:4000/api/applications/${application._id}`;
-      fetch(url, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
+  //----- DELETE -----//
+
+  function requestRemoveApplication(application) {
+    const url = `http://localhost:4000/api/applications/${application._id}`;
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) return res.json();
+        throw new Error(JSON.stringify(res.json()));
       })
-        .then((res) => {
-          if (res.status === 200) return res.json();
-          throw new Error(JSON.stringify(res.json()));
-        })
-        .then((data) => {
-          successModal(data);
-          requestApplications();
-        })
-        .catch((error) => {
-          errorModal(error);
-        });
-    }
+      .then((data) => {
+        successModal(data);
+        requestApplications();
+      })
+      .catch((error) => {
+        errorModal(error);
+      });
+  }
 }
