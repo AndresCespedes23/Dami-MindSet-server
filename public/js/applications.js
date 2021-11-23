@@ -15,6 +15,11 @@ window.onload = function() {
 
 }
 
+//----- Event Listeners -----//
+
+createButton.addEventListener("click", openCreateModal);
+cancelButton.addEventListener("click", closeModal);
+
 //----- Modals -----//
 
 function closeModal() {
