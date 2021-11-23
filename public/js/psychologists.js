@@ -1,10 +1,18 @@
+/* IMPORTANT NOTES //
+- dayRange and timeRagne validations are commented out, couldnt make them work so you
+  can create data by leaving them blank
+- update function can´t connect to the backend and doesnt work
+- originUrl variable is meant to be applied to every CRUD url
+*/
+
+const originUrl = window.location.origin + "/api/psychologists/";
+
 const backgroundModal = document.getElementById("background-modal");
 const modal = document.getElementById("modal");
 const form = document.getElementById("form");
 const modalTitle = document.getElementById("modal-title");
 const modalDescription = document.getElementById("modal-description");
 const tableBody = document.getElementById("table-body");
-
 
 const dataForm = document.querySelectorAll("#form input");
 
@@ -17,7 +25,7 @@ const updateConfirmButton = document.getElementById("update-confirm-button");
 const deleteConfirmButton = document.getElementById("delete-confirm-button");
 const successConfirmButton = document.getElementById("success-confirm-button");
 
-readPsy();
+readPsys();
 // CREATE ////////////////////////////////////////////////////////////////////
 createButton.addEventListener("click", openCreateModal);
 cancelButton.addEventListener("click", closeModal);
@@ -44,8 +52,7 @@ function closeModal() {
   successConfirmButton.classList.toggle("hide", true);
 }
 
-function reqCreate(e) {
-  e.preventDefault()
+function reqCreate() {
   validateMissing()
   validateAll()
   const dataForm = document.querySelectorAll("#form input");
@@ -60,7 +67,6 @@ function reqCreate(e) {
     timeRange: dataForm[7].value,
     dayRange: dataForm[8].value
   };
-  console.log(dataBody)
   const url = "http://localhost:4000/api/psychologists/";
   fetch(url, {
     method: "POST",
@@ -75,7 +81,7 @@ function reqCreate(e) {
   })
     .then((data) => {
       successModal(data);
-      readPsy();
+      readPsys();
     })
     .catch((error) => {
       console.log(error);
@@ -84,7 +90,7 @@ function reqCreate(e) {
 }
 
 // READ PSYS **************************************************************
-function readPsy() {
+function readPsys() {
   const url = "http://localhost:4000/api/psychologists/";
   fetch(url)
     .then((res) => {
@@ -116,8 +122,6 @@ function createList(psys) {
       <td><button class="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button>
       </td>`
     tableBody.appendChild(itemList);
-    // itemList.querySelector(".update").addEventListener("click", function() {
-    //   openUpdateModal(psy)});
     itemList.querySelector(".update").addEventListener("click", function() {
       openUpdateModal(psy);
     });
@@ -178,7 +182,7 @@ function reqUpdate(psychologist) {
     })
     .then((data) => {
       successModal(data);
-      readPsy();
+      readPsys();
     })
     .catch((error) => {
       console.log(error);
@@ -214,7 +218,7 @@ function openDeleteModal(psy) {
 
 function reqDelete(psy) {
   console.log(psy._id)
-  const url = `http://localhost:4000/api/interviews/${psy._id}`;
+  const url = `http://localhost:4000/api/psychologists/${psy._id}`;
   fetch(url, {
     method: "DELETE",
     headers: {
@@ -227,7 +231,7 @@ function reqDelete(psy) {
     })
     .then((data) => {
       successModal(data);
-      requestInterviews();
+      readPsys();
     })
     .catch((error) => {
       console.log(error);
@@ -419,6 +423,7 @@ function successModal(data) {
   </ul>`;
 }
 
+// Modal inputs red errors, forEach quien te conoce //
 const name = document.getElementById("name");
 const nameError = document.getElementById("name-error");
 name.addEventListener('focus', nameFocus);
