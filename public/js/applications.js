@@ -10,6 +10,7 @@ window.onload = function() {
   const description = document.getElementById("modal-description");
   const createButton = document.getElementById("create-button");
   const confirmCreateButton = document.getElementById("confirm-create-button");
+  const confirmUpdateButton = document.getElementById("confirm-create-button");
   const confirmRemoveButton = document.getElementById("confirm-remove-button");
   const cancelButton = document.getElementById("cancel-button");
 
@@ -25,6 +26,7 @@ function closeModal() {
   modal.classList.add("hidden");
   form.classList.add("hidden");
   confirmCreateButton.classList.add("hidden");
+  confirmUpdateButton.classList.add("hidden");
   confirmRemoveButton.classList.add("hidden");
   description.innerHTML = "";
 }
