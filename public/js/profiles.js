@@ -18,10 +18,13 @@ const closeModal = document.getElementById("closeModal")
 //the modal's elements
 const profileName = document.getElementById("nameProfile");
 const profileDescription = document.getElementById("descriptionProfile");
+const h2 = document.getElementById("change-text");
 let option = ""
+h2.innerText = ""
 // CREATE Function
 createProfile.addEventListener("click", () => {
     profileModal.classList.remove("hide");
+    h2.innerText = "CREATE PROFILE"
     option = "create"
   })
 
@@ -74,6 +77,7 @@ const on = (element, event, selector, handler) => {
     const profilesDescription = profilesLane.children[2].innerHTML
     profileName.value = profilesName
     profileDescription.value = profilesDescription
+    h2.innerText = "EDIT PROFILE"
     option = "edit"
     profileModal.classList.remove("hide");
   });
