@@ -2,7 +2,7 @@ const table = document.querySelector("table");
 const createCandidateBtn = document.getElementById("create-btn");
 const modal = document.getElementById("background-modal");
 
-var baseUrl = "http://localhost:4000/api/";
+const baseUrl = "http://localhost:4000/api/";
 let selectedSession = {};
 
 window.onload = () => listSessions();
