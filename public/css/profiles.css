@@ -127,6 +127,29 @@
     background-color: #091f40;
     color: #ffffff;
   }
+  #delete-modal {
+    position: fixed;
+    overflow: scroll;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #9aa2b0;
+    z-index: 1;
+  }
+  #delete-modal-body {
+    width: 40%;
+    margin: 80px auto;
+    padding: 30px;
+    border: 3px solid #091f40;
+    border-radius: 30px;
+    background-color: #ffffff;
+    text-align: center;
+  }
+  #confirm-delete {
+    background-color: #091f40;
+    color: #ffffff;
+  }
   footer {
     margin-top: auto;
     padding: 20px 0px;
