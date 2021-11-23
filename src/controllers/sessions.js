@@ -56,7 +56,7 @@ const remove = (req, res) => {
     new ObjectId(req.params.id),
     (err, removedSession) => {
       if (err) return res.status(404).json(err);
-      return res.status(200).json(removedSession._id);
+      return res.status(200).json(removedSession);
     },
   );
 };
