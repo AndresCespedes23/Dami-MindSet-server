@@ -28,6 +28,7 @@ function closeModal() {
   confirmUpdateButton.classList.add("hidden");
   confirmRemoveButton.classList.add("hidden");
   description.innerHTML = "";
+  clearSelects();
   requestApplications();
 }
 
