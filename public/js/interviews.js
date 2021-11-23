@@ -30,6 +30,7 @@ window.onload = function() {
     confirmRemoveButton.classList.add("hidden");
     description.innerHTML = "";
     clearSelects();
+    requestInterviews();
   }
 
   function openCreateModal() {
