@@ -61,7 +61,7 @@ td {
   text-transform: uppercase;
   color: #ffffff;
 }
-.hidden-background-modal {
+.hidden {
   display: none;
 }
 #background-modal {
@@ -73,9 +73,6 @@ td {
   height: 100%;
   background-color: #3a4c66;
   z-index: 1;
-}
-.hidden {
-  display: none;
 }
 .modal {
   overflow: scroll;
