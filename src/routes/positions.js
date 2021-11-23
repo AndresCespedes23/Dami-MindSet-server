@@ -7,7 +7,6 @@ router.get("/:id", positions.getById);
 router.post("/", validations.required, validations.validate, positions.create);
 router.put(
   "/:id",
-  validations.required,
   validations.validate,
   positions.update,
 );
