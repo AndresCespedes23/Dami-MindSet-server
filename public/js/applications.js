@@ -41,6 +41,7 @@ function openCreateModal() {
   selectPosition();
   selectCandidate();
   selectInterview();
+  createSelectStatus();
 }
 
 function openUpdateModal(application) {
