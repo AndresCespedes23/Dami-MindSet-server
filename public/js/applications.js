@@ -61,12 +61,15 @@ function openUpdateModal(application) {
   }
 }
 
-function openRemoveModal() {
+function openRemoveModal(application) {
   modal.classList.remove("hidden");
   form.classList.add("hidden");
   confirmRemoveButton.classList.remove("hidden");
   modalTitle.innerHTML = "Remove Application";
   description.innerHTML = "Are you sure you want to remove this application?"
+  confirmRemoveButton.onclick = function() {
+    requestRemoveApplication(application);
+  }
 }
 
 function successModal(application) {
@@ -344,5 +347,26 @@ function requestApplications() {
       .catch((error) => {
         errorModal(error);
       });
+    }
+
+    function requestRemoveApplication(application) {
+      const url = `http://localhost:4000/api/applications/${application._id}`;
+      fetch(url, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          if (res.status === 200) return res.json();
+          throw new Error(JSON.stringify(res.json()));
+        })
+        .then((data) => {
+          successModal(data);
+          requestApplications();
+        })
+        .catch((error) => {
+          errorModal(error);
+        });
     }
 }
