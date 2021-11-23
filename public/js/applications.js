@@ -18,6 +18,7 @@ window.onload = function() {
 
 createButton.addEventListener("click", openCreateModal);
 cancelButton.addEventListener("click", closeModal);
+confirmCreateButton.addEventListener("click", requestCreateApplication);
 
 //----- Modals -----//
 
@@ -89,6 +90,38 @@ function errorModal(error) {
   confirmRemoveButton.classList.add("hidden");
   modalTitle.innerHTML = "Failed Request!";
   description.innerHTML = `${error}`;
+}
+
+//----- Retrieve data from Candidates, Clients & Positions -----//
+
+function selectCandidate(id) {
+  const url = "http://localhost:4000/api/candidates";
+  fetch(url)
+    .then((res) => {
+      if (res.status === 200) return res.json();
+      throw new Error(`HTTP ${res.status}`);
+    })
+    .then((data) => {
+      createSelectCandidate(data, id);
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
+function selectPosition(id) {
+  const url = "http://localhost:4000/api/positions";
+  fetch(url)
+    .then((res) => {
+      if (res.status === 200) return res.json();
+      throw new Error(`HTTP ${res.status}`);
+    })
+    .then((data) => {
+      createSelectPosition(data, id);
+    })
+    .catch((error) => {
+      return error;
+    });
 }
 
 //----- Create selects in form -----//
@@ -165,38 +198,6 @@ function clearSelects() {
   selectFormStatus.innerHTML = "";
 }
 
-//----- Retrieve data from Candidates, Clients & Positions -----//
-
-function selectCandidate(id) {
-  const url = "http://localhost:4000/api/candidates";
-  fetch(url)
-    .then((res) => {
-      if (res.status === 200) return res.json();
-      throw new Error(`HTTP ${res.status}`);
-    })
-    .then((data) => {
-      createSelectCandidate(data, id);
-    })
-    .catch((error) => {
-      return error;
-    });
-}
-
-function selectPosition(id) {
-  const url = "http://localhost:4000/api/positions";
-  fetch(url)
-    .then((res) => {
-      if (res.status === 200) return res.json();
-      throw new Error(`HTTP ${res.status}`);
-    })
-    .then((data) => {
-      createSelectPosition(data, id);
-    })
-    .catch((error) => {
-      return error;
-    });
-}
-
 function selectInterview(id) {
   const url = "http://localhost:4000/api/interviews";
   fetch(url)
@@ -265,8 +266,8 @@ async function createList(applications) {
 function requestCreateApplication() {
   let createApplication = {
     idCandidate: document.getElementById("idCandidate").value,
-    idClient: document.getElementById("idPosition").value,
-    idPosition: document.getElementById("idInterview").value,
+    idPosition: document.getElementById("idPosition").value,
+    idInterview: document.getElementById("idInterview").value,
     dateTime: document.getElementById("dateTime").value,
     status: document.getElementById("status").value,
     result: document.getElementById("result").value
@@ -308,4 +309,5 @@ function requestApplications() {
       return error;
     });
   }
+
 }
