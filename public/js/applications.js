@@ -203,9 +203,9 @@ function createSelectStatus(status) {
   const rejected = document.createElement("option");
   rejected.innerHTML = "REJECTED";
   if (status === "FINISHED") finished.setAttribute("selected","selected");
-  if (status === "SCHEDULED") finished.setAttribute("selected","selected");
-  if (status === "HIRED") finished.setAttribute("selected","selected");
-  if (status === "REJECTED") finished.setAttribute("selected","selected");
+  if (status === "SCHEDULED") scheduled.setAttribute("selected","selected");
+  if (status === "HIRED") hired.setAttribute("selected","selected");
+  if (status === "REJECTED") rejected.setAttribute("selected","selected");
   select.appendChild(finished);
   select.appendChild(scheduled);
   select.appendChild(hired);
