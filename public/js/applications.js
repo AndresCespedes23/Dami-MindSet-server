@@ -49,9 +49,9 @@ function openUpdateModal(application) {
   confirmUpdateButton.classList.remove("hidden");
   modalTitle.innerHTML = "Update Application";
   description.innerHTML = "Please complete the form to update this application"
-  selectPosition(application.idPosition);
-  selectCandidate(application.idCandidate);
-  selectInterview(application.idInterview);
+  // selectPosition(application.idPosition);
+  // selectCandidate(application.idCandidate);
+  // selectInterview(application.idInterview);
 }
 
 function openRemoveModal() {
@@ -258,6 +258,38 @@ async function createList(applications) {
     });
   })
 }
+
+//----- Create -----//
+
+function requestCreateApplication() {
+  let createApplication = {
+    idCandidate: document.getElementById("idCandidate").value,
+    idClient: document.getElementById("idPosition").value,
+    idPosition: document.getElementById("idInterview").value,
+    dateTime: document.getElementById("dateTime").value,
+    status: document.getElementById("status").value,
+    result: document.getElementById("result").value
+  }
+  const url = "http://localhost:4000/api/applications";
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(createApplication),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (res.status === 201) return res.json();
+      throw new Error(JSON.stringify(res.json()));
+    })
+    .then((data) => {
+      successModal(data);
+      requestApplications();
+    })
+    .catch((error) => {
+      errorModal(error);
+    });
+  }
 
 //----- Read all -----//
 
