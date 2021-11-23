@@ -28,7 +28,7 @@ h1 {
 #resource-table {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 70%;
   margin: 50px auto;
   padding: 20px;
   border-top: 10px solid #091f40;
@@ -60,10 +60,7 @@ td {
   text-transform: uppercase;
   color: #ffffff;
 }
-.hidden-background-modal {
-  display: none;
-}
-#background-modal {
+.background-modal {
   position: fixed;
   overflow: scroll;
   left: 0;
@@ -73,8 +70,7 @@ td {
   background-color: #9aa2b0;
   z-index: 1;
 }
-.modal {
-  overflow: scroll;
+.container-modal {
   width: 40%;
   margin: 80px auto;
   padding: 30px;
@@ -124,7 +120,7 @@ fieldset {
   font-size: 15px;
   text-transform: uppercase;
 }
-#confirm-button {
+.confirm-button {
   background-color: #091f40;
   color: #ffffff;
 }
@@ -138,3 +134,23 @@ footer {
 ::-webkit-scrollbar {
   display: none;
 }
+
+/*ADD BY EUGE */
+.button-list {
+  border: none;
+  background-color: unset;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+ul{
+  padding: 0;
+  list-style: none;
+}
+

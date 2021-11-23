@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/adminsStyles.css"/>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+    </style>
+    <title>MindSet</title>
+  </head>
+  <body>
+    <nav>
+      <img src="img/Logo-MindSet.png" alt="MindSet logo" />
+    </nav>
+    <section>
+      <div id="resource-table">
+        <h1>Admins</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>name</th>
+              <th>e-mail</th>
+              <th>username</th>
+              <th>password</th>
+              <th>superadmin</th>
+              <th>edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+        <button id="back-button">Back></button>
+        <div id="background-modal">
+          <div id="create-modal">
+            <h2>Update Admin</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
+              nulla alias nisi quidem doloribus.
+            </p>
+            <form>
+                <fieldset>
+                    <label for="name">Name</label>
+                    <input
+                        type="text"
+                        id="adminName"
+                        name="name"
+                        value=""
+                    />
+                    <span id="error1" class="error-msg">Error</span>
+                </fieldset>
+                <fieldset>
+                    <label for="e-mail">E-Mail</label>
+                    <input
+                        type="text"
+                        id="e-mail"
+                        name="e-mail"
+                        value=""
+                    />
+                    <span id="error2" class="error-msg">Error</span>
+                </fieldset>
+                <fieldset>
+                    <label for="username">UserName</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        value=""
+                    />
+                    <span id="error3" class="error-msg">Error</span>
+                </fieldset>
+                <fieldset>
+                    <label for="password">PassWord</label>
+                    <input
+                        type="text"
+                        id="password"
+                        name="password"
+                        value=""
+                    />
+                    <span id="error4" class="error-msg">Error</span>
+                </fieldset>
+                <fieldset>
+                    <label for="superadmin">SuperAdmin</label>
+                    <select name="isSuperAdmin" id="superadmin">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </fieldset>
+                <div>
+                    <button id="close-modal" class="modal-button">Cancel</button>
+                    <button type="submit" id="confirm-button" class="modal-button hide">Confirm</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>Footer</footer>
+    <script src="./validations/admins.js"></script>
+    <script src="./js/admins.js"></script>
+  </body>
+</html>
