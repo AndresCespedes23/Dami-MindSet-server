@@ -4,7 +4,6 @@ window.onload = function () {
   createButton.addEventListener("click", showCreateModal);
   let flag = true;
   let i = 0;
-  let idPosition = 0;
   fetch(url)
     .then((res) => {
       if (res.status === 200) return res.json();
@@ -41,7 +40,6 @@ window.onload = function () {
       for (i = 0; i < editButton.length; i++) {
         editButton[i].addEventListener("click", function() {
           showUpdateModal(position);
-          idPosition = i;
         });
       };
       const removeButton = document.querySelectorAll("#remove");
@@ -90,7 +88,7 @@ window.onload = function () {
     updateConfirm[0].style.display = "block";
     updateConfirm[0].addEventListener("click", function() {
       confirmUpdate(position);
-    });;
+    });
     const createConfirm = document.querySelectorAll(".create-button");
     createConfirm[0].style.display = "none";
     const removeConfirm = document.querySelectorAll(".remove-button");
@@ -103,35 +101,117 @@ window.onload = function () {
     updateForm.innerHTML = `<h2>Update Position</h2>
     <label for="idClient">idClient</label>
     <input type="text" id="idClient" name="idClient" value=${position.idClient} />
-    <span id="Error1" class="Error-msg">Error</span>
+    <span id="Error1" class="Error-msg"></span>
     <label for="idProfiles">idProfiles</label>
     <input type="text" id="idProfiles" name="idProfiles" value=${position.idProfiles} />
-    <span id="Error2" class="Error-msg">Error</span>
+    <span id="Error2" class="Error-msg"></span>
     <label for="name">Name</label>
     <input type="text" id="name" name="name" value=${position.name} />
-    <span id="Error3" class="Error-msg">Error</span>
+    <span id="Error3" class="Error-msg"></span>
     <label for="description">Description</label>
     <input type="text" id="description" name="description" value=${position.description} />
-    <span id="Error4" class="Error-msg">Error</span>
+    <span id="Error4" class="Error-msg"></span>
     <label for="status">Status</label>
     <input type="text" id="status" name="status" value=${position.status} />
-    <span id="Error5" class="Error-msg">Error</span>
+    <span id="Error5" class="Error-msg"></span>
     <label for="address">Address</label>
     <input type="text" id="address" name="address" value=${position.address} />
-    <span id="Error6" class="Error-msg">Error</span>
+    <span id="Error6" class="Error-msg"></span>
     <label for="city">City</label>
     <input type="text" id="city" name="city" value=${position.city} />
-    <span id="Error7" class="Error-msg">Error</span>
+    <span id="Error7" class="Error-msg"></span>
     <label for="postalCode">postalCode</label>
     <input type="text" id="postalCode" name="postalCode" value=${position.postalCode} />
-    <span id="Error8" class="Error-msg">Error</span>`
+    <span id="Error8" class="Error-msg"></span>`
     form.appendChild(updateForm);
+    validations();
   };
+
+  function validations() {
+    let error1 = document.getElementById("Error1");
+    let error2 = document.getElementById("Error2");
+    let error3 = document.getElementById("Error3");
+    let error4 = document.getElementById("Error4");
+    let error5 = document.getElementById("Error5");
+    let error6 = document.getElementById("Error6");
+    let error7 = document.getElementById("Error7");
+    let error8 = document.getElementById("Error8");
+    let idClient = document.getElementById("idClient");
+    if (idClient) {
+      idClient.addEventListener("blur", function() {
+        if (idClient.value.length <= 0) {
+          error1.innerHTML = "idClient have an error";
+        } else error1.innerHTML = "";
+      })
+    }
+    let idProfile = document.getElementById("idProfile");
+    if (idProfile) {
+      idProfile.addEventListener("blur", function() {
+        if (idProfile.value.length <= 0) {
+          error2.innerHTML = "idProfile have an error";
+        } else error2.innerHTML = "";
+      })
+    }
+    let name = document.getElementById("name");
+    if (name) {
+      name.addEventListener("blur", function() {
+        if (name.value.length <= 0 || name.value.length > 50 || name.value.search(/[0-9]/) !== -1) {
+          error3.innerHTML = "Name must have equal or less than 50 characters and must not have numbers";
+        } else error3.innerHTML = "";
+      })
+    }
+    let description = document.getElementById("description");
+    if (description) {
+      description.addEventListener("blur", function() {
+        if (description.value.length <= 0 || description.value.length > 5000) {
+          error4.innerHTML = "Description must have equal or less than 5000 characters";
+        } else error4.innerHTML = "";
+      })
+    }
+    let status = document.getElementById("status");
+    if (status) {
+      status.addEventListener("blur", function() {
+        if (status.value.length <= 0 || status.value !== "DONE" && status.value !== "PENDING") {
+          error5.innerHTML = "Status must be DONE or PENDING";
+        } else error5.innerHTML = "";
+      })
+    }
+    let address = document.getElementById("address");
+    if (address) {
+      address.addEventListener("blur", function() {
+        if (address.value.length <= 0 || address.value.length < 5 || address.value.length > 50
+          || address.value.search(/[a-z]/i) < 0
+          || address.value.search(/[0-9]/) < 0
+          || address.value.indexOf(" ") === -1) {
+            error6.innerHTML = "Address must be between 5 and 50 characters & must have letters,"
+            + " numbers and at least 1 space";
+        } else error6.innerHTML = "";
+      })
+    }
+    let city = document.getElementById("city");
+    if (city) {
+      city.addEventListener("blur", function() {
+        if (city.value.length <= 0 || city.value.length < 3 || city.value.length > 50) {
+          error7.innerHTML = "City must have between 3 and 50 characters";
+        } else error7.innerHTML = "";
+      })
+    }
+    let postalCode = document.getElementById("postalCode");
+    if (postalCode) {
+      postalCode.addEventListener("blur", function() {
+        if (postalCode.value.length <= 0 || postalCode.value.length < 4 || postalCode.value.length > 8) {
+          error8.innetHTML = "Postal Code must have between 4 and 8 characters";
+        } else error8.innerHTML = "";
+      })
+    }
+  }
 
   function confirmUpdate(position) {
     flag = false;
     if (!flag) {
-      let updatePosition = {
+      let updatePosition = {        
+        idClient: document.querySelector('input[id="idClient"]').value,
+        idProfiles: document.querySelector('input[id="idProfiles"]').value,
         name: document.querySelector('input[id="name"]').value,
         description: document.querySelector('input[id="description"]').value,
         status: document.querySelector('input[id="status"]').value,
@@ -153,11 +233,11 @@ window.onload = function () {
         })
         .then(() => {
           window.location.reload();
-        })
+        })    
         .catch((error) => {
           return error;
         });
-    }
+  }
   }
 
   function showRemoveModal(position) {
@@ -221,27 +301,89 @@ window.onload = function () {
     createForm.innerHTML = `<h2>Create Position</h2>
     <label for="idClient">idClient</label>
     <input type="text" id="idClient" name="idClient"/>
+    <span id="Error1" class="Error-msg"></span>
     <label for="idProfile">idProfile</label>
     <input type="text" id="idProfile" name="idProfile"/>
+    <span id="Error2" class="Error-msg"></span>
     <label for="name">Name</label>
     <input type="text" id="name" name="name"/>
-    <span id="Error3" class="Error-msg">Error</span>
+    <span id="Error3" class="Error-msg"></span>
     <label for="description">Description</label>
     <input type="text" id="description" name="description"/>
-    <span id="Error4" class="Error-msg">Error</span>
+    <span id="Error4" class="Error-msg"></span>
     <label for="status">Status</label>
     <input type="text" id="status" name="status"/>
-    <span id="Error5" class="Error-msg">Error</span>
+    <span id="Error5" class="Error-msg"></span>
     <label for="address">Address</label>
     <input type="text" id="address" name="address"/>
-    <span id="Error6" class="Error-msg">Error</span>
+    <span id="Error6" class="Error-msg"></span>
     <label for="city">City</label>
     <input type="text" id="city" name="city"/>
-    <span id="Error7" class="Error-msg">Error</span>
+    <span id="Error7" class="Error-msg"></span>
     <label for="postalCode">postalCode</label>
     <input type="text" id="postalCode" name="postalCode" />
-    <span id="Error8" class="Error-msg">Error</span>`
+    <span id="Error8" class="Error-msg"></span>`
     form.appendChild(createForm);
+    let error1 = document.getElementById("Error1");
+    let error2 = document.getElementById("Error2");
+    let error3 = document.getElementById("Error3");
+    let error4 = document.getElementById("Error4");
+    let error5 = document.getElementById("Error5");
+    let error6 = document.getElementById("Error6");
+    let error7 = document.getElementById("Error7");
+    let error8 = document.getElementById("Error8");
+    let idClient  = document.getElementById("idClient");
+    idClient.addEventListener("blur", function() {
+      if (idClient.value.length <= 0) {
+        error1.innerHTML = "idClient have an error";
+      } else error1.innerHTML = "";
+    })
+    let idProfile = document.getElementById("idProfile");
+    idProfile.addEventListener("blur", function() {
+      if (idProfile.value.length <= 0) {
+        error2.innerHTML = "idProfile have an error";
+      } else error2.innerHTML = "";
+    })
+    let name = document.getElementById("name");
+    name.addEventListener("blur", function() {
+      if (name.value.length <= 0 || name.value.length > 50 || name.value.search(/[0-9]/) !== -1) {
+        error3.innerHTML = "Name must have equal or less than 50 characters and must not have numbers";
+      } else error3.innerHTML = "";
+    })
+    let description = document.getElementById("description");
+    description.addEventListener("blur", function() {
+      if (description.value.length <= 0 || description.value.length > 5000) {
+        error4.innerHTML = "Description must have equal or less than 5000 characters";
+      } else error4.innerHTML = "";
+    })
+    let status = document.getElementById("status");
+    status.addEventListener("blur", function() {
+      if (status.value.length <= 0 || status.value !== "DONE" && status.value !== "PENDING") {
+        error5.innerHTML = "Status must be DONE or PENDING";
+      } else error5.innerHTML = "";
+    })
+    let address = document.getElementById("address");
+    address.addEventListener("blur", function() {
+      if (address.value.length <= 0 || address.value.length < 5 || address.value.length > 50
+        || address.value.search(/[a-z]/i) < 0
+        || address.value.search(/[0-9]/) < 0
+        || address.value.indexOf(" ") === -1) {
+          error6.innerHTML = "Address must be between 5 and 50 characters & must have letters,"
+          + " numbers and at least 1 space";
+      } else error6.innerHTML = "";
+    })
+    let city = document.getElementById("city");
+    city.addEventListener("blur", function() {
+      if (city.value.length <= 0 || city.value.length < 3 || city.value.length > 50) {
+        error7.innerHTML = "City must have between 3 and 50 characters";
+      } else error7.innerHTML = "";
+    })
+    let postalCode = document.getElementById("postalCode");
+    postalCode.addEventListener("blur", function() {
+      if (postalCode.value.length <= 0 || postalCode.value.length < 4 || postalCode.value.length > 8) {
+        error8.innetHTML = "Postal Code must have between 4 and 8 characters";
+      } else error8.innerHTML = "";
+    })
     createConfirm[0].addEventListener("click", sendCreate);
   }
 
@@ -256,7 +398,6 @@ window.onload = function () {
       city: document.querySelector('input[id="city"]').value,
       postalCode: document.querySelector('input[id="postalCode"]').value
     }
-    console.log(createPosition.idProfile);
     const url = "http://localhost:4000/api/positions";
       fetch(url, {
         method: "POST",
