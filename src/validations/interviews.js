@@ -28,8 +28,8 @@ const validate = (req, res, next) => {
     if (idPosition.search(/[a-z]/) < 0) return res.status(400).json("idPosition must have one letter at least");
     if (idPosition.search(/[0-9]/) < 0) return res.status(400).json("idPosition must have one number at least");
   }
-  if (status !== "IN COURSE" && status !== "FINISHED") {
-    return res.status(400).json("Status must be IN COURSE or FINISHED");
+  if (status !== "DONE" && status !== "PENDING") {
+    return res.status(400).json("Status must be DONE or PENDING");
   }
   next();
 };
