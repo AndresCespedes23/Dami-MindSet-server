@@ -1,5 +1,7 @@
 window.onload = function() {
 
+  requestApplications();
+
   //----- Variables -----//
 
   const modal = document.getElementById("background-modal");
@@ -11,6 +13,21 @@ window.onload = function() {
   const confirmRemoveButton = document.getElementById("confirm-remove-button");
   const cancelButton = document.getElementById("cancel-button");
 
+}
+
+//----- Retrieve names from Candidates, Clients & Positions -----//
+
+async function getName(id, resource) {
+  try {
+    const res = await fetch(`http://localhost:4000/api/${resource}/${id}`);
+    if (res.status === 200) {
+      const data = await res.json();
+      return data.name;
+    }
+    throw new Error(`HTTP ${res.status}`);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 //----- Create rows with data retrieved from Applications into table -----//
@@ -40,4 +57,21 @@ async function createList(applications) {
       openRemoveModal(application);
     });
   })
+}
+
+//----- Read all -----//
+
+function requestApplications() {
+  const url = "http://localhost:4000/api/applications/";
+  fetch(url)
+    .then((res) => {
+      if (res.status === 200) return res.json();
+      throw new Error(`HTTP ${res.status}`);
+    })
+    .then((data) => {
+      createList(data);
+    })
+    .catch((error) => {
+      return error;
+    });
 }
