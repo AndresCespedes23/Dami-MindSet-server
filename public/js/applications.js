@@ -151,6 +151,7 @@ function selectInterview(id) {
 
 function createSelectCandidate(collection, id) {
   const select = document.getElementById("idCandidate");
+  select.innerHTML = `<option value="" selected disabled hidden>Select a Candidate</option>`
   collection.forEach((doc) => {
     const option = document.createElement("option");
     option.value = doc._id;
@@ -162,6 +163,7 @@ function createSelectCandidate(collection, id) {
 
 function createSelectPosition(collection, id) {
   const select = document.getElementById("idPosition");
+  select.innerHTML = `<option value="" selected disabled hidden>Select a Postion</option>`
   collection.forEach((doc) => {
     const option = document.createElement("option");
     option.value = doc._id;
@@ -173,6 +175,7 @@ function createSelectPosition(collection, id) {
 
 function createSelectInterview(collection, id) {
   const select = document.getElementById("idInterview");
+  select.innerHTML = `<option value="" selected disabled hidden>Select an Interview</option>`
   collection.forEach((doc) => {
     const option = document.createElement("option");
     option.value = doc._id;
@@ -190,6 +193,7 @@ function saveDateTime(date) {
 
 function createSelectStatus(status) {
   const select = document.getElementById("status");
+  select.innerHTML = `<option value="" selected disabled hidden>Select a Status</option>`
   const finished = document.createElement("option");
   finished.innerHTML = "FINISHED";
   const scheduled = document.createElement("option");
