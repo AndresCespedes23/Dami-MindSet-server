@@ -15,6 +15,7 @@ section {
 nav {
   background-color: #091f40;
   color: #ffffff;
+  z-index: 2;
 }
 nav img {
   display: block;
@@ -70,13 +71,16 @@ td {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #9aa2b0;
+  background-color: #3a4c66;
   z-index: 1;
+}
+.hidden {
+  display: none;
 }
 .modal {
   overflow: scroll;
   width: 40%;
-  margin: 80px auto;
+  margin: 120px auto;
   padding: 30px;
   border: 3px solid #091f40;
   border-radius: 30px;
@@ -94,7 +98,8 @@ form label {
   padding-left: 10px;
   text-align: left;
 }
-form input, form select {
+form input,
+form select {
   padding: 5px;
   border-style: none;
   border: 2px solid #091f40;
@@ -134,7 +139,12 @@ footer {
   background-color: #091f40;
   color: #ffffff;
   text-align: center;
+  z-index: 2;
 }
 ::-webkit-scrollbar {
   display: none;
+}
+
+ul li {
+  list-style-type: none;
 }

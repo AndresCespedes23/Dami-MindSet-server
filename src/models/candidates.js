@@ -147,7 +147,6 @@ const CandidatesSchema = new Schema({
   dni: {
     type: Number,
     required: false,
-    unique: true,
   },
   nationality: {
     type: String,
