@@ -339,7 +339,7 @@ function requestApplications() {
 
   //----- Update -----//
 
-  function requestUpdateAplication(aplication) {
+  function requestUpdateApplication(aplication) {
     let updateAplication = {
       idCandidate: document.getElementById("idCandidate").value,
       idClient: document.getElementById("idClient").value,
