@@ -56,6 +56,7 @@ function openUpdateModal(application) {
   selectInterview(application.idInterview);
   saveDateTime(application.dateTime);
   createSelectStatus(application.status);
+  saveResult(application.result)
   confirmUpdateButton.onclick = function() {
     requestUpdateApplication(application);
   }
@@ -185,12 +186,6 @@ function createSelectInterview(collection, id) {
   })
 }
 
-function saveDateTime(date) {
-  const input = document.getElementById("dateTime");
-  const dateTime = date.substring(0,date.length-8);
-  input.value = dateTime;
-}
-
 function createSelectStatus(status) {
   const select = document.getElementById("status");
   select.innerHTML = `<option value="" selected disabled hidden>Select a Status</option>`
@@ -210,6 +205,17 @@ function createSelectStatus(status) {
   select.appendChild(scheduled);
   select.appendChild(hired);
   select.appendChild(rejected);
+}
+
+function saveDateTime(date) {
+  const input = document.getElementById("dateTime");
+  const dateTime = date.substring(0,date.length-8);
+  input.value = dateTime;
+}
+
+function saveResult(result) {
+  const input = document.getElementById("result");
+  input.value = result;
 }
 
 //----- Clear selects in form -----//
@@ -339,15 +345,16 @@ function requestApplications() {
 
   //----- Update -----//
 
-  function requestUpdateApplication(aplication) {
+  function requestUpdateApplication(application) {
     let updateAplication = {
       idCandidate: document.getElementById("idCandidate").value,
-      idClient: document.getElementById("idClient").value,
       idPosition: document.getElementById("idPosition").value,
+      idInterview: document.getElementById("idInterview").value,
       dateTime: document.getElementById("dateTime").value,
-      status: document.getElementById("status").value
+      status: document.getElementById("status").value,
+      result: document.getElementById("result").value
     }
-    const url = `http://localhost:4000/api/aplications/${aplication._id}`;
+    const url = `http://localhost:4000/api/aplications/${application._id}`;
     fetch(url, {
       method: "PUT",
       body: JSON.stringify(updateAplication),
