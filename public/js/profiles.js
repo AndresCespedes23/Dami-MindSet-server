@@ -7,9 +7,14 @@ let results = "";
 
 //Create button
 const createProfile = document.getElementById("create-button")
+
 //catching the modal
 const profileModal = document.getElementById("background-modal");
-profileModal.classList.add("hide")
+
+//catching the delete's modal
+const deleteModal = document.getElementById("delete-modal");
+const cancelDelete = document.getElementById("close-delete");
+const confirmDelete = document.getElementById("confirm-delete");
 
 //the modal's form
 const formModal = document.querySelector("form");
@@ -21,6 +26,11 @@ const profileDescription = document.getElementById("descriptionProfile");
 const h2 = document.getElementById("change-text");
 let option = ""
 h2.innerText = ""
+
+//hide Modals
+profileModal.classList.add("hide")
+deleteModal.classList.add("hide")
+
 // CREATE Function
 createProfile.addEventListener("click", () => {
     profileModal.classList.remove("hide");
@@ -69,7 +79,7 @@ const on = (element, event, selector, handler) => {
     })
   };
 
- // CREATE and UPDATE functions
+// CREATE and UPDATE functions
 //Function On to fill the modal
  on(document, 'click', '.editButton', e => {
     const profilesLane = e.target.parentNode.parentNode.parentNode
@@ -125,36 +135,53 @@ const on = (element, event, selector, handler) => {
         .then( res => location.reload())
         } return profileModal.classList.add("hide");
     });
+//Cancel changes on the modal
+closeModal.addEventListener("click", closeFModal)
+function closeFModal (e){
+  e.preventDefault();
+  profileModal.classList.add("hide");
+};
+
+//click outside the modal also close it
+window.onclick = function(outside) {
+if (outside.target == profileModal) {
+  profileModal.classList.add("hide");
+};
+};
 
 // function to DELETE profiles
 on(document, 'click', '.deleteButton', e => {
     const profileLane = e.target.parentNode.parentNode.parentNode
     idProfile = profileLane.firstElementChild.innerHTML
-    fetch(url+idProfile, {
-      method: "DELETE",
-    })
-    .then((res) => {
+    deleteModal.classList.remove("hide")
+});
+
+confirmDelete.addEventListener("click", deleteP)
+      function deleteP (e){
+          e.preventDefault()
+          fetch(url+idProfile, {
+            method: "DELETE",
+        })
+        .then((res) => {
         if (res.status === 200)
         return res.json();
       })
     .then( () => location.reload())
     .catch((err) => {
         console.log(err);
-      });
-    });
-
-  //Cancel changes on the modal
-  closeModal.addEventListener("click", closeFModal)
-    function closeFModal (e){
-      e.preventDefault();
-      profileModal.classList.add("hide");
+      })
     };
 
-  //click outside the modal also close it
-  window.onclick = function(outside) {
-    if (outside.target == profileModal) {
-      profileModal.classList.add("hide");
-    };
-    };
-  //the modal is hide by default
-  profileModal.classList.add("hide");
+//Cancel changes on the modal
+cancelDelete.addEventListener("click", closeDelete)
+function closeDelete (e){
+  e.preventDefault();
+  deleteModal.classList.add("hide");
+};
+
+//click outside the modal also close it
+window.onclick = function(outside) {
+if (outside.target == deleteModal) {
+  deleteModal.classList.add("hide");
+};
+};
