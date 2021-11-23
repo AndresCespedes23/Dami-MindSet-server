@@ -9,6 +9,113 @@ const getAge = (dateString) => {
   return age;
 }
 
+const formatDate = (date) => {
+  const array = date.split("-");
+  return `${array[0]}-${array[1]}-${array[2].substring(0,2)}`;
+}
+
+const updateForm = (candidate) => {
+  const birthDate = formatDate(candidate.dateOfBirth);
+  const form = document.getElementById("form");
+  form.innerHTML =
+  `
+  <fieldset>
+    <label for="name">Name</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      value="${candidate.name}"
+    />
+    <span id="Error1" class="Error-msg">Error</span>
+  </fieldset>
+  <fieldset>
+    <label for="email">Email</label>
+    <input
+      type="text"
+      id="email"
+      name="email"
+      value="${candidate.email}"
+    />
+    <span id="Error2" class="Error-msg">Error</span>
+  </fieldset>
+  <fieldset>
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      value="${candidate.username}"
+    />
+    <span id="Error3" class="Error-msg">Error</span>
+  </fieldset>
+  <fieldset>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      value="${candidate.password}"
+    />
+    <span id="Error4" class="Error-msg">Error</span>
+  </fieldset>
+  <fieldset>
+    <label for="gender">Gender</label>
+    <input type="text" id="gender" name="gender" value="${candidate.gender}" />
+    <span id="Error5" class="Error-msg">Error</span>
+  </fieldset>
+  <fieldset>
+    <label for="address">Address</label>
+    <input type="text" id="address" name="address" value="${candidate.address}" />
+    <span id="Error6" class="Error-msg">Error</span>
+  </fieldset>
+  <fieldset>
+    <label for="phoneNumber">Phone Number</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber" value="${candidate.phoneNumber}" />
+    <span id="Error7" class="Error-msg">Error</span>
+  </fieldset>
+  <fieldset>
+    <label for="dateOfBirth">Birth Date</label>
+    <input
+    type="date"
+    id="dateOfBirth"
+    name="dateOfBirth"
+    value="${birthDate}" />
+    <span id="Error8" class="Error-msg">Error</span>
+  </fieldset>
+  <fieldset>
+    <label for="zipCode">Zipcode</label>
+    <input type="text" id="zipCode" name="zipCode" value="${candidate.zipCode}" />
+    <span id="Error9" class="Error-msg">Error</span>
+  </fieldset>
+  <fieldset>
+    <label for="city">City</label>
+    <input type="text" id="city" name="city" value="${candidate.city}" />
+    <span id="Error10" class="Error-msg">Error</span>
+  </fieldset>
+  <fieldset>
+    <label for="state">State</label>
+    <input type="text" id="state" name="state" value="${candidate.state}" />
+    <span id="Error11" class="Error-msg">Error</span>
+  </fieldset>
+  <fieldset>
+    <label for="country">Country</label>
+    <input type="text" id="country" name="country" value="${candidate.country}" />
+    <span id="Error12" class="Error-msg">Error</span>
+  </fieldset>
+  <fieldset>
+    <label for="dni">DNI</label>
+    <input type="text" id="dni" name="dni" value="${candidate.dni}" />
+    <span id="Error24" class="Error-msg">Error</span>
+  </fieldset>`;
+  return form;
+}
+
+function openFormModal() {
+  modal.classList.toggle("show");
+  formModal.classList.toggle("show");
+}
+
 function wipeTable() {
   const table = document.getElementById("resource-table");
   table.innerHTML = `<tr id="table-headers">
@@ -33,56 +140,12 @@ function showApplications() {
   //function content
 }
 
-function openEditForm(candidate) {
-  console.log(candidate.education)
-  const form = createEditModal.querySelector("form");
-  modal.classList.toggle("show");
-  createEditModal.classList.toggle("show");
-  createEditModal.querySelector("#confirm-button").onclick = function(){
-    const data = {
-      personalInfo: {
-        name: form.querySelector("#name").value,
-        email: form.querySelector("#email").value,
-        username: form.querySelector("#username").value,
-        password: form.querySelector("#password").value,
-        gender: form.querySelector("#gender").value,
-        address: form.querySelector("#address").value,
-        phoneNumber: form.querySelector("#phoneNumber").value,
-        dateOfBirth: form.querySelector("#dateOfBirth").value,
-        zipCode: form.querySelector("#zipCode").value,
-        city: form.querySelector("#city").value,
-        state: form.querySelector("#state").value,
-        country: form.querySelector("#country").value,
-        dni: form.querySelector("#dni").value,
-        status: form.querySelector("#status").value
-      },
-      education: [
-        {
-          level: form.querySelector("#level").value,
-          institution: form.querySelector("#institution").value,
-          title: form.querySelector("#title").value,
-          startDate: form.querySelector("#startDate").value,
-          finishDate: form.querySelector("#finishDate").value,
-          inProgress: form.querySelector("#inProgress").value,
-          _id: candidate.education._id
-        }
-      ],
-      workExperience: [
-        {
-          company: form.querySelector("#company").value,
-          role: form.querySelector("#role").value,
-          startDate: form.querySelector("#startDate").value,
-          finishDate: form.querySelector("#finishDate").value,
-          inProgress: form.querySelector("#inProgress").value,
-          _id: candidate.workExperience._id
-        }
-      ],
-    }
-    modal.classList.toggle("show");
-    createEditModal.classList.toggle("show");
-    wipeTable();
-    editCandidate(candidate);
-  };
+function updateCallback(candidate) {
+  //load candidate info on form
+  const form = updateForm(candidate);
+  openFormModal();
+  //retrieve edited form data
+  //make PUT request
 }
 
 function editCandidate(candidate) {
@@ -145,12 +208,12 @@ function createList(candidates) {
     <td>${candidate.profiles.join(",")}</td>
     <td><img src="img/Icon-visible.png" alt="Show" class="show-applications" /></td>
     <td><img src="img/Icon-visible.png" alt="Show" class="show-profile" /></td>
-    <td><img src="img/Icon-edit.png" alt="Edit" class="edit" /></td>
+    <td><img src="img/Icon-edit.png" alt="Edit" class="update" /></td>
     <td><img src="img/Icon-remove.png" alt="Remove" class="remove" /></td>`;
     table.appendChild(row);
     row.querySelector(".show-profile").addEventListener("click", () => showProfile(candidate));
     row.querySelector(".show-applications").addEventListener("click", () => showApplications(candidate));
-    row.querySelector(".edit").addEventListener("click", () => openEditForm(candidate));
+    row.querySelector(".update").addEventListener("click", () => updateCallback(candidate));
     row.querySelector(".remove").addEventListener("click", () => showConfirmModal(candidate));
   })
 }
@@ -159,10 +222,10 @@ readCandidates();
 
 const modal = document.getElementById("background-modal");
 const confirmModal = document.getElementById("confirm-modal");
-const createEditModal = document.getElementById("create-modal");
-createEditModal.querySelector("#cancel-button").addEventListener("click", () => {
+const formModal = document.getElementById("create-modal");
+formModal.querySelector("#cancel-button").addEventListener("click", () => {
   modal.classList.toggle("show")
-  createEditModal.classList.toggle("show");
+  formModal.classList.toggle("show");
 });
 confirmModal.querySelector("#no").addEventListener("click", () => {
   modal.classList.toggle("show")
