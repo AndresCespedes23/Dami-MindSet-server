@@ -13,12 +13,16 @@ window.onload = function() {
   const confirmUpdateButton = document.getElementById("confirm-update-button");
   const confirmRemoveButton = document.getElementById("confirm-remove-button");
   const cancelButton = document.getElementById("cancel-button");
+  const result = document.getElementById("result");
+  const errorResultMessage = document.getElementById("error-result");
 
 //----- Event Listeners -----//
 
 createButton.addEventListener("click", openCreateModal);
 cancelButton.addEventListener("click", closeModal);
 confirmCreateButton.addEventListener("click", requestCreateApplication);
+result.addEventListener('blur', validateResult);
+result.addEventListener('focus', clearResultError);
 
 //----- Modals -----//
 
@@ -28,6 +32,7 @@ function closeModal() {
   confirmCreateButton.classList.add("hidden");
   confirmUpdateButton.classList.add("hidden");
   confirmRemoveButton.classList.add("hidden");
+  errorResultMessage.classList.add("hidden");
   description.innerHTML = "";
   clearSelects();
   requestApplications();
@@ -56,7 +61,7 @@ function openUpdateModal(application) {
   selectInterview(application.idInterview);
   saveDateTime(application.dateTime);
   createSelectStatus(application.status);
-  saveResult(application.result)
+  saveResult(application.result);
   confirmUpdateButton.onclick = function() {
     requestUpdateApplication(application);
   }
@@ -189,19 +194,19 @@ function createSelectInterview(collection, id) {
 function createSelectStatus(status) {
   const select = document.getElementById("status");
   select.innerHTML = `<option value="" selected disabled hidden>Select a Status</option>`
-  const finished = document.createElement("option");
-  finished.innerHTML = "FINISHED";
+  const pending = document.createElement("option");
+  pending.innerHTML = "PENDING";
   const scheduled = document.createElement("option");
   scheduled.innerHTML = "SCHEDULED";
   const hired = document.createElement("option");
   hired.innerHTML = "HIRED";
   const rejected = document.createElement("option");
   rejected.innerHTML = "REJECTED";
-  if (status === "FINISHED") finished.setAttribute("selected","selected");
+  if (status === "PENDING") pending.setAttribute("selected","selected");
   if (status === "SCHEDULED") scheduled.setAttribute("selected","selected");
   if (status === "HIRED") hired.setAttribute("selected","selected");
   if (status === "REJECTED") rejected.setAttribute("selected","selected");
-  select.appendChild(finished);
+  select.appendChild(pending);
   select.appendChild(scheduled);
   select.appendChild(hired);
   select.appendChild(rejected);
@@ -396,5 +401,22 @@ function requestApplications() {
       .catch((error) => {
         errorModal(error);
       });
+  }
+
+  //----- Validations -----//
+
+  function clearResultError(e) {
+    errorResultMessage.classList.add("hidden");
+  }
+  function validateResult(e) {
+    const error = result.value;
+    if (!error) {
+      errorResultMessage.classList.remove("hidden");
+      errorResultMessage.innerText = "Description is missing.";
+    }
+    if (error.length > 5000 || error.length < 5) {
+      errorResultMessage.classList.remove("hidden");
+      errorResultMessage.innerText = "Description must be greater than 5 and less than 5000 characters.";
+    }
   }
 }
