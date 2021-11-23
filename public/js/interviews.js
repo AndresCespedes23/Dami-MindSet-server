@@ -41,6 +41,7 @@ window.onload = function() {
     selectCandidate();
     selectClient();
     selectPosition();
+    createSelectStatus();
   }
 
   function openUpdateModal(interview) {
@@ -165,6 +166,7 @@ window.onload = function() {
 
   function createSelectCandidate(collection, id) {
     const select = document.getElementById("idCandidate");
+    select.innerHTML = `<option value="" selected disabled hidden>Select a Candidate</option>`
     collection.forEach((doc) => {
       const option = document.createElement("option");
       option.value = doc._id;
@@ -176,6 +178,7 @@ window.onload = function() {
 
   function createSelectClient(collection, id) {
     const select = document.getElementById("idClient");
+    select.innerHTML = `<option value="" selected disabled hidden>Select a Client</option>`
     collection.forEach((doc) => {
       const option = document.createElement("option");
       option.value = doc._id;
@@ -187,6 +190,7 @@ window.onload = function() {
 
   function createSelectPosition(collection, id) {
     const select = document.getElementById("idPosition");
+    select.innerHTML = `<option value="" selected disabled hidden>Select a Postion</option>`
     collection.forEach((doc) => {
       const option = document.createElement("option");
       option.value = doc._id;
@@ -204,6 +208,7 @@ window.onload = function() {
 
   function createSelectStatus(status) {
     const select = document.getElementById("status");
+    select.innerHTML = `<option value="" selected disabled hidden>Select a Status</option>`
     const finished = document.createElement("option");
     finished.innerHTML = "FINISHED";
     const inCourse = document.createElement("option");
