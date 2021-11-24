@@ -26,7 +26,7 @@ h1 {
   margin: 0px;
   padding: 5px 0px;
 }
-#resource-table-container {
+#resource-table {
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -61,7 +61,7 @@ td {
   text-transform: uppercase;
   color: #ffffff;
 }
-.hidden {
+.hidden-background-modal {
   display: none;
 }
 #background-modal {
@@ -74,7 +74,7 @@ td {
   background-color: #3a4c66;
   z-index: 1;
 }
-.modal-content {
+.hidden {
   display: none;
 }
 .modal {
@@ -143,10 +143,4 @@ footer {
 }
 ::-webkit-scrollbar {
   display: none;
-}
-.show {
-  display: block !important;
-}
-ul li {
-  list-style-type: none;
 }
