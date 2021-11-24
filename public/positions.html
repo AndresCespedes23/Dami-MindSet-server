@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/positions.css"/>
+    <script src="js/positions.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+    </style>
+    <title>MindSet</title>
+  </head>
+  <body>
+    <nav>
+      <img src="img/Logo-MindSet.png" alt="MindSet logo" />
+    </nav>
+    <section>
+      <div id="resource-table">
+        <h1>Positions</h1>
+        <table id="table-list">
+          <tr>
+            <th>id</th>
+            <th>idClient</th>
+            <th>idProfiles</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>PostalCode</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </table>
+        <button id="create">Create ></button>
+        <div id="background-modal" class="hidden">
+          <div id="modal" class="modal">
+            <form id="form"></form>
+            <div id="remove-div"></div>
+            <div id="showId"></div>
+            <div id="buttons">
+              <button class="modal-button cancel-button">Cancel</button>
+              <button class="modal-button create-button">Confirm</button>
+              <button class="modal-button update-button">Confirm</button>
+              <button class="modal-button remove-button">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>Footer</footer>
+  </body>
+</html>

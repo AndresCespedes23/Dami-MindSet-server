@@ -34,13 +34,9 @@ const create = (req, res) => {
 };
 
 const update = (req, res) => {
-  const idProfileArray = [];
-  req.body.idProfile.forEach((id) => {
-    idProfileArray.push(new ObjectId(id));
-  });
   const updatedPosition = {
     idClient: new ObjectId(req.body.idClient),
-    idProfile: idProfileArray,
+    idProfile: req.body.idProfile,
     name: req.body.name,
     description: req.body.description,
     status: req.body.status,
@@ -69,7 +65,7 @@ const remove = (req, res) => {
     new ObjectId(req.params.id),
     (err, removedPosition) => {
       if (err) return res.status(400).json(err);
-      return res.status(200).json(removedPosition._id);
+      return res.status(200).json(removedPosition);
     },
   );
 };
