@@ -1,4 +1,4 @@
-const url = "http://localhost:4000/api/clients/";
+const url = `${window.location.origin}/api/clients/`;
 const formModal = document.getElementById("form-modal");
 const createModal = document.getElementById("create-modal");
 const updateModal = document.getElementById("update-modal");
