@@ -28,7 +28,7 @@ const validate = (req, res, next) => {
     if (idCandidate.search(/[0-9]/) < 0) return res.status(400).json("idCandidate must have at least 1 number");
   }
   if (dateTime) {
-    const formatTime = /^([1-2][0-9][0-9][0-9])-([0]{0,1}[1-9]|1[012])-([1-9]|([012][0-9])|(3[01]))T[0-2][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9]Z/;
+    const formatTime = /^([1-2][0-9][0-9][0-9])-([0]{0,1}[1-9]|1[012])-([1-9]|([012][0-9])|(3[01]))T[0-2][0-9]:[0-9][0-9]/;
     if (!formatTime.test(dateTime)) {
       return res
         .status(400)

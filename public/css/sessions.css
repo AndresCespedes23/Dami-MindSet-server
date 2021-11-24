@@ -1,0 +1,48 @@
+ul {
+  width: 80%;
+  padding: 0;
+  margin: auto;
+}
+ul li {
+  padding: 10px 0 0;
+  text-align: left;
+  list-style-type: none;
+}
+.edit-btn,
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+#modal-form {
+  width: 70%;
+}
+#create-btn {
+  align-self: flex-end;
+  width: 100px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  border-style: none;
+  background-color: #091f40;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+#confirm-btn {
+  background-color: #091f40;
+  color: #ffffff;
+}
+#delete-btn {
+  font-weight: 800;
+  background-color: #7e0b0b;
+  border-color: #7e0b0b;
+  color: #ffffff;
+}
+.error {
+  margin-bottom: 5px;
+  padding-top: 5px;
+  text-align: right;
+  font-size: 12px;
+  color: #b80e0e;
+}

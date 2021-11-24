@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/profiles.css" />
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+    </style>
+    <title>MindSet</title>
+  </head>
+  <body>
+    <nav>
+      <img src="img/Logo-MindSet.png" alt="MindSet logo" />
+    </nav>
+    <section>
+        <div id="resource-table">
+            <h1>Profiles</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="create-button">Create ></button>
+            <div id="background-modal">
+                <div id="create-modal">
+                    <h2 id="change-text">Create Profile</h2>
+                    <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
+                    nulla alias nisi quidem doloribus.
+                    </p>
+                    <form>
+                        <fieldset>
+                            <label for="name">Name</label>
+                            <input
+                            type="text"
+                            id="nameProfile"
+                            name="name"
+                            value=""
+                            />
+                            <span id="error1" class="error-msg">Error</span>
+                        </fieldset>
+                        <fieldset>
+                            <label for="description">Description</label>
+                            <input
+                            type="text"
+                            id="descriptionProfile"
+                            name="description"
+                            value=""
+                            />
+                            <span id="error2" class="error-msg">Error</span>
+                        </fieldset>
+                        <div>
+                            <button id="closeModal" class="modal-button">Cancel</button>
+                            <button type="submit" id="confirm-button" class="modal-button hide">Confirm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="delete-modal">
+                <div id="delete-modal-body">
+                    <h2>DELETE</h2>
+                    <p>
+                        are you sure you want to delete this profile?
+                    </p>
+                    <div>
+                        <button id="close-delete" class="modal-button">Cancel</button>
+                        <button id="confirm-delete" class="modal-button">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>Footer</footer>
+    <script src="./js/profiles.js"></script>
+    <script src="./validations/profiles.js"></script>
+  </body>
+</html>
