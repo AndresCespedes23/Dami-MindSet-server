@@ -26,7 +26,7 @@ h1 {
   margin: 0px;
   padding: 5px 0px;
 }
-#resource-table {
+#resource-table-container {
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -74,8 +74,13 @@ td {
   background-color: #3a4c66;
   z-index: 1;
 }
+<<<<<<< HEAD:public/css/candidates.css
+.modal-content {
+  display: none;
+=======
 .modal {
   overflow: scroll;
+>>>>>>> develop:public/css/styles.css
   width: 40%;
   margin: 120px auto;
   padding: 30px;
@@ -141,7 +146,12 @@ footer {
 ::-webkit-scrollbar {
   display: none;
 }
+<<<<<<< HEAD:public/css/candidates.css
+.show {
+  display: block !important;
+=======
 
 ul li {
   list-style-type: none;
+>>>>>>> develop:public/css/styles.css
 }
