@@ -17,11 +17,14 @@ window.onload = function () {
       // window.location.reload();
     });
 
+    // LIST
+
   function positionTable(positions) {
     const table = document.getElementById("table-list");
+    let i = 0;
     positions.forEach(position => {
       let itemList = document.createElement("tr");
-      itemList.innerHTML = `<td class="position-id" >${position._id}</td>
+      itemList.innerHTML = `<td class="position-id" >${i+1}</td>
         <td id="idClient">${position.idClient}</td>
         <td id="idProfiles">${position.idProfiles}</td>
         <td id="name">${position.name}</td>
@@ -31,30 +34,30 @@ window.onload = function () {
         <td id="city">${position.city}</td>
         <td id="postalCode">${position.postalCode}</td>
         <td><button class="edit" class="button-list"><img src="img/Icon-edit.png" alt="Edit"></button></td>
-        <td><button id="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button></td>`
+        <td><button class="remove" class="button-list"><img src="img/Icon-remove.png" alt="Remove"/></button></td>`
       table.appendChild(itemList);
       itemList.querySelector(".position-id").addEventListener("click", function() {
         showId(position);
       });
-      const editButton = document.querySelectorAll(".edit");
-      for (i = 0; i < editButton.length; i++) {
-        editButton[i].addEventListener("click", function() {
-          showUpdateModal(position);
-        });
-      };
-      const removeButton = document.querySelectorAll("#remove");
-      for (i = 0; i < removeButton.length; i++) {
+      let editButton = document.querySelectorAll(".edit");
+      editButton[i].addEventListener("click", function() {
+        showUpdateModal(position);
+      });
+      let removeButton = document.querySelectorAll(".remove");
         removeButton[i].addEventListener("click", function() {
           showRemoveModal(position);
+          console.log(i);
         });
-      }
+      i++;
     });
   };
+
+  // GET ID
 
   function showId(positions) {
     emptyModal();
     let modal = document.getElementById("background-modal");
-    modal.classList.remove("hidden-background-modal");
+    modal.classList.remove("hidden");
     const showIdDiv = document.getElementById("showId");
     const updateConfirm = document.querySelectorAll(".update-button");
     updateConfirm[0].style.display = "none";
@@ -79,10 +82,12 @@ window.onload = function () {
     }
   }
 
+  // UPDATE
+
   function showUpdateModal(position) {
     emptyModal();
     let modal = document.getElementById("background-modal");
-    modal.classList.remove("hidden-background-modal");
+    modal.classList.remove("hidden");
     const form = document.getElementById("form");
     const updateConfirm = document.querySelectorAll(".update-button");
     updateConfirm[0].style.display = "block";
@@ -100,43 +105,45 @@ window.onload = function () {
     let updateForm = document.createElement("fieldset");
     updateForm.innerHTML = `<h2>Update Position</h2>
     <label for="idClient">idClient</label>
-    <input type="text" id="idClient" name="idClient" value=${position.idClient} />
-    <span id="Error1" class="Error-msg"></span>
+    <input type="text" id="idClientInput" name="idClient" value=${position.idClient} />
+    <span id="error1" class="Error-msg"></span>
     <label for="idProfiles">idProfiles</label>
-    <input type="text" id="idProfiles" name="idProfiles" value=${position.idProfiles} />
-    <span id="Error2" class="Error-msg"></span>
+    <input type="text" id="idProfilesInput" name="idProfiles" value=${position.idProfiles} />
+    <span id="error2" class="Error-msg"></span>
     <label for="name">Name</label>
-    <input type="text" id="name" name="name" value=${position.name} />
-    <span id="Error3" class="Error-msg"></span>
+    <input type="text" id="nameInput" name="name" value=${position.name} />
+    <span id="error3" class="Error-msg"></span>
     <label for="description">Description</label>
-    <input type="text" id="description" name="description" value=${position.description} />
-    <span id="Error4" class="Error-msg"></span>
+    <input type="text" id="descriptionInput" name="description" value=${position.description} />
+    <span id="error4" class="Error-msg"></span>
     <label for="status">Status</label>
-    <input type="text" id="status" name="status" value=${position.status} />
-    <span id="Error5" class="Error-msg"></span>
+    <input type="text" id="statusInput" name="status" value=${position.status} />
+    <span id="error5" class="Error-msg"></span>
     <label for="address">Address</label>
-    <input type="text" id="address" name="address" value=${position.address} />
-    <span id="Error6" class="Error-msg"></span>
+    <input type="text" id="addressInput" name="address" value=${position.address} />
+    <span id="error6" class="Error-msg"></span>
     <label for="city">City</label>
-    <input type="text" id="city" name="city" value=${position.city} />
-    <span id="Error7" class="Error-msg"></span>
+    <input type="text" id="cityInput" name="city" value=${position.city} />
+    <span id="error7" class="Error-msg"></span>
     <label for="postalCode">postalCode</label>
-    <input type="text" id="postalCode" name="postalCode" value=${position.postalCode} />
-    <span id="Error8" class="Error-msg"></span>`
+    <input type="text" id="postalCodeInput" name="postalCode" value=${position.postalCode} />
+    <span id="error8" class="Error-msg"></span>`
     form.appendChild(updateForm);
-    validations();
+    if (updateForm) {
+      validations();
+    }
   };
 
   function validations() {
-    let error1 = document.getElementById("Error1");
-    let error2 = document.getElementById("Error2");
-    let error3 = document.getElementById("Error3");
-    let error4 = document.getElementById("Error4");
-    let error5 = document.getElementById("Error5");
-    let error6 = document.getElementById("Error6");
-    let error7 = document.getElementById("Error7");
-    let error8 = document.getElementById("Error8");
-    let idClient = document.getElementById("idClient");
+    let error1 = document.getElementById("error1");
+    let error2 = document.getElementById("error2");
+    let error3 = document.getElementById("error3");
+    let error4 = document.getElementById("error4");
+    let error5 = document.getElementById("error5");
+    let error6 = document.getElementById("error6");
+    let error7 = document.getElementById("error7");
+    let error8 = document.getElementById("error8");
+    let idClient  = document.getElementById("idClientInput");
     if (idClient) {
       idClient.addEventListener("blur", function() {
         if (idClient.value.length <= 0) {
@@ -144,7 +151,7 @@ window.onload = function () {
         } else error1.innerHTML = "";
       })
     }
-    let idProfile = document.getElementById("idProfile");
+    let idProfile = document.getElementById("idProfileInput");
     if (idProfile) {
       idProfile.addEventListener("blur", function() {
         if (idProfile.value.length <= 0) {
@@ -152,7 +159,7 @@ window.onload = function () {
         } else error2.innerHTML = "";
       })
     }
-    let name = document.getElementById("name");
+    let name = document.getElementById("nameInput");
     if (name) {
       name.addEventListener("blur", function() {
         if (name.value.length <= 0 || name.value.length > 50 || name.value.search(/[0-9]/) !== -1) {
@@ -160,7 +167,7 @@ window.onload = function () {
         } else error3.innerHTML = "";
       })
     }
-    let description = document.getElementById("description");
+    let description = document.getElementById("descriptionInput");
     if (description) {
       description.addEventListener("blur", function() {
         if (description.value.length <= 0 || description.value.length > 5000) {
@@ -168,7 +175,7 @@ window.onload = function () {
         } else error4.innerHTML = "";
       })
     }
-    let status = document.getElementById("status");
+    let status = document.getElementById("statusInput");
     if (status) {
       status.addEventListener("blur", function() {
         if (status.value.length <= 0 || status.value !== "DONE" && status.value !== "PENDING") {
@@ -176,7 +183,7 @@ window.onload = function () {
         } else error5.innerHTML = "";
       })
     }
-    let address = document.getElementById("address");
+    let address = document.getElementById("addressInput");
     if (address) {
       address.addEventListener("blur", function() {
         if (address.value.length <= 0 || address.value.length < 5 || address.value.length > 50
@@ -188,7 +195,7 @@ window.onload = function () {
         } else error6.innerHTML = "";
       })
     }
-    let city = document.getElementById("city");
+    let city = document.getElementById("cityInput");
     if (city) {
       city.addEventListener("blur", function() {
         if (city.value.length <= 0 || city.value.length < 3 || city.value.length > 50) {
@@ -196,7 +203,7 @@ window.onload = function () {
         } else error7.innerHTML = "";
       })
     }
-    let postalCode = document.getElementById("postalCode");
+    let postalCode = document.getElementById("postalCodeInput");
     if (postalCode) {
       postalCode.addEventListener("blur", function() {
         if (postalCode.value.length <= 0 || postalCode.value.length < 4 || postalCode.value.length > 8) {
@@ -209,7 +216,7 @@ window.onload = function () {
   function confirmUpdate(position) {
     flag = false;
     if (!flag) {
-      let updatePosition = {        
+      let updatePosition = {
         idClient: document.querySelector('input[id="idClient"]').value,
         idProfiles: document.querySelector('input[id="idProfiles"]').value,
         name: document.querySelector('input[id="name"]').value,
@@ -233,17 +240,19 @@ window.onload = function () {
         })
         .then(() => {
           window.location.reload();
-        })    
+        })
         .catch((error) => {
           return error;
         });
   }
   }
 
+  // REMOVE
+
   function showRemoveModal(position) {
     emptyModal();
     let modal = document.getElementById("background-modal");
-    modal.classList.remove("hidden-background-modal");
+    modal.classList.remove("hidden");
     const removeModal = document.getElementById("remove-div");
     removeModal.innerHTML = `<h2>Remove Position</h2>
     <p>Are you sure ?</p>`;
@@ -284,10 +293,12 @@ window.onload = function () {
     }
   }
 
+  // CREATE
+
   function showCreateModal() {
     emptyModal();
     let modal = document.getElementById("background-modal");
-    modal.classList.remove("hidden-background-modal");
+    modal.classList.remove("hidden");
     const form = document.getElementById("form");
     const updateConfirm = document.querySelectorAll(".update-button");
     updateConfirm[0].style.display = "none";
@@ -300,69 +311,69 @@ window.onload = function () {
     let createForm = document.createElement("fieldset");
     createForm.innerHTML = `<h2>Create Position</h2>
     <label for="idClient">idClient</label>
-    <input type="text" id="idClient" name="idClient"/>
-    <span id="Error1" class="Error-msg"></span>
+    <input type="text" id="idClientInput" name="idClient"/>
+    <span id="error1" class="Error-msg"></span>
     <label for="idProfile">idProfile</label>
-    <input type="text" id="idProfile" name="idProfile"/>
-    <span id="Error2" class="Error-msg"></span>
+    <input type="text" id="idProfileInput" name="idProfile"/>
+    <span id="error2" class="Error-msg"></span>
     <label for="name">Name</label>
-    <input type="text" id="name" name="name"/>
-    <span id="Error3" class="Error-msg"></span>
+    <input type="text" id="nameInput" name="name"/>
+    <span id="error3" class="Error-msg"></span>
     <label for="description">Description</label>
-    <input type="text" id="description" name="description"/>
-    <span id="Error4" class="Error-msg"></span>
+    <input type="text" id="descriptionInput" name="description"/>
+    <span id="error4" class="Error-msg"></span>
     <label for="status">Status</label>
-    <input type="text" id="status" name="status"/>
-    <span id="Error5" class="Error-msg"></span>
+    <input type="text" id="statusInput" name="status"/>
+    <span id="error5" class="Error-msg"></span>
     <label for="address">Address</label>
-    <input type="text" id="address" name="address"/>
-    <span id="Error6" class="Error-msg"></span>
+    <input type="text" id="addressInput" name="address"/>
+    <span id="error6" class="Error-msg"></span>
     <label for="city">City</label>
-    <input type="text" id="city" name="city"/>
-    <span id="Error7" class="Error-msg"></span>
+    <input type="text" id="cityInput" name="city"/>
+    <span id="error7" class="Error-msg"></span>
     <label for="postalCode">postalCode</label>
-    <input type="text" id="postalCode" name="postalCode" />
-    <span id="Error8" class="Error-msg"></span>`
+    <input type="text" id="postalCodeInput" name="postalCode" />
+    <span id="error8" class="Error-msg"></span>`
     form.appendChild(createForm);
-    let error1 = document.getElementById("Error1");
-    let error2 = document.getElementById("Error2");
-    let error3 = document.getElementById("Error3");
-    let error4 = document.getElementById("Error4");
-    let error5 = document.getElementById("Error5");
-    let error6 = document.getElementById("Error6");
-    let error7 = document.getElementById("Error7");
-    let error8 = document.getElementById("Error8");
-    let idClient  = document.getElementById("idClient");
+    let error1 = document.getElementById("error1");
+    let error2 = document.getElementById("error2");
+    let error3 = document.getElementById("error3");
+    let error4 = document.getElementById("error4");
+    let error5 = document.getElementById("error5");
+    let error6 = document.getElementById("error6");
+    let error7 = document.getElementById("error7");
+    let error8 = document.getElementById("error8");
+    let idClient  = document.getElementById("idClientInput");
     idClient.addEventListener("blur", function() {
       if (idClient.value.length <= 0) {
         error1.innerHTML = "idClient have an error";
       } else error1.innerHTML = "";
     })
-    let idProfile = document.getElementById("idProfile");
+    let idProfile = document.getElementById("idProfileInput");
     idProfile.addEventListener("blur", function() {
       if (idProfile.value.length <= 0) {
         error2.innerHTML = "idProfile have an error";
       } else error2.innerHTML = "";
     })
-    let name = document.getElementById("name");
+    let name = document.getElementById("nameInput");
     name.addEventListener("blur", function() {
       if (name.value.length <= 0 || name.value.length > 50 || name.value.search(/[0-9]/) !== -1) {
         error3.innerHTML = "Name must have equal or less than 50 characters and must not have numbers";
       } else error3.innerHTML = "";
     })
-    let description = document.getElementById("description");
+    let description = document.getElementById("descriptionInput");
     description.addEventListener("blur", function() {
       if (description.value.length <= 0 || description.value.length > 5000) {
         error4.innerHTML = "Description must have equal or less than 5000 characters";
       } else error4.innerHTML = "";
     })
-    let status = document.getElementById("status");
+    let status = document.getElementById("statusInput");
     status.addEventListener("blur", function() {
       if (status.value.length <= 0 || status.value !== "DONE" && status.value !== "PENDING") {
         error5.innerHTML = "Status must be DONE or PENDING";
       } else error5.innerHTML = "";
     })
-    let address = document.getElementById("address");
+    let address = document.getElementById("addressInput");
     address.addEventListener("blur", function() {
       if (address.value.length <= 0 || address.value.length < 5 || address.value.length > 50
         || address.value.search(/[a-z]/i) < 0
@@ -372,13 +383,13 @@ window.onload = function () {
           + " numbers and at least 1 space";
       } else error6.innerHTML = "";
     })
-    let city = document.getElementById("city");
+    let city = document.getElementById("cityInput");
     city.addEventListener("blur", function() {
       if (city.value.length <= 0 || city.value.length < 3 || city.value.length > 50) {
         error7.innerHTML = "City must have between 3 and 50 characters";
       } else error7.innerHTML = "";
     })
-    let postalCode = document.getElementById("postalCode");
+    let postalCode = document.getElementById("postalCodeInput");
     postalCode.addEventListener("blur", function() {
       if (postalCode.value.length <= 0 || postalCode.value.length < 4 || postalCode.value.length > 8) {
         error8.innetHTML = "Postal Code must have between 4 and 8 characters";
@@ -419,6 +430,8 @@ window.onload = function () {
         });
   }
 
+  // EMPTY MODAL & CLOSE MODAL-
+
   function emptyModal() {
     let form = document.getElementById("form");
     form.innerHTML = "";
@@ -430,6 +443,6 @@ window.onload = function () {
 
   function closeModal() {
     let hideModal = document.getElementById("background-modal");
-    hideModal.classList.add("hidden-background-modal");
+    hideModal.classList.add("hidden");
   };
 }
