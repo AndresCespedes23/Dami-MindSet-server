@@ -11,10 +11,10 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/sessions",
+          "raw": "http://localhost:4000/api/sessions",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["sessions"]
         }
       },
@@ -26,10 +26,10 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/sessions/",
+          "raw": "http://localhost:4000/api/sessions/",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["sessions", ""]
         }
       },
@@ -50,10 +50,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/sessions",
+          "raw": "http://localhost:4000/api/sessions",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["sessions"]
         }
       },
@@ -74,10 +74,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/sessions/6191d8c2351324ec835985f3",
+          "raw": "http://localhost:4000/api/sessions/6191d8c2351324ec835985f3",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["sessions", "6191d8c2351324ec835985f3"]
         }
       },
@@ -89,10 +89,10 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/sessions/",
+          "raw": "http://localhost:4000/api/sessions/",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["sessions", ""]
         }
       },

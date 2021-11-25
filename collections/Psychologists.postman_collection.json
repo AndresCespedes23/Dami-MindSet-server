@@ -11,10 +11,10 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/psychologists/",
+          "raw": "http://localhost:4000/api/psychologists/",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["psychologists", ""],
           "query": [
             {
@@ -33,10 +33,10 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/psychologists/61917ab435694aceb220b618",
+          "raw": "http://localhost:4000/api/psychologists/61917ab435694aceb220b618",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["psychologists", "61917ab435694aceb220b618"],
           "query": [
             {
@@ -55,10 +55,10 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/psychologists/byName/eugenio ponzone",
+          "raw": "http://localhost:4000/api/psychologists/byName/eugenio ponzone",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["psychologists", "byName", "eugenio ponzone"],
           "query": [
             {
@@ -86,10 +86,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/psychologists/61917ab435694aceb220b618",
+          "raw": "http://localhost:4000/api/psychologists/61917ab435694aceb220b618",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["psychologists", "61917ab435694aceb220b618"],
           "query": [
             {
@@ -117,10 +117,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/psychologists/",
+          "raw": "http://localhost:4000/api/psychologists/",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["psychologists", ""],
           "query": [
             {
@@ -148,10 +148,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/psychologists/619024884a07113cf9a257cc",
+          "raw": "http://localhost:4000/api/psychologists/619024884a07113cf9a257cc",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["psychologists", "619024884a07113cf9a257cc"],
           "query": [
             {
