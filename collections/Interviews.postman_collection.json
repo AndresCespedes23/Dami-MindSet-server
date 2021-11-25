@@ -23,10 +23,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/interviews",
+          "raw": "http://localhost:4000/api/interviews",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["interviews"]
         }
       },
@@ -56,9 +56,9 @@
           }
         },
         "url": {
-          "raw": "localhost:3000/interviews/",
+          "raw": "localhost:4000/api/interviews/",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["interviews", ""]
         }
       },
@@ -79,9 +79,9 @@
           }
         },
         "url": {
-          "raw": "localhost:3000/interviews/618ed783a490024ac64fc907",
+          "raw": "localhost:4000/api/interviews/618ed783a490024ac64fc907",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["interviews", "618ed783a490024ac64fc907"]
         }
       },
@@ -102,9 +102,9 @@
           }
         },
         "url": {
-          "raw": "localhost:3000/interviews/618ed783a490024ac64fc907",
+          "raw": "localhost:4000/api/interviews/618ed783a490024ac64fc907",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["interviews", "618ed783a490024ac64fc907"]
         }
       },

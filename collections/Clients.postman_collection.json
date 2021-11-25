@@ -11,9 +11,9 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "localhost:3000/clients",
+          "raw": "localhost:4000/api/clients",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["clients"]
         }
       },
@@ -25,9 +25,9 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "localhost:3000/clients/61929b6bb95f17d609395ad1",
+          "raw": "localhost:4000/api/clients/61929b6bb95f17d609395ad1",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["clients", "61929b6bb95f17d609395ad1"]
         }
       },
@@ -48,9 +48,9 @@
           }
         },
         "url": {
-          "raw": "localhost:3000/clients",
+          "raw": "localhost:4000/api/clients",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["clients"]
         }
       },
@@ -71,9 +71,9 @@
           }
         },
         "url": {
-          "raw": "localhost:3000/clients/61929b6bb95f17d609395ad1",
+          "raw": "localhost:4000/api/clients/61929b6bb95f17d609395ad1",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["clients", "61929b6bb95f17d609395ad1"]
         }
       },
@@ -85,9 +85,9 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "localhost:3000/clients/61929d0e0291366d7f8d192a",
+          "raw": "localhost:4000/api/clients/61929d0e0291366d7f8d192a",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["clients", "61929d0e0291366d7f8d192a"]
         }
       },

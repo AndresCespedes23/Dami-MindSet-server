@@ -11,10 +11,10 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/applications",
+          "raw": "http://localhost:4000/api/applications",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["applications"]
         }
       },
@@ -26,10 +26,10 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/applications/618ed76da490024ac64fc905",
+          "raw": "http://localhost:4000/api/applications/618ed76da490024ac64fc905",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["applications", "618ed76da490024ac64fc905"]
         }
       },
@@ -50,10 +50,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3000/applications",
+          "raw": "http://localhost:4000/api/applications",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["applications"]
         }
       },
@@ -74,10 +74,10 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/applications/618f0194ac9e9d60f7e6d518",
+          "raw": "http://localhost:4000/api/applications/618f0194ac9e9d60f7e6d518",
           "protocol": "http",
           "host": ["localhost"],
-          "port": "3000",
+          "port": "4000",
           "path": ["applications", "618f0194ac9e9d60f7e6d518"]
         }
       },
