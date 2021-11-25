@@ -12,7 +12,7 @@
 
 > MindSet is a system that provides HR services to several companies.
 
-## Prerequisites
+## Pre-requisites
 
 - node 16.8.0
 
@@ -121,7 +121,7 @@ git commit -m "MS-##: "
 
 - Github: [@damianalvarez](https://github.com/damianalvarez)
 
-## 🤝 Contributers
+## 🤝 Contributors
 
 |        Name         |              Mail               |                            Github                            |
 | :-----------------: | :-----------------------------: | :----------------------------------------------------------: |
