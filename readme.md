@@ -19,11 +19,13 @@
 ## Install
 
 Clone this repository:
+
 ```sh
 git clone https://github.com/BaSD-2021/Dami-MindSet-server.git
 ```
 
 Install the dependencies
+
 ```sh
 npm install
 ```
@@ -31,11 +33,13 @@ npm install
 ## Usage
 
 Run the app
+
 ```sh
 npm run start
 ```
 
 Run the app as a developer
+
 ```sh
 npm run dev
 ```
@@ -64,6 +68,7 @@ npm run dev
 ## Tecnologies
 
 Project is created with:
+
 - HTML & CSS
 - JavaScript ECMAScript 6
 - Node.js
@@ -72,14 +77,19 @@ Project is created with:
 ## How to contribute?
 
 ### 1. Be in the develop branch
+
 ```sh
 git checkout develop
 ```
-### 2. Create a new branch with the following standard: 
+
+### 2. Create a new branch with the following standard:
+
 ```sh
 git checkout -b type-branch/MS-##/task
 ```
-  Types of branches:
+
+Types of branches:
+
 - feature: The new feature you're adding to a particular application
 - fix: A bug fix
 - style: Feature and updates related to styling
@@ -87,37 +97,44 @@ git checkout -b type-branch/MS-##/task
 - test: Everything related to testing
 - docs: Everything related to documentation
 - chore: Regular code maintenance.[ You can also use emojis to represent commit types]
+
 ### 3. Code and commit your work with the following standard:
-- Add your work: 
- ```sh
+
+- Add your work:
+
+```sh
 git add . //to add all
 git add index.js //to add a single file
 ```
+
 - Commit your work:
- ```sh
+
+```sh
 git commit -m "MS-##: "
 ```
-- Write your commit message in the imperative & with the task number --> MS-##: 
+
+- Write your commit message in the imperative & with the task number --> MS-##:
 
 ## Author
 
 👤 **basd-2021-damian**
 
-* Github: [@damianalvarez](https://github.com/damianalvarez)
+- Github: [@damianalvarez](https://github.com/damianalvarez)
 
 ## 🤝 Contributers
 
-|         Name         |               Mail                |                            Github                            |
-| :------------------: | :-------------------------------: | :----------------------------------------------------------: |
-|   Baltazar Cortina   | baltazar.cortina@radiumrocket.com |    [@BaltazarCortina](https://github.com/BaltazarCortina)    |
-| David Jamir Mansilla |   davidjamirmansilla@gmail.com    |      [@JamirMansilla](https://github.com/JamirMansilla)      |
-|  Agustin Macazzaga   |        ag.macazz@gmail.com        |         [@amacazzaga](https://github.com/amacazzaga)         |
-| Valentina Collareta  |     valencollareta2@gmail.com     | [@ValentinaCollareta](https://github.com/ValentinaCollareta) |
-|   Eugenio Ponzone    |     eugenioponzone@gmail.com      |     [@EugenioPonzone](https://github.com/EugenioPonzone)     |
-|    Nicolás Blasco    |      nicoblasco96@gmail.com       |      [@nicolasblasco](https://github.com/nicolasblasco)      |
-|     Nicolás Muñoz    |        nimunoz28@gmail.com        |       [@NicoMunoz909](https://github.com/NicoMunoz909)       |
-|     Luis Nannini     |      luisnannini97@gmail.com      |        [@luisnannini](https://github.com/luisnannini)        |
-|    Damián Alvarez    |  damian.alvarez@radiumrocket.com  |      [@damianalvarez](https://github.com/damianalvarez)      |
+|        Name         |              Mail               |                            Github                            |
+| :-----------------: | :-----------------------------: | :----------------------------------------------------------: |
+| Alfonso Scornavacca |      alfondrums@gmail.com       | [@AlfonsoScornavacca](https://github.com/AlfonsoScornavacca) |
+|   Andrés Céspedes   | andres.pablo.cespedes@gmail.com |   [@AndresCespedes23](https://github.com/AndresCespedes23)   |
+|   Julián Vicente    |   julian.vicente97s@gmail.com   |          [@julianv97](https://github.com/julianv97)          |
+|    Sofía Pagura     |      sofiapagura@gmail.com      |             [@sofpag](https://github.com/sofpag)             |
+|  Valentín Feraudo   |    valentinferaudo@gmail.com    |        [@valeferaudo](https://github.com/valeferaudo)        |
+|  Andres Pienizzio   |    andrespienizzio@gmail.com    |    [@andrespienizzio](https://github.com/andrespienizzio)    |
+|     Martin Barea    |     martin.barea94@gmail.com    |        [@BareaMartin](https://github.com/BareaMartin)        |
+|   Vicenzo Mantilla  |   vicenzomantilla94@gmail.com   |    [@VicenzoMantilla](https://github.com/VicenzoMantilla)    |
+|    Paloma Quiroz    |     palomaxquiroz@gmail.com     |       [@palomaquiroz](https://github.com/palomaquiroz)       |
+| Damián Alvarez | damian.alvarez@radiumrocket.com | [@damianalvarez](https://github.com/damianalvarez) |
 
 ## Show your support
 
