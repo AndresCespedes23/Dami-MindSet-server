@@ -1,12 +1,13 @@
 {
   "info": {
-    "_postman_id": "e1be81e7-e077-4a69-8064-e18602047e06",
+    "_postman_id": "c47428ea-8c00-49e9-9796-e09dc3067b8f",
     "name": "Psychologists",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
       "name": "getAll",
+      "id": "84b51221-ea06-4ef3-aea1-c7d862ca3296",
       "request": {
         "method": "GET",
         "header": [],
@@ -15,20 +16,15 @@
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": ["psychologists", ""],
-          "query": [
-            {
-              "key": "postalCode",
-              "value": "2000",
-              "disabled": true
-            }
-          ]
+          "path": ["api", "psychologists", ""],
+          "query": [{ "key": "postalCode", "value": "2000", "disabled": true }]
         }
       },
       "response": []
     },
     {
       "name": "getById",
+      "id": "ccea75cd-a8c6-4a26-bdf6-369372696928",
       "request": {
         "method": "GET",
         "header": [],
@@ -37,20 +33,15 @@
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": ["psychologists", "61917ab435694aceb220b618"],
-          "query": [
-            {
-              "key": "postalCode",
-              "value": "2000",
-              "disabled": true
-            }
-          ]
+          "path": ["api", "psychologists", "61917ab435694aceb220b618"],
+          "query": [{ "key": "postalCode", "value": "2000", "disabled": true }]
         }
       },
       "response": []
     },
     {
       "name": "getByName",
+      "id": "74818bf3-5812-4bd2-92aa-69a148707d18",
       "request": {
         "method": "GET",
         "header": [],
@@ -59,107 +50,76 @@
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": ["psychologists", "byName", "eugenio ponzone"],
-          "query": [
-            {
-              "key": "postalCode",
-              "value": "2000",
-              "disabled": true
-            }
-          ]
+          "path": ["api", "psychologists", "byName", "eugenio ponzone"],
+          "query": [{ "key": "postalCode", "value": "2000", "disabled": true }]
         }
       },
       "response": []
     },
     {
       "name": "update",
+      "id": "c01569af-22c8-4406-b016-612d71499c62",
       "request": {
-        "method": "PATCH",
-        "header": [],
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
         "body": {
           "mode": "raw",
           "raw": "{\r\n\"email\": \"eugenioponzone@gsa.com\",\r\n\"username\": \"eugePonze\",\r\n\"password\": \"1234aers\",\r\n\"phoneNumber\": \"3654123641\",\r\n\"enrollmentNumber\": \"9873\",\r\n\"status\": true,\r\n\"timeRange\": [\r\n    16,\r\n    24\r\n],\r\n\"dayRange\": [\r\n    1,\r\n    2,\r\n    5,\r\n    7\r\n]\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
         "url": {
           "raw": "http://localhost:4000/api/psychologists/61917ab435694aceb220b618",
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": ["psychologists", "61917ab435694aceb220b618"],
-          "query": [
-            {
-              "key": "postalCode",
-              "value": "2000",
-              "disabled": true
-            }
-          ]
+          "path": ["api", "psychologists", "61917ab435694aceb220b618"],
+          "query": [{ "key": "postalCode", "value": "2000", "disabled": true }]
         }
       },
       "response": []
     },
     {
       "name": "create",
+      "id": "b7206560-f1a1-4eab-aba2-5f6dbacb1f93",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n\"name\": \"raul mendez\",\r\n\"email\":\"raul@gmail.com\",\r\n\"username\":\"raul\",\r\n\"password\":\"1324asda\",\r\n\"phoneNumber\":\"123456789\",\r\n\"enrollmentNumber\":\"1111\",\r\n\"status\": true\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
         "url": {
           "raw": "http://localhost:4000/api/psychologists/",
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": ["psychologists", ""],
-          "query": [
-            {
-              "key": "postalCode",
-              "value": "2000",
-              "disabled": true
-            }
-          ]
+          "path": ["api", "psychologists", ""],
+          "query": [{ "key": "postalCode", "value": "2000", "disabled": true }]
         }
       },
       "response": []
     },
     {
       "name": "delete",
+      "id": "b6d7eb9c-61ad-4cab-a1d9-1cb91ebe1d48",
       "request": {
         "method": "DELETE",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n\"name\":\"eugenio ponzone\",\r\n\"email\":\"euge@gsa.com\",\r\n\"username\":\"eugePonz\",\r\n\"password\":\"1234aers\",\r\n\"phoneNumber\":\"365412364\",\r\n\"enrollmentNumber\":\"9874\",\r\n\"status\":\"true\",\r\n\"timeRange\": [15,24],\r\n\"dayRange\": [1,2, 4, 7]\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
         "url": {
           "raw": "http://localhost:4000/api/psychologists/619024884a07113cf9a257cc",
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": ["psychologists", "619024884a07113cf9a257cc"],
-          "query": [
-            {
-              "key": "postalCode",
-              "value": "2000",
-              "disabled": true
-            }
-          ]
+          "path": ["api", "psychologists", "619024884a07113cf9a257cc"],
+          "query": [{ "key": "postalCode", "value": "2000", "disabled": true }]
         }
       },
       "response": []

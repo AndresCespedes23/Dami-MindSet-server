@@ -1,85 +1,58 @@
 {
   "info": {
-    "_postman_id": "92865314-fdf8-4b9c-9cc3-abd1a5cefd20",
+    "_postman_id": "5473b5d0-994d-47a5-88c5-9522187bbb39",
     "name": "Applications",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
       "name": "Retrieve all the applications",
+      "id": "0350b8a7-0155-4fa9-99ab-8b45a0cfc40c",
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "http://localhost:4000/api/applications",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["applications"]
-        }
+        "url": "http://localhost:4000/api/applications"
       },
       "response": []
     },
     {
       "name": "Retrieve application by ID",
+      "id": "c915cb6e-1ed6-4122-8bc7-ac9ce3aab26a",
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "http://localhost:4000/api/applications/618ed76da490024ac64fc905",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["applications", "618ed76da490024ac64fc905"]
-        }
+        "url": "http://localhost:4000/api/applications/618ed76da490024ac64fc905"
       },
       "response": []
     },
     {
       "name": "Create a new application",
+      "id": "51a11550-d6a7-49ad-a460-8a52da2f7ce6",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\n    \"idPosition\": \"618ed774a490024ac64fc906\",\n    \"idCandidate\": \"618ed783a490024ac64fc907\",\n    \"idInterview\": \"618ed78ea490024ac64fc908\",\n    \"result\": \"Testing\",\n    \"status\": \"PENDING\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "http://localhost:4000/api/applications",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["applications"]
-        }
+        "url": "http://localhost:4000/api/applications"
       },
       "response": []
     },
     {
       "name": "Update application",
-      "request": {
-        "method": "PUT",
-        "header": [],
-        "url": null
-      },
+      "id": "35d24535-9ca8-4698-ab6c-38b28422f034",
+      "request": { "method": "PUT", "header": [], "url": "" },
       "response": []
     },
     {
       "name": "Remove application by ID",
+      "id": "6b4ae588-aadc-4d12-b00d-7896c285e4bc",
       "request": {
         "method": "DELETE",
         "header": [],
-        "url": {
-          "raw": "http://localhost:4000/api/applications/618f0194ac9e9d60f7e6d518",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["applications", "618f0194ac9e9d60f7e6d518"]
-        }
+        "url": "http://localhost:4000/api/applications/618f0194ac9e9d60f7e6d518"
       },
       "response": []
     }

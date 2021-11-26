@@ -24,7 +24,7 @@
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": ["profiles", ""],
+          "path": ["/api/profiles", ""],
           "query": [
             {
               "key": "id",
@@ -65,7 +65,7 @@
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": ["profiles", "61901dc003aed16cb0387626"],
+          "path": ["/api/profiles", "61901dc003aed16cb0387626"],
           "query": [
             {
               "key": "id",
@@ -106,7 +106,7 @@
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": ["profiles", "61901dc003aed16cb0387626"],
+          "path": ["/api/profiles", "61901dc003aed16cb0387626"],
           "query": [
             {
               "key": "id",
@@ -150,7 +150,7 @@
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": ["profiles"],
+          "path": ["/api/profiles"],
           "query": [
             {
               "key": "id",
@@ -194,7 +194,7 @@
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": ["profiles", "61901d4303aed16cb0387622"],
+          "path": ["/api/profiles", "61901d4303aed16cb0387622"],
           "query": [
             {
               "key": "id",

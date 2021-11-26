@@ -1,261 +1,157 @@
 {
   "info": {
-    "_postman_id": "6515d29a-5cdd-4315-84c0-141256b68e34",
+    "_postman_id": "3995c4f1-21e4-465f-b1ae-36b51b220291",
     "name": "Candidates",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
       "name": "Retieve all the candidates",
+      "id": "aecf61f5-f96a-4192-ad5b-793ed112f6f5",
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "http://localhost:4000/api/candidates",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["candidates"]
-        }
+        "url": "http://localhost:4000/api/candidates"
       },
       "response": []
     },
     {
       "name": "Retrieve candidate by ID",
+      "id": "71018bbb-69ba-4716-8a1c-ca00fe27021d",
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "http://localhost:4000/api/candidates/61958b96891fc2c2e810c053",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["candidates", "61958b96891fc2c2e810c053"]
-        }
+        "url": "http://localhost:4000/api/candidates/61958b96891fc2c2e810c053"
       },
       "response": []
     },
     {
       "name": "Retrieve candidate by name",
+      "id": "84487d94-5b73-4552-8dc9-2f2678e176c6",
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "http://localhost:4000/api/candidates/byName/Candidate aaaaaa",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["candidates", "byName", "Candidate aaaaaa"]
-        }
+        "url": "http://localhost:4000/api/candidates/byName/Candidate aaaaaa"
       },
       "response": []
     },
     {
       "name": "Create a new candidate",
+      "id": "b83912d7-737e-441b-aa74-56a077b10dff",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"name\": \"Candidate ffffff\",\r\n    \"email\": \"mail@gmail.com\",\r\n    \"username\": \"mtreble1\",\r\n    \"password\": \"tR0R234kUD\",\r\n    \"gender\": \"male\",\r\n    \"address\": \"2386 Fuller Trail\",\r\n    \"phoneNumber\": 545454456,\r\n    \"dateOfBirth\": \"1956/07/18\",\r\n    \"zipCode\": \"9928\",\r\n    \"city\": \"Bloemfontein\",\r\n    \"state\": \"Troms\",\r\n    \"country\": \"South Africa\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "http://localhost:4000/api/candidates",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["candidates"]
-        }
+        "url": "http://localhost:4000/api/candidates"
       },
       "response": []
     },
     {
       "name": "Add education",
+      "id": "e78a8bbc-9d3b-45a6-9ce8-f5b85982f698",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"institution\": \"Education Two\",\r\n    \"startDate\": \"2021/05\",\r\n    \"finishDate\": \"2021/09\",\r\n    \"level\": \"secondary\",\r\n    \"inProgress\": false,\r\n    \"title\": \"Research Associate\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "http://localhost:4000/api/candidates/education/61958b90891fc2c2e810c051",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["candidates", "education", "61958b90891fc2c2e810c051"]
-        }
+        "url": "http://localhost:4000/api/candidates/education/61958b90891fc2c2e810c051"
       },
       "response": []
     },
     {
       "name": "Add work experience",
+      "id": "e641a1a6-e65d-4352-937d-8862fa2b1e36",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"company\": \"Work Experience Three\",\r\n    \"role\": \"Structural Analysis Engineer\",\r\n    \"startDate\": \"2020/06\",\r\n    \"finishDate\": \"2021/12\",\r\n    \"currently\": false,\r\n    \"description\": \"Nulla tellusnibh\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "http://localhost:4000/api/candidates/workExperience/61958b96891fc2c2e810c053",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["candidates", "workExperience", "61958b96891fc2c2e810c053"]
-        }
+        "url": "http://localhost:4000/api/candidates/workExperience/61958b96891fc2c2e810c053"
       },
       "response": []
     },
     {
       "name": "Update candidate",
+      "id": "cedf5ff3-92dd-4be2-b6b2-66c765d5c220",
       "request": {
         "method": "PUT",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"name\": \"Candiate bbbbbb\",\r\n    \"gender\": \"female\",\r\n    \"country\": \"USA\",\r\n    \"description\": \"Nulla tsdfsf\",\r\n    \"dni\": \"12345678\",\r\n    \"nationality\": \"Argentinian\",\r\n    \"email\": \"mail@gmail.com\",\r\n    \"password\": \"sfasfdf123S\",\r\n    \"username\": \"adasdasdsd\",\r\n    \"phoneNumber\": 12345678,\r\n    \"address\": \"saadsa adsaasd 23\",\r\n    \"city\": \"adsaasd\",\r\n    \"state\": \"ssad sa\",\r\n    \"status\": \"active\",\r\n    \"zipCode\": \"2000\",\r\n    \"timeRange\": [9, 17],\r\n    \"dateOfBirth\": \"1997/06/12\"\r\n    \r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "http://localhost:4000/api/candidates/61958b8c891fc2c2e810c04f",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["candidates", "61958b8c891fc2c2e810c04f"]
-        }
+        "url": "http://localhost:4000/api/candidates/61958b8c891fc2c2e810c04f"
       },
       "response": []
     },
     {
       "name": "Update education",
+      "id": "ecb38656-1c69-4689-979a-68239dfc7a10",
       "request": {
         "method": "PUT",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"institution\": \"Education Two\",\r\n    \"level\": \"university\",\r\n    \"inProgress\": false,\r\n    \"title\": \"Research Associate\",\r\n    \"startDate\": \"2021/04\",\r\n    \"finishDate\": \"2021/01\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "http://localhost:4000/api/candidates/61958b8c891fc2c2e810c04f/education/61958ce5b059c52c0995b5cc",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": [
-            "candidates",
-            "61958b8c891fc2c2e810c04f",
-            "education",
-            "61958ce5b059c52c0995b5cc"
-          ]
-        }
+        "url": "http://localhost:4000/api/candidates/61958b8c891fc2c2e810c04f/education/61958ce5b059c52c0995b5cc"
       },
       "response": []
     },
     {
       "name": "Update work experience",
+      "id": "c68f8d1f-94d8-4b95-886b-276dbae232a1",
       "request": {
         "method": "PUT",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"company\": \"AAAAAAAAAa\",\r\n    \"role\": \"Structural Analysis Engineer\",\r\n    \"startDate\": \"2020/06\",\r\n    \"finishDate\": \"2021/12\",\r\n    \"currently\": false,\r\n    \"description\": \"Nulla tellusnibh\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "http://localhost:4000/api/candidates/61958b96891fc2c2e810c053/workExperience/61958d18b059c52c0995b5e0",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": [
-            "candidates",
-            "61958b96891fc2c2e810c053",
-            "workExperience",
-            "61958d18b059c52c0995b5e0"
-          ]
-        }
+        "url": "http://localhost:4000/api/candidates/61958b96891fc2c2e810c053/workExperience/61958d18b059c52c0995b5e0"
       },
       "response": []
     },
     {
       "name": "Remove candidate by ID",
+      "id": "5ffab187-294c-47ff-990e-b512da443a8a",
       "request": {
         "method": "DELETE",
         "header": [],
-        "url": {
-          "raw": "http://localhost:4000/api/candidates/61958b9c891fc2c2e810c055",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["candidates", "61958b9c891fc2c2e810c055"]
-        }
+        "url": "http://localhost:4000/api/candidates/61958b9c891fc2c2e810c055"
       },
       "response": []
     },
     {
       "name": "Remove education",
+      "id": "b3521697-7c7e-4849-b27e-4a17f0a56d25",
       "request": {
         "method": "DELETE",
         "header": [],
-        "url": {
-          "raw": "http://localhost:4000/api/candidates/61958b8c891fc2c2e810c04f/education/61958ce9b059c52c0995b5d0",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": [
-            "candidates",
-            "61958b8c891fc2c2e810c04f",
-            "education",
-            "61958ce9b059c52c0995b5d0"
-          ]
-        }
+        "url": "http://localhost:4000/api/candidates/61958b8c891fc2c2e810c04f/education/61958ce9b059c52c0995b5d0"
       },
       "response": []
     },
     {
       "name": "Remove work experience",
+      "id": "1bf829c9-f935-4d76-8736-7ddff1463d6e",
       "request": {
         "method": "DELETE",
         "header": [],
-        "url": {
-          "raw": "http://localhost:4000/api/candidates/61958b96891fc2c2e810c053/workExperience/61958d26b059c52c0995b5e9",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": [
-            "candidates",
-            "61958b96891fc2c2e810c053",
-            "workExperience",
-            "61958d26b059c52c0995b5e9"
-          ]
-        }
+        "url": "http://localhost:4000/api/candidates/61958b96891fc2c2e810c053/workExperience/61958d26b059c52c0995b5e9"
       },
       "response": []
     }

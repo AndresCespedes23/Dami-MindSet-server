@@ -1,112 +1,74 @@
 {
   "info": {
-    "_postman_id": "45c2c9ea-a58c-4b0e-8470-8ac9eb869b4b",
+    "_postman_id": "c3f30eaf-cc9e-442a-ab4c-ec2030335cb4",
     "name": "Interviews",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
       "name": "Retrieve all the Interviews",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
+      "id": "1cb63a9f-b483-4ff1-ba11-e784c30f8ec6",
+      "protocolProfileBehavior": { "disableBodyPruning": true },
       "request": {
         "method": "GET",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "http://localhost:4000/api/interviews",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["interviews"]
-        }
+        "url": "http://localhost:4000/api/interviews"
       },
       "response": []
     },
     {
       "name": "Retrieve Interview by ID",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": null
-      },
+      "id": "c37f0ec9-baa5-4eab-9111-d51a871b4a51",
+      "request": { "method": "GET", "header": [], "url": "" },
       "response": []
     },
     {
       "name": "Create Interview",
+      "id": "6190e764-d8f6-4252-b011-d1f1c336594f",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"idPosition\": \"618ed774a490024ac64fc906\",\r\n    \"idCandidate\": \"618ed783a490024ac64fc907\",\r\n    \"idClient\": \"618ed78ea490024ac64fc908\",\r\n    \"status\": \"FINISHED\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "localhost:4000/api/interviews/",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["interviews", ""]
-        }
+        "url": "localhost:4000/api/interviews/"
       },
       "response": []
     },
     {
       "name": "Update application",
+      "id": "d12b4755-176b-47d6-81bc-f025dc4daf9d",
       "request": {
         "method": "PUT",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "localhost:4000/api/interviews/618ed783a490024ac64fc907",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["interviews", "618ed783a490024ac64fc907"]
-        }
+        "url": "localhost:4000/api/interviews/618ed783a490024ac64fc907"
       },
       "response": []
     },
     {
       "name": "Remove Interview by ID",
+      "id": "fb867b2f-d5e0-40d0-8adb-58317025a65c",
       "request": {
         "method": "DELETE",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "localhost:4000/api/interviews/618ed783a490024ac64fc907",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["interviews", "618ed783a490024ac64fc907"]
-        }
+        "url": "localhost:4000/api/interviews/618ed783a490024ac64fc907"
       },
       "response": []
     }
