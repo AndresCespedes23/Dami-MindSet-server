@@ -1,95 +1,67 @@
 {
   "info": {
-    "_postman_id": "5b0e36f6-c50a-49db-8894-b038ed4d952c",
+    "_postman_id": "cb7a0b15-1b6c-49ac-8da6-2d34d424a7a0",
     "name": "Positions",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
       "name": "Retrieve all the positions",
+      "id": "42ed4109-5659-4452-a51c-3676fd291e71",
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "localhost:4000/api/positions/",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["positions", ""]
-        }
+        "url": "localhost:4000/api/positions/"
       },
       "response": []
     },
     {
       "name": "Retrieve position by ID",
+      "id": "60750718-1e5d-4d4b-bda7-059585ee58d4",
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "localhost:4000/api/positions/619179bbba2cc2712225b257",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["positions", "619179bbba2cc2712225b257"]
-        }
+        "url": "localhost:4000/api/positions/619179bbba2cc2712225b257"
       },
       "response": []
     },
     {
       "name": "Create a new position",
+      "id": "1a5005ad-6916-4e23-bac6-3b97b0425af6",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"idClient\": \"76814f5dc1d10e9c155df58c\",\r\n    \"idProfile\": [\"6191804c72864afb5989549c\"],\r\n    \"name\": \"Industrial Process Operator\",\r\n    \"description\": \"Open position at Metal Company\",\r\n    \"status\": \"PENDING\",\r\n    \"address\": \"10th & 5th Street\",\r\n    \"city\": \"Los Angeles\",\r\n    \"postalCode\": \"90503\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "localhost:4000/api/positions/",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["positions", ""]
-        }
+        "url": "localhost:4000/api/positions/"
       },
       "response": []
     },
     {
       "name": "Update position",
+      "id": "c9e79359-74ca-4c25-bb42-221dda9fcbf6",
       "request": {
         "method": "PUT",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"idClient\": \"76814f5dc1d10e9c155df58c\",\r\n    \"idProfile\": [\"6191804c72864afb5989549c\"],\r\n    \"name\": \"Senior Software Engineer\",\r\n    \"description\": \"Open position at Rocket Tech\",\r\n    \"status\": \"DONE\",\r\n    \"address\": \"10th & 5th Street\",\r\n    \"city\": \"Los Angeles\",\r\n    \"postalCode\": \"90503\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "localhost:4000/api/positions/619179bbba2cc2712225b257",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["positions", "619179bbba2cc2712225b257"]
-        }
+        "url": "localhost:4000/api/positions/619179bbba2cc2712225b257"
       },
       "response": []
     },
     {
       "name": "Remove position by ID",
+      "id": "b79009c3-ce77-4f74-8210-797aab8d74aa",
       "request": {
         "method": "DELETE",
         "header": [],
-        "url": {
-          "raw": "localhost:4000/api/positions/6190061ba0062ee278581f0b",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["positions", "6190061ba0062ee278581f0b"]
-        }
+        "url": "localhost:4000/api/positions/6190061ba0062ee278581f0b"
       },
       "response": []
     }

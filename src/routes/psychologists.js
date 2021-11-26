@@ -15,7 +15,7 @@ router.post(
 );
 router.put(
   "/:id",
-  middleware.formatBodyRequired,
+  // middleware.formatBodyRequired,
   psychologists.update,
 );
 router.delete("/:id", psychologists.remove);

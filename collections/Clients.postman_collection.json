@@ -1,95 +1,67 @@
 {
   "info": {
-    "_postman_id": "3a419584-8112-4e8a-b43e-47d52681e2be",
-    "name": "MindSet",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "_postman_id": "0528dc6c-a4c3-41be-a5c5-aef78fd112d0",
+    "name": "Clients",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
       "name": "Retrieve all the clients",
+      "id": "94459430-c88a-4a91-a1fc-06bab75ba0b8",
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "localhost:4000/api/clients",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["clients"]
-        }
+        "url": "localhost:4000/api/clients"
       },
       "response": []
     },
     {
       "name": "Retrieve client by ID",
+      "id": "ad0d0863-0bb3-469c-9fd5-7a751d3066f4",
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "localhost:4000/api/clients/61929b6bb95f17d609395ad1",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["clients", "61929b6bb95f17d609395ad1"]
-        }
+        "url": "localhost:4000/api/clients/61929b6bb95f17d609395ad1"
       },
       "response": []
     },
     {
       "name": "Create a new client",
+      "id": "89c4ea8b-e1b2-45d9-b3db-00613d5acdf3",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"name\": \"Techint\",\r\n    \"email\": \"info@techint.com\",\r\n    \"phoneNumber\": \"1140182100\",\r\n    \"cuit\": \"30547981029\",\r\n    \"address\": \"Avenida LN  Alem 1067 72th Floor\",\r\n    \"activity\": \"Engineering\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "localhost:4000/api/clients",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["clients"]
-        }
+        "url": "localhost:4000/api/clients"
       },
       "response": []
     },
     {
       "name": "Update client",
+      "id": "ed5287ad-eec4-4985-9c4c-d4ce766a926b",
       "request": {
         "method": "PUT",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"address\": \"Carlos Maria Della Paolera 299 - 20th Floor\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
-        "url": {
-          "raw": "localhost:4000/api/clients/61929b6bb95f17d609395ad1",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["clients", "61929b6bb95f17d609395ad1"]
-        }
+        "url": "localhost:4000/api/clients/61929b6bb95f17d609395ad1"
       },
       "response": []
     },
     {
       "name": "Remove client by ID",
+      "id": "f5e2f0d4-c3d9-46ba-8e97-72222a55a985",
       "request": {
         "method": "DELETE",
         "header": [],
-        "url": {
-          "raw": "localhost:4000/api/clients/61929d0e0291366d7f8d192a",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["clients", "61929d0e0291366d7f8d192a"]
-        }
+        "url": "localhost:4000/api/clients/61929d0e0291366d7f8d192a"
       },
       "response": []
     }

@@ -49,7 +49,7 @@ const remove = (req, res) => {
     new ObjectId(req.params.id),
     (err, removedProfile) => {
       if (err) return res.status(400).json(err);
-      return res.status(200).json(removedProfile._id);
+      return res.status(200).json(removedProfile);
     },
   );
 };

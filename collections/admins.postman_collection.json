@@ -1,12 +1,13 @@
 {
   "info": {
-    "_postman_id": "e2fd8df9-3ddf-4598-abee-dd3ea59dc1a2",
+    "_postman_id": "5b67cbde-154d-44de-8577-738a9d742b33",
     "name": "admins",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
       "name": "GetAdmins",
+      "id": "8a658e38-5d9d-4fe2-add3-6f29d47d7043",
       "request": {
         "method": "GET",
         "header": [],
@@ -16,6 +17,7 @@
     },
     {
       "name": "admins/ById",
+      "id": "840aa47d-5a37-43ac-9ca9-94d036237581",
       "request": {
         "method": "GET",
         "header": [],
@@ -25,6 +27,7 @@
     },
     {
       "name": "admins/byName",
+      "id": "381eafcd-1fb9-4b7c-8551-23df2c44aca3",
       "request": {
         "method": "GET",
         "header": [],
@@ -34,17 +37,14 @@
     },
     {
       "name": "admins/update",
+      "id": "f2ef101d-a083-4d14-87c4-150450546a8a",
       "request": {
         "method": "PUT",
         "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\r\n    \"name\": \"osvald\",\r\n    \"email\": \"agus@frro.com\",\r\n    \"password\": \"estring\",\r\n    \"username\": \"pooopp\",\r\n    \"isSuperAdmin\": true\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+          "options": { "raw": { "language": "json" } }
         },
         "url": "localhost:4000/api/admins/61916f6ff13b6ce1ba849cba"
       },
