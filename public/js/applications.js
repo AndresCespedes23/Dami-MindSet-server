@@ -359,7 +359,7 @@ function requestApplications() {
       status: document.getElementById("status").value,
       result: document.getElementById("result").value
     }
-    const url = `http://localhost:4000/api/aplications/${application._id}`;
+    const url = `http://localhost:4000/api/applications/${application._id}`;
     fetch(url, {
       method: "PUT",
       body: JSON.stringify(updateApplication),
@@ -373,7 +373,6 @@ function requestApplications() {
       })
       .then((data) => {
         successModal(data);
-        requestInterviews();
       })
       .catch((error) => {
         errorModal(error);
