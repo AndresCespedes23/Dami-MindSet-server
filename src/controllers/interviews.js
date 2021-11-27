@@ -55,7 +55,7 @@ const update = (req, res) => {
       if (err) return res.status(400).json(err);
       return res.status(200).json(interviewDoc);
     },
-  );
+  ).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name");
 };
 
 const remove = (req, res) => {
@@ -65,17 +65,17 @@ const remove = (req, res) => {
       if (err) return res.status(400).json(err);
       return res.status(200).json(removeInterview);
     },
-  );
+  ).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name");
 };
 
 const getAll = (req, res) => {
-  Interviews.find()
+  Interviews.find().populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name")
     .then((interviews) => res.status(200).json(interviews))
     .catch((err) => res.status(404).json(err));
 };
 
 const getById = (req, res) => {
-  Interviews.findById({ _id: new ObjectId(req.params.id) })
+  Interviews.findById({ _id: new ObjectId(req.params.id) }).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name")
     .then((interview) => res.status(200).json(interview))
     .catch((err) => res.status(400).json(err));
 };

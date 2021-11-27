@@ -2,13 +2,13 @@ const { ObjectId } = require("mongoose").Types;
 const Positions = require("../models/positions");
 
 const getAll = (req, res) => {
-  Positions.find()
+  Positions.find().populate("idClient", "name").populate("idProfile", "name description")
     .then((positions) => res.status(200).json(positions))
     .catch((err) => res.status(404).json(err));
 };
 
 const getById = (req, res) => {
-  Positions.findById({ _id: new ObjectId(req.params.id) })
+  Positions.findById({ _id: new ObjectId(req.params.id) }).populate("idClient", "name").populate("idProfile", "name description")
     .then((positions) => res.status(200).json(positions))
     .catch((err) => res.status(404).json(err));
 };
@@ -57,7 +57,7 @@ const update = (req, res) => {
       if (err) return res.status(400).json(err);
       return res.status(200).json(positionDoc);
     },
-  );
+  ).populate("idClient", "name").populate("idProfile", "name description");
 };
 
 const remove = (req, res) => {
@@ -67,7 +67,7 @@ const remove = (req, res) => {
       if (err) return res.status(400).json(err);
       return res.status(200).json(removedPosition);
     },
-  );
+  ).populate("idClient", "name").populate("idProfile", "name description");
 };
 
 module.exports = {

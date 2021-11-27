@@ -2,13 +2,13 @@ const { ObjectId } = require("mongoose").Types;
 const Applications = require("../models/applications");
 
 const getAll = (req, res) => {
-  Applications.find()
+  Applications.find().populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status")
     .then((applications) => res.status(200).json(applications))
     .catch((err) => res.status(400).json(err));
 };
 
 const getById = (req, res) => {
-  Applications.findById({ _id: new ObjectId(req.params.id) })
+  Applications.findById({ _id: new ObjectId(req.params.id) }).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status")
     .then((application) => res.status(200).json(application))
     .catch((err) => res.status(400).json(err));
 };
@@ -70,7 +70,7 @@ const update = (req, res) => {
       if (err) return res.status(400).json(err);
       return res.status(200).json(applicationDoc);
     },
-  );
+  ).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status");
 };
 
 const remove = (req, res) => {
@@ -80,7 +80,7 @@ const remove = (req, res) => {
       if (err) return res.status(400).json(err);
       return res.status(200).json(removedApplication);
     },
-  );
+  ).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status");
 };
 
 module.exports = {

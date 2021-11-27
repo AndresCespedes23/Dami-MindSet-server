@@ -49,13 +49,13 @@ const otherInfo = [
 const allInfo = [...personalInfo, ...otherInfo];
 
 const getAll = (req, res) => {
-  Candidates.find()
+  Candidates.find().populate("profiles")
     .then((candidates) => res.status(200).json(candidates))
     .catch((err) => res.status(400).json(err));
 };
 
 const getById = (req, res) => {
-  Candidates.findById(new ObjectId(req.params.id))
+  Candidates.findById(new ObjectId(req.params.id)).populate("profiles")
     .then((candidate) => {
       if (!candidate) {
         return res
@@ -68,7 +68,7 @@ const getById = (req, res) => {
 };
 
 const getByName = (req, res) => {
-  Candidates.findOne({ name: req.params.name })
+  Candidates.findOne({ name: req.params.name }).populate("profiles")
     .then((candidate) => {
       if (!candidate) {
         return res
@@ -155,7 +155,7 @@ const update = (req, res) => {
       if (err) return res.status(400).json(err);
       return res.status(200).json(candidateDoc);
     },
-  );
+  ).populate("profiles");
 };
 
 const updateEducation = (req, res) => {
@@ -224,7 +224,7 @@ const remove = (req, res) => {
       if (err) return res.status(400).json(err);
       return res.status(200).json(candidateDoc);
     },
-  );
+  ).populate("profiles");
 };
 
 const removeEducation = (req, res) => {
