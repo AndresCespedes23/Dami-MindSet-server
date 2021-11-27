@@ -87,8 +87,12 @@ const create = (req, res) => {
     newCandidate[personalInfo[field]] = data[personalInfo[field]];
   }
   newCandidate.status = "PENDING INTERVIEW";
+  newCandidate.dni = data.dni;
   Candidates.create(newCandidate)
-    .then((candidates) => res.status(201).json(candidates))
+    .then((candidates) => {
+      console.log(candidates);
+      res.status(201).json(candidates);
+    })
     .catch((err) => res.status(400).json(err));
 };
 
