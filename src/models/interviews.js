@@ -15,7 +15,7 @@ const InterviewsSchema = new Schema({
   },
   idPosition: {
     type: Schema.Types.ObjectId,
-    ref: "Position",
+    ref: "Positions",
     required: true,
   },
   dateTime: {
