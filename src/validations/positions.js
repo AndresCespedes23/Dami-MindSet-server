@@ -78,12 +78,12 @@ const validate = async (req, res, next) => {
         .json("Postal Code must be equal or less than 8 characters");
     }
   }
-  if (idProfile) {
+  /*if (idProfile) {
     const count = await Profiles.count({ _id: { $in: idProfile } });
     if (count !== idProfile.length) {
       return res.status(404).json({ error: "idProfile not found" });
     }
-  }
+  } */
   if (idClient) {
     return Clients.findById(idClient)
       .then((client) => {
