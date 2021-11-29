@@ -15,7 +15,7 @@ const InterviewsSchema = new Schema({
   },
   idPosition: {
     type: Schema.Types.ObjectId,
-    ref: "Position",
+    ref: "Positions",
     required: true,
   },
   dateTime: {
@@ -26,6 +26,10 @@ const InterviewsSchema = new Schema({
     type: String,
     enum: ["DONE", "PENDING"],
     required: true,
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false,
   },
 });
 

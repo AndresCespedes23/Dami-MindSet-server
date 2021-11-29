@@ -30,6 +30,10 @@ const ApplicationsSchema = new Schema({
     type: String,
     maxLength: 500,
   },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Applications", ApplicationsSchema);

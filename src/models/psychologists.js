@@ -48,6 +48,10 @@ const PsychologistsSchema = new Schema({
   dayRange: {
     type: [Number],
   },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Psychologists", PsychologistsSchema);

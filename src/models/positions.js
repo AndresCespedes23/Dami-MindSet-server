@@ -48,6 +48,10 @@ const PositionsSchema = new Schema({
     maxLength: 8,
     required: true,
   },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Positions", PositionsSchema);

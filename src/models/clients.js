@@ -48,6 +48,10 @@ const ClientsSchema = new Schema({
     maxLength: [20, "Max lenght is 20"],
     match: [/^([^0-9]*)$/, "Can't contain numbers"],
   },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Clients", ClientsSchema);

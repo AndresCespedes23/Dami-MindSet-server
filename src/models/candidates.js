@@ -158,6 +158,10 @@ const CandidatesSchema = new Schema({
     type: Boolean,
     required: false,
   },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Candidates", CandidatesSchema);
