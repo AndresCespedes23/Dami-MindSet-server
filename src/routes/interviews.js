@@ -9,6 +9,7 @@ router.put(
   validations.validate,
   interviews.update,
 );
+router.put("/activate/:id", interviews.activate);
 router.delete("/:id", interviews.remove);
 router.get("/", interviews.getAll);
 router.get("/:id", interviews.getById);

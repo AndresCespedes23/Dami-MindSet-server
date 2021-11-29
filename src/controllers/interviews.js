@@ -59,11 +59,25 @@ const update = (req, res) => {
 };
 
 const remove = (req, res) => {
-  Interviews.findByIdAndRemove(
+  Interviews.findByIdAndUpdate(
     new ObjectId(req.params.id),
+    { isDeleted: true },
+    { new: true },
     (err, removeInterview) => {
       if (err) return res.status(400).json(err);
       return res.status(200).json(removeInterview);
+    },
+  ).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name");
+};
+
+const activate = (req, res) => {
+  Interviews.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    { isDeleted: false },
+    { new: true },
+    (err, activatedInterview) => {
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(activatedInterview);
     },
   ).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name");
 };
@@ -84,6 +98,7 @@ module.exports = {
   create,
   update,
   remove,
+  activate,
   getAll,
   getById,
 };

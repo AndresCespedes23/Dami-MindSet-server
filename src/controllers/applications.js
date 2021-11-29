@@ -73,15 +73,20 @@ const update = (req, res) => {
   ).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status");
 };
 
-const remove = (req, res) => {
-  Applications.findByIdAndRemove(
-    new ObjectId(req.params.id),
-    (err, removedApplication) => {
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(removedApplication);
-    },
-  ).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status");
-};
+const remove = (req, res) => Applications.findByIdAndUpdate(
+  new ObjectId(req.params.id),
+  { isDeleted: true },
+  { new: true },
+  (err, applicationDoc) => {
+    if (!applicationDoc) {
+      return res.status(404).json({
+        msg: `Application with id: ${req.params.id} was not found.`,
+      });
+    }
+    if (err) return res.status(400).json(err);
+    return res.status(200).json(applicationDoc);
+  },
+).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status");
 
 module.exports = {
   getAll,
