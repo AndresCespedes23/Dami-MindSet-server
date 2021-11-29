@@ -2,7 +2,7 @@ const { ObjectId } = require("mongoose").Types;
 const Applications = require("../models/applications");
 
 const getAll = (req, res) => {
-  Applications.find().populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status")
+  Applications.find({ isDeleted: false }).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status")
     .then((applications) => res.status(200).json(applications))
     .catch((err) => res.status(400).json(err));
 };

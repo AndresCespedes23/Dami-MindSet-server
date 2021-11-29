@@ -2,7 +2,7 @@ const Clients = require("../models/clients");
 
 // CLIENT LIST
 const getAll = (req, res) => {
-  Clients.find()
+  Clients.find({ isDeleted: false })
     .then((clients) => res.status(200).json(clients))
     .catch((err) => res.status(404).json(err));
 };

@@ -2,7 +2,7 @@ const { ObjectId } = require("mongoose").Types;
 const Positions = require("../models/positions");
 
 const getAll = (req, res) => {
-  Positions.find().populate("idClient", "name").populate("idProfile", "name description")
+  Positions.find({ isDeleted: false }).populate("idClient", "name").populate("idProfile", "name description")
     .then((positions) => res.status(200).json(positions))
     .catch((err) => res.status(404).json(err));
 };

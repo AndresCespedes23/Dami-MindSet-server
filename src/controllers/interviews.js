@@ -83,7 +83,7 @@ const activate = (req, res) => {
 };
 
 const getAll = (req, res) => {
-  Interviews.find().populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name")
+  Interviews.find({ isDeleted: false }).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name")
     .then((interviews) => res.status(200).json(interviews))
     .catch((err) => res.status(404).json(err));
 };

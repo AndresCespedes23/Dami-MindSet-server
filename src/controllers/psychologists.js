@@ -71,7 +71,7 @@ const activate = (req, res) => {
 };
 
 const getAll = (req, res) => {
-  Psychologists.find()
+  Psychologists.find({ isDeleted: false })
     .then((psychologist) => res.status(200).json(psychologist))
     .catch((error) => res.status(400).json(error));
 };

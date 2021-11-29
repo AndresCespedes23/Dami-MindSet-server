@@ -2,7 +2,7 @@ const { ObjectId } = require("mongoose").Types;
 const Profiles = require("../models/profiles");
 
 const getAll = (req, res) => {
-  Profiles.find()
+  Profiles.find({ isDeleted: false })
     .then((profiles) => res.status(200).json(profiles))
     .catch((err) => res.status(400).json(err));
 };
