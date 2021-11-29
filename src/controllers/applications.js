@@ -88,10 +88,23 @@ const remove = (req, res) => Applications.findByIdAndUpdate(
   },
 ).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status");
 
+const activate = (req, res) => {
+  Applications.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    { isDeleted: false },
+    { new: true },
+    (err, activatedApplication) => {
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(activatedApplication);
+    },
+  ).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status");
+};
+
 module.exports = {
   getAll,
   getById,
   update,
   create,
   remove,
+  activate,
 };
