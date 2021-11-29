@@ -45,11 +45,25 @@ const update = (req, res) => {
 };
 
 const remove = (req, res) => {
-  Profiles.findByIdAndRemove(
+  Profiles.findByIdAndUpdate(
     new ObjectId(req.params.id),
-    (err, removedProfile) => {
+    { isDeleted: true },
+    { new: true },
+    (err, deletedProfile) => {
       if (err) return res.status(400).json(err);
-      return res.status(200).json(removedProfile);
+      return res.status(200).json(deletedProfile);
+    },
+  );
+};
+
+const activate = (req, res) => {
+  Profiles.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    { isDeleted: false },
+    { new: true },
+    (err, activatedProfile) => {
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(activatedProfile);
     },
   );
 };
@@ -61,4 +75,5 @@ module.exports = {
   create,
   update,
   remove,
+  activate,
 };
