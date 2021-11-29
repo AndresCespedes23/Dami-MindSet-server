@@ -55,12 +55,12 @@ const getAll = (req, res) => {
 };
 
 const getById = (req, res) => {
-  Candidates.findById(new ObjectId(req.params.id)).populate("profiles")
+  Candidates.findOne({ $and: [{ _id: new ObjectId(req.params.id) }, { isDeleted: false }] }).populate("profiles")
     .then((candidate) => {
       if (!candidate) {
         return res
           .status(404)
-          .json({ msg: `User with name: ${req.params.name} was not found.` });
+          .json({ msg: `User with ID: ${req.params.id} was not found.` });
       }
       return res.status(200).json(candidate);
     })
@@ -68,12 +68,12 @@ const getById = (req, res) => {
 };
 
 const getByName = (req, res) => {
-  Candidates.findOne({ name: req.params.name }).populate("profiles")
+  Candidates.find({ $and: [{ name: req.params.name }, { isDeleted: false }] }).populate("profiles")
     .then((candidate) => {
       if (!candidate) {
         return res
           .status(404)
-          .json({ msg: `User with id: ${req.params.id} was not found.` });
+          .json({ msg: `User with Name: ${req.params.name} was not found.` });
       }
       return res.status(200).json(candidate);
     })

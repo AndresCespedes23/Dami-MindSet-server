@@ -8,7 +8,7 @@ const getAll = (req, res) => {
 };
 
 const getById = (req, res) => {
-  Profiles.findById({ _id: new ObjectId(req.params.id) })
+  Profiles.findOne({ $and: [{ _id: new ObjectId(req.params.id) }, { isDeleted: false }] })
     .then((profile) => res.status(200).json(profile))
     .catch((err) => res.status(400).json(err));
 };

@@ -8,7 +8,7 @@ const getAll = (req, res) => {
 };
 
 const getById = (req, res) => {
-  Positions.findById({ _id: new ObjectId(req.params.id) }).populate("idClient", "name").populate("idProfile", "name description")
+  Positions.findOne({ $and: [{ _id: new ObjectId(req.params.id) }, { isDeleted: false }] }).populate("idClient", "name").populate("idProfile", "name description")
     .then((positions) => res.status(200).json(positions))
     .catch((err) => res.status(404).json(err));
 };

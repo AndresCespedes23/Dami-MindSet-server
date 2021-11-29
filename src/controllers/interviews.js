@@ -89,7 +89,7 @@ const getAll = (req, res) => {
 };
 
 const getById = (req, res) => {
-  Interviews.findById({ _id: new ObjectId(req.params.id) }).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name")
+  Interviews.findOne({ $and: [{ _id: new ObjectId(req.params.id) }, { isDeleted: false }] }).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name")
     .then((interview) => res.status(200).json(interview))
     .catch((err) => res.status(400).json(err));
 };

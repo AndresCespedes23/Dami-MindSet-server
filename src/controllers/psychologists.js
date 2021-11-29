@@ -77,13 +77,13 @@ const getAll = (req, res) => {
 };
 
 const getById = (req, res) => {
-  Psychologists.findById(req.params.id)
+  Psychologists.findOne({ $and: [{ id: req.params.id }, { isDeleted: false }] })
     .then((psychologist) => res.status(200).json(psychologist))
     .catch((error) => res.status(400).json(error));
 };
 
 const getByName = (req, res) => {
-  Psychologists.find({ name: req.params.name })
+  Psychologists.find({ $and: [{ name: req.params.name }, { isDeleted: false }] })
     .then((psychologist) => res.status(200).json(psychologist))
     .catch((error) => res.status(400).json(error));
 };

@@ -8,7 +8,7 @@ const getAll = (req, res) => {
 };
 
 const getById = (req, res) => {
-  Clients.findById(req.params.id)
+  Clients.findOne({ $and: [{ _id: req.params.id }, { isDeleted: false }] })
     .then((client) => res.status(200).json(client))
     .catch((err) => res.status(404).json(err));
 };
