@@ -61,11 +61,35 @@ const update = (req, res) => {
 };
 
 const remove = (req, res) => {
-  Positions.findByIdAndRemove(
+  Positions.findByIdAndUpdate(
     new ObjectId(req.params.id),
-    (err, removedPosition) => {
+    { isDeleted: true },
+    { new: true },
+    (err, deletedPosition) => {
+      if (!deletedPosition) {
+        return res
+          .status(404)
+          .json({ msg: `Position with id: ${req.params.id} was not found.` });
+      }
       if (err) return res.status(400).json(err);
-      return res.status(200).json(removedPosition);
+      return res.status(200).json(deletedPosition);
+    },
+  ).populate("idClient", "name").populate("idProfile", "name description");
+};
+
+const activate = (req, res) => {
+  Positions.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    { isDeleted: false },
+    { new: true },
+    (err, activatedPosition) => {
+      if (!activatedPosition) {
+        return res
+          .status(404)
+          .json({ msg: `Position with id: ${req.params.id} was not found.` });
+      }
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(activatedPosition);
     },
   ).populate("idClient", "name").populate("idProfile", "name description");
 };
@@ -76,4 +100,5 @@ module.exports = {
   create,
   update,
   remove,
+  activate,
 };

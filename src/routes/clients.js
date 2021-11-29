@@ -12,6 +12,7 @@ router.post(
   middleware.dataBodyUnique,
   controller.create,
 );
+router.put("/activate/:id", controller.activate);
 router.put(
   "/:id",
   middleware.dataBodyRequired,
