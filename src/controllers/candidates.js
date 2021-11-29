@@ -90,6 +90,7 @@ const create = (req, res) => {
   newCandidate.dni = data.dni;
   Candidates.create(newCandidate)
     .then((candidates) => {
+      // eslint-disable-next-line no-console
       console.log(candidates);
       res.status(201).json(candidates);
     })
