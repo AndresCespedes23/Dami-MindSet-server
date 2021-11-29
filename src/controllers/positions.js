@@ -14,13 +14,13 @@ const getById = (req, res) => {
 };
 
 const create = (req, res) => {
-  const idProfileArray = [];
+  /*const idProfileArray = [];
   req.body.idProfile.forEach((id) => {
     idProfileArray.push(new ObjectId(id));
-  });
+  });*/
   const newPosition = {
     idClient: new ObjectId(req.body.idClient),
-    idProfile: idProfileArray,
+    idProfile: req.body.idProfile, //change idProfileArray
     name: req.body.name,
     description: req.body.description,
     status: req.body.status,
