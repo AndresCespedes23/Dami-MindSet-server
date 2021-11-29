@@ -90,7 +90,6 @@ const create = (req, res) => {
   newCandidate.dni = data.dni;
   Candidates.create(newCandidate)
     .then((candidates) => {
-      console.log(candidates);
       res.status(201).json(candidates);
     })
     .catch((err) => res.status(400).json(err));
