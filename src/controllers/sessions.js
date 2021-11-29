@@ -52,11 +52,35 @@ const update = (req, res) => {
 };
 
 const remove = (req, res) => {
-  Sessions.findByIdAndRemove(
+  Sessions.findByIdAndUpdate(
     new ObjectId(req.params.id),
-    (err, removedSession) => {
+    { isDeleted: true },
+    { new: true },
+    (err, deletedSession) => {
+      if (!deletedSession) {
+        return res.status(404).json({
+          msg: `Session with id: ${req.params.id} was not found.`,
+        });
+      }
       if (err) return res.status(404).json(err);
-      return res.status(200).json(removedSession);
+      return res.status(200).json(deletedSession);
+    },
+  );
+};
+
+const activate = (req, res) => {
+  Sessions.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    { isDeleted: false },
+    { new: true },
+    (err, activatedSession) => {
+      if (!activatedSession) {
+        return res.status(404).json({
+          msg: `Session with id: ${req.params.id} was not found.`,
+        });
+      }
+      if (err) return res.status(404).json(err);
+      return res.status(200).json(activatedSession);
     },
   );
 };
@@ -67,4 +91,5 @@ module.exports = {
   create,
   update,
   remove,
+  activate,
 };
