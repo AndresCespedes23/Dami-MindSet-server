@@ -57,71 +57,72 @@ const formatBodyRequired = (req, res, next) => {
     }
   }
   if (req.body.status && typeof req.body.status !== "boolean") return res.status(400).json({ msg: "Status must be boolean" });
-  const { timeRange } = req.body;
-  if (timeRange) {
-    if (timeRange.length !== 2) return res.status(400).json({ msg: "TimeRange accepts only two values" });
-    let containChars = false;
-    let isBiggerOrSmaller = false;
-    timeRange.forEach((element) => {
-      // eslint-disable-next-line eqeqeq
-      if (parseInt(element, 10) != element) {
-        containChars = true;
-        return containChars;
-      }
-      if (element < 0 || element > 24) {
-        isBiggerOrSmaller = true;
-        return isBiggerOrSmaller;
-      }
-    });
-    if (containChars) return res.status(400).json({ msg: "TimeRange accepts only numbers" });
-    if (isBiggerOrSmaller) {
-      return res
-        .status(400)
-        .json({ msg: "TimeRange values must be between 0 and 24" });
-    }
-    if (timeRange[0] >= timeRange[1]) {
-      return res.status(400).json({
-        msg: "TimeRange first value must be smaller than the second one",
-      });
-    }
-  }
-  const { dayRange } = req.body;
-  if (dayRange) {
-    if (dayRange.length > 7) {
-      return res
-        .status(400)
-        .json({ msg: "DayRange length cannot be higger than seven" });
-    }
-    let containChars = false;
-    let isBiggerOrSmaller = false;
-    let containRepetedElements = false;
-    dayRange.forEach((element, index) => {
-      // eslint-disable-next-line eqeqeq
-      if (parseInt(element, 10) != element) {
-        containChars = true;
-        return containChars;
-      }
-      if (element < 1 || element > 7) {
-        isBiggerOrSmaller = true;
-        return isBiggerOrSmaller;
-      }
-      if (dayRange.indexOf(element) !== index) {
-        containRepetedElements = true;
-        return containRepetedElements;
-      }
-    });
-    if (containChars) return res.status(400).json({ msg: "DayRange accepts only numbers" });
-    if (isBiggerOrSmaller) {
-      return res
-        .status(400)
-        .json({ msg: "DayRange values must be between 1 and 7" });
-    }
-    if (containRepetedElements) {
-      return res
-        .status(400)
-        .json({ msg: "DayRange does not allow repeted values" });
-    }
-  }
+  // const { timeRange } = req.body;
+  // if (timeRange) {
+  //   if (timeRange.length !== 2)
+  //  return res.status(400).json({ msg: "TimeRange accepts only two values" });
+  //   let containChars = false;
+  //   let isBiggerOrSmaller = false;
+  //   timeRange.forEach((element) => {
+  //     // eslint-disable-next-line eqeqeq
+  //     if (parseInt(element, 10) != element) {
+  //       containChars = true;
+  //       return containChars;
+  //     }
+  //     if (element < 0 || element > 24) {
+  //       isBiggerOrSmaller = true;
+  //       return isBiggerOrSmaller;
+  //     }
+  //   });
+  //   if (containChars) return res.status(400).json({ msg: "TimeRange accepts only numbers" });
+  //   if (isBiggerOrSmaller) {
+  //     return res
+  //       .status(400)
+  //       .json({ msg: "TimeRange values must be between 0 and 24" });
+  //   }
+  //   if (timeRange[0] >= timeRange[1]) {
+  //     return res.status(400).json({
+  //       msg: "TimeRange first value must be smaller than the second one",
+  //     });
+  //   }
+  // }
+  // const { dayRange } = req.body;
+  // if (dayRange) {
+  //   if (dayRange.length > 7) {
+  //     return res
+  //       .status(400)
+  //       .json({ msg: "DayRange length cannot be higger than seven" });
+  //   }
+  //   let containChars = false;
+  //   let isBiggerOrSmaller = false;
+  //   let containRepetedElements = false;
+  //   dayRange.forEach((element, index) => {
+  //     // eslint-disable-next-line eqeqeq
+  //     if (parseInt(element, 10) != element) {
+  //       containChars = true;
+  //       return containChars;
+  //     }
+  //     if (element < 1 || element > 7) {
+  //       isBiggerOrSmaller = true;
+  //       return isBiggerOrSmaller;
+  //     }
+  //     if (dayRange.indexOf(element) !== index) {
+  //       containRepetedElements = true;
+  //       return containRepetedElements;
+  //     }
+  //   });
+  //   if (containChars) return res.status(400).json({ msg: "DayRange accepts only numbers" });
+  //   if (isBiggerOrSmaller) {
+  //     return res
+  //       .status(400)
+  //       .json({ msg: "DayRange values must be between 1 and 7" });
+  //   }
+  //   if (containRepetedElements) {
+  //     return res
+  //       .status(400)
+  //       .json({ msg: "DayRange does not allow repeted values" });
+  //   }
+  // }
   next();
 };
 
