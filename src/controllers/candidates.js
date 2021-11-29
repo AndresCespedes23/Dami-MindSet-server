@@ -217,16 +217,35 @@ const updateWorkExperience = (req, res) => {
 };
 
 const remove = (req, res) => {
-  Candidates.findByIdAndDelete(
+  Candidates.findByIdAndUpdate(
     new ObjectId(req.params.id),
-    (err, candidateDoc) => {
-      if (!candidateDoc) {
+    { isDeleted: true },
+    { new: true },
+    (err, deletedCandidate) => {
+      if (!deletedCandidate) {
         return res.status(404).json({
-          msg: `Candidate with id: ${req.params.id} was not found.`,
+          msg: `Candidate with id: ${req.params.educationId} was not found.`,
         });
       }
       if (err) return res.status(400).json(err);
-      return res.status(200).json(candidateDoc);
+      return res.status(200).json(deletedCandidate);
+    },
+  ).populate("profiles");
+};
+
+const activate = (req, res) => {
+  Candidates.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    { isDeleted: false },
+    { new: true },
+    (err, activatedCandidate) => {
+      if (!activatedCandidate) {
+        return res.status(404).json({
+          msg: `Candidate with id: ${req.params.educationId} was not found.`,
+        });
+      }
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(activatedCandidate);
     },
   ).populate("profiles");
 };
@@ -292,6 +311,7 @@ module.exports = {
   updateEducation,
   updateWorkExperience,
   remove,
+  activate,
   removeEducation,
   removeWorkExperience,
   personalInfo,

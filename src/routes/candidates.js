@@ -17,6 +17,10 @@ router.post(
   candidates.addWorkExperience,
 );
 router.put(
+  "/activate/:id",
+  candidates.activate,
+);
+router.put(
   "/:id",
   candidates.update,
 );
