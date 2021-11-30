@@ -9,7 +9,6 @@ const AdminsSchema = new Schema({
   },
   email: {
     type: String,
-    maxLength: 20,
     required: true,
     unique: true,
   },
@@ -26,7 +25,6 @@ const AdminsSchema = new Schema({
   },
   isSuperAdmin: {
     type: Boolean,
-    required: true,
   },
 });
 module.exports = mongoose.model("Admins", AdminsSchema);
