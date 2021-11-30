@@ -23,6 +23,7 @@ const create = (req, res) => {
     return res.status(400).json({ msg: "Some parameters are missing" });
   }
   const newApplication = {
+    _id: new ObjectId(),
     idPosition: new ObjectId(req.body.idPosition),
     idCandidate: new ObjectId(req.body.idCandidate),
     idInterview: new ObjectId(req.body.idInterview),
