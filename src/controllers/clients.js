@@ -1,76 +1,69 @@
 const Clients = require("../models/clients");
 
-// CLIENT LIST
 const getAll = (req, res) => {
   Clients.find({ isDeleted: false })
-    .then((clients) => res.status(200).json(clients))
-    .catch((err) => res.status(404).json(err));
+    .then((data) => res.json({ data }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const getById = (req, res) => {
-  Clients.findOne({ $and: [{ _id: req.params.id }, { isDeleted: false }] })
-    .then((client) => res.status(200).json(client))
-    .catch((err) => res.status(404).json(err));
+  const { id } = req.params;
+  Clients.findOne({ $and: [{ _id: id }, { isDeleted: false }] })
+    .then((found) => {
+      if (!found) return res.status(404).json({ message: `Client not found with ID: ${id}` });
+      return res.json(found);
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
-// CLIENT REMOVE
 const remove = (req, res) => {
   const { id } = req.params;
-  Clients.findOneAndUpdate(
-    { _id: id },
-    { isDeleted: true },
-    { new: true },
-    (err, deletedClient) => {
-      if (deletedClient === null) {
-        return res.status(404).json({
-          msg: `Client with id: ${req.params.id} was not found.`,
-        });
-      }
-      if (err) return res.status(400).json(err.message);
-      return res.status(200).json(deletedClient);
-    },
-  );
+  Clients.findByIdAndUpdate(id, { isDeleted: true }, { new: true })
+    .then((found) => {
+      if (!found) return res.status(404).json({ message: `Client not found with ID ${id}` });
+      return res.status(400).json({ message: "Client deleted", client: found });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const activate = (req, res) => {
-  Clients.findByIdAndUpdate(
-    req.params.id,
-    { isDeleted: false },
-    { new: true },
-    (err, activatedClient) => {
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(activatedClient);
-    },
-  );
+  const { id } = req.params;
+  Clients.findByIdAndUpdate(id, { isDeleted: false }, { new: true })
+    .then((found) => {
+      if (!found) return res.status(404).json({ message: `Client not found with ID ${id}` });
+      return res.status(400).json({ message: "Client activated", client: found });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
-// CLIENT UPDATE
 const update = (req, res) => {
   const { id } = req.params;
   const client = req.body;
-  Clients.findOneAndUpdate(
-    { _id: id },
-    client,
-    { new: true, runValidators: true },
-    (err, updatedClient) => {
-      if (updatedClient === null) {
-        return res.status(404).json({
-          msg: `Client with id: ${req.params.id} was not found.`,
-        });
-      }
-      if (err) return res.status(400).json(err.message);
-      return res.status(200).json(updatedClient);
-    },
-  );
+  Clients.findByIdAndUpdate(id, client, { new: true })
+    .then((found) => {
+      if (!found) return res.status(404).json({ message: `Client not found with ID ${id}` });
+      return res.status(400).json({ message: "Client updated", client: found });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
-// CLIENT CREATE
 const create = (req, res) => {
   const newClient = new Clients(req.body);
   newClient
     .save()
-    .then((clientDoc) => res.status(201).json(clientDoc))
-    .catch((err) => res.status(400).json(err.message));
+    .then((client) => res.json({ message: "Company added", client }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
+};
+
+const search = (req, res) => {
+  const name = req.query.name || null;
+  if (!name) return res.status(400).json({ msg: "Missing query param: name" });
+  return Clients.find({ name })
+    .then((data) => {
+      if (data.length === 0) return res.status(404).json({ msg: `Clients not found by name: ${name}` });
+      return res.json({ data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 module.exports = {
@@ -80,4 +73,5 @@ module.exports = {
   activate,
   update,
   create,
+  search,
 };
