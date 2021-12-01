@@ -1,41 +1,28 @@
-const { ObjectId } = require("mongoose").Types;
 const Positions = require("../models/positions");
 
 const getAll = (req, res) => {
-  Positions.find({ isDeleted: false }).populate("idClient", "name").populate("idProfile", "name description")
-    .then((positions) => res.status(200).json(positions))
-    .catch((err) => res.status(404).json(err));
+  Positions.find({ isDeleted: false })
+    .populate("idClient", "name")
+    .populate("idProfile", "name description")
+    .then((data) => res.json({ data }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const getById = (req, res) => {
-  Positions.findOne({ $and: [{ _id: new ObjectId(req.params.id) }, { isDeleted: false }] }).populate("idClient", "name").populate("idProfile", "name description")
-    .then((positions) => res.status(200).json(positions))
-    .catch((err) => res.status(404).json(err));
+  const { id } = req.params;
+  Positions.findOne({ $and: [{ _id: id }, { isDeleted: false }] })
+    .populate("idClient", "name")
+    .populate("idProfile", "name description")
+    .then((data) => {
+      if (!data) return res.status(404).json({ msg: `Position not found by ID: ${id}` });
+      return res.json({ data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const create = (req, res) => {
-  const idProfileArray = [];
-  req.body.idProfile.forEach((id) => {
-    idProfileArray.push(new ObjectId(id));
-  });
   const newPosition = {
-    idClient: new ObjectId(req.body.idClient),
-    idProfile: idProfileArray,
-    name: req.body.name,
-    description: req.body.description,
-    status: req.body.status,
-    address: req.body.address,
-    city: req.body.city,
-    postalCode: req.body.postalCode,
-  };
-  Positions.create(newPosition)
-    .then((positionDoc) => res.status(201).json(positionDoc))
-    .catch((err) => res.status(400).json(err));
-};
-
-const update = (req, res) => {
-  const updatedPosition = {
-    idClient: new ObjectId(req.body.idClient),
+    idClient: req.body.idClient,
     idProfile: req.body.idProfile,
     name: req.body.name,
     description: req.body.description,
@@ -44,54 +31,55 @@ const update = (req, res) => {
     city: req.body.city,
     postalCode: req.body.postalCode,
   };
-  Positions.findByIdAndUpdate(
-    new ObjectId(req.params.id),
-    updatedPosition,
-    { new: true },
-    (err, positionDoc) => {
-      if (!positionDoc) {
-        return res
-          .status(404)
-          .json({ msg: `Position with id: ${req.params.id} was not found.` });
-      }
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(positionDoc);
-    },
-  ).populate("idClient", "name").populate("idProfile", "name description");
+  Positions.create(newPosition)
+    .then((data) => res.json({ msg: "Position added", data }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
+};
+
+const update = (req, res) => {
+  const { id } = req.params;
+  const updatedPosition = {
+    idClient: req.body.idClient,
+    idProfile: req.body.idProfile,
+    name: req.body.name,
+    description: req.body.description,
+    status: req.body.status,
+    address: req.body.address,
+    city: req.body.city,
+    postalCode: req.body.postalCode,
+  };
+  Positions.findByIdAndUpdate(id, updatedPosition, { new: true })
+    .populate("idClient", "name")
+    .populate("idProfile", "name description")
+    .then((data) => {
+      if (!data) return res.status(404).json({ msg: `Position not found by ID: ${id}` });
+      return res.json({ msg: "Position updated", data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const remove = (req, res) => {
-  Positions.findByIdAndUpdate(
-    new ObjectId(req.params.id),
-    { isDeleted: true },
-    { new: true },
-    (err, deletedPosition) => {
-      if (!deletedPosition) {
-        return res
-          .status(404)
-          .json({ msg: `Position with id: ${req.params.id} was not found.` });
-      }
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(deletedPosition);
-    },
-  ).populate("idClient", "name").populate("idProfile", "name description");
+  const { id } = req.params;
+  Positions.findByIdAndUpdate(id, { isDeleted: true }, { new: true })
+    .populate("idClient", "name")
+    .populate("idProfile", "name description")
+    .then((data) => {
+      if (!data) return res.status(404).json({ msg: `Position not found by ID: ${id}` });
+      return res.json({ msg: "Position deleted", data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const activate = (req, res) => {
-  Positions.findByIdAndUpdate(
-    new ObjectId(req.params.id),
-    { isDeleted: false },
-    { new: true },
-    (err, activatedPosition) => {
-      if (!activatedPosition) {
-        return res
-          .status(404)
-          .json({ msg: `Position with id: ${req.params.id} was not found.` });
-      }
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(activatedPosition);
-    },
-  ).populate("idClient", "name").populate("idProfile", "name description");
+  const { id } = req.params;
+  Positions.findByIdAndUpdate(id, { isDeleted: false }, { new: true })
+    .populate("idClient", "name")
+    .populate("idProfile", "name description")
+    .then((data) => {
+      if (!data) return res.status(404).json({ msg: `Position not found by ID: ${id}` });
+      return res.json({ msg: "Position activated", data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 module.exports = {

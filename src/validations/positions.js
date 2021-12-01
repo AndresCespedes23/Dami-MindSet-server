@@ -1,6 +1,5 @@
 /* eslint-disable consistent-return */
 const Clients = require("../models/clients");
-const Profiles = require("../models/profiles");
 
 const required = (req, res, next) => {
   if (
@@ -20,7 +19,6 @@ const required = (req, res, next) => {
 
 const validate = async (req, res, next) => {
   const { idClient } = req.body;
-  const { idProfile } = req.body;
   const { name } = req.body;
   const { description } = req.body;
   const { status } = req.body;
@@ -76,12 +74,6 @@ const validate = async (req, res, next) => {
       return res
         .status(400)
         .json("Postal Code must be equal or less than 8 characters");
-    }
-  }
-  if (idProfile) {
-    const count = await Profiles.count({ _id: { $in: idProfile } });
-    if (count !== idProfile.length) {
-      return res.status(404).json({ error: "idProfile not found" });
     }
   }
   if (idClient) {
