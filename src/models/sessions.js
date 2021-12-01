@@ -26,6 +26,10 @@ const SessionsSchema = new Schema({
     type: String,
     maxLength: 500,
   },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Sessions", SessionsSchema);

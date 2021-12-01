@@ -27,6 +27,10 @@ const InterviewsSchema = new Schema({
     enum: ["DONE", "PENDING"],
     required: true,
   },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Interviews", InterviewsSchema);

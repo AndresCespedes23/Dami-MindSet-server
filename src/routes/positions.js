@@ -5,6 +5,7 @@ const validations = require("../validations/positions");
 router.get("/", positions.getAll);
 router.get("/:id", positions.getById);
 router.post("/", validations.required, validations.validate, positions.create);
+router.put("/activate/:id", positions.activate);
 router.put(
   "/:id",
   validations.validate,

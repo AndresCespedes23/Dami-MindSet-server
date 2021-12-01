@@ -2,23 +2,46 @@ const Clients = require("../models/clients");
 
 // CLIENT LIST
 const getAll = (req, res) => {
-  Clients.find()
+  Clients.find({ isDeleted: false })
     .then((clients) => res.status(200).json(clients))
     .catch((err) => res.status(404).json(err));
 };
 
 const getById = (req, res) => {
-  Clients.findById(req.params.id)
+  Clients.findOne({ $and: [{ _id: req.params.id }, { isDeleted: false }] })
     .then((client) => res.status(200).json(client))
     .catch((err) => res.status(404).json(err));
 };
 
 // CLIENT REMOVE
 const remove = (req, res) => {
-  Clients.findByIdAndRemove(req.params.id, (err, removedClient) => {
-    if (err) return res.status(400).json(err);
-    return res.status(200).json(removedClient);
-  });
+  const { id } = req.params;
+  Clients.findOneAndUpdate(
+    { _id: id },
+    { isDeleted: true },
+    { new: true },
+    (err, deletedClient) => {
+      if (deletedClient === null) {
+        return res.status(404).json({
+          msg: `Client with id: ${req.params.id} was not found.`,
+        });
+      }
+      if (err) return res.status(400).json(err.message);
+      return res.status(200).json(deletedClient);
+    },
+  );
+};
+
+const activate = (req, res) => {
+  Clients.findByIdAndUpdate(
+    req.params.id,
+    { isDeleted: false },
+    { new: true },
+    (err, activatedClient) => {
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(activatedClient);
+    },
+  );
 };
 
 // CLIENT UPDATE
@@ -54,6 +77,7 @@ module.exports = {
   getAll,
   getById,
   remove,
+  activate,
   update,
   create,
 };

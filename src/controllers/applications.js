@@ -2,13 +2,13 @@ const { ObjectId } = require("mongoose").Types;
 const Applications = require("../models/applications");
 
 const getAll = (req, res) => {
-  Applications.find().populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status")
+  Applications.find({ isDeleted: false }).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status")
     .then((applications) => res.status(200).json(applications))
     .catch((err) => res.status(400).json(err));
 };
 
 const getById = (req, res) => {
-  Applications.findById({ _id: new ObjectId(req.params.id) }).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status")
+  Applications.findOne({ $and: [{ _id: new ObjectId(req.params.id) }, { isDeleted: false }] }).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status")
     .then((application) => res.status(200).json(application))
     .catch((err) => res.status(400).json(err));
 };
@@ -74,12 +74,29 @@ const update = (req, res) => {
   ).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status");
 };
 
-const remove = (req, res) => {
-  Applications.findByIdAndRemove(
+const remove = (req, res) => Applications.findByIdAndUpdate(
+  new ObjectId(req.params.id),
+  { isDeleted: true },
+  { new: true },
+  (err, applicationDoc) => {
+    if (!applicationDoc) {
+      return res.status(404).json({
+        msg: `Application with id: ${req.params.id} was not found.`,
+      });
+    }
+    if (err) return res.status(400).json(err);
+    return res.status(200).json(applicationDoc);
+  },
+).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status");
+
+const activate = (req, res) => {
+  Applications.findByIdAndUpdate(
     new ObjectId(req.params.id),
-    (err, removedApplication) => {
+    { isDeleted: false },
+    { new: true },
+    (err, activatedApplication) => {
       if (err) return res.status(400).json(err);
-      return res.status(200).json(removedApplication);
+      return res.status(200).json(activatedApplication);
     },
   ).populate("idPosition", "name description").populate("idCandidate", "name").populate("idInterview", "dateTime status");
 };
@@ -90,4 +107,5 @@ module.exports = {
   update,
   create,
   remove,
+  activate,
 };

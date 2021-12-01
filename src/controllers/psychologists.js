@@ -43,25 +43,47 @@ const update = (req, res) => {
 };
 
 const remove = (req, res) => {
-  Psychologists.findByIdAndRemove(req.params.id)
-    .then((removePsychologist) => res.status(200).json(removePsychologist))
-    .catch((error) => res.status(400).json(error));
+  Psychologists.findByIdAndUpdate(
+    req.params.id,
+    { isDeleted: true },
+    { new: true },
+    (error, deletedPsychologist) => {
+      if (error) {
+        res.status(400).json(error);
+      }
+      return res.status(200).json(deletedPsychologist);
+    },
+  );
+};
+
+const activate = (req, res) => {
+  Psychologists.findByIdAndUpdate(
+    req.params.id,
+    { isDeleted: false },
+    { new: true },
+    (error, activatedPsychologist) => {
+      if (error) {
+        res.status(400).json(error);
+      }
+      return res.status(200).json(activatedPsychologist);
+    },
+  );
 };
 
 const getAll = (req, res) => {
-  Psychologists.find()
+  Psychologists.find({ isDeleted: false })
     .then((psychologist) => res.status(200).json(psychologist))
     .catch((error) => res.status(400).json(error));
 };
 
 const getById = (req, res) => {
-  Psychologists.findById(req.params.id)
+  Psychologists.findOne({ $and: [{ id: req.params.id }, { isDeleted: false }] })
     .then((psychologist) => res.status(200).json(psychologist))
     .catch((error) => res.status(400).json(error));
 };
 
 const getByName = (req, res) => {
-  Psychologists.find({ name: req.params.name })
+  Psychologists.find({ $and: [{ name: req.params.name }, { isDeleted: false }] })
     .then((psychologist) => res.status(200).json(psychologist))
     .catch((error) => res.status(400).json(error));
 };
@@ -73,4 +95,5 @@ module.exports = {
   getById,
   getByName,
   remove,
+  activate,
 };

@@ -49,18 +49,18 @@ const otherInfo = [
 const allInfo = [...personalInfo, ...otherInfo];
 
 const getAll = (req, res) => {
-  Candidates.find().populate("profiles")
+  Candidates.find({ isDeleted: false }).populate("profiles")
     .then((candidates) => res.status(200).json(candidates))
     .catch((err) => res.status(400).json(err));
 };
 
 const getById = (req, res) => {
-  Candidates.findById(new ObjectId(req.params.id)).populate("profiles")
+  Candidates.findOne({ $and: [{ _id: new ObjectId(req.params.id) }, { isDeleted: false }] }).populate("profiles")
     .then((candidate) => {
       if (!candidate) {
         return res
           .status(404)
-          .json({ msg: `User with name: ${req.params.name} was not found.` });
+          .json({ msg: `User with ID: ${req.params.id} was not found.` });
       }
       return res.status(200).json(candidate);
     })
@@ -68,12 +68,12 @@ const getById = (req, res) => {
 };
 
 const getByName = (req, res) => {
-  Candidates.findOne({ name: req.params.name }).populate("profiles")
+  Candidates.find({ $and: [{ name: req.params.name }, { isDeleted: false }] }).populate("profiles")
     .then((candidate) => {
       if (!candidate) {
         return res
           .status(404)
-          .json({ msg: `User with id: ${req.params.id} was not found.` });
+          .json({ msg: `User with Name: ${req.params.name} was not found.` });
       }
       return res.status(200).json(candidate);
     })
@@ -216,16 +216,35 @@ const updateWorkExperience = (req, res) => {
 };
 
 const remove = (req, res) => {
-  Candidates.findByIdAndDelete(
+  Candidates.findByIdAndUpdate(
     new ObjectId(req.params.id),
-    (err, candidateDoc) => {
-      if (!candidateDoc) {
+    { isDeleted: true },
+    { new: true },
+    (err, deletedCandidate) => {
+      if (!deletedCandidate) {
         return res.status(404).json({
-          msg: `Candidate with id: ${req.params.id} was not found.`,
+          msg: `Candidate with id: ${req.params.educationId} was not found.`,
         });
       }
       if (err) return res.status(400).json(err);
-      return res.status(200).json(candidateDoc);
+      return res.status(200).json(deletedCandidate);
+    },
+  ).populate("profiles");
+};
+
+const activate = (req, res) => {
+  Candidates.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    { isDeleted: false },
+    { new: true },
+    (err, activatedCandidate) => {
+      if (!activatedCandidate) {
+        return res.status(404).json({
+          msg: `Candidate with id: ${req.params.educationId} was not found.`,
+        });
+      }
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(activatedCandidate);
     },
   ).populate("profiles");
 };
@@ -291,6 +310,7 @@ module.exports = {
   updateEducation,
   updateWorkExperience,
   remove,
+  activate,
   removeEducation,
   removeWorkExperience,
   personalInfo,

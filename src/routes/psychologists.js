@@ -13,6 +13,7 @@ router.post(
   middleware.dataBodyUnique,
   psychologists.create,
 );
+router.put("/activate/:id", psychologists.activate);
 router.put(
   "/:id",
   // middleware.formatBodyRequired,

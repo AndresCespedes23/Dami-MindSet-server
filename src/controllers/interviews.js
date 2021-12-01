@@ -59,8 +59,10 @@ const update = (req, res) => {
 };
 
 const remove = (req, res) => {
-  Interviews.findByIdAndRemove(
+  Interviews.findByIdAndUpdate(
     new ObjectId(req.params.id),
+    { isDeleted: true },
+    { new: true },
     (err, removeInterview) => {
       if (err) return res.status(400).json(err);
       return res.status(200).json(removeInterview);
@@ -68,14 +70,26 @@ const remove = (req, res) => {
   ).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name");
 };
 
+const activate = (req, res) => {
+  Interviews.findByIdAndUpdate(
+    new ObjectId(req.params.id),
+    { isDeleted: false },
+    { new: true },
+    (err, activatedInterview) => {
+      if (err) return res.status(400).json(err);
+      return res.status(200).json(activatedInterview);
+    },
+  ).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name");
+};
+
 const getAll = (req, res) => {
-  Interviews.find().populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name")
+  Interviews.find({ isDeleted: false }).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name")
     .then((interviews) => res.status(200).json(interviews))
     .catch((err) => res.status(404).json(err));
 };
 
 const getById = (req, res) => {
-  Interviews.findById({ _id: new ObjectId(req.params.id) }).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name")
+  Interviews.findOne({ $and: [{ _id: new ObjectId(req.params.id) }, { isDeleted: false }] }).populate("idCandidate", "name").populate("idClient", "name").populate("idPosition", "name")
     .then((interview) => res.status(200).json(interview))
     .catch((err) => res.status(400).json(err));
 };
@@ -84,6 +98,7 @@ module.exports = {
   create,
   update,
   remove,
+  activate,
   getAll,
   getById,
 };
