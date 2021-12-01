@@ -56,9 +56,9 @@ const getAll = (req, res) => {
 const getById = (req, res) => {
   const { id } = req.params;
   Psychologists.findById(id)
-    .then((psychologist) => {
-      if (!psychologist) return res.status(404).json({ msg: `Psychologist not found by ID: ${id}` });
-      return res.json({ psychologist });
+    .then((data) => {
+      if (!data) return res.status(404).json({ msg: `Psychologist not found by ID: ${id}` });
+      return res.json({ data });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };

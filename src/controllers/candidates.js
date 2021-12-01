@@ -49,7 +49,7 @@ const allInfo = [...personalInfo, ...otherInfo];
 
 const getAll = (req, res) => {
   Candidates.find({ isDeleted: false }).populate("profiles")
-    .then((candidates) => res.json({ candidates }))
+    .then((data) => res.json({ data }))
     .catch((error) => res.status(500).json({ msg: `Error: ${error}` }));
 };
 

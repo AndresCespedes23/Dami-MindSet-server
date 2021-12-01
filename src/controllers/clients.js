@@ -9,9 +9,9 @@ const getAll = (req, res) => {
 const getById = (req, res) => {
   const { id } = req.params;
   Clients.findOne({ $and: [{ _id: id }, { isDeleted: false }] })
-    .then((found) => {
-      if (!found) return res.status(404).json({ message: `Client not found with ID: ${id}` });
-      return res.json(found);
+    .then((data) => {
+      if (!data) return res.status(404).json({ message: `Client not found with ID: ${id}` });
+      return res.json(data);
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };

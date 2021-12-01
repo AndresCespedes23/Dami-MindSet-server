@@ -5,7 +5,7 @@ const getAll = (req, res) => {
     .populate("idPosition", "name description")
     .populate("idCandidate", "name")
     .populate("idInterview", "dateTime status")
-    .then((applications) => res.json({ applications }))
+    .then((data) => res.json({ data }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
@@ -15,9 +15,9 @@ const getById = (req, res) => {
     .populate("idPosition", "name description")
     .populate("idCandidate", "name")
     .populate("idInterview", "dateTime status")
-    .then((application) => {
-      if (!application) return res.status(404).json({ msg: `Application not found by ID: ${id}` });
-      return res.json({ application });
+    .then((data) => {
+      if (!data) return res.status(404).json({ msg: `Application not found by ID: ${id}` });
+      return res.json({ data });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
