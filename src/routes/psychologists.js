@@ -4,8 +4,8 @@ const psychologists = require("../controllers/psychologists");
 const middleware = require("../validations/psychologists");
 
 router.get("/", psychologists.getAll);
+router.get("/search", psychologists.search);
 router.get("/:id", psychologists.getById);
-router.get("/byName/:name", psychologists.getByName);
 router.post(
   "/",
   middleware.dataBodyRequired,
