@@ -16,7 +16,7 @@ const getById = (req, res) => {
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
-const getByName = (req, res) => {
+const search = (req, res) => {
   const firstName = req.query.name || null;
   if (!firstName) return res.status(400).json({ msg: "Missing query param: name" });
   return Admins.find({ firstName })
@@ -40,6 +40,6 @@ const update = (req, res) => {
 module.exports = {
   getAll,
   getById,
-  getByName,
+  search,
   update,
 };

@@ -33,7 +33,7 @@ const create = (req, res) => {
   if (req.body.dateTime) newApplication.dateTime = new Date(req.body.dateTime);
   newApplication
     .save()
-    .then((application) => res.json({ success: "Application added", application }))
+    .then((application) => res.json({ msg: "Application added", application }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
