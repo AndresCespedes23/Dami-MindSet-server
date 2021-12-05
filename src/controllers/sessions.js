@@ -8,7 +8,7 @@ const getAll = (req, res) => {
 };
 
 const getById = (req, res) => {
-  Sessions.findById({ $and: [{ _id: new ObjectId(req.params.id) }, { isDeleted: false }] })
+  Sessions.findOne({ $and: [{ _id: new ObjectId(req.params.id) }, { isDeleted: false }] })
     .then((session) => res.status(200).json(session))
     .catch((err) => res.status(404).json(err));
 };
