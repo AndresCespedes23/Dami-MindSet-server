@@ -45,7 +45,7 @@ const ClientsSchema = new Schema({
     type: String,
     required: true,
     minLength: [3, "Min Length is 3"],
-    maxLength: [20, "Max lenght is 20"],
+    maxLength: [30, "Max lenght is 20"],
     match: [/^([^0-9]*)$/, "Can't contain numbers"],
   },
   isDeleted: {

@@ -1,0 +1,75 @@
+const admins = [
+  {
+    name: "Emlynne Offiler",
+    email: "eoler0@digg.com",
+    username: "eoffiler0",
+    password: "QfxzjUlOUE",
+    isSuperAdmin: false,
+    isDeleted: true,
+  }, {
+    name: "Ranee Longina",
+    email: "rgina1@ebay.co.uk",
+    username: "rlongina1",
+    password: "lsDqWgXwt",
+    isSuperAdmin: false,
+    isDeleted: true,
+  }, {
+    name: "Mella Carver",
+    email: "mcarver2@globo.com",
+    username: "mcarver2",
+    password: "uwju2G8UyEa7",
+    isSuperAdmin: false,
+    isDeleted: true,
+  }, {
+    name: "Cirstoforo Brownbridge",
+    email: "cbidge3@naver.com",
+    username: "cbrownbridge3",
+    password: "ooo6ZBTscq",
+    isSuperAdmin: false,
+    isDeleted: false,
+  }, {
+    name: "Phedra Kibel",
+    email: "pibel4@freewebs.com",
+    username: "pkibel4",
+    password: "vh1SmhtRS6d",
+    isSuperAdmin: false,
+    isDeleted: true,
+  }, {
+    name: "Geri Ravenhills",
+    email: "hills5@mapquest.com",
+    username: "gravenhills5",
+    password: "cSx4x1tcGgoJ",
+    isSuperAdmin: true,
+    isDeleted: true,
+  }, {
+    name: "Ermengarde Lindstrom",
+    email: "estrom6@usgs.gov",
+    username: "elindstrom6",
+    password: "yeeq2dOJZHf",
+    isSuperAdmin: false,
+    isDeleted: false,
+  }, {
+    name: "Stesha Freckingham",
+    email: "sham7@cbslocal.com",
+    username: "sfreckingham7",
+    password: "aHW73w15qtxI",
+    isSuperAdmin: true,
+    isDeleted: true,
+  }, {
+    name: "Con Brumhead",
+    email: "chead8@joomla.org",
+    username: "cbrumhead8",
+    password: "yJn57XE6VgJ",
+    isSuperAdmin: true,
+    isDeleted: true,
+  }, {
+    name: "Thibaut Filov",
+    email: "tilov9@examiner.com",
+    username: "tfilov9",
+    password: "v43Vmq5yPy",
+    isSuperAdmin: false,
+    isDeleted: true,
+  },
+];
+
+module.exports = admins;

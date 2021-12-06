@@ -9,7 +9,7 @@ const AdminsSchema = new Schema({
   },
   email: {
     type: String,
-    maxLength: 20,
+    maxLength: 30,
     required: true,
     unique: true,
   },
