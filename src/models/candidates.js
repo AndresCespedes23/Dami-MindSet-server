@@ -118,7 +118,7 @@ const CandidatesSchema = new Schema({
     required: true,
   },
   timeRange: {
-    type: [Number],
+    type: [String],
     required: false,
   },
   profiles: {

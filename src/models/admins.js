@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
+
 const AdminsSchema = new Schema({
+  id: {
+    type: Schema.Types.ObjectId,
+  },
   name: {
     type: String,
     maxLength: 50,
@@ -9,7 +13,7 @@ const AdminsSchema = new Schema({
   },
   email: {
     type: String,
-    maxLength: 20,
+    maxLength: 30,
     required: true,
     unique: true,
   },
