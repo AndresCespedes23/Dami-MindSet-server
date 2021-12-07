@@ -9,10 +9,10 @@ const PositionsSchema = new Schema({
     required: true,
   },
   idProfile: [{
-      type: Schema.Types.ObjectId,
-      ref: "Profiles",
-      required: true,
-    },
+    type: Schema.Types.ObjectId,
+    ref: "Profiles",
+    required: true,
+  },
   ],
   name: {
     type: String,
