@@ -10,8 +10,8 @@
     "lint-fix": "eslint . --fix",
     "prettier": "prettier --write .",
     "prepare": "husky install",
-    "products:import": "node src/seed/seeder",
-		"products:destroy": "node src/seed/seeder -d"
+    "data:import": "node src/seed/seeder",
+		"data:destroy": "node src/seed/seeder -d"
   },
   "engines": {
     "node": "16.8.0"

@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
+
 const AdminsSchema = new Schema({
+  id: {
+    type: Schema.Types.ObjectId,
+  },
   name: {
     type: String,
     maxLength: 50,
