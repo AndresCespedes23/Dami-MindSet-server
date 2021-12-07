@@ -27,24 +27,20 @@ const validate = async (req, res, next) => {
   const { postalCode } = req.body;
   if (name) {
     if (name.length > 50) {
-      return res
-        .status(400)
-        .json("Name must have equal or less than 50 characters");
+      return res.status(400).json({ msg: "Name must have equal or less than 50 characters" });
     }
-    if (name.search(/[0-9]/) !== -1) { return res.status(400).json("Name must not have numbers"); }
+    if (name.search(/[0-9]/) !== -1) { return res.status(400).json({ msg: "Name must not have numbers" }); }
   }
   if (description) {
     if (description.length > 5000) {
-      return res
-        .status(400)
-        .json("Description must have equal or less than 5000 characters");
+      return res.status(400).json({ msg: "Description must have equal or less than 5000 characters" });
     }
   }
   if (status !== "DONE" && status !== "PENDING") {
-    return res.status(400).json("Status must be DONE or PENDING");
+    return res.status(400).json({ msg: "Status must be DONE or PENDING" });
   }
   if (address) {
-    if (address.length < 5) { return res.status(400).json("Address must be at least 5 characters"); }
+    if (address.length < 5) { return res.status(400).json({ msg: "Address must be at least 5 characters" }); }
     if (
       address.search(/[a-z]/i) < 0
       || address.search(/[0-9]/) < 0
@@ -52,28 +48,28 @@ const validate = async (req, res, next) => {
     ) {
       return res
         .status(400)
-        .json("The Address must have letters, numbers and at least 1 space");
+        .json({ msg: "The Address must have letters, numbers and at least 1 space" });
     }
     if (address.length > 50) {
       return res
         .status(400)
-        .json("Address must be equal or less than 50 characters");
+        .json({ msg: "Address must be equal or less than 50 characters" });
     }
   }
   if (city) {
-    if (city.length < 3) { return res.status(400).json("City must be at least 3 characters"); }
+    if (city.length < 3) { return res.status(400).json({ msg: "City must be at least 3 characters" }); }
     if (city.length > 50) {
       return res
         .status(400)
-        .json("City must be equal or less than 50 characters");
+        .json({ msg: "City must be equal or less than 50 characters" });
     }
   }
   if (postalCode) {
-    if (postalCode.length < 4) { return res.status(400).json("Postal Code must be at least 4 characters"); }
+    if (postalCode.length < 4) { return res.status(400).json({ msg: "Postal Code must be at least 4 characters" }); }
     if (postalCode.length > 8) {
       return res
         .status(400)
-        .json("Postal Code must be equal or less than 8 characters");
+        .json({ msg: "Postal Code must be equal or less than 8 characters" });
     }
   }
   if (idClient) {
@@ -82,11 +78,11 @@ const validate = async (req, res, next) => {
         if (!client) {
           return res
             .status(404)
-            .json({ error: `idClient ${idClient} doesn't exist` });
+            .json({ msg: `idClient ${idClient} doesn't exist` });
         }
         next();
       })
-      .catch((err) => res.status(404).json({ error: err.message }));
+      .catch((err) => res.status(404).json({ msg: err.message }));
   }
   next();
 };
