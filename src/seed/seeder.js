@@ -3,6 +3,21 @@ const Admins = require("../models/admins");
 const admins = require("../../data/admins");
 const Clients = require("../models/clients");
 const clients = require("../../data/clients");
+const Candidates = require("../models/candidates");
+const candidates = require("../../data/candidates");
+const Psychologists = require("../models/psychologists");
+const psychologists = require("../../data/psychologists");
+const Profiles = require("../models/profiles");
+const profiles = require("../../data/profiles");
+const Sessions = require("../models/sessions");
+const sessions = require("../../data/sessions");
+const Positions = require("../models/positions");
+const positions = require("../../data/positions");
+const Interviews = require("../models/interviews");
+const interviews = require("../../data/interviews");
+const Applications = require("../models/applications");
+const applications = require("../../data/applications");
+
 const connectDB = require("./configDB");
 
 dotenv.config();
@@ -13,10 +28,40 @@ const importProducts = async () => {
     await Admins.deleteMany();
 
     await Clients.deleteMany();
+    
+    await Candidates.deleteMany();
+
+    await Psychologists.deleteMany();
+
+    await Profiles.deleteMany();
+
+    await Sessions.deleteMany();
+
+    await Positions.deleteMany();
+
+    await Interviews.deleteMany();
+
+    await Applications.deleteMany();
 
     await Admins.insertMany(admins);
 
     await Clients.insertMany(clients);
+
+    await Candidates.insertMany(candidates);
+
+    await Psychologists.insertMany(psychologists);
+
+    await Profiles.insertMany(profiles);
+
+    await Sessions.insertMany(sessions);
+
+    await Positions.insertMany(positions);
+
+    await Interviews.insertMany(interviews);
+
+    await Applications.insertMany(applications);
+
+    
 
     console.log("Data Imported");
     process.exit();
