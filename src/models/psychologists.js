@@ -43,10 +43,10 @@ const PsychologistsSchema = new Schema({
     required: true,
   },
   timeRange: {
-    type: [Number],
+    type: [String],
   },
   dayRange: {
-    type: [Number],
+    type: [String],
   },
   isDeleted: {
     type: Boolean,

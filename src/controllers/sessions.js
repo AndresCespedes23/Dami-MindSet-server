@@ -10,7 +10,7 @@ const getAll = (req, res) => {
 
 const getById = (req, res) => {
   const { id } = req.params;
-  Sessions.findById({ $and: [{ _id: id }, { isDeleted: false }] })
+  Sessions.findOne({ $and: [{ _id: id }, { isDeleted: false }] })
     .populate("idPsychologist", "name")
     .populate("idCandidate", "name")
     .then((data) => {

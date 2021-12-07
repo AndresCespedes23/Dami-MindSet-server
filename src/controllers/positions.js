@@ -24,6 +24,10 @@ const create = (req, res) => {
   const newPosition = {
     idClient: req.body.idClient,
     idProfile: req.body.idProfile,
+    /* const idProfileArray = [];
+    req.body.idProfile.forEach((id) => {
+      idProfileArray.push(new ObjectId(id));
+    }); */
     name: req.body.name,
     description: req.body.description,
     status: req.body.status,
