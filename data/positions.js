@@ -4,7 +4,7 @@ const positions = [
   {
     _id: "61afb874fc13ae79cc0003ef",
     idClient: "61af887dfc13ae328d00015e",
-    idProfiles: [new ObjectId("61af8c1afc13ae7262000199")],
+    idProfile: [new ObjectId("61af8c1afc13ae7262000199")],
     name: "VP",
     description: "praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede",
     status: "DONE",
@@ -15,7 +15,7 @@ const positions = [
   {
     _id: "61afb874fc13ae79cc0003f0",
     idClient: "61af887dfc13ae328d00015f",
-    idProfiles: [new ObjectId("61af8c1afc13ae7262000195")],
+    idProfile: [new ObjectId("61af8c1afc13ae7262000195")],
     name: "Community Outreach Specialist",
     description: "ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor",
     status: "PENDING",
@@ -26,7 +26,7 @@ const positions = [
   {
     _id: "61afb874fc13ae79cc0003f1",
     idClient: "61af887dfc13ae328d000160",
-    idProfiles: [new ObjectId("61af8c1afc13ae7262000198"), new ObjectId("61af8c1afc13ae7262000199")],
+    idProfile: [new ObjectId("61af8c1afc13ae7262000198"), new ObjectId("61af8c1afc13ae7262000199")],
     name: "Web Designer III",
     description: "lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque",
     status: "PENDING",
@@ -37,7 +37,7 @@ const positions = [
   {
     _id: "61afb874fc13ae79cc0003f2",
     idClient: "61af887dfc13ae328d000161",
-    idProfiles: [new ObjectId("61af8c1afc13ae7262000195")],
+    idProfile: [new ObjectId("61af8c1afc13ae7262000195")],
     name: "Analog Circuit Design manager",
     description: "odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor",
     status: "DONE",
@@ -47,7 +47,7 @@ const positions = [
   }, {
     _id: "61afb874fc13ae79cc0003f3",
     idClient: "61af887dfc13ae328d000162",
-    idProfiles: [new ObjectId("61af8c1afc13ae7262000198"), new ObjectId("61af8c1afc13ae7262000199")],
+    idProfile: [new ObjectId("61af8c1afc13ae7262000198"), new ObjectId("61af8c1afc13ae7262000199")],
     name: "VP",
     description: "praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede",
     status: "DONE",
@@ -58,7 +58,7 @@ const positions = [
   {
     _id: "61afb874fc13ae79cc0003f4",
     idClient: "61af887dfc13ae328d000163",
-    idProfiles: [new ObjectId("61af8c1afc13ae726200019b"), new ObjectId("61af8c1afc13ae726200019a")],
+    idProfile: [new ObjectId("61af8c1afc13ae726200019b"), new ObjectId("61af8c1afc13ae726200019a")],
     name: "VP",
     description: "praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede",
     status: "DONE",
@@ -69,7 +69,7 @@ const positions = [
   {
     _id: "61afb874fc13ae79cc0003f5",
     idClient: "61af887dfc13ae328d000164",
-    idProfiles: [new ObjectId("61af8c1afc13ae7262000198"), new ObjectId("61af8c1afc13ae7262000199")],
+    idProfile: [new ObjectId("61af8c1afc13ae7262000198"), new ObjectId("61af8c1afc13ae7262000199")],
     name: "VP",
     description: "praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede",
     status: "DONE",
@@ -80,7 +80,7 @@ const positions = [
   {
     _id: "61afb874fc13ae79cc0003f6",
     idClient: "61af887dfc13ae328d000165",
-    idProfiles: [new ObjectId("61af8c1afc13ae726200019e"), new ObjectId("61af8c1afc13ae726200019d"), new ObjectId("61af8c1afc13ae726200019c")],
+    idProfile: [new ObjectId("61af8c1afc13ae726200019e"), new ObjectId("61af8c1afc13ae726200019d"), new ObjectId("61af8c1afc13ae726200019c")],
     name: "VP",
     description: "praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede",
     status: "DONE",
@@ -91,7 +91,7 @@ const positions = [
   {
     _id: "61afb874fc13ae79cc0003f7",
     idClient: "61af887dfc13ae328d000166",
-    idProfiles: [new ObjectId("61af8c1afc13ae7262000196"), new ObjectId("61af8c1afc13ae7262000197")],
+    idProfile: [new ObjectId("61af8c1afc13ae7262000196"), new ObjectId("61af8c1afc13ae7262000197")],
     name: "VP",
     description: "praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede",
     status: "DONE",
@@ -102,7 +102,7 @@ const positions = [
   {
     _id: "61afb874fc13ae79cc0003f8",
     idClient: "61af887dfc13ae328d000167",
-    idProfiles: [new ObjectId("61af8c1afc13ae7262000195")],
+    idProfile: [new ObjectId("61af8c1afc13ae7262000195")],
     name: "VP",
     description: "praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede",
     status: "DONE",
