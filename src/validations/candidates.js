@@ -87,7 +87,7 @@ const validate = (req, res, next) => {
     }
   }
   if (result.error) {
-    return res.status(400).json({ Msj: result.errorMsg });
+    return res.status(400).json({ msg: result.errorMsg });
   }
   next();
 };

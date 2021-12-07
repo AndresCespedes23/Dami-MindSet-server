@@ -1,16 +1,29 @@
-const { ObjectId } = require("mongoose").Types;
 const Profiles = require("../models/profiles");
 
 const getAll = (req, res) => {
   Profiles.find({ isDeleted: false })
-    .then((profiles) => res.status(200).json(profiles))
-    .catch((err) => res.status(400).json(err));
+    .then((data) => res.json({ data }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const getById = (req, res) => {
-  Profiles.findOne({ $and: [{ _id: new ObjectId(req.params.id) }, { isDeleted: false }] })
-    .then((profile) => res.status(200).json(profile))
-    .catch((err) => res.status(400).json(err));
+  const { id } = req.params;
+  Profiles.findOne({ $and: [{ _id: id }, { isDeleted: false }] })
+    .then((data) => {
+      if (!data) return res.status(404).json({ msg: `Profile not found by ID: ${id}` });
+      return res.json({ data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
+};
+
+const search = (req, res) => {
+  const { name } = req.query;
+  Profiles.find({ name })
+    .then((data) => {
+      if (data.length === 0) return res.status(404).json({ msg: `Profile not found by name: ${name}` });
+      return res.json({ data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const create = (req, res) => {
@@ -19,53 +32,38 @@ const create = (req, res) => {
     description: req.body.description,
   };
   Profiles.create(newProfile)
-    .then((profileDoc) => res.status(201).json(profileDoc))
-    .catch((err) => res.status(400).json(err));
+    .then((data) => res.json({ msg: "Profile added: ", data }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const update = (req, res) => {
-  const updatedProfile = {
-    name: req.body.name,
-    description: req.body.description,
-  };
-  return Profiles.findByIdAndUpdate(
-    req.params.id,
-    updatedProfile,
-    { new: true },
-    (err, profileDoc) => {
-      if (!profileDoc) {
-        return res
-          .status(404)
-          .json({ msg: `Profile with id: ${req.params.id} was not found.` });
-      }
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(profileDoc);
-    },
-  );
+  const { id } = req.params;
+  Profiles.findByIdAndUpdate(id, req.body, { new: true })
+    .then((data) => {
+      if (data.length === 0) return res.status(404).json({ msg: `Profile not found by ID: ${id}` });
+      return res.json({ msg: "Profile updated", data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const remove = (req, res) => {
-  Profiles.findByIdAndUpdate(
-    new ObjectId(req.params.id),
-    { isDeleted: true },
-    { new: true },
-    (err, deletedProfile) => {
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(deletedProfile);
-    },
-  );
+  const { id } = req.params;
+  Profiles.findByIdAndUpdate(id, { isDeleted: true }, { new: true })
+    .then((data) => {
+      if (data.length === 0) return res.status(404).json({ msg: `Profile not found by ID: ${id}` });
+      return res.json({ msg: "Profile deleted", data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const activate = (req, res) => {
-  Profiles.findByIdAndUpdate(
-    new ObjectId(req.params.id),
-    { isDeleted: false },
-    { new: true },
-    (err, activatedProfile) => {
-      if (err) return res.status(400).json(err);
-      return res.status(200).json(activatedProfile);
-    },
-  );
+  const { id } = req.params;
+  Profiles.findByIdAndUpdate(id, { isDeleted: false }, { new: true })
+    .then((data) => {
+      if (data.length === 0) return res.status(404).json({ msg: `Profile not found by ID: ${id}` });
+      return res.json({ msg: "Profile activate", data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 // Module Exports
@@ -76,4 +74,5 @@ module.exports = {
   update,
   remove,
   activate,
+  search,
 };

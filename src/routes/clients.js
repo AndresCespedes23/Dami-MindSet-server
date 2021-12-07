@@ -4,6 +4,7 @@ const controller = require("../controllers/clients");
 const middleware = require("../validations/clients");
 
 router.get("/", controller.getAll);
+router.get("/search", controller.search);
 router.get("/:id", controller.getById);
 router.post(
   "/",

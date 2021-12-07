@@ -17,19 +17,19 @@ const validate = (req, res, next) => {
   const { idPosition } = req.body;
   const { status } = req.body;
   if (idCandidate) {
-    if (idCandidate.search(/[a-z]/) < 0) return res.status(400).json("idCandidate must have one letter at least");
-    if (idCandidate.search(/[0-9]/) < 0) return res.status(400).json("idCandidate must have one number at least");
+    if (idCandidate.search(/[a-z]/) < 0) return res.status(400).json({ msg: "idCandidate must have one letter at least" });
+    if (idCandidate.search(/[0-9]/) < 0) return res.status(400).json({ msg: "idCandidate must have one number at least" });
   }
   if (idClient) {
-    if (idClient.search(/[a-z]/) < 0) return res.status(400).json("idClient must have one letter at least");
-    if (idClient.search(/[0-9]/) < 0) return res.status(400).json("idClient must have one number at least");
+    if (idClient.search(/[a-z]/) < 0) return res.status(400).json({ msg: "idClient must have one letter at least" });
+    if (idClient.search(/[0-9]/) < 0) return res.status(400).json({ msg: "idClient must have one number at least" });
   }
   if (idPosition) {
-    if (idPosition.search(/[a-z]/) < 0) return res.status(400).json("idPosition must have one letter at least");
-    if (idPosition.search(/[0-9]/) < 0) return res.status(400).json("idPosition must have one number at least");
+    if (idPosition.search(/[a-z]/) < 0) return res.status(400).json({ msg: "idPosition must have one letter at least" });
+    if (idPosition.search(/[0-9]/) < 0) return res.status(400).json({ msg: "idPosition must have one number at least" });
   }
   if (status !== "DONE" && status !== "PENDING") {
-    return res.status(400).json("Status must be DONE or PENDING");
+    return res.status(400).json({ msg: "Status must be DONE or PENDING" });
   }
   next();
 };

@@ -2,8 +2,8 @@ const router = require("express").Router();
 const candidates = require("../controllers/candidates");
 
 router.get("/", candidates.getAll);
+router.get("/search", candidates.search);
 router.get("/:id", candidates.getById);
-router.get("/byName/:name", candidates.getByName);
 router.post(
   "/",
   candidates.create,

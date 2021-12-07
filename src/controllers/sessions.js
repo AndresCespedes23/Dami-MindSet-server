@@ -1,88 +1,79 @@
-const { ObjectId } = require("mongoose").Types;
 const Sessions = require("../models/sessions");
 
 const getAll = (req, res) => {
-  Sessions.find({ isDeleted: false }).populate("idPsychologist", "name").populate("idCandidate", "name")
-    .then((sessions) => res.status(200).json(sessions))
-    .catch((err) => res.status(404).json(err));
+  Sessions.find({ isDeleted: false })
+    .populate("idPsychologist", "name")
+    .populate("idCandidate", "name")
+    .then((data) => res.json({ data }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const getById = (req, res) => {
-  Sessions.findOne({ $and: [{ _id: new ObjectId(req.params.id) }, { isDeleted: false }] })
-    .then((session) => res.status(200).json(session))
-    .catch((err) => res.status(404).json(err));
+  const { id } = req.params;
+  Sessions.findOne({ $and: [{ _id: id }, { isDeleted: false }] })
+    .populate("idPsychologist", "name")
+    .populate("idCandidate", "name")
+    .then((data) => {
+      if (!data) return res.status(404).json({ msg: `Session not found by ID: ${id}` });
+      return res.json({ data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const create = (req, res) => {
   const newSession = {
-    idPsychologist: new ObjectId(req.body.idPsychologist),
-    idCandidate: new ObjectId(req.body.idCandidate),
+    idPsychologist: req.body.idPsychologist,
+    idCandidate: req.body.idCandidate,
     dateTime: new Date(req.body.dateTime),
     status: req.body.status,
     result: req.body.result,
   };
   Sessions.create(newSession)
-    .then((sessionDoc) => res.status(201).json(sessionDoc))
-    .catch((error) => res.status(400).json(error));
+    .then((data) => res.json({ msg: "Session added", data }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const update = (req, res) => {
+  const { id } = req.params;
   const updatedSession = {
-    idPsychologist: new ObjectId(req.body.idPsychologist),
-    idCandidate: new ObjectId(req.body.idCandidate),
+    idPsychologist: req.body.idPsychologist,
+    idCandidate: req.body.idCandidate,
     dateTime: new Date(req.body.dateTime),
     status: req.body.status,
     result: req.body.result,
   };
-
-  Sessions.findByIdAndUpdate(
-    new ObjectId(req.params.id),
-    updatedSession,
-    { new: true },
-    (err, sessionDoc) => {
-      if (!sessionDoc) {
-        return res.status(404).json({
-          msg: `Session with id: ${req.params.id} was not found.`,
-        });
-      }
-      if (err) return res.status(404).json(err);
-      return res.status(200).json(sessionDoc);
-    },
-  );
+  Sessions.findByIdAndUpdate(id, updatedSession, { new: true })
+    .populate("idPsychologist", "name")
+    .populate("idCandidate", "name")
+    .then((data) => {
+      if (!data) return res.status(404).json({ msg: `Session not found by ID: ${id}` });
+      return res.json({ msg: "Session updated", data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const remove = (req, res) => {
-  Sessions.findByIdAndUpdate(
-    new ObjectId(req.params.id),
-    { isDeleted: true },
-    { new: true },
-    (err, deletedSession) => {
-      if (!deletedSession) {
-        return res.status(404).json({
-          msg: `Session with id: ${req.params.id} was not found.`,
-        });
-      }
-      if (err) return res.status(404).json(err);
-      return res.status(200).json(deletedSession);
-    },
-  );
+  const { id } = req.params;
+  Sessions.findByIdAndUpdate(id, { isDeleted: true }, { new: true })
+    .populate("idPsychologist", "name")
+    .populate("idCandidate", "name")
+    .then((data) => {
+      if (!data) return res.status(404).json({ msg: `Session not found by ID: ${id}` });
+      return res.json({ msg: "Session deleted", data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const activate = (req, res) => {
-  Sessions.findByIdAndUpdate(
-    new ObjectId(req.params.id),
-    { isDeleted: false },
-    { new: true },
-    (err, activatedSession) => {
-      if (!activatedSession) {
-        return res.status(404).json({
-          msg: `Session with id: ${req.params.id} was not found.`,
-        });
-      }
-      if (err) return res.status(404).json(err);
-      return res.status(200).json(activatedSession);
-    },
-  );
+  const { id } = req.params;
+  Sessions.findByIdAndUpdate(id, { isDeleted: false }, { new: true })
+    .populate("idPsychologist", "name")
+    .populate("idCandidate", "name")
+    .then((data) => {
+      if (!data) return res.status(404).json({ msg: `Session not found by ID: ${id}` });
+      return res.json({ msg: "Session activated", data });
+    })
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 module.exports = {
