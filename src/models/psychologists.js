@@ -35,8 +35,7 @@ const PsychologistsSchema = new Schema({
     required: true,
   },
   status: {
-    type: String,
-    enum: ["AVAILABLE", "UNAVAILABLE"],
+    type: Boolean,
     required: true,
   },
   timeStart: {
