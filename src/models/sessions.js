@@ -13,8 +13,12 @@ const SessionsSchema = new Schema({
     ref: "Candidates",
     required: true,
   },
-  dateTime: {
-    type: Date,
+  date: {
+    type: String,
+    required: true,
+  },
+  time: {
+    type: String,
     required: true,
   },
   status: {

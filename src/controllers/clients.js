@@ -11,7 +11,7 @@ const getById = (req, res) => {
   Clients.findOne({ $and: [{ _id: id }, { isDeleted: false }] })
     .then((data) => {
       if (!data) return res.status(404).json({ message: `Client not found with ID: ${id}` });
-      return res.json(data);
+      return res.json({ data });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
@@ -21,7 +21,7 @@ const remove = (req, res) => {
   Clients.findByIdAndUpdate(id, { isDeleted: true }, { new: true })
     .then((found) => {
       if (!found) return res.status(404).json({ message: `Client not found with ID ${id}` });
-      return res.status(400).json({ message: "Client deleted", client: found });
+      return res.json({ message: "Client deleted", data: found });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
@@ -31,7 +31,7 @@ const activate = (req, res) => {
   Clients.findByIdAndUpdate(id, { isDeleted: false }, { new: true })
     .then((found) => {
       if (!found) return res.status(404).json({ message: `Client not found with ID ${id}` });
-      return res.status(400).json({ message: "Client activated", client: found });
+      return res.status.json({ message: "Client activated", data: found });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
@@ -42,7 +42,7 @@ const update = (req, res) => {
   Clients.findByIdAndUpdate(id, client, { new: true })
     .then((found) => {
       if (!found) return res.status(404).json({ message: `Client not found with ID ${id}` });
-      return res.status(400).json({ message: "Client updated", client: found });
+      return res.json({ message: "Client updated", data: found });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
@@ -51,7 +51,7 @@ const create = (req, res) => {
   const newClient = new Clients(req.body);
   newClient
     .save()
-    .then((client) => res.json({ message: "Company added", client }))
+    .then((client) => res.json({ message: "Client added", data: client }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
