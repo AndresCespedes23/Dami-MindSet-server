@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { required } = require("../validations/admins");
+const { required } = require("../validations/applications");
 const applications = require("../controllers/applications");
 
 router.get("/", applications.getAll);

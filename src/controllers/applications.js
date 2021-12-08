@@ -33,7 +33,7 @@ const create = (req, res) => {
   if (req.body.dateTime) newApplication.dateTime = new Date(req.body.dateTime);
   newApplication
     .save()
-    .then((application) => res.json({ msg: "Application added", application }))
+    .then((application) => res.json({ msg: "Application added", data: application }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
@@ -53,7 +53,7 @@ const update = (req, res) => {
     .populate("idInterview", "dateTime status")
     .then((application) => {
       if (!application) return res.status(404).json({ msg: `Application not found by ID: ${id}` });
-      return res.json({ success: "Application updated", application });
+      return res.json({ success: "Application updated", data: application });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
@@ -66,7 +66,7 @@ const remove = (req, res) => {
     .populate("idInterview", "dateTime status")
     .then((application) => {
       if (!application) return res.status(404).json({ msg: `Application not found by ID: ${id}` });
-      return res.json({ success: "Application removed", application });
+      return res.json({ success: "Application removed", data: application });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
@@ -79,7 +79,7 @@ const activate = (req, res) => {
     .populate("idInterview", "dateTime status")
     .then((application) => {
       if (!application) return res.status(404).json({ msg: `Application not found by ID: ${id}` });
-      return res.json({ success: "Application activated", application });
+      return res.json({ success: "Application activated", data: application });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };

@@ -15,7 +15,7 @@ const PsychologistsSchema = new Schema({
     maxLength: 30,
     required: true,
   },
-  userName: {
+  username: {
     type: String,
     maxLength: 30,
     required: true,

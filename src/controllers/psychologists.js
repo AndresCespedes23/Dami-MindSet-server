@@ -13,7 +13,7 @@ const create = (req, res) => {
   if (req.body.dayRange) newPsychologist.dayRange = req.body.dayRange;
   if (req.body.timeRange) newPsychologist.timeRange = req.body.timeRange;
   Psychologists.create(newPsychologist)
-    .then((psychologist) => res.json({ msg: "Psychologist added", psychologist }))
+    .then((psychologist) => res.json({ msg: "Psychologist added", data: psychologist }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
@@ -22,7 +22,7 @@ const update = (req, res) => {
   Psychologists.findByIdAndUpdate(id, req.body, { new: true })
     .then((psychologist) => {
       if (!psychologist) return res.status(404).json({ msg: `Psychologist not found by ID: ${id}` });
-      return res.json({ msg: "Psychologist updated", psychologist });
+      return res.json({ msg: "Psychologist updated", data: psychologist });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
@@ -32,7 +32,7 @@ const remove = (req, res) => {
   Psychologists.findByIdAndUpdate(id, { isDeleted: true }, { new: true })
     .then((psychologist) => {
       if (!psychologist) return res.status(404).json({ msg: `Psychologist not found by ID: ${id}` });
-      return res.json({ msg: "Psychologist deleted", psychologist });
+      return res.json({ msg: "Psychologist deleted", data: psychologist });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
@@ -42,7 +42,7 @@ const activate = (req, res) => {
   Psychologists.findByIdAndUpdate(id, { isDeleted: false }, { new: true })
     .then((psychologist) => {
       if (!psychologist) return res.status(404).json({ msg: `Psychologist not found by ID: ${id}` });
-      return res.json({ msg: "Psychologist activated", psychologist });
+      return res.json({ msg: "Psychologist activated", data: psychologist });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
@@ -68,7 +68,7 @@ const search = (req, res) => {
   Psychologists.find({ firstName: text })
     .then((psychologists) => {
       if (psychologists.length === 0) return res.status(404).json({ msg: `Psychologist not found by Name: ${text}` });
-      return res.json({ psychologists });
+      return res.json({ data: psychologists });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
