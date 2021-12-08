@@ -38,7 +38,8 @@ const update = (req, res) => {
   const updatedSession = {
     idPsychologist: req.body.idPsychologist,
     idCandidate: req.body.idCandidate,
-    dateTime: new Date(req.body.dateTime),
+    date: req.body.date,
+    time: req.body.time,
     status: req.body.status,
     result: req.body.result,
   };

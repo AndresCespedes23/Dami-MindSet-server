@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const PsychologistsSchema = new Schema({
-
   name: {
     type: String,
     lowercase: true,
@@ -36,13 +35,20 @@ const PsychologistsSchema = new Schema({
     required: true,
   },
   status: {
-    type: Boolean,
+    type: String,
+    enum: ["AVAILABLE", "UNAVAILABLE"],
     required: true,
   },
-  timeRange: {
+  timeStart: {
     type: String,
   },
-  dayRange: {
+  timeEnd: {
+    type: String,
+  },
+  dayStart: {
+    type: String,
+  },
+  dayEnd: {
     type: String,
   },
   isDeleted: {
