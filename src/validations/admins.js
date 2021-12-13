@@ -12,9 +12,6 @@ const required = (req, res, next) => {
   if (!req.body.password) {
     return res.status(400).json({ msg: "Password is required" });
   }
-  if (!req.body.isSuperAdmin) {
-    return res.status(400).json({ msg: "You should be super admin to load new information!" });
-  }
   next();
 };
 
