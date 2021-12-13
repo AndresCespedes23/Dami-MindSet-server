@@ -29,7 +29,7 @@ const formatBodyRequired = (req, res, next) => {
     if (req.body.password.length > 30) return res.status(400).json({ msg: "Password cannot be bigger than 30" });
   }
   if (req.body.phoneNumber) {
-    if (typeof req.body.phoneNumber !== "string") return res.status(400).json({ msg: "´PhoneNumber must be string" });
+    if (typeof req.body.phoneNumber !== "string") return res.status(400).json({ msg: "PhoneNumber must be string" });
     if (req.body.phoneNumber.length > 15) {
       return res
         .status(400)
@@ -56,7 +56,7 @@ const formatBodyRequired = (req, res, next) => {
         .json({ msg: "EnrollmentNumber must contain only numbers" });
     }
   }
-  if (req.body.status && typeof req.body.status !== "boolean") return res.status(400).json({ msg: "Status must be boolean" });
+  if (req.body.status && typeof req.body.status !== "string") return res.status(400).json({ msg: "Status must be strings" });
   // const { timeRange } = req.body;
   // if (timeRange) {
   //   if (timeRange.length !== 2)
