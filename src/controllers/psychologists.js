@@ -10,7 +10,6 @@ const create = (req, res) => {
     enrollmentNumber: req.body.enrollmentNumber,
     status: req.body.status,
   };
-  console.log(req.body);
   if (req.body.timeStart) newPsychologist.timeStart = req.body.timeStart;
   if (req.body.timeEnd) newPsychologist.timeEnd = req.body.timeEnd;
   if (req.body.dayStart) newPsychologist.dayStart = req.body.dayStart;
