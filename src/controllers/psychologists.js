@@ -10,8 +10,10 @@ const create = (req, res) => {
     enrollmentNumber: req.body.enrollmentNumber,
     status: req.body.status,
   };
-  if (req.body.dayRange) newPsychologist.dayRange = req.body.dayRange;
-  if (req.body.timeRange) newPsychologist.timeRange = req.body.timeRange;
+  if (req.body.timeStart) newPsychologist.timeStart = req.body.timeStart;
+  if (req.body.timeEnd) newPsychologist.timeEnd = req.body.timeEnd;
+  if (req.body.dayStart) newPsychologist.dayStart = req.body.dayStart;
+  if (req.body.dayEnd) newPsychologist.dayEnd = req.body.dayEnd;
   Psychologists.create(newPsychologist)
     .then((psychologist) => res.json({ msg: "Psychologist added", data: psychologist }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
