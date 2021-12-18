@@ -14,7 +14,7 @@
 		"data:destroy": "node src/seed/seeder -d"
   },
   "engines": {
-    "node": "16.8.0"
+    "node": "14.x"
   },
   "repository": {
     "type": "git",
