@@ -308,7 +308,6 @@ const company = (value) => validateWord(value, "Company");
 const role = (value) => validateWord(value, "Role");
 const driversLicense = (value) => validateBoolean(value, "Drivers License");
 const inProgress = (value) => validateBoolean(value, "inProgress");
-const currently = (value) => validateBoolean(value, "Currently");
 const gender = (value) => validateOption(value, ["male", "female", "other"], "Gender");
 const status = (value) => validateOption(
   value,
@@ -352,7 +351,6 @@ module.exports = {
   role,
   driversLicense,
   inProgress,
-  currently,
   gender,
   status,
   maritalStatus,

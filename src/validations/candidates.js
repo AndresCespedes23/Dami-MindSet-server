@@ -51,15 +51,8 @@ const requiredWorkExperience = (req, res, next) => {
     || !data.role
     || !data.startDate
     || !data.description
-    || data.currently === undefined
-    || (!data.currently && !data.finishDate)
   ) {
     return res.status(400).json({ msg: "Some parameters are missing" });
-  }
-  if (data.currently && data.finishDate) {
-    return res
-      .status(400)
-      .json({ msg: "Current employment can't have a finish date" });
   }
   next();
 };

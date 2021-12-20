@@ -47,10 +47,6 @@ const WorkExperienceSchema = new Schema({
     type: Date,
     required: false,
   },
-  currently: {
-    type: Boolean,
-    required: true,
-  },
   description: {
     type: String,
     required: true,

@@ -30,7 +30,6 @@ const workExperienceInfo = [
   "role",
   "startDate",
   "finishDate",
-  "currently",
   "description",
   "accomplishments",
 ];
