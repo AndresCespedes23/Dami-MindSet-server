@@ -6,19 +6,19 @@ const EducationSchema = new Schema({
   level: {
     type: String,
     enum: ["primary", "secondary", "tertiary", "university"],
-    required: true,
+    required: false,
   },
   institution: {
     type: String,
-    required: true,
+    required: false,
   },
   title: {
     type: String,
-    required: true,
+    required: false,
   },
   startDate: {
     type: Date,
-    required: true,
+    required: false,
   },
   finishDate: {
     type: Date,
@@ -26,22 +26,22 @@ const EducationSchema = new Schema({
   },
   inProgress: {
     type: Boolean,
-    required: true,
+    required: false,
   },
 });
 
 const WorkExperienceSchema = new Schema({
   company: {
     type: String,
-    required: true,
+    required: false,
   },
   role: {
     type: String,
-    required: true,
+    required: false,
   },
   startDate: {
     type: Date,
-    required: true,
+    required: false,
   },
   finishDate: {
     type: Date,
@@ -49,7 +49,7 @@ const WorkExperienceSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
+    required: false,
   },
   accomplishments: {
     type: String,

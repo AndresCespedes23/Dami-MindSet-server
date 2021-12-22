@@ -16,23 +16,9 @@ const personalInfo = [
   "password",
 ];
 
-const educationInfo = [
-  "institution",
-  "startDate",
-  "finishDate",
-  "level",
-  "inProgress",
-  "title",
-];
+const educationInfo = ["institution", "startDate", "finishDate", "level", "inProgress", "title"];
 
-const workExperienceInfo = [
-  "company",
-  "role",
-  "startDate",
-  "finishDate",
-  "description",
-  "accomplishments",
-];
+const workExperienceInfo = ["company", "role", "startDate", "finishDate", "description", "accomplishments"];
 
 const otherInfo = [
   "description",
@@ -47,7 +33,8 @@ const otherInfo = [
 const allInfo = [...personalInfo, ...otherInfo];
 
 const getAll = (req, res) => {
-  Candidates.find({ isDeleted: false }).populate("profiles")
+  Candidates.find({ isDeleted: false })
+    .populate("profiles")
     .then((data) => res.json({ data }))
     .catch((error) => res.status(500).json({ msg: `Error: ${error}` }));
 };
@@ -66,25 +53,21 @@ const getById = (req, res) => {
 const search = (req, res) => {
   const firstName = req.query.name.toLowerCase() || null;
   if (!firstName) return res.status(400).json({ msg: "Missing query param: name" });
-  return Candidates.find({ $and: [{ name: firstName }, { isDeleted: false }] }).populate("profiles")
+  return Candidates.find({ $and: [{ name: firstName }, { isDeleted: false }] })
+    .populate("profiles")
     .then((data) => {
-      if (data.length === 0) return res.status(404).json({ msg: `Candidate not found by name: ${firstName}` });
+      if (data.length === 0) { return res.status(404).json({ msg: `Candidate not found by name: ${firstName}` }); }
       return res.json({ data });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 const create = (req, res) => {
-  const data = req.body;
-  const newCandidate = {};
-  for (let field = 0; field < personalInfo.length; field++) {
-    newCandidate[personalInfo[field]] = data[personalInfo[field]];
-  }
-  newCandidate.status = "PENDING INTERVIEW";
-  newCandidate.dni = data.dni;
-  Candidates.create(newCandidate)
-    .then((candidate) => res.json({ msg: "Candidate created", data: candidate }))
-    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
+  const newCandidate = new Candidates(req.body);
+  newCandidate
+    .save()
+    .then((data) => res.status(201).json({ msg: "Candidate created", data }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}`, error: true }));
 };
 
 const addEducation = (req, res) => {
@@ -98,7 +81,8 @@ const addEducation = (req, res) => {
     .then((candidate) => {
       if (!candidate) return res.status(404).json({ msg: `Candidate not found by ID: ${id}` });
       candidate.education.push(newEducation);
-      return candidate.save()
+      return candidate
+        .save()
         .then((education) => res.json({ msg: "Education created", data: education }))
         .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
     })
@@ -116,7 +100,8 @@ const addWorkExperience = (req, res) => {
     .then((candidate) => {
       if (!candidate) return res.status(404).json({ msg: `Candidate not found by ID: ${id}` });
       candidate.workExperience.push(newWorkExperience);
-      return candidate.save()
+      return candidate
+        .save()
         .then((workExperience) => res.json({ msg: "Work Experience created", data: workExperience }))
         .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
     })
@@ -169,7 +154,11 @@ const updateWorkExperience = (req, res) => {
       const workExperienceIndex = candidate.workExperience.findIndex(
         (workExperience) => workExperience._id.toString() === req.params.workExperienceId,
       );
-      if (workExperienceIndex === -1) return res.status(404).json({ msg: `Work experience with id: ${req.params.workExperienceId} was not found.` });
+      if (workExperienceIndex === -1) {
+        return res
+          .status(404)
+          .json({ msg: `Work experience with id: ${req.params.workExperienceId} was not found.` });
+      }
       candidate.workExperience[workExperienceIndex] = newWorkExperience;
       candidate.save();
       return res.json({ msg: "Candidate updated", data: newWorkExperience });
@@ -207,7 +196,7 @@ const removeEducation = (req, res) => {
       const educationIndex = candidate.education.findIndex(
         (education) => education._id.toString() === req.params.educationId,
       );
-      if (educationIndex === -1) return res.status(404).json({ msg: `Education with id: ${req.params.educationId} was not found.` });
+      if (educationIndex === -1) { return res.status(404).json({ msg: `Education with id: ${req.params.educationId} was not found.` }); }
       const removedEducation = candidate.education[educationIndex];
       candidate.education.splice(educationIndex, 1);
       candidate.save();
@@ -224,7 +213,11 @@ const removeWorkExperience = (req, res) => {
       const workExperienceIndex = candidate.workExperience.findIndex(
         (workExperience) => workExperience._id.toString() === req.params.workExperienceId,
       );
-      if (workExperienceIndex === -1) return res.status(404).json({ msg: `Work experience with id: ${req.params.workExperienceId} was not found.` });
+      if (workExperienceIndex === -1) {
+        return res
+          .status(404)
+          .json({ msg: `Work experience with id: ${req.params.workExperienceId} was not found.` });
+      }
       const removedWorkExperience = candidate.workExperience[workExperienceIndex];
       candidate.workExperience.splice(workExperienceIndex, 1);
       candidate.save();
