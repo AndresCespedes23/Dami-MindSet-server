@@ -78,7 +78,7 @@ const CoursesSchema = new Schema({
 
 const CandidatesSchema = new Schema({
   // Personal Information
-  fullName: {
+  name: {
     type: String,
     required: true,
   },
