@@ -101,7 +101,7 @@ const CandidatesSchema = new Schema({
   gender: {
     type: String,
     enum: ["male", "female", "other"],
-    required: true,
+    required: false,
   },
   address: {
     type: String,
