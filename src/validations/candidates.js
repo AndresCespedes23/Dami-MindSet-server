@@ -6,18 +6,15 @@ const validations = require("./validations");
 const requiredPersonalInfo = (req, res, next) => {
   const data = req.body;
   if (
-    !data.name
+    !data.fullName
     || !data.email
     || !data.username
     || !data.password
-    || !data.gender
     || !data.address
     || !data.phoneNumber
     || !data.dateOfBirth
     || !data.zipCode
     || !data.city
-    || !data.state
-    || !data.country
   ) {
     return res.status(400).json({ msg: "Some parameters are missing" });
   }
