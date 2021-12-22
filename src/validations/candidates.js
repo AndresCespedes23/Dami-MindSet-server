@@ -6,7 +6,7 @@ const validations = require("./validations");
 const requiredPersonalInfo = (req, res, next) => {
   const data = req.body;
   if (
-    !data.fullName
+    !data.name
     || !data.email
     || !data.username
     || !data.password
