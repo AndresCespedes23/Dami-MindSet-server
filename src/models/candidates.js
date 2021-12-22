@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const EducationSchema = new Schema({
   level: {
     type: String,
-    enum: ["primary", "secondary", "tertiary", "university", "course"],
+    enum: ["primary", "secondary", "tertiary", "university"],
     required: true,
   },
   institution: {
@@ -57,9 +57,28 @@ const WorkExperienceSchema = new Schema({
   },
 });
 
+const CoursesSchema = new Schema({
+  name: {
+    type: String,
+    required: false,
+  },
+  organization: {
+    type: String,
+    required: false,
+  },
+  duration: {
+    type: Number,
+    required: false,
+  },
+  description: {
+    type: String,
+    required: false,
+  },
+});
+
 const CandidatesSchema = new Schema({
   // Personal Information
-  name: {
+  fullName: {
     type: String,
     required: true,
   },
@@ -74,6 +93,10 @@ const CandidatesSchema = new Schema({
   password: {
     type: String,
     required: true,
+  },
+  repeatPassword: {
+    type: String,
+    required: false,
   },
   gender: {
     type: String,
@@ -102,16 +125,17 @@ const CandidatesSchema = new Schema({
   },
   state: {
     type: String,
-    required: true,
+    required: false,
   },
   country: {
     type: String,
-    required: true,
+    required: false,
   },
   status: {
     type: String,
     enum: ["ACTIVE", "INACTIVE", "PENDING INTERVIEW", "DISABLED"],
-    required: true,
+    required: false,
+    default: "PENDING INTERVIEW",
   },
   timeRange: {
     type: [String],
@@ -130,6 +154,11 @@ const CandidatesSchema = new Schema({
   // Work Experience
   workExperience: {
     type: [WorkExperienceSchema],
+    required: false,
+  },
+  // Work Experience
+  courses: {
+    type: [CoursesSchema],
     required: false,
   },
   // Other Information
