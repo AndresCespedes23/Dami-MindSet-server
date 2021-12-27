@@ -10,3 +10,5 @@ const { register, login, logout } = controller;
 router.post("/register", validations.required, register);
 router.post("/login", validations.required, login);
 router.post("logout", authMiddleware, logout);
+
+module.exports = router;
