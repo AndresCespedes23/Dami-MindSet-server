@@ -1,15 +1,17 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const User = require("../models/Users");
+const Users = require("../models/Users");
+const Firebase = require("../helper/firebase");
 
 const register = async (req, res) => {
   try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const userCreated = new Users({
+    const newFirebaseUser = await Firebase.auth().createUser({
       email: req.body.email,
-      password: hashedPassword,
+      password: req.body.password,
     });
-    const userSaved = await userCreater.save();
+    const userCreated = await Users({
+      email: req.body.email,
+      firebaseUid: newFirebaseUser.uid,
+    });
+    const userSaved = await userCreated.save();
     return res.status(201).json({
       message: "User created",
       data: userSaved,
@@ -19,43 +21,6 @@ const register = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
-  try {
-    const user = await Users.findOne({ email: req.body.email });
-    if (!user) {
-      throw new error("Invalid user credentials");
-    }
-    const match = await bcrypt.compare(req.body.password, user.password);
-    if (match) {
-      const token = jwt.sign(
-        {
-          email: user.email,
-          userId: user._id,
-        },
-        process.env.JWT_KEY,
-        {
-          expiresIn: "1d",
-        },
-      );
-      const updateUser = await Users.findOneAndUpdate(
-        { email: req.body.email },
-        { token },
-        { new: true }
-      );
-      return res.status(200).json({
-        message: "User Logged",
-        data: {
-          email: updatedUser.email,
-          // eslint-disble-net-line no-uderscore-dangle
-          _id: updateUser._id,
-          token: updatedUser.token,
-        },
-      });
-    }
-    throw new Error("Invalid user credentials");
-  } catch (error) {
-    return res.status(400).json({
-      message: error.toString(),
-    });
-  }
+module.exports = {
+  register,
 };
