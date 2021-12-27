@@ -11,7 +11,7 @@
     "prettier": "prettier --write .",
     "prepare": "husky install",
     "data:import": "node src/seed/seeder",
-		"data:destroy": "node src/seed/seeder -d"
+    "data:destroy": "node src/seed/seeder -d"
   },
   "engines": {
     "node": "14.x"
@@ -30,6 +30,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "firebase-admin": "^10.0.1",
     "mongoose": "^6.0.12",
     "mongoose-seed": "^0.6.0"
   },
