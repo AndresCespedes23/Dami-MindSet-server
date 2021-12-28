@@ -4,9 +4,8 @@ const validations = require("../validations/auth");
 
 const router = express.Router();
 
-const { register, login } = controller;
+const { register } = controller;
 
 router.post("/register", validations.required, register);
-router.post("/login", validations.required, login);
 
 module.exports = router;
