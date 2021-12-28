@@ -3,25 +3,18 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const UsersSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  username: {
-    type: String,
-    required: true,
-  },
   email: {
     type: String,
     required: true,
+    unique: true,
   },
-  password: {
+  firebaseUid: {
     type: String,
     required: true,
   },
-  repeatpassword: {
+  token: {
     type: String,
-    required: false,
+    required: true,
   },
 });
 
