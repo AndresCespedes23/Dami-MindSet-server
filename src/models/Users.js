@@ -16,6 +16,11 @@ const UsersSchema = new Schema({
     type: String,
     required: true,
   },
+  userType: {
+    type: String,
+    enum: ["ADMIN", "CANDIDATE", "PSYCHOLOGIST"],
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Users", UsersSchema);
