@@ -55,10 +55,7 @@ const search = (req, res) => {
   if (!firstName) return res.status(400).json({ msg: "Missing query param: name" });
   return Candidates.find({ $and: [{ name: firstName }, { isDeleted: false }] })
     .populate("profiles")
-    .then((data) => {
-      if (data.length === 0) { return res.status(404).json({ msg: `Candidate not found by name: ${firstName}` }); }
-      return res.json({ data });
-    })
+    .then((data) => res.json({ data }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
