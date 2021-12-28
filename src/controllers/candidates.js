@@ -51,7 +51,7 @@ const getById = (req, res) => {
 };
 
 const search = (req, res) => {
-  const firstName = req.query.name.toLowerCase() || null;
+  const firstName = req.query.name;
   if (!firstName) return res.status(400).json({ msg: "Missing query param: name" });
   return Candidates.find({ $and: [{ name: firstName }, { isDeleted: false }] })
     .populate("profiles")
