@@ -10,6 +10,7 @@ const positionsRoutes = require("./positions");
 const profilesRoutes = require("./profiles");
 const psychologistsRoutes = require("./psychologists");
 const sessionsRoutes = require("./sessions");
+const authRoutes = require("./auth");
 
 router.use("/api/candidates", candidatesRoutes);
 router.use("/api/applications", applicationsRoutes);
@@ -21,5 +22,6 @@ router.use("/api/admins", adminsRoutes);
 router.use("/api/profiles", profilesRoutes);
 router.use("/api/psychologists", psychologistsRoutes);
 router.use("/api/sessions", sessionsRoutes);
+router.use("/api/auth", authRoutes);
 
 module.exports = router;
