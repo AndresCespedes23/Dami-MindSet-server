@@ -22,6 +22,6 @@ router.use("/api/admins", adminsRoutes);
 router.use("/api/profiles", profilesRoutes);
 router.use("/api/psychologists", psychologistsRoutes);
 router.use("/api/sessions", sessionsRoutes);
-router.use("/auth", authRoutes);
+router.use("/api/auth", authRoutes);
 
 module.exports = router;
