@@ -3,7 +3,7 @@ const positions = require("../controllers/positions");
 const validations = require("../validations/positions");
 const authMiddleware = require("../middlewares/authMiddleware");
 
-router.get("/", authMiddleware, positions.getAll);
+router.get("/", positions.getAll);
 router.get("/:id", authMiddleware, positions.getById);
 router.post(
   "/",

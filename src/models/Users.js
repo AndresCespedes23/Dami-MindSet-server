@@ -12,7 +12,7 @@ const UsersSchema = new Schema({
     type: String,
     required: true,
   },
-  token: {
+  password: {
     type: String,
     required: true,
   },

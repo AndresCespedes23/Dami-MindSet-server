@@ -10,6 +10,8 @@ const register = async (req, res) => {
     });
     const userCreated = await Users({
       email: req.body.email,
+      password: req.body.password,
+      userType: req.body.userType,
       firebaseUid: newFirebaseUser.uid,
     });
     const userSaved = await userCreated.save();
