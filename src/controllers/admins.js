@@ -36,10 +36,17 @@ const update = (req, res) => {
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
-
+const create = (req, res) => {
+  const newAdmin = new Admins(req.body);
+  newAdmin
+    .save()
+    .then((admin) => res.json({ message: "Admin added", data: admin }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
+};
 module.exports = {
   getAll,
   getById,
   search,
   update,
+  create,
 };

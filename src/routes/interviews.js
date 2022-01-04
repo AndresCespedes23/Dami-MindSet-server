@@ -21,5 +21,6 @@ router.put("/activate/:id", authMiddleware, interviews.activate);
 router.delete("/:id", authMiddleware, interviews.remove);
 router.get("/", authMiddleware, interviews.getAll);
 router.get("/:id", authMiddleware, interviews.getById);
+router.get("/pending/:id", authMiddleware, interviews.getPending);
 
 module.exports = router;

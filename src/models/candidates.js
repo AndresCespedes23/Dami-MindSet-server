@@ -94,10 +94,6 @@ const CandidatesSchema = new Schema({
     type: String,
     required: true,
   },
-  repeatPassword: {
-    type: String,
-    required: false,
-  },
   gender: {
     type: String,
     enum: ["male", "female", "other"],
@@ -105,23 +101,23 @@ const CandidatesSchema = new Schema({
   },
   address: {
     type: String,
-    required: true,
+    required: false,
   },
   phoneNumber: {
     type: Number,
-    required: true,
+    required: false,
   },
   dateOfBirth: {
     type: Date,
-    required: true,
+    required: false,
   },
   zipCode: {
     type: String,
-    required: true,
+    required: false,
   },
   city: {
     type: String,
-    required: true,
+    required: false,
   },
   state: {
     type: String,
@@ -186,6 +182,15 @@ const CandidatesSchema = new Schema({
   isDeleted: {
     type: Boolean,
     default: false,
+  },
+  firebaseUid: {
+    type: String,
+    required: true,
+  },
+  userType: {
+    type: String,
+    enum: ["ADMIN", "CANDIDATE", "PSYCHOLOGIST"],
+    default: "CANDIDATE",
   },
 });
 
