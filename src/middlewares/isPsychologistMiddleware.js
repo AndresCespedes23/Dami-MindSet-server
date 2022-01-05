@@ -6,7 +6,7 @@ const isPsychologistMiddleware = (req, res, next) => {
     .auth()
     .verifyIdToken(token)
     .then((claims) => {
-      if (claims !== "PSYCHOLOGIST") {
+      if (claims.userType !== "PSYCHOLOGIST") {
         return res
           .status(400)
           .json({ message: "UserType does not have permissions" });

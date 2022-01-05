@@ -6,7 +6,8 @@ const isAdminMiddleware = (req, res, next) => {
     .auth()
     .verifyIdToken(token)
     .then((claims) => {
-      if (claims !== "ADMIN") {
+      console.log(claims);
+      if (claims.userType !== "ADMIN") {
         return res
           .status(400)
           .json({ message: "UserType does not have permissions" });

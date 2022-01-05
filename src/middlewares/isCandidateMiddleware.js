@@ -6,7 +6,7 @@ const isCandidateMiddleware = (req, res, next) => {
     .auth()
     .verifyIdToken(token)
     .then((claims) => {
-      if (claims !== "CANDIDATE") {
+      if (claims.userType !== "CANDIDATE") {
         return res
           .status(400)
           .json({ message: "UserType does not have permissions" });
