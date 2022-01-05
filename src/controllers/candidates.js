@@ -112,6 +112,8 @@ const update = (req, res) => {
   for (let field = 0; field < allInfo.length; field++) {
     updatedCandidate[allInfo[field]] = data[allInfo[field]];
   }
+  updatedCandidate.workExperience = data.workExperience;
+  updatedCandidate.education = data.education;
   Candidates.findByIdAndUpdate(id, updatedCandidate, { new: true })
     .populate("profiles")
     .then((newCandidate) => {

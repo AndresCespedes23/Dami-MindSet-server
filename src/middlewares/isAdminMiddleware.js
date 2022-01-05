@@ -6,7 +6,6 @@ const isAdminMiddleware = (req, res, next) => {
     .auth()
     .verifyIdToken(token)
     .then((claims) => {
-      console.log(claims);
       if (claims.userType !== "ADMIN") {
         return res
           .status(400)
