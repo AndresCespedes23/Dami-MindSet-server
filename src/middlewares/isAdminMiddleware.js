@@ -8,7 +8,7 @@ const isAdminMiddleware = (req, res, next) => {
     .then((claims) => {
       if (claims.userType !== "ADMIN") {
         return res
-          .status(400)
+          .status(403)
           .json({ message: "UserType does not have permissions" });
       }
       return next();
