@@ -55,6 +55,10 @@ const PsychologistsSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  firebaseUid: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Psychologists", PsychologistsSchema);

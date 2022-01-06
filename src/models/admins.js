@@ -30,11 +30,15 @@ const AdminsSchema = new Schema({
   },
   isSuperAdmin: {
     type: Boolean,
-    required: true,
+    default: false,
   },
   isDeleted: {
     type: Boolean,
     default: false,
+  },
+  firebaseUid: {
+    type: String,
+    required: true,
   },
 });
 module.exports = mongoose.model("Admins", AdminsSchema);
