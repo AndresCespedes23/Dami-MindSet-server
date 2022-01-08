@@ -11,6 +11,7 @@ const profilesRoutes = require("./profiles");
 const psychologistsRoutes = require("./psychologists");
 const sessionsRoutes = require("./sessions");
 const authRoutes = require("./auth");
+const statisticsRoutes = require("./statistics");
 
 router.use("/api/candidates", candidatesRoutes);
 router.use("/api/applications", applicationsRoutes);
@@ -23,5 +24,5 @@ router.use("/api/profiles", profilesRoutes);
 router.use("/api/psychologists", psychologistsRoutes);
 router.use("/api/sessions", sessionsRoutes);
 router.use("/api/auth", authRoutes);
-
+router.use("/api/statistics", statisticsRoutes);
 module.exports = router;
