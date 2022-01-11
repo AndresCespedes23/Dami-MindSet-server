@@ -118,6 +118,9 @@ const update = (req, res) => {
   if (Object.keys(data.courses[0]).length !== 0) {
     updatedCandidate.courses = data.courses;
   }
+  if (Object.keys(data.availability[0]).length !== 0) {
+    updatedCandidate.availability = data.availability;
+  }
   updatedCandidate.education = data.education;
   Candidates.findByIdAndUpdate(id, updatedCandidate, { new: true })
     .populate("profiles")
