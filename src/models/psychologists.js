@@ -39,17 +39,19 @@ const PsychologistsSchema = new Schema({
     enum: ["AVAILABLE", "UNAVAILABLE"],
     required: true,
   },
-  timeStart: {
-    type: String,
-  },
-  timeEnd: {
-    type: String,
-  },
-  dayStart: {
-    type: String,
-  },
-  dayEnd: {
-    type: String,
+  availability: {
+    type: [{
+      key: {
+        type: String,
+      },
+      day: {
+        type: String,
+      },
+      time: {
+        type: String,
+      },
+    }],
+    required: false,
   },
   isDeleted: {
     type: Boolean,
