@@ -1,4 +1,6 @@
+const { ObjectId } = require("mongoose").Types;
 const Candidates = require("../models/candidates");
+const Sessions = require("../models/sessions");
 
 const personalInfo = [
   "name",
@@ -233,6 +235,35 @@ const removeWorkExperience = (req, res) => {
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
+const updateProfiles = async (req, res) => {
+  const { id } = req.params;
+  const data = req.body;
+  const postulantSessions = await Sessions.find({
+    $and: [{ idCandidate: id }, { isDeleted: false }],
+  });
+  const newProfiles = [];
+  postulantSessions.forEach((session) => {
+    session.result.forEach((profile) => {
+      newProfiles.push(profile.toString());
+    });
+  });
+  const uniqueProfiles = [];
+  newProfiles.forEach((c) => {
+    if (!uniqueProfiles.includes(c)) {
+      uniqueProfiles.push(c);
+    }
+  });
+  data.idCandidate.profiles = uniqueProfiles.map((prof) => new ObjectId(prof));
+  Candidates.findByIdAndUpdate(id, data.idCandidate, { new: true })
+    .populate("profiles")
+    .then((newCandidate) => {
+      if (!newCandidate) return res.status(404).json({ msg: `Candidate not found by ID: ${id}` });
+      return res.json({ msg: "Candidate profiles updated", data: newCandidate });
+    })
+    .catch((err) => {
+      res.status(500).json({ msg: `Error: ${err}` });
+    });
+};
 module.exports = {
   getAll,
   getById,
@@ -247,6 +278,7 @@ module.exports = {
   activate,
   removeEducation,
   removeWorkExperience,
+  updateProfiles,
   personalInfo,
   educationInfo,
   workExperienceInfo,

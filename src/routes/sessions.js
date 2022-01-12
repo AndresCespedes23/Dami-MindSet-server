@@ -4,6 +4,7 @@ const validations = require("../validations/sessions");
 const authMiddleware = require("../middlewares/authMiddleware");
 
 router.get("/", authMiddleware, sessions.getAll);
+router.get("/available/:id", authMiddleware, sessions.getAvailable);
 router.get("/:id", authMiddleware, sessions.getById);
 router.post("/", authMiddleware, validations.required, validations.validate, sessions.create);
 router.put("/activate/:id", authMiddleware, validations.validate, sessions.activate);
