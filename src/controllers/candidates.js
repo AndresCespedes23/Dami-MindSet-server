@@ -251,7 +251,6 @@ const updateProfiles = async (req, res) => {
     }
   });
   data.idCandidate.profiles = uniqueProfiles.map((prof) => new ObjectId(prof));
-  console.log(data.idCandidate);
   Candidates.findByIdAndUpdate(id, data.idCandidate, { new: true })
     .populate("profiles")
     .then((newCandidate) => {
@@ -259,7 +258,6 @@ const updateProfiles = async (req, res) => {
       return res.json({ msg: "Candidate profiles updated", data: newCandidate });
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json({ msg: `Error: ${err}` });
     });
 };
