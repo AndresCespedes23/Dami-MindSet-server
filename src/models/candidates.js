@@ -133,10 +133,6 @@ const CandidatesSchema = new Schema({
     required: false,
     default: "PENDING INTERVIEW",
   },
-  timeRange: {
-    type: [String],
-    required: false,
-  },
   profiles: {
     type: [Schema.Types.ObjectId],
     ref: "Profiles",
@@ -191,6 +187,20 @@ const CandidatesSchema = new Schema({
     type: String,
     enum: ["ADMIN", "CANDIDATE", "PSYCHOLOGIST"],
     default: "CANDIDATE",
+  },
+  availability: {
+    type: [{
+      key: {
+        type: String,
+      },
+      day: {
+        type: String,
+      },
+      time: {
+        type: String,
+      },
+    }],
+    required: false,
   },
 });
 
