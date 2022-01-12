@@ -73,7 +73,7 @@ const getById = (req, res) => {
   Interviews.findOne({ $and: [{ _id: id }, { isDeleted: false }] })
     .populate("idCandidate", "name")
     .populate("idClient", "name")
-    .populate("idPosition", "name")
+    .populate("idPosition", "name address city postalCode description")
     .then((data) => {
       if (!data) return res.status(404).json({ msg: `Interview not found by ID: ${id}` });
       return res.json({ data });
