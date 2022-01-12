@@ -33,7 +33,6 @@ const create = (req, res) => {
     status: req.body.status,
     result: req.body.result || [],
   };
-  console.log(req.body);
   Sessions.create(newSession)
     .then((data) => res.json({ msg: "Session added", data }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
@@ -140,7 +139,7 @@ const getAvailable = async (req, res) => {
     if (sessionCalendar.length > 0) {
       for (let i = 0; i < sessionCalendar.length; i++) {
         for (let j = 0; j < psychologistCalendar.length; j++) {
-          if (moment(sessionCalendar[i].date).isSame(moment(psychologistCalendar[j]))) {
+          if (moment(sessionCalendar[i]).isSame(moment(psychologistCalendar[j]))) {
             psychologistCalendar.splice(j, 1);
           }
         }
