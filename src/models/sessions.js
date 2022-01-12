@@ -25,8 +25,9 @@ const SessionsSchema = new Schema({
     required: true,
   },
   result: {
-    type: String,
-    maxLength: 500,
+    type: [Schema.Types.ObjectId],
+    ref: "Profiles",
+    required: false,
   },
   isDeleted: {
     type: Boolean,

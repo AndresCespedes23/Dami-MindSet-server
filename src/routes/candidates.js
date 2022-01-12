@@ -13,6 +13,7 @@ router.post(
   candidates.addWorkExperience,
 );
 router.put("/activate/:id", authMiddleware, candidates.activate);
+router.put("/profiles/:id", authMiddleware, candidates.updateProfiles);
 router.put("/:id", authMiddleware, candidates.update);
 router.put(
   "/:id/education/:educationId",
