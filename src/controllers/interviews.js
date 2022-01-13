@@ -92,6 +92,17 @@ const getPending = (req, res) => {
     .then((data) => res.json({ data }))
     .catch((err) => res.status(400).json({ msg: `Error: ${err}` }));
 };
+const getCompleted = (req, res) => {
+  const { id } = req.params;
+  Interviews.find(
+    { $and: [{ idCandidate: id }, { isDeleted: false }, { dateTime: { $lt: new Date() } }] },
+  )
+    .populate("idCandidate", "name")
+    .populate("idClient", "name")
+    .populate("idPosition", "name")
+    .then((data) => res.json({ data }))
+    .catch((err) => res.status(400).json({ msg: `Error: ${err}` }));
+};
 module.exports = {
   create,
   update,
@@ -100,4 +111,5 @@ module.exports = {
   getAll,
   getById,
   getPending,
+  getCompleted,
 };
