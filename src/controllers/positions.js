@@ -86,6 +86,15 @@ const activate = (req, res) => {
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
+const getClientPositions = (req, res) => {
+  const { id } = req.params;
+  Positions.find({ $and: [{ idClient: id }, { isDeleted: false }] })
+    .populate("idClient", "name")
+    .populate("idProfile", "name description")
+    .then((data) => res.json({ data }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
+};
+
 module.exports = {
   getAll,
   getById,
@@ -93,4 +102,5 @@ module.exports = {
   update,
   remove,
   activate,
+  getClientPositions,
 };

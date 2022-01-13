@@ -4,6 +4,7 @@ const validations = require("../validations/positions");
 const authMiddleware = require("../middlewares/authMiddleware");
 
 router.get("/", positions.getAll);
+router.get("/client/:id", authMiddleware, positions.getClientPositions);
 router.get("/:id", authMiddleware, positions.getById);
 router.post(
   "/",
