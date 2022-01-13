@@ -16,6 +16,12 @@ const getById = (req, res) => {
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
+const getAllDisabled = (req, res) => {
+  Clients.find({ isDeleted: true })
+    .then((data) => res.json({ data }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
+};
+
 const remove = (req, res) => {
   const { id } = req.params;
   Clients.findByIdAndUpdate(id, { isDeleted: true }, { new: true })
@@ -74,4 +80,5 @@ module.exports = {
   update,
   create,
   search,
+  getAllDisabled,
 };

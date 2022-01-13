@@ -4,6 +4,7 @@ const middleware = require("../validations/clients");
 const authMiddleware = require("../middlewares/authMiddleware");
 
 router.get("/", authMiddleware, controller.getAll);
+router.get("/disabled", authMiddleware, controller.getAllDisabled);
 router.get("/search", authMiddleware, controller.search);
 router.get("/:id", authMiddleware, controller.getById);
 router.post(
