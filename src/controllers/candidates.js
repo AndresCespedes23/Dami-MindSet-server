@@ -114,13 +114,13 @@ const update = (req, res) => {
   for (let field = 0; field < allInfo.length; field++) {
     updatedCandidate[allInfo[field]] = data[allInfo[field]];
   }
-  if (Object.keys(data.workExperience[0]).length !== 0) {
+  if (data.workExperience.length !== 0) {
     updatedCandidate.workExperience = data.workExperience;
   }
-  if (Object.keys(data.courses[0]).length !== 0) {
+  if (data.courses.length !== 0) {
     updatedCandidate.courses = data.courses;
   }
-  if (Object.keys(data.availability[0]).length !== 0) {
+  if (data.availability.length !== 0) {
     updatedCandidate.availability = data.availability;
   }
   updatedCandidate.education = data.education;
