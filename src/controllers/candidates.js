@@ -55,7 +55,7 @@ const getById = (req, res) => {
 const search = (req, res) => {
   const firstName = req.query.name;
   if (!firstName) return res.status(400).json({ msg: "Missing query param: name" });
-  return Candidates.find({ $and: [{ name: firstName }, { isDeleted: false }] })
+  return Candidates.find({ $and: [{ name: new RegExp(firstName, "i") }, { isDeleted: false }] })
     .populate("profiles")
     .then((data) => res.json({ data }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));

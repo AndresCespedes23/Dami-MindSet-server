@@ -16,6 +16,7 @@ router.post(
   controller.create,
 );
 router.put("/activate/:id", authMiddleware, controller.activate);
+router.put("/remove/:id", authMiddleware, controller.remove);
 router.put(
   "/:id",
   authMiddleware,
@@ -24,6 +25,5 @@ router.put(
   middleware.dataBodyUnique,
   controller.update,
 );
-router.delete("/:id", authMiddleware, controller.remove);
 
 module.exports = router;
