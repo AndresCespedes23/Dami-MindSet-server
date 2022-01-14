@@ -153,6 +153,14 @@ const getAvailable = async (req, res) => {
     res.status(500).json({ msg: `Error: ${error}` });
   }
 };
+const getPostulantSessions = (req, res) => {
+  const { id } = req.params;
+  Sessions.find({ $and: [{ idCandidate: id }, { isDeleted: false }] })
+    .populate("idPsychologist", "name")
+    .populate("idCandidate", "name")
+    .then((data) => res.json({ data }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
+};
 module.exports = {
   getAll,
   getById,
@@ -161,4 +169,5 @@ module.exports = {
   remove,
   activate,
   getAvailable,
+  getPostulantSessions,
 };
