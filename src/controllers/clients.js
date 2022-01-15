@@ -37,7 +37,7 @@ const activate = (req, res) => {
   Clients.findByIdAndUpdate(id, { isDeleted: false }, { new: true })
     .then((found) => {
       if (!found) return res.status(404).json({ message: `Client not found with ID ${id}` });
-      return res.status.json({ message: "Client activated", data: found });
+      return res.json({ message: "Client activated", data: found });
     })
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
@@ -64,7 +64,7 @@ const create = (req, res) => {
 const search = (req, res) => {
   const name = req.query.name || null;
   if (!name) return res.status(400).json({ msg: "Missing query param: name" });
-  return Clients.find({ name })
+  return Clients.find({ name: new RegExp(name, "i") })
     .then((data) => {
       if (data.length === 0) return res.status(404).json({ msg: `Clients not found by name: ${name}` });
       return res.json({ data });

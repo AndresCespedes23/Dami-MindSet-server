@@ -55,7 +55,7 @@ const getById = (req, res) => {
 const search = (req, res) => {
   const firstName = req.query.name;
   if (!firstName) return res.status(400).json({ msg: "Missing query param: name" });
-  return Candidates.find({ $and: [{ name: firstName }, { isDeleted: false }] })
+  return Candidates.find({ $and: [{ name: new RegExp(firstName, "i") }, { isDeleted: false }] })
     .populate("profiles")
     .then((data) => res.json({ data }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
@@ -114,13 +114,13 @@ const update = (req, res) => {
   for (let field = 0; field < allInfo.length; field++) {
     updatedCandidate[allInfo[field]] = data[allInfo[field]];
   }
-  if (Object.keys(data.workExperience[0]).length !== 0) {
+  if (data.workExperience.length !== 0) {
     updatedCandidate.workExperience = data.workExperience;
   }
-  if (Object.keys(data.courses[0]).length !== 0) {
+  if (data.courses.length !== 0) {
     updatedCandidate.courses = data.courses;
   }
-  if (Object.keys(data.availability[0]).length !== 0) {
+  if (data.availability.length !== 0) {
     updatedCandidate.availability = data.availability;
   }
   updatedCandidate.education = data.education;
