@@ -54,7 +54,11 @@ const getAll = (req, res) => {
     .then((data) => res.json({ data }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
-
+const getAllAdmin = (req, res) => {
+  Psychologists.find()
+    .then((data) => res.json({ data }))
+    .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
+};
 const getById = (req, res) => {
   const { id } = req.params;
   Psychologists.findById(id)
@@ -83,4 +87,5 @@ module.exports = {
   search,
   remove,
   activate,
+  getAllAdmin,
 };

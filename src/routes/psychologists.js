@@ -4,6 +4,7 @@ const middleware = require("../validations/psychologists");
 const authMiddleware = require("../middlewares/authMiddleware");
 
 router.get("/", authMiddleware, psychologists.getAll);
+router.get("/admin", authMiddleware, psychologists.getAllAdmin);
 router.get("/search", authMiddleware, psychologists.search);
 router.get("/:id", authMiddleware, psychologists.getById);
 router.post(
