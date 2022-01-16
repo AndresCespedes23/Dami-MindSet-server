@@ -22,6 +22,6 @@ router.put(
   // middleware.formatBodyRequired,
   psychologists.update,
 );
-router.delete("/:id", authMiddleware, psychologists.remove);
+router.put("/remove/:id", authMiddleware, psychologists.remove);
 
 module.exports = router;

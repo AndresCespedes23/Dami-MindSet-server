@@ -9,6 +9,6 @@ router.get("/:id", authMiddleware, profiles.getById);
 router.put("/activate/:id", authMiddleware, validations.validate, profiles.activate);
 router.put("/:id", authMiddleware, validations.validate, profiles.update);
 router.post("/", authMiddleware, validations.required, validations.validate, profiles.create);
-router.delete("/:id", authMiddleware, profiles.remove);
+router.put("/remove/:id", authMiddleware, profiles.remove);
 
 module.exports = router;

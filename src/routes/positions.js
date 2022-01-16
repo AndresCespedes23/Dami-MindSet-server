@@ -15,6 +15,6 @@ router.post(
 );
 router.put("/activate/:id", authMiddleware, positions.activate);
 router.put("/:id", authMiddleware, validations.validate, positions.update);
-router.delete("/:id", authMiddleware, positions.remove);
+router.put("/remove/:id", authMiddleware, positions.remove);
 
 module.exports = router;
