@@ -25,7 +25,7 @@ router.put(
   authMiddleware,
   candidates.updateWorkExperience,
 );
-router.delete("/:id", authMiddleware, candidates.remove);
+router.put("/remove/:id", authMiddleware, candidates.remove);
 router.delete(
   "/:id/education/:educationId",
   authMiddleware,
